@@ -48,7 +48,7 @@
 
 
 /**
- A category that exposes the internal (private) helper methods of the NSArray+AutoLayout category.
+ A category that exposes the internal (private) helper methods of the NSArray+PureLayout category.
  */
 @interface NSArray (PureLayoutInternal)
 
