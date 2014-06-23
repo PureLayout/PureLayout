@@ -1,11 +1,11 @@
 language: objective-c
 xcode_project: Example/Example.xcodeproj
 matrix:
-	include:
-		- xcode_sdk: iphonesimulator
-		  xcode_scheme: Example-iOS
-		- xcode_sdk: macosx
-		  xcode_scheme: Example-Mac
+  include:
+    - xcode_sdk: iphonesimulator
+      xcode_scheme: Example-iOS
+    - xcode_sdk: macosx
+      xcode_scheme: Example-Mac
 before_install:
-	- brew update
-	- brew upgrade xctool
+  - brew update
+  - brew upgrade xctool
