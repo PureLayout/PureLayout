@@ -1,6 +1,6 @@
 //
 //  NSArray+PureLayout.m
-//  v1.0.0
+//  v1.0.1
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2012 Richard Turton
