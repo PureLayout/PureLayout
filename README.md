@@ -1,7 +1,7 @@
 PureLayout [![Build Status](https://travis-ci.org/smileyborg/PureLayout.svg?branch=master)](https://travis-ci.org/smileyborg/PureLayout)
 ==========
 
-The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. PureLayout extends `UIView`/`NSView`, `NSArray`, and `NSLayoutConstraint` with a comprehensive Auto Layout API that is modeled after Apple's own frameworks.
+The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. PureLayout extends `UIView`/`NSView`, `NSArray`, and `NSLayoutConstraint` with a comprehensive Auto Layout API that is modeled after Apple's own frameworks. PureLayout is an Objective-C library that also works (and looks!) great with Swift using a bridging header.
 
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the Auto Layout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
@@ -47,7 +47,7 @@ This is just a handy overview of the core API methods. Explore the [header files
 
 Setup
 -----
-*Note: to use Auto Layout, you must have a minimum deployment target of iOS 6.0 or OS X 10.7*
+*Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
 
 **Using [CocoaPods](http://cocoapods.org)**
 
