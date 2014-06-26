@@ -102,11 +102,11 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 	*	Pros: Visual, simple
 	* 	Cons: Difficult for complex layouts, cannot dynamically set constraints at runtime, encourages hardcoded magic numbers, not always WYSIWYG
 *	**PureLayout**
-	*	Pros: Simple, efficient, built directly on the iOS SDK, minimal third party code
+	*	Pros: Simple, efficient, minimal third party code, consistent with Apple API style, compatible with Objective-C and Swift codebases
 	*	Cons: Not the most concise expression of layout code
-*	High-level layout frameworks ([Masonry](https://github.com/cloudkite/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+*	High-level Auto Layout Libraries/DSLs ([Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
 	*	Pros: Very clean, concise, and convenient 
-	*	Cons: Overloaded Objective-C syntax, larger dependency on third party code, difficult to mix with SDK APIs, higher risk of compatibility issues with SDK changes
+	*	Cons: Overloaded Objective-C syntax (Swift incompatible), heavier dependency on third party code, difficult to mix with SDK APIs
 
 Problems, Suggestions, Pull Requests?
 -------------------------------------
