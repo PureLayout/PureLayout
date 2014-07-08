@@ -68,6 +68,10 @@ That's it - now go write some beautifully simple Auto Layout code!
 
 That's it - now go write some beautifully simple Auto Layout code!
 
+**Migrating from [UIView+AutoLayout](https://github.com/smileyborg/UIView-AutoLayout)?**
+
+If you are using the latest version of UIView+AutoLayout (v2.0.0), migrating to PureLayout is simple. The API is 100% compatible, so you only need to swap out the pod or library and update `#import "UIView+AutoLayout.h"` to `#import "PureLayout.h"` where necessary.
+
 **Releases**
 
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
