@@ -10,7 +10,7 @@ This is just a handy overview of the core API methods. Explore the [header files
 *	*All methods that generate constraints also automatically add the constraint(s) to the correct view, then return the newly created constraint(s) for you to optionally store for later adjustment or removal.*
 *	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
 
-**`UIView`/`NSView`**
+**[`UIView`/`NSView`](https://github.com/smileyborg/PureLayout/blob/master/Source/ALView%2BPureLayout.h)**
 
     + autoRemoveConstraint(s):
     - autoRemoveConstraintsAffectingView(AndSubviews)
@@ -27,7 +27,7 @@ This is just a handy overview of the core API methods. Explore the [header files
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
     - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 
-**`NSArray`**
+**[`NSArray`](https://github.com/smileyborg/PureLayout/blob/master/Source/NSArray%2BPureLayout.h)**
 
     - autoAlignViewsToEdge:
     - autoAlignViewsToAxis:
@@ -36,7 +36,7 @@ This is just a handy overview of the core API methods. Explore the [header files
     - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)alignment:
     - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
 
-**`NSLayoutConstraint`**
+**[`NSLayoutConstraint`](https://github.com/smileyborg/PureLayout/blob/master/Source/NSLayoutConstraint%2BPureLayout.h)**
 
     - autoInstall
     - autoRemove
