@@ -781,10 +781,10 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     NSLayoutAttribute attribute = NSLayoutAttributeNotAnAttribute;
     switch (axis) {
         case ALAxisVertical:
-            attribute = NSLayoutAttributeCenterX;
+            attribute = NSLayoutAttributeCenterY;
             break;
         case ALAxisHorizontal:
-            attribute = NSLayoutAttributeCenterY;
+            attribute = NSLayoutAttributeCenterX;
             break;
         case ALAxisBaseline:
             attribute = NSLayoutAttributeBaseline;
