@@ -10,7 +10,7 @@ This is just a handy overview of the core API methods. Explore the [header files
 *	*All methods that generate constraints also automatically add the constraint(s) to the correct view, then return the newly created constraint(s) for you to optionally store for later adjustment or removal.*
 *	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
 
-**`ALAttribute` Reference**
+**`ALAttribute`**
 
 Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttributes.png) used throughout the API.
 
