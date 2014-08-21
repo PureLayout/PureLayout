@@ -11,7 +11,7 @@ This is just a handy overview of the core API methods. Explore the [header files
 *	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
 
 **`ALAttribute` Reference**
-![Illustration of the ALAttribute constants.](Images/PureLayout-ALAttributes.png)
+Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttributes.png) used throughout the API.
 
 **[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
 
