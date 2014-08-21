@@ -4,13 +4,16 @@ The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely p
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the AutoLayout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
 ## API Cheat Sheet
-This is just a handy overview of the core API methods. Explore the [header files](https://github.com/smileyborg/PureLayout/blob/master/Source) for the full API and documentation. A couple of notes:
+This is just a handy overview of the core API methods. Explore the [header files](Source) for the full API and documentation. A couple of notes:
 
 *	*All of the API methods begin with `auto...` for easy autocompletion in Xcode!*
 *	*All methods that generate constraints also automatically add the constraint(s) to the correct view, then return the newly created constraint(s) for you to optionally store for later adjustment or removal.*
 *	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
 
-**[`UIView`/`NSView`](https://github.com/smileyborg/PureLayout/blob/master/Source/ALView%2BPureLayout.h)**
+**`ALAttribute` Reference**
+![Illustration of the ALAttribute constants.](Images/PureLayout-ALAttributes.png)
+
+**[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
 
     + autoRemoveConstraint(s):
     - autoRemoveConstraintsAffectingView(AndSubviews)
@@ -27,7 +30,7 @@ This is just a handy overview of the core API methods. Explore the [header files
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
     - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 
-**[`NSArray`](https://github.com/smileyborg/PureLayout/blob/master/Source/NSArray%2BPureLayout.h)**
+**[`NSArray`](Source/NSArray%2BPureLayout.h)**
 
     - autoAlignViewsToEdge:
     - autoAlignViewsToAxis:
@@ -36,7 +39,7 @@ This is just a handy overview of the core API methods. Explore the [header files
     - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)alignment:
     - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
 
-**[`NSLayoutConstraint`](https://github.com/smileyborg/PureLayout/blob/master/Source/NSLayoutConstraint%2BPureLayout.h)**
+**[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
 
     - autoInstall
     - autoRemove
@@ -55,7 +58,7 @@ This is just a handy overview of the core API methods. Explore the [header files
 That's it - now go write some beautifully simple Auto Layout code!
 
 ### Manually from GitHub
-1.	Download the source files in the [Source directory](https://github.com/smileyborg/PureLayout/tree/master/Source).
+1.	Download the source files in the [Source directory](Source).
 2.	Add the source files to your Xcode project.
 3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
 
@@ -69,7 +72,7 @@ Releases are tagged in the git commit history using [semantic versioning](http:/
 
 ## Usage
 ### Example Project
-Check out the [example project](https://github.com/smileyborg/PureLayout/blob/master/Example/) included in the repository. It contains iOS and OS X demos of the API being used in various scenarios.
+Check out the [example project](Example) included in the repository. It contains iOS and OS X demos of the API being used in various scenarios.
 
 On iOS, while running the app, tap on the screen to cycle through the demos. You can rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
 
