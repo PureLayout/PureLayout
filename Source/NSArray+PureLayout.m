@@ -168,6 +168,24 @@
  */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSpacing:(CGFloat)spacing insetSpacing:(BOOL)shouldSpaceInsets alignment:(NSLayoutFormatOptions)alignment
 {
+    return [self autoDistributeViewsAlongAxis:axis withFixedSpacing:spacing insetSpacing:shouldSpaceInsets matchedSizes:YES alignment:alignment];
+}
+
+/**
+ Distributes the views in this array equally along the selected axis in their superview.
+ Views will have fixed spacing between them, and can optionally be constrained to the same size in the dimension along the axis.
+ The first and last views can optionally be inset from their superview by the same amount of spacing as between views.
+ 
+ @param axis The axis along which to distribute the subviews.
+ @param spacing The fixed amount of spacing between each subview.
+ @param shouldSpaceInsets Whether the first and last views should be equally inset from their superview.
+ @param shouldMatchSizes Whether all views will be constrained to be the same size in the dimension along the axis.
+                         NOTE: All views must specify an intrinsic content size if passing NO, otherwise the layout will be ambiguous!
+ @param alignment The way in which the subviews will be aligned.
+ @return An array of constraints added.
+ */
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSpacing:(CGFloat)spacing insetSpacing:(BOOL)shouldSpaceInsets matchedSizes:(BOOL)shouldMatchSizes alignment:(NSLayoutFormatOptions)alignment
+{
     NSAssert([self al_containsMinimumNumberOfViews:2], @"This array must contain at least 2 views to distribute.");
     ALDimension matchedDimension;
     ALEdge firstEdge, lastEdge;
@@ -199,7 +217,9 @@
             if (previousView) {
                 // Second, Third, ... View
                 [constraints addObject:[view autoPinEdge:firstEdge toEdge:lastEdge ofView:previousView withOffset:spacing]];
-                [constraints addObject:[view autoMatchDimension:matchedDimension toDimension:matchedDimension ofView:previousView]];
+                if (shouldMatchSizes) {
+                    [constraints addObject:[view autoMatchDimension:matchedDimension toDimension:matchedDimension ofView:previousView]];
+                }
                 [constraints addObject:[view al_alignToView:previousView withOption:alignment forAxis:axis]];
             }
             else {
