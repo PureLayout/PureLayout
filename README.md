@@ -37,7 +37,7 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
     - autoSetViewsDimension:toSize:
-    - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)alignment:
+    - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)(matchedSizes:)alignment:
     - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
 
 **[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
