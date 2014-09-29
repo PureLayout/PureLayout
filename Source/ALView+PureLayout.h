@@ -94,10 +94,13 @@
 
 #pragma mark Pin Edges to Superview
 
-/** Pins the given edge of the view to the same edge of the superview with an inset. */
+/** Pins the given edge of the view to the same edge of its superview. */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge;
+
+/** Pins the given edge of the view to the same edge of its superview with an inset. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge withInset:(CGFloat)inset;
 
-/** Pins the given edge of the view to the same edge of the superview with an inset as a maximum or minimum. */
+/** Pins the given edge of the view to the same edge of its superview with an inset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the edges of its superview with the given edge insets. */

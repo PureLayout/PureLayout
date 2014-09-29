@@ -247,9 +247,20 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 #pragma mark Pin Edges to Superview
 
 /**
- Pins the given edge of the view to the same edge of the superview with an inset.
+ Pins the given edge of the view to the same edge of its superview.
  
- @param edge The edge of this view and the superview to pin.
+ @param edge The edge of this view and its superview to pin.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge
+{
+    return [self autoPinEdgeToSuperviewEdge:edge withInset:0];
+}
+
+/**
+ Pins the given edge of the view to the same edge of its superview with an inset.
+ 
+ @param edge The edge of this view and its superview to pin.
  @param inset The amount to inset this view's edge from the superview's edge.
  @return The constraint added.
  */
@@ -259,9 +270,9 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 }
 
 /**
- Pins the given edge of the view to the same edge of the superview with an inset as a maximum or minimum.
+ Pins the given edge of the view to the same edge of its superview with an inset as a maximum or minimum.
  
- @param edge The edge of this view and the superview to pin.
+ @param edge The edge of this view and its superview to pin.
  @param inset The amount to inset this view's edge from the superview's edge.
  @param relation Whether the inset should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
@@ -287,7 +298,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  Pins the edges of the view to the edges of its superview with the given edge insets.
  The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
  
- @param insets The insets for this view's edges from the superview's edges.
+ @param insets The insets for this view's edges from its superview's edges.
  @return An array of constraints added.
  */
 - (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
@@ -304,9 +315,9 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge.
  The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
  
- @param insets The insets for this view's edges from the superview's edges. The inset corresponding to the excluded edge
+ @param insets The insets for this view's edges from its superview's edges. The inset corresponding to the excluded edge
                will be ignored.
- @param edge The edge of this view to exclude in pinning to the superview; this method will not apply any constraint to it.
+ @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
 - (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge

@@ -22,7 +22,7 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview:
     - autoAlignAxisToSuperviewAxis:
-    - autoPinEdgeToSuperviewEdge:withInset:
+    - autoPinEdgeToSuperviewEdge:(withInset:)
     - autoPinEdgesToSuperviewEdges:withInsets:(excludingEdge:)
     - autoPinEdge:toEdge:ofView:(withOffset:)
     - autoAlignAxis:toSameAxisOfView:(withOffset:)
