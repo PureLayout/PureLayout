@@ -83,12 +83,12 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
 {
     NSArray *subviews = @[self.blueView, self.redView, self.yellowView, self.greenView, self.orangeView];
     
-    [self.blueView autoSetDimension:ALDimensionWidth toSize:80.0f];
+    [self.blueView autoSetDimension:ALDimensionWidth toSize:80.0];
     [subviews autoMatchViewsDimension:ALDimensionWidth];
     
     [self.orangeView autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
-    [subviews autoDistributeViewsAlongAxis:ALAxisVertical withFixedSize:30.0f insetSpacing:YES alignment:NSLayoutFormatAlignAllCenterX];
+    [subviews autoDistributeViewsAlongAxis:ALAxisVertical withFixedSize:30.0 insetSpacing:YES alignment:NSLayoutFormatAlignAllCenterX];
 }
 
 /**
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     
     [self.orangeView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     
-    [subviews autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSpacing:10.0f insetSpacing:NO alignment:NSLayoutFormatAlignAllCenterY];
+    [subviews autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSpacing:10.0 insetSpacing:NO alignment:NSLayoutFormatAlignAllCenterY];
 }
 
 /**
@@ -119,22 +119,22 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
  */
 - (void)setupDemo3
 {
-    [self.redView autoSetDimension:ALDimensionHeight toSize:44.0f];
+    [self.redView autoSetDimension:ALDimensionHeight toSize:44.0];
     [self.blueView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.redView];
 
-    [self.redView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20.0f];
-    [self.redView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0f];
+    [self.redView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20.0];
+    [self.redView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
 
-    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20.0f];
-    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0f];
+    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20.0];
+    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
 
-    [self.blueView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.redView withOffset:10.0f];
-    [self.blueView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.redView withMultiplier:3.0f];
+    [self.blueView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.redView withOffset:10.0];
+    [self.blueView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.redView withMultiplier:3.0];
 
-    [self.orangeView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView withOffset:20.0f];
+    [self.orangeView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView withOffset:20.0];
     [self.orangeView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.redView withOffset:20.0];
     [self.orangeView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.blueView withOffset:-10.0];
-    [self.orangeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20.0f];
+    [self.orangeView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20.0];
 }
 
 /**
@@ -147,8 +147,8 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
  */
 - (void)setupDemo4
 {
-    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10.0f];
-    [self.blueView autoSetDimensionsToSize:CGSizeMake(25.0f, 10.0f)];
+    [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10.0];
+    [self.blueView autoSetDimensionsToSize:CGSizeMake(25.0, 10.0)];
     [self.blueView autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
     NSArray *subviews = @[self.blueView, self.redView, self.yellowView, self.greenView, self.orangeView];
@@ -158,18 +158,18 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     UIView *previousView = nil;
     for (UIView *view in subviews) {
         if (previousView) {
-            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:10.0f];
+            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:10.0];
             // The orange view will be allowed to change its size if it conflicts with a required constraint
             UILayoutPriority priority = (view == self.orangeView) ? UILayoutPriorityDefaultHigh + 1 : UILayoutPriorityRequired;
             [UIView autoSetPriority:priority forConstraints:^{
-                [view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:previousView withMultiplier:1.5f];
-                [view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:previousView withMultiplier:2.0f];
+                [view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:previousView withMultiplier:1.5];
+                [view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:previousView withMultiplier:2.0];
             }];
         }
         previousView = view;
     }
     
-    [self.orangeView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.containerView withOffset:-10.0f relation:NSLayoutRelationLessThanOrEqual];
+    [self.orangeView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.containerView withOffset:-10.0 relation:NSLayoutRelationLessThanOrEqual];
 }
 
 /**
@@ -179,9 +179,9 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
 - (void)setupDemo5
 {
     [self.redView autoCenterInSuperview];
-    [self.redView autoSetDimensionsToSize:CGSizeMake(100.0f, 250.0f)];
+    [self.redView autoSetDimensionsToSize:CGSizeMake(100.0, 250.0)];
     
-    [self.orangeView autoSetDimensionsToSize:CGSizeMake(50.0f, 50.0f)];
+    [self.orangeView autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)];
     [self.orangeView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.redView];
     [self.orangeView autoConstrainAttribute:ALAxisHorizontal toAttribute:ALEdgeTop ofView:self.redView];
 }
@@ -197,22 +197,22 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     [self.orangeView autoSetDimensionsToSize:CGSizeZero]; // orange view not used in this demo; this prevents it from taking on its intrinsic content size
     
     [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
-        [self.blueView autoSetDimensionsToSize:CGSizeMake(60.0f, 80.0f)];
+        [self.blueView autoSetDimensionsToSize:CGSizeMake(60.0, 80.0)];
     }];
     
-    [self.blueView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.blueView.superview withOffset:-80.0f relation:NSLayoutRelationLessThanOrEqual];
+    [self.blueView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.blueView.superview withOffset:-80.0 relation:NSLayoutRelationLessThanOrEqual];
     
-    self.demo6BlueBottomInset = [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:50.0f];
-    self.demo6BlueRightInset = [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0f];
+    self.demo6BlueBottomInset = [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:50.0];
+    self.demo6BlueRightInset = [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0];
     
     [self.redView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.blueView];
-    self.demo6RedSizeConstraint = [self.redView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.blueView withOffset:-40.0f];
+    self.demo6RedSizeConstraint = [self.redView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.blueView withOffset:-40.0];
     
     [self.redView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.blueView];
-    [self.blueView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.redView withOffset:30.0f];
+    [self.blueView autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:self.redView withOffset:30.0];
     
     self.demo6GreenPinConstraint = [self.greenView autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.redView];
-    [self.greenView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.redView withOffset:-50.0f];
+    [self.greenView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.redView withOffset:-50.0];
     [self.greenView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.redView];
     [self.greenView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.blueView];
     
@@ -243,9 +243,9 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.demo6BlueBottomInset.constant = -10.0f;
-                         self.demo6BlueRightInset.constant = -50.0f;
-                         self.demo6RedSizeConstraint.constant = 10.0f;
+                         self.demo6BlueBottomInset.constant = -10.0;
+                         self.demo6BlueRightInset.constant = -50.0;
+                         self.demo6RedSizeConstraint.constant = 10.0;
                          [self.demo6GreenPinConstraint autoRemove];
                          self.demo6GreenPinConstraint = [self.greenView autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.blueView];
                          [self.view layoutIfNeeded];
@@ -259,9 +259,9 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
                                                delay:0.0
                                              options:UIViewAnimationOptionCurveEaseInOut
                                           animations:^{
-                                              self.demo6BlueBottomInset.constant = -50.0f;
-                                              self.demo6BlueRightInset.constant = -10.0f;
-                                              self.demo6RedSizeConstraint.constant = -40.0f;
+                                              self.demo6BlueBottomInset.constant = -50.0;
+                                              self.demo6BlueRightInset.constant = -10.0;
+                                              self.demo6RedSizeConstraint.constant = -40.0;
                                               [self.demo6GreenPinConstraint autoRemove];
                                               self.demo6GreenPinConstraint = [self.greenView autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.redView];
                                               [self.view layoutIfNeeded];
@@ -297,10 +297,10 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     // It is only used here as a convenience for demonstration purposes only.
     [self.containerView autoRemoveConstraintsAffectingViewAndSubviews];
     
-    [self.containerView autoPinToTopLayoutGuideOfViewController:self withInset:10.0f];
-    [self.containerView autoPinToBottomLayoutGuideOfViewController:self withInset:10.0f];
-    [self.containerView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0f];
-    [self.containerView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0f];
+    [self.containerView autoPinToTopLayoutGuideOfViewController:self withInset:10.0];
+    [self.containerView autoPinToBottomLayoutGuideOfViewController:self withInset:10.0];
+    [self.containerView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10.0];
+    [self.containerView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0];
     
     switch (self.constraintDemo) {
         case ExampleConstraintDemo1:
@@ -397,7 +397,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
         _orangeView = [[UILabel alloc] initForAutoLayout];
         _orangeView.backgroundColor = [UIColor orangeColor];
         _orangeView.numberOfLines = 0;
-        _orangeView.font = [UIFont systemFontOfSize:10.0f];
+        _orangeView.font = [UIFont systemFontOfSize:10.0];
         _orangeView.textColor = [UIColor whiteColor];
         _orangeView.textAlignment = NSTextAlignmentCenter;
         _orangeView.text = NSLocalizedString(@"Lorem ipsum", nil);

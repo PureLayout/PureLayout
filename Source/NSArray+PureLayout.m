@@ -295,11 +295,11 @@
         [constraints addObject:[view autoSetDimension:fixedDimension toSize:size]];
         CGFloat multiplier, constant;
         if (shouldSpaceInsets) {
-            multiplier = (i * 2.0f + 2.0f) / (numberOfViews + 1.0f);
-            constant = (multiplier - 1.0f) * size / 2.0f;
+            multiplier = (i * 2.0 + 2.0) / (numberOfViews + 1.0);
+            constant = (multiplier - 1.0) * size / 2.0;
         } else {
-            multiplier = (i * 2.0f) / (numberOfViews - 1.0f);
-            constant = (-multiplier + 1.0f) * size / 2.0f;
+            multiplier = (i * 2.0) / (numberOfViews - 1.0);
+            constant = (-multiplier + 1.0) * size / 2.0;
         }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:commonSuperview attribute:attribute multiplier:multiplier constant:constant];
         [commonSuperview al_addConstraintUsingGlobalPriority:constraint];

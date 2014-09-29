@@ -238,7 +238,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     ALView *superview = self.superview;
     NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
     NSLayoutAttribute attribute = [ALView al_attributeForAxis:axis];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:NSLayoutRelationEqual toItem:superview attribute:attribute multiplier:1.0f constant:0.0f];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:NSLayoutRelationEqual toItem:superview attribute:attribute multiplier:1.0 constant:0.0];
     [constraint autoInstall];
     return constraint;
 }
@@ -254,7 +254,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge
 {
-    return [self autoPinEdgeToSuperviewEdge:edge withInset:0];
+    return [self autoPinEdgeToSuperviewEdge:edge withInset:0.0];
 }
 
 /**
@@ -351,7 +351,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  */
 - (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView
 {
-    return [self autoPinEdge:edge toEdge:toEdge ofView:peerView withOffset:0.0f];
+    return [self autoPinEdge:edge toEdge:toEdge ofView:peerView withOffset:0.0];
 }
 
 /**
@@ -383,7 +383,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForEdge:edge];
     NSLayoutAttribute toAttribute = [ALView al_attributeForEdge:toEdge];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0f constant:offset];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0 constant:offset];
     [constraint autoInstall];
     return constraint;
 }
@@ -400,7 +400,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  */
 - (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView
 {
-    return [self autoAlignAxis:axis toSameAxisOfView:peerView withOffset:0.0f];
+    return [self autoAlignAxis:axis toSameAxisOfView:peerView withOffset:0.0];
 }
 
 /**
@@ -415,7 +415,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForAxis:axis];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:NSLayoutRelationEqual toItem:peerView attribute:attribute multiplier:1.0f constant:offset];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:NSLayoutRelationEqual toItem:peerView attribute:attribute multiplier:1.0 constant:offset];
     [constraint autoInstall];
     return constraint;
 }
@@ -433,7 +433,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  */
 - (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView
 {
-    return [self autoMatchDimension:dimension toDimension:toDimension ofView:peerView withOffset:0.0f];
+    return [self autoMatchDimension:dimension toDimension:toDimension ofView:peerView withOffset:0.0];
 }
 
 /**
@@ -465,7 +465,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForDimension:dimension];
     NSLayoutAttribute toAttribute = [ALView al_attributeForDimension:toDimension];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0f constant:offset];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0 constant:offset];
     [constraint autoInstall];
     return constraint;
 }
@@ -499,7 +499,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForDimension:dimension];
     NSLayoutAttribute toAttribute = [ALView al_attributeForDimension:toDimension];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:multiplier constant:0.0f];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:multiplier constant:0.0];
     [constraint autoInstall];
     return constraint;
 }
@@ -545,7 +545,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForDimension:dimension];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0f constant:size];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:size];
     [constraint autoInstall];
     return constraint;
 }
@@ -607,7 +607,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  */
 - (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)ALAttribute toAttribute:(NSInteger)toALAttribute ofView:(ALView *)peerView
 {
-    return [self autoConstrainAttribute:ALAttribute toAttribute:toALAttribute ofView:peerView withOffset:0.0f];
+    return [self autoConstrainAttribute:ALAttribute toAttribute:toALAttribute ofView:peerView withOffset:0.0];
 }
 
 /**
@@ -641,7 +641,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForALAttribute:ALAttribute];
     NSLayoutAttribute toAttribute = [ALView al_attributeForALAttribute:toALAttribute];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0f constant:offset];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:1.0 constant:offset];
     [constraint autoInstall];
     return constraint;
 }
@@ -677,7 +677,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute attribute = [ALView al_attributeForALAttribute:ALAttribute];
     NSLayoutAttribute toAttribute = [ALView al_attributeForALAttribute:toALAttribute];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:multiplier constant:0.0f];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:relation toItem:peerView attribute:toAttribute multiplier:multiplier constant:0.0];
     [constraint autoInstall];
     return constraint;
 }
@@ -702,7 +702,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
         return [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:viewController.view withOffset:inset];
     } else {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0f constant:inset];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:inset];
         [viewController.view al_addConstraintUsingGlobalPriority:constraint];
         return constraint;
     }
@@ -723,7 +723,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
         return [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:viewController.view withOffset:-inset];
     } else {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0f constant:-inset];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-inset];
         [viewController.view al_addConstraintUsingGlobalPriority:constraint];
         return constraint;
     }
