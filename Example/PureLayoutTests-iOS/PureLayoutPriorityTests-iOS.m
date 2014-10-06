@@ -12,6 +12,8 @@
 
 @interface PureLayoutPriorityTestsiOS : PureLayoutTestBase
 
+@property (nonatomic, strong) UIWindow *window;
+
 @end
 
 @implementation PureLayoutPriorityTestsiOS
@@ -122,19 +124,25 @@
     DEFINE_WEAK_SELF
     
     UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
-    [viewController view]; // touch view to load it
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
     
-    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
-    }];
-    
-    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
-    }];
-    
-    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
-    }];
+    // Wait until the next run loop to run the actual tests, after the window & view controller have a chance to
+    // get into a state where the view hierarchy is prepared to accept constraints to the layout guides
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+            return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
+        }];
+        
+        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+            return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
+        }];
+        
+        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+            return [weakSelf.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
+        }];
+    });
 }
 
 @end

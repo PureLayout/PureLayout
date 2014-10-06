@@ -58,10 +58,13 @@
 }
 
 /** 
- Forces the given view to immediately do a layout pass, which will evaluate the constraints and set the frames for the view and any subviews.
+ Recursively forces the given view and its subviews to immediately do a layout pass (evaluate the constraints and update frames).
  */
 - (void)evaluateConstraintsForView:(ALView *)view
 {
+    for (ALView *subview in view.subviews) {
+        [self evaluateConstraintsForView:subview];
+    }
 #if TARGET_OS_IPHONE
     [view setNeedsLayout];
     [view layoutIfNeeded];
