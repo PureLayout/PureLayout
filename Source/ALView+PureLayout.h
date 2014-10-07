@@ -1,6 +1,6 @@
 //
 //  ALView+PureLayout.h
-//  v1.1.0
+//  v2.0.0
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2012 Richard Turton
@@ -47,7 +47,14 @@
 - (instancetype)initForAutoLayout;
 
 
-#pragma mark Set Constraint Priority
+#pragma mark Create Constraints Without Installing
+
+/** Prevents constraints created in the given constraints block from being automatically installed (activated).
+    The created constraints returned from each PureLayout API call must be stored, as they are not retained. */
++ (void)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
+
+
+#pragma mark Set Priority For Constraints
 
 /** Sets the constraint priority to the given value for all constraints created using the PureLayout API within the given constraints block.
     NOTE: This method will have no effect (and will NOT set the priority) on constraints created or added using the SDK directly within the block! */
@@ -55,12 +62,6 @@
 
 
 #pragma mark Remove Constraints
-
-/** Removes the given constraint from the view it has been added to. */
-+ (void)autoRemoveConstraint:(NSLayoutConstraint *)constraint;
-
-/** Removes the given constraints from the views they have been added to. */
-+ (void)autoRemoveConstraints:(NSArray *)constraints;
 
 /** Removes all explicit constraints that affect the view.
     WARNING: Apple's constraint solver is not optimized for large-scale constraint removal; you may encounter major performance issues after using this method.
@@ -83,13 +84,23 @@
 - (void)autoRemoveConstraintsAffectingViewAndSubviewsIncludingImplicitConstraints:(BOOL)shouldRemoveImplicitConstraints;
 
 
-#pragma mark Center in Superview
+#pragma mark Center & Align in Superview
 
 /** Centers the view in its superview. */
 - (NSArray *)autoCenterInSuperview;
 
 /** Aligns the view to the same axis of its superview. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewAxis:(ALAxis)axis;
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/** Centers the view in its superview's margins. Available in iOS 8.0 and later. */
+- (NSArray *)autoCenterInSuperviewMargins;
+
+/** Aligns the view to the corresponding margin axis of its superview. Available in iOS 8.0 and later. */
+- (NSLayoutConstraint *)autoAlignAxisToSuperviewMarginAxis:(ALAxis)axis;
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
 #pragma mark Pin Edges to Superview
@@ -108,6 +119,22 @@
 
 /** Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge. */
 - (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/** Pins the given edge of the view to the corresponding margin of its superview. Available in iOS 8.0 and later. */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge;
+
+/** Pins the given edge of the view to the corresponding margin of its superview as a maximum or minimum. Available in iOS 8.0 and later. */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge relation:(NSLayoutRelation)relation;
+
+/** Pins the edges of the view to the margins of its superview. Available in iOS 8.0 and later. */
+- (NSArray *)autoPinEdgesToSuperviewMargins;
+
+/** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
+- (NSArray *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
 #pragma mark Pin Edges
@@ -164,40 +191,40 @@
 #pragma mark Set Content Compression Resistance & Hugging
 
 /** Sets the priority of content compression resistance for an axis.
-    NOTE: This method must only be called from within the block passed into the method +[autoSetPriority:forConstraints:] */
+    NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:] */
 - (void)autoSetContentCompressionResistancePriorityForAxis:(ALAxis)axis;
 
 /** Sets the priority of content hugging for an axis.
-    NOTE: This method must only be called from within the block passed into the method +[autoSetPriority:forConstraints:] */
+    NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:] */
 - (void)autoSetContentHuggingPriorityForAxis:(ALAxis)axis;
 
 
 #pragma mark Constrain Any Attributes
 
 /** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)attribute toAttribute:(NSInteger)toAttribute ofView:(ALView *)peerView;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView;
 
 /** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)attribute toAttribute:(NSInteger)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset;
 
 /** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)attribute toAttribute:(NSInteger)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
 /** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)attribute toAttribute:(NSInteger)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier;
 
 /** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier as a maximum or minimum. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(NSInteger)attribute toAttribute:(NSInteger)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
 
 
 #pragma mark Pin to Layout Guides (iOS only)
 
 #if TARGET_OS_IPHONE
 
-/** Pins the top edge of the view to the top layout guide of the given view controller with an inset. */
+/** Pins the top edge of the view to the top layout guide of the given view controller with an inset. Available on iOS only. */
 - (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset;
 
-/** Pins the bottom edge of the view to the bottom layout guide of the given view controller with an inset. */
+/** Pins the bottom edge of the view to the bottom layout guide of the given view controller with an inset. Available on iOS only. */
 - (NSLayoutConstraint *)autoPinToBottomLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset;
 
 #endif /* TARGET_OS_IPHONE */

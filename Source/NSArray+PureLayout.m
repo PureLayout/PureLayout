@@ -1,6 +1,6 @@
 //
 //  NSArray+PureLayout.m
-//  v1.1.0
+//  v2.0.0
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2012 Richard Turton
@@ -36,6 +36,58 @@
 #pragma mark - NSArray+PureLayout
 
 @implementation NSArray (PureLayout)
+
+
+#pragma mark Identifying Constraints
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/**
+ Sets the string as the identifier for the constraints in this array.
+ The identifer will be printed along with each constraint's description.
+ This is helpful to document the constraints' purpose and aid in debugging.
+ 
+ @param identifier A string used to identify the constraints in this array.
+ @return This array.
+ */
+- (instancetype)autoIdentifyConstraints:(NSString *)identifer
+{
+    for (id object in self) {
+        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+            [((NSLayoutConstraint *)object) autoIdentify:identifer];
+        }
+    }
+    return self;
+}
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
+
+
+#pragma mark Manage Constraints
+
+/**
+ Activates the constraints in this array.
+ */
+- (void)autoInstallConstraints
+{
+    for (id object in self) {
+        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+            [((NSLayoutConstraint *)object) autoInstall];
+        }
+    }
+}
+
+/**
+ Deactivates the constraints in this array.
+ */
+- (void)autoRemoveConstraints
+{
+    for (id object in self) {
+        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+            [((NSLayoutConstraint *)object) autoRemove];
+        }
+    }
+}
 
 
 #pragma mark Constrain Multiple Views
@@ -150,9 +202,14 @@
  @param alignment The way in which the subviews will be aligned.
  @return An array of constraints added.
  */
-- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSpacing:(CGFloat)spacing alignment:(NSLayoutFormatOptions)alignment
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                         withFixedSpacing:(CGFloat)spacing
+                                alignment:(NSLayoutFormatOptions)alignment
 {
-    return [self autoDistributeViewsAlongAxis:axis withFixedSpacing:spacing insetSpacing:YES alignment:alignment];
+    return [self autoDistributeViewsAlongAxis:axis
+                             withFixedSpacing:spacing
+                                 insetSpacing:YES
+                                    alignment:alignment];
 }
 
 /**
@@ -166,9 +223,16 @@
  @param alignment The way in which the subviews will be aligned.
  @return An array of constraints added.
  */
-- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSpacing:(CGFloat)spacing insetSpacing:(BOOL)shouldSpaceInsets alignment:(NSLayoutFormatOptions)alignment
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                         withFixedSpacing:(CGFloat)spacing
+                             insetSpacing:(BOOL)shouldSpaceInsets
+                                alignment:(NSLayoutFormatOptions)alignment
 {
-    return [self autoDistributeViewsAlongAxis:axis withFixedSpacing:spacing insetSpacing:shouldSpaceInsets matchedSizes:YES alignment:alignment];
+    return [self autoDistributeViewsAlongAxis:axis
+                             withFixedSpacing:spacing
+                                 insetSpacing:shouldSpaceInsets
+                                 matchedSizes:YES
+                                    alignment:alignment];
 }
 
 /**
@@ -184,14 +248,21 @@
  @param alignment The way in which the subviews will be aligned.
  @return An array of constraints added.
  */
-- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSpacing:(CGFloat)spacing insetSpacing:(BOOL)shouldSpaceInsets matchedSizes:(BOOL)shouldMatchSizes alignment:(NSLayoutFormatOptions)alignment
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                         withFixedSpacing:(CGFloat)spacing
+                             insetSpacing:(BOOL)shouldSpaceInsets
+                             matchedSizes:(BOOL)shouldMatchSizes
+                                alignment:(NSLayoutFormatOptions)alignment
 {
     NSAssert([self al_containsMinimumNumberOfViews:2], @"This array must contain at least 2 views to distribute.");
     ALDimension matchedDimension;
     ALEdge firstEdge, lastEdge;
     switch (axis) {
         case ALAxisHorizontal:
-        case ALAxisBaseline:
+        case ALAxisBaseline: // same value as ALAxisLastBaseline
+#if __PureLayout_MinBaseSDK_iOS8
+        case ALAxisFirstBaseline:
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
             matchedDimension = ALDimensionWidth;
             firstEdge = ALEdgeLeading;
             lastEdge = ALEdgeTrailing;
@@ -246,9 +317,14 @@
  @param alignment The way in which the subviews will be aligned.
  @return An array of constraints added.
  */
-- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSize:(CGFloat)size alignment:(NSLayoutFormatOptions)alignment
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                            withFixedSize:(CGFloat)size
+                                alignment:(NSLayoutFormatOptions)alignment
 {
-    return [self autoDistributeViewsAlongAxis:axis withFixedSize:size insetSpacing:YES alignment:alignment];
+    return [self autoDistributeViewsAlongAxis:axis
+                                withFixedSize:size
+                                 insetSpacing:YES
+                                    alignment:alignment];
 }
 
 /**
@@ -262,14 +338,20 @@
  @param alignment The way in which the subviews will be aligned.
  @return An array of constraints added.
  */
-- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis withFixedSize:(CGFloat)size insetSpacing:(BOOL)shouldSpaceInsets alignment:(NSLayoutFormatOptions)alignment
+- (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                            withFixedSize:(CGFloat)size
+                             insetSpacing:(BOOL)shouldSpaceInsets
+                                alignment:(NSLayoutFormatOptions)alignment
 {
     NSAssert([self al_containsMinimumNumberOfViews:2], @"This array must contain at least 2 views to distribute.");
     ALDimension fixedDimension;
     NSLayoutAttribute attribute;
     switch (axis) {
         case ALAxisHorizontal:
-        case ALAxisBaseline:
+        case ALAxisBaseline: // same value as ALAxisLastBaseline
+#if __PureLayout_MinBaseSDK_iOS8
+        case ALAxisFirstBaseline:
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
             fixedDimension = ALDimensionWidth;
             attribute = NSLayoutAttributeCenterX;
             break;
@@ -302,7 +384,7 @@
             constant = (-multiplier + 1.0) * size / 2.0;
         }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:commonSuperview attribute:attribute multiplier:multiplier constant:constant];
-        [commonSuperview al_addConstraintUsingGlobalPriority:constraint];
+        [constraint autoInstall];
         [constraints addObject:constraint];
         if (previousView) {
             [constraints addObject:[view al_alignToView:previousView withOption:alignment forAxis:axis]];

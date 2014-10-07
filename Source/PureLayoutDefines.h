@@ -1,6 +1,6 @@
 //
 //  PureLayoutDefines.h
-//  v1.1.0
+//  v2.0.0
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2014 Tyler Fox
@@ -30,6 +30,10 @@
 #define PureLayoutDefines_h
 
 #import <Foundation/Foundation.h>
+
+#define __PureLayout_MinBaseSDK_iOS8                    TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+#define __PureLayout_MinSysVer_iOS7                     floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1
+#define __PureLayout_MinSysVer_iOS8                     floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1
 
 #if TARGET_OS_IPHONE
 
@@ -78,6 +82,9 @@
 
 #pragma mark ALAttributes
 
+/** An attribute of a view that can be used in auto layout constraints. Can be any of the enum types: ALEdge, ALAxis, ALDimension, ALMargin, ALMarginAxis. */
+typedef NSInteger ALAttribute;
+
 /** Constants that represent edges of a view. */
 typedef NS_ENUM(NSInteger, ALEdge) {
     /** The left edge of the view. */
@@ -104,13 +111,46 @@ typedef NS_ENUM(NSInteger, ALDimension) {
 
 /** Constants that represent axes of a view. */
 typedef NS_ENUM(NSInteger, ALAxis) {
-    /** A vertical line through the center of the view. */
+    /** A vertical line through the middle of the view's left and right edges. */
     ALAxisVertical = NSLayoutAttributeCenterX,
-    /** A horizontal line through the center of the view. */
+    /** A horizontal line through the middle of the view's top and bottom edges. */
     ALAxisHorizontal = NSLayoutAttributeCenterY,
-    /** A horizontal line at the text baseline (not applicable to all views). */
-    ALAxisBaseline = NSLayoutAttributeBaseline
+    
+    /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) Same as ALAxisLastBaseline. */
+    ALAxisBaseline = NSLayoutAttributeBaseline,
+    /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) */
+    ALAxisLastBaseline = ALAxisBaseline,
+    #if __PureLayout_MinBaseSDK_iOS8
+    /** A horizontal line at the baseline of the first line of text in a view. (For views that do not draw text, will be equivalent to ALEdgeTop.) Available in iOS 8.0 and later. */
+    ALAxisFirstBaseline = NSLayoutAttributeFirstBaseline
+    #endif /* __PureLayout_MinBaseSDK_iOS8 */
 };
+
+#if __PureLayout_MinBaseSDK_iOS8
+/** Constants that represent layout margins of a view. Available in iOS 8.0 and later. */
+typedef NS_ENUM(NSInteger, ALMargin) {
+    /** The left margin of the view, based on the view's layoutMargins left inset. */
+    ALMarginLeft = NSLayoutAttributeLeftMargin,
+    /** The right margin of the view, based on the view's layoutMargins right inset. */
+    ALMarginRight = NSLayoutAttributeRightMargin,
+    /** The top margin of the view, based on the view's layoutMargins top inset. */
+    ALMarginTop = NSLayoutAttributeTopMargin,
+    /** The bottom margin of the view, based on the view's layoutMargins bottom inset. */
+    ALMarginBottom = NSLayoutAttributeBottomMargin,
+    /** The leading margin of the view, based on the view's layoutMargins left/right (depending on language direction) inset. */
+    ALMarginLeading = NSLayoutAttributeLeadingMargin,
+    /** The trailing margin of the view, based on the view's layoutMargins left/right (depending on language direction) inset. */
+    ALMarginTrailing = NSLayoutAttributeTrailingMargin
+};
+
+/** Constants that represent axes of the layout margins of a view. Available in iOS 8.0 and later. */
+typedef NS_ENUM(NSInteger, ALMarginAxis) {
+    /** A vertical line through the middle of the view's left and right margins. */
+    ALMarginAxisVertical = NSLayoutAttributeCenterXWithinMargins,
+    /** A horizontal line through the middle of the view's top and bottom margins. */
+    ALMarginAxisHorizontal = NSLayoutAttributeCenterYWithinMargins
+};
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 /** A block containing method calls to the PureLayout API. Takes no arguments and has no return value. */
 typedef void(^ALConstraintsBlock)(void);

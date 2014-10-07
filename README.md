@@ -16,14 +16,18 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
 
-    + autoRemoveConstraint(s):
     - autoRemoveConstraintsAffectingView(AndSubviews)
+	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview:
+	- autoCenterInSuperviewMargins: // iOS 8.0+ only
     - autoAlignAxisToSuperviewAxis:
+	- autoAlignAxisToSuperviewMarginAxis: // iOS 8.0+ only
     - autoPinEdgeToSuperviewEdge:(withInset:)
-    - autoPinEdgesToSuperviewEdges:withInsets:(excludingEdge:)
+	- autoPinEdgeToSuperviewMargin: // iOS 8.0+ only
+    - autoPinEdgesToSuperviewEdgesWithInsets:(excludingEdge:)
+	- autoPinEdgesToSuperviewMargins(ExcludingEdge:) // iOS 8.0+ only
     - autoPinEdge:toEdge:ofView:(withOffset:)
     - autoAlignAxis:toSameAxisOfView:(withOffset:)
     - autoMatchDimension:toDimension:ofView:(withOffset:|withMultiplier:)
@@ -33,6 +37,9 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`NSArray`](Source/NSArray%2BPureLayout.h)**
 
+    - autoIdentifyConstraints: // iOS 7.0+ only
+	- autoInstallConstraints
+    - autoRemoveConstraints
     - autoAlignViewsToEdge:
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
@@ -42,7 +49,8 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
 
-    - autoInstall
+    - autoIdentify: // iOS 7.0+ only
+	- autoInstall
     - autoRemove
 
 ## Setup
@@ -64,9 +72,6 @@ That's it - now go write some beautifully simple Auto Layout code!
 3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
 
 That's it - now go write some beautifully simple Auto Layout code!
-
-### Migrating from [UIView+AutoLayout](https://github.com/smileyborg/UIView-AutoLayout)?
-If you are using the latest version of UIView+AutoLayout (v2.0.0), migrating to PureLayout is simple. The API is 100% compatible, so you only need to swap out the pod or library and update `#import "UIView+AutoLayout.h"` to `#import "PureLayout.h"` where necessary.
 
 ### Releases
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.

@@ -38,7 +38,7 @@
     NSUInteger constraintsCount = [self.viewA.superview.constraints count];
     XCTAssert(constraintsCount > 0, @"viewA's superview should have constraints added to it.");
     
-    [ALView autoRemoveConstraint:self.viewA.superview.constraints[0]];
+    [self.viewA.superview.constraints[0] autoRemove];
     NSUInteger newConstraintsCount = [self.viewA.superview.constraints count];
     XCTAssert(constraintsCount - newConstraintsCount == 1, @"viewA's superview should have one less constraint on it.");
     
@@ -59,7 +59,7 @@
     NSUInteger constraintsCount = [self.viewA.constraints count];
     XCTAssert(constraintsCount > 0, @"viewA should have a constraint added to it.");
     
-    [ALView autoRemoveConstraint:constraint];
+    [constraint autoRemove];
     NSUInteger newConstraintsCount = [self.viewA.constraints count];
     XCTAssert(constraintsCount - newConstraintsCount == 1, @"viewA should have one less constraint on it.");
 }
@@ -83,7 +83,7 @@
     NSUInteger constraintsCount = [self.containerView.constraints count];
     XCTAssert(constraintsCount > 0, @"containerView should have a constraint added to it.");
     
-    [ALView autoRemoveConstraint:constraint];
+    [constraint autoRemove];
     NSUInteger newConstraintsCount = [self.containerView.constraints count];
     XCTAssert(constraintsCount - newConstraintsCount == 1, @"containerView should have one less constraint on it.");
 }
@@ -98,7 +98,7 @@
     NSUInteger constraintsCount = [self.containerView.constraints count];
     XCTAssert(constraintsCount > 0, @"containerView should have constraints added to it.");
     
-    [ALView autoRemoveConstraints:constraints];
+    [constraints autoRemoveConstraints];
     NSUInteger newConstraintsCount = [self.containerView.constraints count];
     XCTAssert(newConstraintsCount == 0, @"containerView should have no constraints on it.");
 }
