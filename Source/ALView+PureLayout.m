@@ -268,7 +268,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     ALView *superview = self.superview;
     NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
-    return [self autoConstrainAttribute:axis toAttribute:axis ofView:superview];
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:superview];
 }
 
 #if __PureLayout_MinBaseSDK_iOS8
@@ -298,7 +298,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
     ALView *superview = self.superview;
     NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
     ALMarginAxis marginAxis = [NSLayoutConstraint al_marginAxisForAxis:axis];
-    return [self autoConstrainAttribute:axis toAttribute:marginAxis ofView:superview];
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)marginAxis ofView:superview];
 }
 
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
@@ -432,7 +432,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
         }
     }
     ALMargin margin = [NSLayoutConstraint al_marginForEdge:edge];
-    return [self autoConstrainAttribute:edge toAttribute:margin ofView:superview withOffset:0.0 relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)margin ofView:superview withOffset:0.0 relation:relation];
 }
         
 /**
@@ -518,7 +518,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:edge toAttribute:toEdge ofView:peerView withOffset:offset relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:peerView withOffset:offset relation:relation];
 }
 
 
@@ -546,7 +546,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView withOffset:(CGFloat)offset
 {
-    return [self autoConstrainAttribute:axis toAttribute:axis ofView:peerView withOffset:offset];
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:peerView withOffset:offset];
 }
 
 
@@ -591,7 +591,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:dimension toAttribute:toDimension ofView:peerView withOffset:offset relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:peerView withOffset:offset relation:relation];
 }
 
 /**
@@ -620,7 +620,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:dimension toAttribute:toDimension ofView:peerView withMultiplier:multiplier relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:peerView withMultiplier:multiplier relation:relation];
 }
 
 
@@ -663,7 +663,7 @@ static NSString *_al_globalConstraintIdentifier = nil;
 - (NSLayoutConstraint *)autoSetDimension:(ALDimension)dimension toSize:(CGFloat)size relation:(NSLayoutRelation)relation
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutAttribute layoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:dimension];
+    NSLayoutAttribute layoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)dimension];
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:size];
     [constraint autoInstall];
     return constraint;

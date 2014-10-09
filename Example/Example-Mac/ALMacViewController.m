@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     
     [self.orangeView autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)];
     [self.orangeView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.redView];
-    [self.orangeView autoConstrainAttribute:ALAxisHorizontal toAttribute:ALEdgeTop ofView:self.redView];
+    [self.orangeView autoConstrainAttribute:ALAttributeHorizontal toAttribute:ALAttributeTop ofView:self.redView];
 }
 
 

@@ -80,10 +80,7 @@
 #endif /* TARGET_OS_IPHONE */
 
 
-#pragma mark ALAttributes
-
-/** An attribute of a view that can be used in auto layout constraints. Can be any of the enum types: ALEdge, ALAxis, ALDimension, ALMargin, ALMarginAxis. */
-typedef NSInteger ALAttribute;
+#pragma mark PureLayout Attributes
 
 /** Constants that represent edges of a view. */
 typedef NS_ENUM(NSInteger, ALEdge) {
@@ -127,6 +124,7 @@ typedef NS_ENUM(NSInteger, ALAxis) {
 };
 
 #if __PureLayout_MinBaseSDK_iOS8
+
 /** Constants that represent layout margins of a view. Available in iOS 8.0 and later. */
 typedef NS_ENUM(NSInteger, ALMargin) {
     /** The left margin of the view, based on the view's layoutMargins left inset. */
@@ -150,7 +148,57 @@ typedef NS_ENUM(NSInteger, ALMarginAxis) {
     /** A horizontal line through the middle of the view's top and bottom margins. */
     ALMarginAxisHorizontal = NSLayoutAttributeCenterYWithinMargins
 };
+
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
+
+/** An attribute of a view that can be used in auto layout constraints. These constants are identical to the more specific enum types: 
+    ALEdge, ALAxis, ALDimension, ALMargin, ALMarginAxis. It is safe to cast a more specific enum type to the ALAttribute type. */
+typedef NS_ENUM(NSInteger, ALAttribute) {
+    /** The left edge of the view. */
+    ALAttributeLeft = ALEdgeLeft,
+    /** The right edge of the view. */
+    ALAttributeRight = ALEdgeRight,
+    /** The top edge of the view. */
+    ALAttributeTop = ALEdgeTop,
+    /** The bottom edge of the view. */
+    ALAttributeBottom = ALEdgeBottom,
+    /** The leading edge of the view (left edge for left-to-right languages like English, right edge for right-to-left languages like Arabic). */
+    ALAttributeLeading = ALEdgeLeading,
+    /** The trailing edge of the view (right edge for left-to-right languages like English, left edge for right-to-left languages like Arabic). */
+    ALAttributeTrailing = ALEdgeTrailing,
+    /** The width of the view. */
+    ALAttributeWidth = ALDimensionWidth,
+    /** The height of the view. */
+    ALAttributeHeight = ALDimensionHeight,
+    /** A vertical line through the middle of the view's left and right edges. */
+    ALAttributeVertical = ALAxisVertical,
+    /** A horizontal line through the middle of the view's top and bottom edges. */
+    ALAttributeHorizontal = ALAxisHorizontal,
+    /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) Same as ALAxisLastBaseline. */
+    ALAttributeBaseline = ALAxisBaseline,
+    /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) */
+    ALAttributeLastBaseline = ALAxisLastBaseline,
+#if __PureLayout_MinBaseSDK_iOS8
+    /** A horizontal line at the baseline of the first line of text in a view. (For views that do not draw text, will be equivalent to ALEdgeTop.) Available in iOS 8.0 and later. */
+    ALAttributeFirstBaseline = ALAxisFirstBaseline,
+    /** The left margin of the view, based on the view's layoutMargins left inset. */
+    ALAttributeMarginLeft = ALMarginLeft,
+    /** The right margin of the view, based on the view's layoutMargins right inset. */
+    ALAttributeMarginRight = ALMarginRight,
+    /** The top margin of the view, based on the view's layoutMargins top inset. */
+    ALAttributeMarginTop = ALMarginTop,
+    /** The bottom margin of the view, based on the view's layoutMargins bottom inset. */
+    ALAttributeMarginBottom = ALMarginBottom,
+    /** The leading margin of the view, based on the view's layoutMargins left/right (depending on language direction) inset. */
+    ALAttributeMarginLeading = ALMarginLeading,
+    /** The trailing margin of the view, based on the view's layoutMargins left/right (depending on language direction) inset. */
+    ALAttributeMarginTrailing = ALMarginTrailing,
+    /** A vertical line through the middle of the view's left and right margins. */
+    ALAttributeMarginAxisVertical = ALMarginAxisVertical,
+    /** A horizontal line through the middle of the view's top and bottom margins. */
+    ALAttributeMarginAxisHorizontal = ALMarginAxisHorizontal
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
+};
 
 /** A block containing method calls to the PureLayout API. Takes no arguments and has no return value. */
 typedef void(^ALConstraintsBlock)(void);

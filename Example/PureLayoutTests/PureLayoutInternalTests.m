@@ -27,50 +27,81 @@
 }
 
 /**
+ Test that ALAttributes translate directly to the specific enum types.
+ */
+- (void)testAttributeEnums
+{
+    XCTAssert(ALAttributeLeft == ALEdgeLeft);
+    XCTAssert(ALAttributeLeft == ALEdgeLeft);
+    XCTAssert(ALAttributeRight == ALEdgeRight);
+    XCTAssert(ALAttributeTop == ALEdgeTop);
+    XCTAssert(ALAttributeBottom == ALEdgeBottom);
+    XCTAssert(ALAttributeLeading == ALEdgeLeading);
+    XCTAssert(ALAttributeTrailing == ALEdgeTrailing);
+    XCTAssert(ALAttributeWidth == ALDimensionWidth);
+    XCTAssert(ALAttributeHeight == ALDimensionHeight);
+    XCTAssert(ALAttributeVertical == ALAxisVertical);
+    XCTAssert(ALAttributeHorizontal == ALAxisHorizontal);
+    XCTAssert(ALAttributeBaseline == ALAxisBaseline);
+    XCTAssert(ALAttributeLastBaseline == ALAxisLastBaseline);
+#if __PureLayout_MinBaseSDK_iOS8
+    XCTAssert(ALAttributeFirstBaseline == ALAxisFirstBaseline);
+    XCTAssert(ALAttributeMarginLeft == ALMarginLeft);
+    XCTAssert(ALAttributeMarginRight == ALMarginRight);
+    XCTAssert(ALAttributeMarginTop == ALMarginTop);
+    XCTAssert(ALAttributeMarginBottom == ALMarginBottom);
+    XCTAssert(ALAttributeMarginLeading == ALMarginLeading);
+    XCTAssert(ALAttributeMarginTrailing == ALMarginTrailing);
+    XCTAssert(ALAttributeMarginAxisVertical == ALMarginAxisVertical);
+    XCTAssert(ALAttributeMarginAxisHorizontal == ALMarginAxisHorizontal);
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
+}
+
+/**
  Test the internal NSLayoutAttribute for ALAttribute translation method.
  */
-- (void)testAttributeForALAttribute
+- (void)testLayoutAttributeForAttribute
 {
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeTop] == NSLayoutAttributeTop, @"ALEdgeTop should correspond to NSLayoutAttributeTop.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeBottom] == NSLayoutAttributeBottom, @"ALEdgeBottom should correspond to NSLayoutAttributeBottom.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeLeft] == NSLayoutAttributeLeft, @"ALEdgeLeft should correspond to NSLayoutAttributeLeft.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeRight] == NSLayoutAttributeRight, @"ALEdgeRight should correspond to NSLayoutAttributeRight.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeLeading] == NSLayoutAttributeLeading, @"ALEdgeLeading should correspond to NSLayoutAttributeLeading.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALEdgeTrailing] == NSLayoutAttributeTrailing, @"ALEdgeTrailing should correspond to NSLayoutAttributeTrailing.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisHorizontal] == NSLayoutAttributeCenterY, @"ALAxisHorizontal should correspond to NSLayoutAttributeCenterY.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisVertical] == NSLayoutAttributeCenterX, @"ALAxisVertical should correspond to NSLayoutAttributeCenterX.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisBaseline] == NSLayoutAttributeBaseline, @"ALAxisBaseline should correspond to NSLayoutAttributeBaseline.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALDimensionWidth] == NSLayoutAttributeWidth, @"ALDimensionWidth should correspond to NSLayoutAttributeWidth.");
-    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALDimensionHeight] == NSLayoutAttributeHeight, @"ALDimensionHeight should correspond to NSLayoutAttributeHeight.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeTop] == NSLayoutAttributeTop, @"ALEdgeTop should correspond to NSLayoutAttributeTop.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeBottom] == NSLayoutAttributeBottom, @"ALEdgeBottom should correspond to NSLayoutAttributeBottom.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeLeft] == NSLayoutAttributeLeft, @"ALEdgeLeft should correspond to NSLayoutAttributeLeft.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeRight] == NSLayoutAttributeRight, @"ALEdgeRight should correspond to NSLayoutAttributeRight.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeLeading] == NSLayoutAttributeLeading, @"ALEdgeLeading should correspond to NSLayoutAttributeLeading.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALEdgeTrailing] == NSLayoutAttributeTrailing, @"ALEdgeTrailing should correspond to NSLayoutAttributeTrailing.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisHorizontal] == NSLayoutAttributeCenterY, @"ALAxisHorizontal should correspond to NSLayoutAttributeCenterY.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisVertical] == NSLayoutAttributeCenterX, @"ALAxisVertical should correspond to NSLayoutAttributeCenterX.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisBaseline] == NSLayoutAttributeBaseline, @"ALAxisBaseline should correspond to NSLayoutAttributeBaseline.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALDimensionWidth] == NSLayoutAttributeWidth, @"ALDimensionWidth should correspond to NSLayoutAttributeWidth.");
+    XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALDimensionHeight] == NSLayoutAttributeHeight, @"ALDimensionHeight should correspond to NSLayoutAttributeHeight.");
     
 #if __PureLayout_MinBaseSDK_iOS8
     if (__PureLayout_MinSysVer_iOS8) {
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginLeft] == NSLayoutAttributeLeftMargin, @"ALMarginLeft should correspond to NSLayoutAttributeLeftMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginRight] == NSLayoutAttributeRightMargin, @"ALMarginRight should correspond to NSLayoutAttributeRightMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginTop] == NSLayoutAttributeTopMargin, @"ALMarginTop should correspond to NSLayoutAttributeTopMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginBottom] == NSLayoutAttributeBottomMargin, @"ALMarginBottom should correspond to NSLayoutAttributeBottomMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginLeading] == NSLayoutAttributeLeadingMargin, @"ALMarginLeading should correspond to NSLayoutAttributeLeadingMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginTrailing] == NSLayoutAttributeTrailingMargin, @"ALMarginTrailing should correspond to NSLayoutAttributeTrailingMargin.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginAxisVertical] == NSLayoutAttributeCenterXWithinMargins, @"ALMarginAxisVertical should correspond to NSLayoutAttributeCenterXWithinMargins.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginAxisHorizontal] == NSLayoutAttributeCenterYWithinMargins, @"ALMarginAxisHorizontal should correspond to NSLayoutAttributeCenterYWithinMargins.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisFirstBaseline] == NSLayoutAttributeFirstBaseline, @"ALAxisFirstBaseline should correspond to NSLayoutAttributeFirstBaseline.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginLeft] == NSLayoutAttributeLeftMargin, @"ALMarginLeft should correspond to NSLayoutAttributeLeftMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginRight] == NSLayoutAttributeRightMargin, @"ALMarginRight should correspond to NSLayoutAttributeRightMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginTop] == NSLayoutAttributeTopMargin, @"ALMarginTop should correspond to NSLayoutAttributeTopMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginBottom] == NSLayoutAttributeBottomMargin, @"ALMarginBottom should correspond to NSLayoutAttributeBottomMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginLeading] == NSLayoutAttributeLeadingMargin, @"ALMarginLeading should correspond to NSLayoutAttributeLeadingMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginTrailing] == NSLayoutAttributeTrailingMargin, @"ALMarginTrailing should correspond to NSLayoutAttributeTrailingMargin.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginAxisVertical] == NSLayoutAttributeCenterXWithinMargins, @"ALMarginAxisVertical should correspond to NSLayoutAttributeCenterXWithinMargins.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginAxisHorizontal] == NSLayoutAttributeCenterYWithinMargins, @"ALMarginAxisHorizontal should correspond to NSLayoutAttributeCenterYWithinMargins.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisFirstBaseline] == NSLayoutAttributeFirstBaseline, @"ALAxisFirstBaseline should correspond to NSLayoutAttributeFirstBaseline.");
     } else {
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginLeft], @"ALMarginLeft should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginRight], @"ALMarginRight should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginTop], @"ALMarginTop should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginBottom], @"ALMarginBottom should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginLeading], @"ALMarginLeading should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginTrailing], @"ALMarginTrailing should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginAxisVertical], @"ALMarginAxisVertical should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALMarginAxisHorizontal], @"ALMarginAxisHorizontal should throw an exception on iOS 6 or 7.");
-        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisFirstBaseline], @"ALAxisFirstBaseline should throw an exception on iOS 6 or 7.");
-        XCTAssertNoThrow([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisLastBaseline], @"ALAxisLastBaseline should not throw an exception on iOS 6 or 7.");
-        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginLeft], @"ALMarginLeft should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginRight], @"ALMarginRight should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginTop], @"ALMarginTop should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginBottom], @"ALMarginBottom should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginLeading], @"ALMarginLeading should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginTrailing], @"ALMarginTrailing should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginAxisVertical], @"ALMarginAxisVertical should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginAxisHorizontal], @"ALMarginAxisHorizontal should throw an exception on iOS 6 or 7.");
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisFirstBaseline], @"ALAxisFirstBaseline should throw an exception on iOS 6 or 7.");
+        XCTAssertNoThrow([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline], @"ALAxisLastBaseline should not throw an exception on iOS 6 or 7.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
     }
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
     
-    XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:NSLayoutAttributeNotAnAttribute], @"Passing an invalid ALAttribute should throw an exception.");
+    XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)NSLayoutAttributeNotAnAttribute], @"Passing an invalid ALAttribute should throw an exception.");
 }
 
 #if __PureLayout_MinBaseSDK_iOS8

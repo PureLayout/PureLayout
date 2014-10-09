@@ -201,23 +201,23 @@
     DEFINE_WEAK_SELF
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALAxisVertical toAttribute:ALEdgeBottom ofView:weakSelf.viewB];
+        return [weakSelf.viewA autoConstrainAttribute:ALAttributeVertical toAttribute:ALAttributeBottom ofView:weakSelf.viewB];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALEdgeRight toAttribute:ALAxisHorizontal ofView:weakSelf.viewC withOffset:50.0];
+        return [weakSelf.viewA autoConstrainAttribute:ALAttributeRight toAttribute:ALAttributeHorizontal ofView:weakSelf.viewC withOffset:50.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALDimensionWidth toAttribute:ALDimensionHeight ofView:weakSelf.viewD withOffset:-100.0 relation:NSLayoutRelationLessThanOrEqual];
+        return [weakSelf.viewA autoConstrainAttribute:ALAttributeWidth toAttribute:ALAttributeHeight ofView:weakSelf.viewD withOffset:-100.0 relation:NSLayoutRelationLessThanOrEqual];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewD autoConstrainAttribute:ALAxisBaseline toAttribute:ALEdgeTrailing ofView:weakSelf.viewA withMultiplier:-6.0];
+        return [weakSelf.viewD autoConstrainAttribute:ALAttributeBaseline toAttribute:ALAttributeTrailing ofView:weakSelf.viewA withMultiplier:-6.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoConstrainAttribute:ALEdgeTop toAttribute:ALEdgeLeading ofView:weakSelf.viewA withMultiplier:0.45 relation:NSLayoutRelationGreaterThanOrEqual];
+        return [weakSelf.viewB autoConstrainAttribute:ALAttributeTop toAttribute:ALAttributeLeading ofView:weakSelf.viewA withMultiplier:0.45 relation:NSLayoutRelationGreaterThanOrEqual];
     }];
 }
 
