@@ -19,14 +19,15 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
     - autoRemoveConstraintsAffectingView(AndSubviews)
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
+	+ autoSetIdentifier:forConstraints:
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview:
-	- autoCenterInSuperviewMargins: // iOS 8.0+ only
     - autoAlignAxisToSuperviewAxis:
+	- autoCenterInSuperviewMargins: // iOS 8.0+ only
 	- autoAlignAxisToSuperviewMarginAxis: // iOS 8.0+ only
     - autoPinEdgeToSuperviewEdge:(withInset:)
-	- autoPinEdgeToSuperviewMargin: // iOS 8.0+ only
     - autoPinEdgesToSuperviewEdgesWithInsets:(excludingEdge:)
+	- autoPinEdgeToSuperviewMargin: // iOS 8.0+ only
 	- autoPinEdgesToSuperviewMargins(ExcludingEdge:) // iOS 8.0+ only
     - autoPinEdge:toEdge:ofView:(withOffset:)
     - autoAlignAxis:toSameAxisOfView:(withOffset:)
@@ -37,9 +38,13 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`NSArray`](Source/NSArray%2BPureLayout.h)**
 
-    - autoIdentifyConstraints: // iOS 7.0+ only
+	// Arrays of Constraints
 	- autoInstallConstraints
     - autoRemoveConstraints
+	- autoPrioritizeConstraints:
+    - autoIdentifyConstraints: // iOS 7.0+ only
+	
+	// Arrays of Views
     - autoAlignViewsToEdge:
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
@@ -49,9 +54,10 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
 
-    - autoIdentify: // iOS 7.0+ only
 	- autoInstall
     - autoRemove
+	- autoPrioritize:
+    - autoIdentify: // iOS 7.0+ only
 
 ## Setup
 *Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*

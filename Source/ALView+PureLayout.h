@@ -57,8 +57,19 @@
 #pragma mark Set Priority For Constraints
 
 /** Sets the constraint priority to the given value for all constraints created using the PureLayout API within the given constraints block.
-    NOTE: This method will have no effect (and will NOT set the priority) on constraints created or added using the SDK directly within the block! */
+    NOTE: This method will have no effect (and will NOT set the priority) on constraints created or added without using the PureLayout API! */
 + (void)autoSetPriority:(ALLayoutPriority)priority forConstraints:(ALConstraintsBlock)block;
+
+
+#pragma mark Set Identifier For Constraints
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/** Sets the identifier for all constraints created using the PureLayout API within the given constraints block.
+    NOTE: This method will have no effect (and will NOT set the identifier) on constraints created or added without using the PureLayout API! */
++ (void)autoSetIdentifier:(NSString *)identifer forConstraints:(ALConstraintsBlock)block;
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
 #pragma mark Remove Constraints

@@ -36,29 +36,6 @@
 @implementation NSLayoutConstraint (PureLayout)
 
 
-#pragma mark Identifying Constraints
-
-#if __PureLayout_MinBaseSDK_iOS8
-
-/**
- Sets the string as the identifier for this constraint.
- The identifer will be printed along with the constraint's description.
- This is helpful to document a constraint's purpose and aid in debugging.
- 
- @param identifier A string used to identify this constraint.
- @return This constraint.
- */
-- (instancetype)autoIdentify:(NSString *)identifer
-{
-    if ([self respondsToSelector:@selector(setIdentifier:)]) {
-        self.identifier = identifer;
-    }
-    return self;
-}
-
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
-
-
 #pragma mark Installing & Removing Constraints
 
 /**
@@ -68,7 +45,7 @@
 {
 #if __PureLayout_MinBaseSDK_iOS8
     if ([self respondsToSelector:@selector(setActive:)]) {
-        [ALView al_applyGlobalPriorityToConstraint:self];
+        [ALView al_applyGlobalStateToConstraint:self];
         if (![ALView al_preventAutomaticConstraintInstallation]) {
             self.active = YES;
         }
@@ -81,14 +58,14 @@
         if (self.secondItem) {
             NSAssert([self.firstItem isKindOfClass:[ALView class]] && [self.secondItem isKindOfClass:[ALView class]], @"Can only automatically install a constraint if both items are views.");
             ALView *commonSuperview = [self.firstItem al_commonSuperviewWithView:self.secondItem];
-            [commonSuperview al_addConstraintUsingGlobalPriority:self];
+            [commonSuperview al_addConstraint:self];
         } else {
             NSAssert([self.firstItem isKindOfClass:[ALView class]], @"Can only automatically install a constraint if the item is a view.");
-            [self.firstItem al_addConstraintUsingGlobalPriority:self];
+            [self.firstItem al_addConstraint:self];
         }
     } else {
         NSAssert([self.secondItem isKindOfClass:[ALView class]], @"Can only automatically install a constraint if the item is a view.");
-        [self.secondItem al_addConstraintUsingGlobalPriority:self];
+        [self.secondItem al_addConstraint:self];
     }
 }
 
@@ -120,6 +97,44 @@
     }
     NSAssert(nil, @"Failed to remove constraint: %@", self);
 }
+
+
+#pragma mark Set Priority
+
+/**
+ Sets the priority of the constraint.
+ 
+ @param priority The priority of the constraint.
+ @return This constraint.
+ */
+- (instancetype)autoPrioritize:(ALLayoutPriority)priority
+{
+    self.priority = priority;
+    return self;
+}
+
+
+#pragma mark Identify Constraints
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/**
+ Sets the string as the identifier for this constraint.
+ The identifer will be printed along with the constraint's description.
+ This is helpful to document a constraint's purpose and aid in debugging.
+ 
+ @param identifier A string used to identify this constraint.
+ @return This constraint.
+ */
+- (instancetype)autoIdentify:(NSString *)identifer
+{
+    if ([self respondsToSelector:@selector(setIdentifier:)]) {
+        self.identifier = identifer;
+    }
+    return self;
+}
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
 #pragma mark Internal Methods

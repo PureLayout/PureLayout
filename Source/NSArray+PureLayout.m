@@ -38,32 +38,7 @@
 @implementation NSArray (PureLayout)
 
 
-#pragma mark Identifying Constraints
-
-#if __PureLayout_MinBaseSDK_iOS8
-
-/**
- Sets the string as the identifier for the constraints in this array.
- The identifer will be printed along with each constraint's description.
- This is helpful to document the constraints' purpose and aid in debugging.
- 
- @param identifier A string used to identify the constraints in this array.
- @return This array.
- */
-- (instancetype)autoIdentifyConstraints:(NSString *)identifer
-{
-    for (id object in self) {
-        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
-            [((NSLayoutConstraint *)object) autoIdentify:identifer];
-        }
-    }
-    return self;
-}
-
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
-
-
-#pragma mark Manage Constraints
+#pragma mark Array of Constraints
 
 /**
  Activates the constraints in this array.
@@ -89,8 +64,46 @@
     }
 }
 
+/**
+ Set the constraints in this array to the priority.
+ 
+ @param priority The priority of the constraints.
+ @return This array.
+ */
+- (instancetype)autoPrioritizeConstraints:(ALLayoutPriority)priority
+{
+    for (id object in self) {
+        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+            [((NSLayoutConstraint *)object) autoPrioritize:priority];
+        }
+    }
+    return self;
+}
 
-#pragma mark Constrain Multiple Views
+#if __PureLayout_MinBaseSDK_iOS8
+
+/**
+ Sets the string as the identifier for the constraints in this array.
+ The identifer will be printed along with each constraint's description.
+ This is helpful to document the constraints' purpose and aid in debugging.
+ 
+ @param identifier A string used to identify the constraints in this array.
+ @return This array.
+ */
+- (instancetype)autoIdentifyConstraints:(NSString *)identifer
+{
+    for (id object in self) {
+        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+            [((NSLayoutConstraint *)object) autoIdentify:identifer];
+        }
+    }
+    return self;
+}
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
+
+
+#pragma mark Array of Views
 
 /**
  Aligns views in this array to one another along a given edge.
@@ -189,8 +202,6 @@
     return constraints;
 }
 
-
-#pragma mark Distribute Multiple Views
 
 /**
  Distributes the views in this array equally along the selected axis in their superview.

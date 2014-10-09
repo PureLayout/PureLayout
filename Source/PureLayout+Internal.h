@@ -35,8 +35,8 @@
 @interface ALView (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
-+ (void)al_applyGlobalPriorityToConstraint:(NSLayoutConstraint *)constraint;
-- (void)al_addConstraintUsingGlobalPriority:(NSLayoutConstraint *)constraint;
++ (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
+- (void)al_addConstraint:(NSLayoutConstraint *)constraint;
 - (ALView *)al_commonSuperviewWithView:(ALView *)peerView;
 - (NSLayoutConstraint *)al_alignToView:(ALView *)peerView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis;
 

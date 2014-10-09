@@ -33,13 +33,23 @@
 #pragma mark - NSArray+PureLayout
 
 /**
- A category on NSArray that provides a simple yet powerful interface for managing groups of Auto Layout constraints,
- or applying constraints to groups of views.
+ A category on NSArray that provides a simple yet powerful interface to:
+    - Manage an array of Auto Layout constraints
+    - Apply constraints to an array of views
  */
 @interface NSArray (PureLayout)
 
 
-#pragma mark Identifying Constraints
+#pragma mark Array of Constraints
+
+/** Activates the constraints in this array. */
+- (void)autoInstallConstraints;
+
+/** Deactivates the constraints in this array. */
+- (void)autoRemoveConstraints;
+
+/** Set the constraints in this array to the priority. */
+- (instancetype)autoPrioritizeConstraints:(ALLayoutPriority)priority;
 
 #if __PureLayout_MinBaseSDK_iOS8
 
@@ -49,16 +59,7 @@
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
-#pragma mark Install & Remove Constraints
-
-/** Activates the constraints in this array. */
-- (void)autoInstallConstraints;
-
-/** Deactivates the constraints in this array. */
-- (void)autoRemoveConstraints;
-
-
-#pragma mark Constrain Multiple Views
+#pragma mark Array of Views
 
 /** Aligns views in this array to one another along a given edge. */
 - (NSArray *)autoAlignViewsToEdge:(ALEdge)edge;
@@ -72,8 +73,6 @@
 /** Sets the given dimension of all the views in this array to a given size. */
 - (NSArray *)autoSetViewsDimension:(ALDimension)dimension toSize:(CGFloat)size;
 
-
-#pragma mark Distribute Multiple Views
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (variable) in the dimension along the axis and will have spacing (fixed) between them. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis

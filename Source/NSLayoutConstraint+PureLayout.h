@@ -37,7 +37,22 @@
 @interface NSLayoutConstraint (PureLayout)
 
 
-#pragma mark Identifying Constraints
+#pragma mark Install & Remove Constraints
+
+/** Activates the the constraint. */
+- (void)autoInstall;
+
+/** Deactivates the constraint. */
+- (void)autoRemove;
+
+
+#pragma mark Set Priority
+
+/** Sets the priority of the constraint. */
+- (instancetype)autoPrioritize:(ALLayoutPriority)priority;
+
+
+#pragma mark Identify Constraints
 
 #if __PureLayout_MinBaseSDK_iOS8
 
@@ -45,14 +60,5 @@
 - (instancetype)autoIdentify:(NSString *)identifer;
 
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
-
-
-#pragma mark Installing & Removing Constraints
-
-/** Activates the the constraint. */
-- (void)autoInstall;
-
-/** Deactivates the constraint. */
-- (void)autoRemove;
 
 @end

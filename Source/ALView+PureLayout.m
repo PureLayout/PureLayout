@@ -100,8 +100,8 @@ static BOOL _al_preventAutomaticConstraintInstallation = NO;
 #pragma mark Set Priority For Constraints
 
 /** 
- A global variable that determines the priority of all constraints created and added by this category.
- Defaults to Required, will only be a different value while executing a constraints block passed into the
+ A global variable that determines the priority of all constraints created and added by this library.
+ Defaults to Required; will only be a different value while executing a constraints block passed into the
  +[autoSetPriority:forConstraints:] method (as that method will reset the value back to Required
  before returning).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
@@ -113,16 +113,16 @@ static ALLayoutPriority _al_globalConstraintPriority = ALLayoutPriorityRequired;
  +[autoSetPriority:forConstraints:] method is executing.
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static BOOL _al_isExecutingConstraintsBlock = NO;
+static BOOL _al_isExecutingPriorityConstraintsBlock = NO;
 
 /**
  Sets the constraint priority to the given value for all constraints created using the PureLayout
  API within the given constraints block.
  
  NOTE: This method will have no effect (and will NOT set the priority) on constraints created or added 
- using the SDK directly within the block!
+ without using the PureLayout API!
  
- @param priority The layout priority to be set on all constraints in the constraints block.
+ @param priority The layout priority to be set on all constraints created in the constraints block.
  @param block A block of method calls to the PureLayout API that create and install constraints.
  */
 + (void)autoSetPriority:(ALLayoutPriority)priority forConstraints:(ALConstraintsBlock)block
@@ -130,12 +130,47 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     NSAssert(block, @"The constraints block cannot be nil.");
     if (block) {
         _al_globalConstraintPriority = priority;
-        _al_isExecutingConstraintsBlock = YES;
+        _al_isExecutingPriorityConstraintsBlock = YES;
         block();
-        _al_isExecutingConstraintsBlock = NO;
+        _al_isExecutingPriorityConstraintsBlock = NO;
         _al_globalConstraintPriority = ALLayoutPriorityRequired;
     }
 }
+
+
+#pragma mark Set Identifier For Constraints
+
+#if __PureLayout_MinBaseSDK_iOS8
+
+/**
+ A global variable that determines the identifier for all constraints created and added by this library.
+ Defaults to nil; will only be a different value while executing a constraints block passed into the
+ +[autoSetIdentifier:forConstraints:] method (as that method will reset the value back to nil before 
+ returning).
+ NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
+ */
+static NSString *_al_globalConstraintIdentifier = nil;
+
+/** 
+ Sets the identifier for all constraints created using the PureLayout API within the given constraints block.
+ 
+ NOTE: This method will have no effect (and will NOT set the identifier) on constraints created or added
+ without using the PureLayout API!
+ 
+ @param identifer A string used to identify all constraints created in the constraints block.
+ @param block A block of method calls to the PureLayout API that create and install constraints.
+ */
++ (void)autoSetIdentifier:(NSString *)identifer forConstraints:(ALConstraintsBlock)block
+{
+    NSAssert(block, @"The constraints block cannot be nil.");
+    if (block) {
+        _al_globalConstraintIdentifier = identifer;
+        block();
+        _al_globalConstraintIdentifier = nil;
+    }
+}
+
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 
 
 #pragma mark Remove Constraints
@@ -639,14 +674,14 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 
 /**
  Sets the priority of content compression resistance for an axis.
- NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:]
+ NOTE: This method must be called from within the block passed into the method +[autoSetPriority:forConstraints:]
  
  @param axis The axis to set the content compression resistance priority for.
  */
 - (void)autoSetContentCompressionResistancePriorityForAxis:(ALAxis)axis
 {
-    NSAssert(_al_isExecutingConstraintsBlock, @"%@ should only be called from within the block passed into the method +[autoSetPriority:forConstraints:]", NSStringFromSelector(_cmd));
-    if (_al_isExecutingConstraintsBlock) {
+    NSAssert(_al_isExecutingPriorityConstraintsBlock, @"%@ should only be called from within the block passed into the method +[autoSetPriority:forConstraints:]", NSStringFromSelector(_cmd));
+    if (_al_isExecutingPriorityConstraintsBlock) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         ALLayoutConstraintAxis constraintAxis = [NSLayoutConstraint al_constraintAxisForAxis:axis];
 #if TARGET_OS_IPHONE
@@ -659,14 +694,14 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 
 /**
  Sets the priority of content hugging for an axis.
- NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:]
+ NOTE: This method must be called from within the block passed into the method +[autoSetPriority:forConstraints:]
  
  @param axis The axis to set the content hugging priority for.
  */
 - (void)autoSetContentHuggingPriorityForAxis:(ALAxis)axis
 {
-    NSAssert(_al_isExecutingConstraintsBlock, @"%@ should only be called from within the block passed into the method +[autoSetPriority:forConstraints:]", NSStringFromSelector(_cmd));
-    if (_al_isExecutingConstraintsBlock) {
+    NSAssert(_al_isExecutingPriorityConstraintsBlock, @"%@ should only be called from within the block passed into the method +[autoSetPriority:forConstraints:]", NSStringFromSelector(_cmd));
+    if (_al_isExecutingPriorityConstraintsBlock) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         ALLayoutConstraintAxis constraintAxis = [NSLayoutConstraint al_constraintAxisForAxis:axis];
 #if TARGET_OS_IPHONE
@@ -785,7 +820,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     if (__PureLayout_MinSysVer_iOS7) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:inset];
-        [viewController.view al_addConstraintUsingGlobalPriority:constraint]; // Can't use autoInstall because the layout guide is not a view
+        [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
         return constraint;
     } else {
         // iOS 6 fallback
@@ -807,7 +842,7 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
     if (__PureLayout_MinSysVer_iOS7) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-inset];
-        [viewController.view al_addConstraintUsingGlobalPriority:constraint]; // Can't use autoInstall because the layout guide is not a view
+        [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
         return constraint;
     } else {
         // iOS 6 fallback
@@ -821,17 +856,21 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
 #pragma mark Internal Methods
 
 /**
- Applies the global constraint priority to the given constraint. This should be done before installing all constraints.
+ Applies the global constraint priority and identifier to the given constraint.
+ This should be done before installing all constraints.
  
- @param constraint The constraint to set the global priority on and then activate.
+ @param constraint The constraint to set the global priority and identifier on.
  */
-+ (void)al_applyGlobalPriorityToConstraint:(NSLayoutConstraint *)constraint
++ (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint
 {
     constraint.priority = _al_globalConstraintPriority;
+#if __PureLayout_MinBaseSDK_iOS8
+    [constraint autoIdentify:_al_globalConstraintIdentifier];
+#endif /* __PureLayout_MinBaseSDK_iOS8 */
 }
-        
+
 /**
- Adds the given constraint to this view after setting the constraint's priority to the global constraint priority.
+ Adds the given constraint to this view after applying the global state to the constraint.
  NOTE: This method is compatible with all versions of iOS, and should be used for older versions before the active
  property on NSLayoutConstraint was introduced.
  
@@ -839,9 +878,9 @@ static BOOL _al_isExecutingConstraintsBlock = NO;
  
  @param constraint The constraint to set the global priority on and then add to this view.
  */
-- (void)al_addConstraintUsingGlobalPriority:(NSLayoutConstraint *)constraint
+- (void)al_addConstraint:(NSLayoutConstraint *)constraint
 {
-    [ALView al_applyGlobalPriorityToConstraint:constraint];
+    [ALView al_applyGlobalStateToConstraint:constraint];
     if (![ALView al_preventAutomaticConstraintInstallation]) {
         [self addConstraint:constraint];
     }
