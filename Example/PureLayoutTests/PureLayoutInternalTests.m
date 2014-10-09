@@ -32,7 +32,6 @@
 - (void)testAttributeEnums
 {
     XCTAssert(ALAttributeLeft == ALEdgeLeft);
-    XCTAssert(ALAttributeLeft == ALEdgeLeft);
     XCTAssert(ALAttributeRight == ALEdgeRight);
     XCTAssert(ALAttributeTop == ALEdgeTop);
     XCTAssert(ALAttributeBottom == ALEdgeBottom);
