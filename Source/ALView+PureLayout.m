@@ -716,11 +716,11 @@ static NSString *_al_globalConstraintIdentifier = nil;
 #pragma mark Constrain Any Attributes
 
 /**
- Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view.
+ Constrains an attribute of the view to a given attribute of another view.
  This method can be used to constrain different types of attributes across two views.
  
- @param ALAttribute Any ALEdge, ALAxis, or ALDimension of this view to constrain.
- @param toALAttribute Any ALEdge, ALAxis, or ALDimension of the peer view to constrain to.
+ @param attribute Any attribute of this view to constrain.
+ @param toAttribute Any attribute of the peer view to constrain to.
  @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @return The constraint added.
  */
@@ -730,11 +730,11 @@ static NSString *_al_globalConstraintIdentifier = nil;
 }
 
 /**
- Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset.
+ Constrains an attribute of the view to a given attribute of another view with an offset.
  This method can be used to constrain different types of attributes across two views.
  
- @param ALAttribute Any ALEdge, ALAxis, or ALDimension of this view to constrain.
- @param toALAttribute Any ALEdge, ALAxis, or ALDimension of the peer view to constrain to.
+ @param attribute Any attribute of this view to constrain.
+ @param toAttribute Any attribute of the peer view to constrain to.
  @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param offset The offset between the attribute of this view and the attribute of the peer view.
  @return The constraint added.
@@ -745,11 +745,11 @@ static NSString *_al_globalConstraintIdentifier = nil;
 }
 
 /**
- Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset as a maximum or minimum.
+ Constrains an attribute of the view to a given attribute of another view with an offset as a maximum or minimum.
  This method can be used to constrain different types of attributes across two views.
  
- @param ALAttribute Any ALEdge, ALAxis, or ALDimension of this view to constrain.
- @param toALAttribute Any ALEdge, ALAxis, or ALDimension of the peer view to constrain to.
+ @param attribute Any attribute of this view to constrain.
+ @param toAttribute Any attribute of the peer view to constrain to.
  @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param offset The offset between the attribute of this view and the attribute of the peer view.
  @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
@@ -766,11 +766,11 @@ static NSString *_al_globalConstraintIdentifier = nil;
 }
 
 /**
- Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier.
+ Constrains an attribute of the view to a given attribute of another view with a multiplier.
  This method can be used to constrain different types of attributes across two views.
  
- @param ALAttribute Any ALEdge, ALAxis, or ALDimension of this view to constrain.
- @param toALAttribute Any ALEdge, ALAxis, or ALDimension of the peer view to constrain to.
+ @param attribute Any attribute of this view to constrain.
+ @param toAttribute Any attribute of the peer view to constrain to.
  @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param multiplier The multiplier between the attribute of this view and the attribute of the peer view.
  @return The constraint added.
@@ -781,11 +781,11 @@ static NSString *_al_globalConstraintIdentifier = nil;
 }
 
 /**
- Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier as a maximum or minimum.
+ Constrains an attribute of the view to a given attribute of another view with a multiplier as a maximum or minimum.
  This method can be used to constrain different types of attributes across two views.
  
- @param ALAttribute Any ALEdge, ALAxis, or ALDimension of this view to constrain.
- @param toALAttribute Any ALEdge, ALAxis, or ALDimension of the peer view to constrain to.
+ @param attribute Any attribute of this view to constrain.
+ @param toAttribute Any attribute of the peer view to constrain to.
  @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param multiplier The multiplier between the attribute of this view and the attribute of the peer view.
  @param relation Whether the multiplier should be at least, at most, or exactly equal to the given value.

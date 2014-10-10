@@ -212,19 +212,19 @@
 
 #pragma mark Constrain Any Attributes
 
-/** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view. */
+/** Constrains an attribute of the view to a given attribute of another view. */
 - (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView;
 
-/** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset. */
+/** Constrains an attribute of the view to a given attribute of another view with an offset. */
 - (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset;
 
-/** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with an offset as a maximum or minimum. */
+/** Constrains an attribute of the view to a given attribute of another view with an offset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
-/** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier. */
+/** Constrains an attribute of the view to a given attribute of another view with a multiplier. */
 - (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier;
 
-/** Constrains an attribute (any ALEdge, ALAxis, or ALDimension) of the view to a given attribute of another view with a multiplier as a maximum or minimum. */
+/** Constrains an attribute of the view to a given attribute of another view with a multiplier as a maximum or minimum. */
 - (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
 
 
