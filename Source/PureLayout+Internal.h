@@ -37,8 +37,8 @@
 + (BOOL)al_preventAutomaticConstraintInstallation;
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 - (void)al_addConstraint:(NSLayoutConstraint *)constraint;
-- (ALView *)al_commonSuperviewWithView:(ALView *)peerView;
-- (NSLayoutConstraint *)al_alignToView:(ALView *)peerView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis;
+- (ALView *)al_commonSuperviewWithView:(ALView *)otherView;
+- (NSLayoutConstraint *)al_alignToView:(ALView *)otherView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis;
 
 @end
 

@@ -484,12 +484,12 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param edge The edge of this view to pin.
  @param toEdge The edge of the peer view to pin to.
- @param peerView The peer view to pin to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to pin to. Must be in the same view hierarchy as this view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView
 {
-    return [self autoPinEdge:edge toEdge:toEdge ofView:peerView withOffset:0.0];
+    return [self autoPinEdge:edge toEdge:toEdge ofView:otherView withOffset:0.0];
 }
 
 /**
@@ -497,13 +497,13 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param edge The edge of this view to pin.
  @param toEdge The edge of the peer view to pin to.
- @param peerView The peer view to pin to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to pin to. Must be in the same view hierarchy as this view.
  @param offset The offset between the edge of this view and the edge of the peer view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView withOffset:(CGFloat)offset
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset
 {
-    return [self autoPinEdge:edge toEdge:toEdge ofView:peerView withOffset:offset relation:NSLayoutRelationEqual];
+    return [self autoPinEdge:edge toEdge:toEdge ofView:otherView withOffset:offset relation:NSLayoutRelationEqual];
 }
 
 /**
@@ -511,14 +511,14 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param edge The edge of this view to pin.
  @param toEdge The edge of the peer view to pin to.
- @param peerView The peer view to pin to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to pin to. Must be in the same view hierarchy as this view.
  @param offset The offset between the edge of this view and the edge of the peer view.
  @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:peerView withOffset:offset relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
 
 
@@ -528,25 +528,25 @@ static NSString *_al_globalConstraintIdentifier = nil;
  Aligns an axis of the view to the same axis of another view.
  
  @param axis The axis of this view and the peer view to align.
- @param peerView The peer view to align to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to align to. Must be in the same view hierarchy as this view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView
 {
-    return [self autoAlignAxis:axis toSameAxisOfView:peerView withOffset:0.0];
+    return [self autoAlignAxis:axis toSameAxisOfView:otherView withOffset:0.0];
 }
 
 /**
  Aligns an axis of the view to the same axis of another view with an offset.
  
  @param axis The axis of this view and the peer view to align.
- @param peerView The peer view to align to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to align to. Must be in the same view hierarchy as this view.
  @param offset The offset between the axis of this view and the axis of the peer view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView withOffset:(CGFloat)offset
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withOffset:(CGFloat)offset
 {
-    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:peerView withOffset:offset];
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:otherView withOffset:offset];
 }
 
 
@@ -557,12 +557,12 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param dimension The dimension of this view to pin.
  @param toDimension The dimension of the peer view to pin to.
- @param peerView The peer view to match to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to match to. Must be in the same view hierarchy as this view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView
 {
-    return [self autoMatchDimension:dimension toDimension:toDimension ofView:peerView withOffset:0.0];
+    return [self autoMatchDimension:dimension toDimension:toDimension ofView:otherView withOffset:0.0];
 }
 
 /**
@@ -570,13 +570,13 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param dimension The dimension of this view to pin.
  @param toDimension The dimension of the peer view to pin to.
- @param peerView The peer view to match to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to match to. Must be in the same view hierarchy as this view.
  @param offset The offset between the dimension of this view and the dimension of the peer view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withOffset:(CGFloat)offset
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withOffset:(CGFloat)offset
 {
-    return [self autoMatchDimension:dimension toDimension:toDimension ofView:peerView withOffset:offset relation:NSLayoutRelationEqual];
+    return [self autoMatchDimension:dimension toDimension:toDimension ofView:otherView withOffset:offset relation:NSLayoutRelationEqual];
 }
 
 /**
@@ -584,14 +584,14 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param dimension The dimension of this view to pin.
  @param toDimension The dimension of the peer view to pin to.
- @param peerView The peer view to match to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to match to. Must be in the same view hierarchy as this view.
  @param offset The offset between the dimension of this view and the dimension of the peer view.
  @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:peerView withOffset:offset relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:otherView withOffset:offset relation:relation];
 }
 
 /**
@@ -599,13 +599,13 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param dimension The dimension of this view to pin.
  @param toDimension The dimension of the peer view to pin to.
- @param peerView The peer view to match to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to match to. Must be in the same view hierarchy as this view.
  @param multiplier The multiple of the peer view's given dimension that this view's given dimension should be.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier
 {
-    return [self autoMatchDimension:dimension toDimension:toDimension ofView:peerView withMultiplier:multiplier relation:NSLayoutRelationEqual];
+    return [self autoMatchDimension:dimension toDimension:toDimension ofView:otherView withMultiplier:multiplier relation:NSLayoutRelationEqual];
 }
 
 /**
@@ -613,14 +613,14 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param dimension The dimension of this view to pin.
  @param toDimension The dimension of the peer view to pin to.
- @param peerView The peer view to match to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to match to. Must be in the same view hierarchy as this view.
  @param multiplier The multiple of the peer view's given dimension that this view's given dimension should be.
  @param relation Whether the multiple should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
 {
-    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:peerView withMultiplier:multiplier relation:relation];
+    return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:otherView withMultiplier:multiplier relation:relation];
 }
 
 
@@ -721,12 +721,12 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param attribute Any attribute of this view to constrain.
  @param toAttribute Any attribute of the peer view to constrain to.
- @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView
 {
-    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:peerView withOffset:0.0];
+    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:otherView withOffset:0.0];
 }
 
 /**
@@ -735,13 +735,13 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param attribute Any attribute of this view to constrain.
  @param toAttribute Any attribute of the peer view to constrain to.
- @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param offset The offset between the attribute of this view and the attribute of the peer view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withOffset:(CGFloat)offset
 {
-    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:peerView withOffset:offset relation:NSLayoutRelationEqual];
+    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:otherView withOffset:offset relation:NSLayoutRelationEqual];
 }
 
 /**
@@ -750,17 +750,17 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param attribute Any attribute of this view to constrain.
  @param toAttribute Any attribute of the peer view to constrain to.
- @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param offset The offset between the attribute of this view and the attribute of the peer view.
  @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute layoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:attribute];
     NSLayoutAttribute toLayoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:toAttribute];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:peerView attribute:toLayoutAttribute multiplier:1.0 constant:offset];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:otherView attribute:toLayoutAttribute multiplier:1.0 constant:offset];
     [constraint autoInstall];
     return constraint;
 }
@@ -771,13 +771,13 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param attribute Any attribute of this view to constrain.
  @param toAttribute Any attribute of the peer view to constrain to.
- @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param multiplier The multiplier between the attribute of this view and the attribute of the peer view.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier
 {
-    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:peerView withMultiplier:multiplier relation:NSLayoutRelationEqual];
+    return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofView:otherView withMultiplier:multiplier relation:NSLayoutRelationEqual];
 }
 
 /**
@@ -786,17 +786,17 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @param attribute Any attribute of this view to constrain.
  @param toAttribute Any attribute of the peer view to constrain to.
- @param peerView The peer view to constrain to. Must be in the same view hierarchy as this view.
+ @param otherView The peer view to constrain to. Must be in the same view hierarchy as this view.
  @param multiplier The multiplier between the attribute of this view and the attribute of the peer view.
  @param relation Whether the multiplier should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutAttribute layoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:attribute];
     NSLayoutAttribute toLayoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:toAttribute];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:peerView attribute:toLayoutAttribute multiplier:multiplier constant:0.0];
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:otherView attribute:toLayoutAttribute multiplier:multiplier constant:0.0];
     [constraint autoInstall];
     return constraint;
 }
@@ -892,17 +892,17 @@ static NSString *_al_globalConstraintIdentifier = nil;
  
  @return The common superview for the two views.
  */
-- (ALView *)al_commonSuperviewWithView:(ALView *)peerView
+- (ALView *)al_commonSuperviewWithView:(ALView *)otherView
 {
     ALView *commonSuperview = nil;
     ALView *startView = self;
     do {
 #if TARGET_OS_IPHONE
-        if ([peerView isDescendantOfView:startView]) {
+        if ([otherView isDescendantOfView:startView]) {
             commonSuperview = startView;
         }
 #else
-        if ([peerView isDescendantOf:startView]) {
+        if ([otherView isDescendantOf:startView]) {
             commonSuperview = startView;
         }
 #endif /* TARGET_OS_IPHONE */
@@ -915,57 +915,57 @@ static NSString *_al_globalConstraintIdentifier = nil;
 /**
  Aligns this view to a peer view with an alignment option.
  
- @param peerView The peer view to align to.
+ @param otherView The peer view to align to.
  @param alignment The alignment option to apply to the two views.
  @param axis The axis along which the views are distributed, used to validate the alignment option.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)al_alignToView:(ALView *)peerView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis
+- (NSLayoutConstraint *)al_alignToView:(ALView *)otherView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis
 {
     NSLayoutConstraint *constraint = nil;
     switch (alignment) {
         case NSLayoutFormatAlignAllCenterX:
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with NSLayoutFormatAlignAllCenterX.");
-            constraint = [self autoAlignAxis:ALAxisVertical toSameAxisOfView:peerView];
+            constraint = [self autoAlignAxis:ALAxisVertical toSameAxisOfView:otherView];
             break;
         case NSLayoutFormatAlignAllCenterY:
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with NSLayoutFormatAlignAllCenterY.");
-            constraint = [self autoAlignAxis:ALAxisHorizontal toSameAxisOfView:peerView];
+            constraint = [self autoAlignAxis:ALAxisHorizontal toSameAxisOfView:otherView];
             break;
         case NSLayoutFormatAlignAllBaseline: // same value as NSLayoutFormatAlignAllLastBaseline
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with NSLayoutFormatAlignAllBaseline.");
-            constraint = [self autoAlignAxis:ALAxisBaseline toSameAxisOfView:peerView];
+            constraint = [self autoAlignAxis:ALAxisBaseline toSameAxisOfView:otherView];
             break;
 #if __PureLayout_MinBaseSDK_iOS8
         case NSLayoutFormatAlignAllFirstBaseline:
             NSAssert(__PureLayout_MinSysVer_iOS8, @"NSLayoutFormatAlignAllFirstBaseline is only supported on iOS 8.0 or higher.");
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with NSLayoutFormatAlignAllFirstBaseline.");
-            constraint = [self autoAlignAxis:ALAxisFirstBaseline toSameAxisOfView:peerView];
+            constraint = [self autoAlignAxis:ALAxisFirstBaseline toSameAxisOfView:otherView];
             break;
 #endif /* __PureLayout_MinBaseSDK_iOS8 */
         case NSLayoutFormatAlignAllTop:
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with NSLayoutFormatAlignAllTop.");
-            constraint = [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:otherView];
             break;
         case NSLayoutFormatAlignAllLeft:
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with NSLayoutFormatAlignAllLeft.");
-            constraint = [self autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:otherView];
             break;
         case NSLayoutFormatAlignAllBottom:
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with NSLayoutFormatAlignAllBottom.");
-            constraint = [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:otherView];
             break;
         case NSLayoutFormatAlignAllRight:
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with NSLayoutFormatAlignAllRight.");
-            constraint = [self autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:otherView];
             break;
         case NSLayoutFormatAlignAllLeading:
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with NSLayoutFormatAlignAllLeading.");
-            constraint = [self autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:otherView];
             break;
         case NSLayoutFormatAlignAllTrailing:
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with NSLayoutFormatAlignAllTrailing.");
-            constraint = [self autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:peerView];
+            constraint = [self autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:otherView];
             break;
         default:
             NSAssert(nil, @"Unsupported alignment option.");

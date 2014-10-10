@@ -151,40 +151,40 @@
 #pragma mark Pin Edges
 
 /** Pins an edge of the view to a given edge of another view. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView;
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView;
 
 /** Pins an edge of the view to a given edge of another view with an offset. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView withOffset:(CGFloat)offset;
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset;
 
 /** Pins an edge of the view to a given edge of another view with an offset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
 
 #pragma mark Align Axes
 
 /** Aligns an axis of the view to the same axis of another view. */
-- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView;
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView;
 
 /** Aligns an axis of the view to the same axis of another view with an offset. */
-- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)peerView withOffset:(CGFloat)offset;
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withOffset:(CGFloat)offset;
 
 
 #pragma mark Match Dimensions
 
 /** Matches a dimension of the view to a given dimension of another view. */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView;
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView;
 
 /** Matches a dimension of the view to a given dimension of another view with an offset. */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withOffset:(CGFloat)offset;
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withOffset:(CGFloat)offset;
 
 /** Matches a dimension of the view to a given dimension of another view with an offset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
 /** Matches a dimension of the view to a multiple of a given dimension of another view. */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier;
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
 
 /** Matches a dimension of the view to a multiple of a given dimension of another view as a maximum or minimum. */
-- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
 
 
 #pragma mark Set Dimensions
@@ -213,19 +213,19 @@
 #pragma mark Constrain Any Attributes
 
 /** Constrains an attribute of the view to a given attribute of another view. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView;
 
 /** Constrains an attribute of the view to a given attribute of another view with an offset. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withOffset:(CGFloat)offset;
 
 /** Constrains an attribute of the view to a given attribute of another view with an offset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
 /** Constrains an attribute of the view to a given attribute of another view with a multiplier. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
 
 /** Constrains an attribute of the view to a given attribute of another view with a multiplier as a maximum or minimum. */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)peerView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
 
 
 #pragma mark Pin to Layout Guides (iOS only)
