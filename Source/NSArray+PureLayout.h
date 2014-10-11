@@ -76,32 +76,32 @@
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (variable) in the dimension along the axis and will have spacing (fixed) between them. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
-                         withFixedSpacing:(CGFloat)spacing
-                                alignment:(NSLayoutFormatOptions)alignment;
+                                alignedTo:(ALAttribute)alignment
+                         withFixedSpacing:(CGFloat)spacing;
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (variable) in the dimension along the axis and will have spacing (fixed) between them, with optional insets from the first and last views to their superview. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                alignedTo:(ALAttribute)alignment
                          withFixedSpacing:(CGFloat)spacing
-                             insetSpacing:(BOOL)shouldSpaceInsets
-                                alignment:(NSLayoutFormatOptions)alignment;
+                             insetSpacing:(BOOL)shouldSpaceInsets;
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will have spacing (fixed) between them, with optional insets from the first and last views to their superview, and optionally constrained to the same size in the dimension along the axis. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                alignedTo:(ALAttribute)alignment
                          withFixedSpacing:(CGFloat)spacing
                              insetSpacing:(BOOL)shouldSpaceInsets
-                             matchedSizes:(BOOL)shouldMatchSizes
-                                alignment:(NSLayoutFormatOptions)alignment;
+                             matchedSizes:(BOOL)shouldMatchSizes;
 
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (fixed) in the dimension along the axis and will have spacing (variable) between them. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
-                            withFixedSize:(CGFloat)size
-                                alignment:(NSLayoutFormatOptions)alignment;
+                                alignedTo:(ALAttribute)alignment
+                            withFixedSize:(CGFloat)size;
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (fixed) in the dimension along the axis and will have spacing (variable) between them, with optional insets from the first and last views to their superview. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                alignedTo:(ALAttribute)alignment
                             withFixedSize:(CGFloat)size
-                             insetSpacing:(BOOL)shouldSpaceInsets
-                                alignment:(NSLayoutFormatOptions)alignment;
+                             insetSpacing:(BOOL)shouldSpaceInsets;
 
 @end

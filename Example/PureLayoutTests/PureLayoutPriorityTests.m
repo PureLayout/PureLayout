@@ -253,19 +253,19 @@
     DEFINE_WEAK_SELF
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSize:25.0 alignment:NSLayoutFormatAlignAllBottom];
+        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeBottom withFixedSize:25.0];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical withFixedSize:5.0 insetSpacing:NO alignment:NSLayoutFormatAlignAllRight];
+        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withFixedSize:5.0 insetSpacing:NO];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical withFixedSpacing:0.0 alignment:NSLayoutFormatAlignAllLeading];
+        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeading withFixedSpacing:0.0];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSpacing:899.5 insetSpacing:NO alignment:NSLayoutFormatAlignAllCenterY];
+        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:899.5 insetSpacing:NO];
     }];
 }
 

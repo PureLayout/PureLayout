@@ -38,7 +38,7 @@
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 - (void)al_addConstraint:(NSLayoutConstraint *)constraint;
 - (ALView *)al_commonSuperviewWithView:(ALView *)otherView;
-- (NSLayoutConstraint *)al_alignToView:(ALView *)otherView withOption:(NSLayoutFormatOptions)alignment forAxis:(ALAxis)axis;
+- (NSLayoutConstraint *)al_alignAttribute:(ALAttribute)attribute toView:(ALView *)otherView forAxis:(ALAxis)axis;
 
 @end
 

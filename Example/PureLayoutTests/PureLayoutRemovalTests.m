@@ -93,7 +93,7 @@
  */
 - (void)testRemoveConstraints
 {
-    NSArray *constraints = [@[self.viewA, self.viewB, self.viewC, self.viewD] autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSize:10.0 alignment:NSLayoutFormatAlignAllCenterY];
+    NSArray *constraints = [@[self.viewA, self.viewB, self.viewC, self.viewD] autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSize:10.0];
     
     NSUInteger constraintsCount = [self.containerView.constraints count];
     XCTAssert(constraintsCount > 0, @"containerView should have constraints added to it.");

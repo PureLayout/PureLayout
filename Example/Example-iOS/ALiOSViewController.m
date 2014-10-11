@@ -88,7 +88,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     
     [self.orangeView autoAlignAxisToSuperviewAxis:ALAxisVertical];
     
-    [subviews autoDistributeViewsAlongAxis:ALAxisVertical withFixedSize:30.0 insetSpacing:YES alignment:NSLayoutFormatAlignAllCenterX];
+    [subviews autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeVertical withFixedSize:30.0 insetSpacing:YES];
 }
 
 /**
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     
     [self.orangeView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     
-    [subviews autoDistributeViewsAlongAxis:ALAxisHorizontal withFixedSpacing:10.0 insetSpacing:NO alignment:NSLayoutFormatAlignAllCenterY];
+    [subviews autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:10.0 insetSpacing:NO];
 }
 
 /**
