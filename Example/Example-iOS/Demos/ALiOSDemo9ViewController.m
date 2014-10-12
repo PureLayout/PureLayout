@@ -46,13 +46,20 @@
         
         // Set the layoutMargins of the blueView, which will have an effect on subviews of the blueView that attach to
         // the blueView's margin attributes -- in this case, the redView
-        self.blueView.layoutMargins = UIEdgeInsetsMake(40.0, 20.0, 40.0, 20.0);
+        self.blueView.layoutMargins = UIEdgeInsetsMake(10.0, 20.0, 80.0, 20.0);
         [self.redView autoPinEdgesToSuperviewMargins];
         
         // Let the redView inherit the values we just set for the blueView's layoutMargins by setting the below property to YES.
         // Then, pin the yellowView's edges to the redView's margins, giving the yellowView the same insets from its superview as the redView.
         self.redView.preservesSuperviewLayoutMargins = YES;
-        [self.yellowView autoPinEdgesToSuperviewMargins];
+        [self.yellowView autoPinEdgeToSuperviewMargin:ALEdgeLeft];
+        [self.yellowView autoPinEdgeToSuperviewMargin:ALEdgeRight];
+        
+        // By aligning the yellowView to its superview's horiztonal margin axis, the yellowView will be positioned with its horizontal axis
+        // in the middle of the redView's top and bottom margins (causing it to be slightly closer to the top of the redView, since the
+        // redView has a much larger bottom margin than top margin).
+        [self.yellowView autoAlignAxisToSuperviewMarginAxis:ALAxisHorizontal];
+        [self.yellowView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.redView withMultiplier:0.5];
         
         // Since yellowView.preservesSuperviewLayoutMargins is NO by default, it will not preserve (inherit) its superview's margins,
         // and instead will just have the default margins of: {8.0, 8.0, 8.0, 8.0} which will apply to its subviews (greenView)
