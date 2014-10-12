@@ -41,7 +41,6 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 	// Arrays of Constraints
 	- autoInstallConstraints
     - autoRemoveConstraints
-	- autoPrioritizeConstraints:
     - autoIdentifyConstraints: // iOS 7.0+ only
 	
 	// Arrays of Views
@@ -56,7 +55,6 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 	- autoInstall
     - autoRemove
-	- autoPrioritize:
     - autoIdentify: // iOS 7.0+ only
 
 ## Setup

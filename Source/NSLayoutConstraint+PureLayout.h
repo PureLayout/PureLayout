@@ -46,12 +46,6 @@
 - (void)autoRemove;
 
 
-#pragma mark Set Priority
-
-/** Sets the priority of the constraint. */
-- (instancetype)autoPrioritize:(ALLayoutPriority)priority;
-
-
 #pragma mark Identify Constraints
 
 #if __PureLayout_MinBaseSDK_iOS8

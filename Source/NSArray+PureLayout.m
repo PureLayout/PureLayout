@@ -64,22 +64,6 @@
     }
 }
 
-/**
- Set the constraints in this array to the priority.
- 
- @param priority The priority of the constraints.
- @return This array.
- */
-- (instancetype)autoPrioritizeConstraints:(ALLayoutPriority)priority
-{
-    for (id object in self) {
-        if ([object isKindOfClass:[NSLayoutConstraint class]]) {
-            [((NSLayoutConstraint *)object) autoPrioritize:priority];
-        }
-    }
-    return self;
-}
-
 #if __PureLayout_MinBaseSDK_iOS8
 
 /**

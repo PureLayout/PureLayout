@@ -48,9 +48,6 @@
 /** Deactivates the constraints in this array. */
 - (void)autoRemoveConstraints;
 
-/** Set the constraints in this array to the priority. */
-- (instancetype)autoPrioritizeConstraints:(ALLayoutPriority)priority;
-
 #if __PureLayout_MinBaseSDK_iOS8
 
 /** Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and later. */

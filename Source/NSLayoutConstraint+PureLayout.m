@@ -99,21 +99,6 @@
 }
 
 
-#pragma mark Set Priority
-
-/**
- Sets the priority of the constraint.
- 
- @param priority The priority of the constraint.
- @return This constraint.
- */
-- (instancetype)autoPrioritize:(ALLayoutPriority)priority
-{
-    self.priority = priority;
-    return self;
-}
-
-
 #pragma mark Identify Constraints
 
 #if __PureLayout_MinBaseSDK_iOS8
