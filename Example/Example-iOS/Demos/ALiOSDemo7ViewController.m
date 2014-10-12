@@ -110,7 +110,9 @@
                      completion:^(BOOL finished) {
                          // Run the animation again in the other direction
                          self.isAnimatingToEndState = !self.isAnimatingToEndState;
-                         [self animateLayoutWithSpringAnimation];
+                         if (self.navigationController) { // this will be nil if this view controller is no longer navigation stack
+                             [self animateLayoutWithSpringAnimation];
+                         }
                      }];
 }
 
@@ -132,7 +134,9 @@
                      completion:^(BOOL finished) {
                          // Run the animation again in the other direction
                          self.isAnimatingToEndState = !self.isAnimatingToEndState;
-                         [self animateLayoutWithRegularAnimation];
+                         if (self.navigationController) { // this will be nil if this view controller is no longer navigation stack
+                             [self animateLayoutWithRegularAnimation];
+                         }
                      }];
 }
 
