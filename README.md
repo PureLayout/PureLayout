@@ -82,9 +82,9 @@ Releases are tagged in the git commit history using [semantic versioning](http:/
 
 ## Usage
 ### Example Project
-Check out the [example project](Example) included in the repository. It contains iOS and OS X demos of the API being used in various scenarios.
+Check out the [example project](Example) included in the repository (requires Xcode 6 or higher). It contains iOS and OS X demos of the API being used in various scenarios.
 
-On iOS, while running the app, tap on the screen to cycle through the demos. You can rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
+On iOS, you can use different device simulators and rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
 
 On OS X, while running the app, press any key to cycle through the demos. You can resize the window to see the constraints in action.
 

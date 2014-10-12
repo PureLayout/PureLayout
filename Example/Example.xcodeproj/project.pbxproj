@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1006C6919E7691D00B92767 /* ALiOSDemoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */; };
+		B1006C7019E76D4200B92767 /* ALiOSDemo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */; };
 		B1089C0C1957767400339027 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1089C0A1957767400339027 /* Localizable.strings */; };
 		B1089C21195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
 		B1089C22195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
@@ -28,9 +30,16 @@
 		B12C23E117C3FDE4001CF667 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12C23E017C3FDE4001CF667 /* Foundation.framework */; };
 		B12C23E317C3FDE4001CF667 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12C23E217C3FDE4001CF667 /* CoreGraphics.framework */; };
 		B139A5041956330800F33B19 /* ALiOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B139A5011956330800F33B19 /* ALiOSAppDelegate.m */; };
-		B139A5051956330800F33B19 /* ALiOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B139A5031956330800F33B19 /* ALiOSViewController.m */; };
 		B139A50F1956333500F33B19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B139A50D1956333500F33B19 /* InfoPlist.strings */; };
 		B139A5121956334500F33B19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B139A5111956334500F33B19 /* main.m */; };
+		B13DFF2619E773D100B26152 /* ALiOSDemo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DFF2319E773D100B26152 /* ALiOSDemo2ViewController.m */; };
+		B13DFF2719E773D100B26152 /* ALiOSDemo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DFF2519E773D100B26152 /* ALiOSDemo3ViewController.m */; };
+		B162DF6919E9F0D700D56FEA /* ALiOSDemo4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF6819E9F0D700D56FEA /* ALiOSDemo4ViewController.m */; };
+		B162DF6C19E9F6A800D56FEA /* ALiOSDemo5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF6B19E9F6A800D56FEA /* ALiOSDemo5ViewController.m */; };
+		B162DF6F19E9FB2300D56FEA /* ALiOSDemo6ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF6E19E9FB2300D56FEA /* ALiOSDemo6ViewController.m */; };
+		B162DF7219EB2BAB00D56FEA /* ALiOSDemo7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF7119EB2BAB00D56FEA /* ALiOSDemo7ViewController.m */; };
+		B162DF7519EB343000D56FEA /* ALiOSDemo8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF7419EB343000D56FEA /* ALiOSDemo8ViewController.m */; };
+		B162DF7819EB3A4500D56FEA /* ALiOSDemo9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF7719EB3A4500D56FEA /* ALiOSDemo9ViewController.m */; };
 		B17D24B619565F6C00F2FD4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A290E619562FDA00D4765E /* MainMenu.xib */; };
 		B17D24CA1956648700F2FD4B /* PureLayoutTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D24C91956648700F2FD4B /* PureLayoutTestBase.m */; };
 		B17D24CB1956648700F2FD4B /* PureLayoutTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D24C91956648700F2FD4B /* PureLayoutTestBase.m */; };
@@ -85,6 +94,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1006C6719E7691D00B92767 /* ALiOSDemoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemoListController.h; path = "Example-iOS/ALiOSDemoListController.h"; sourceTree = SOURCE_ROOT; };
+		B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemoListController.m; path = "Example-iOS/ALiOSDemoListController.m"; sourceTree = SOURCE_ROOT; };
+		B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo1ViewController.h; path = "Example-iOS/Demos/ALiOSDemo1ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo1ViewController.m; path = "Example-iOS/Demos/ALiOSDemo1ViewController.m"; sourceTree = SOURCE_ROOT; };
 		B1089C0B1957767400339027 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "Example-iOS/ar.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C0D1957767D00339027 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Example-iOS/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutCenteringTests.m; path = PureLayoutTests/PureLayoutCenteringTests.m; sourceTree = "<group>"; };
@@ -102,13 +115,27 @@
 		B12C23E217C3FDE4001CF667 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B139A5001956330800F33B19 /* ALiOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSAppDelegate.h; path = "Example-iOS/ALiOSAppDelegate.h"; sourceTree = SOURCE_ROOT; };
 		B139A5011956330800F33B19 /* ALiOSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSAppDelegate.m; path = "Example-iOS/ALiOSAppDelegate.m"; sourceTree = SOURCE_ROOT; };
-		B139A5021956330800F33B19 /* ALiOSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSViewController.h; path = "Example-iOS/ALiOSViewController.h"; sourceTree = SOURCE_ROOT; };
-		B139A5031956330800F33B19 /* ALiOSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSViewController.m; path = "Example-iOS/ALiOSViewController.m"; sourceTree = SOURCE_ROOT; };
 		B139A50B1956332D00F33B19 /* Example-iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Example-iOS-Info.plist"; path = "Example-iOS/Example-iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B139A50E1956333500F33B19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Example-iOS/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		B139A5101956333C00F33B19 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "Example-iOS/ar.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		B139A5111956334500F33B19 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Example-iOS/main.m"; sourceTree = SOURCE_ROOT; };
 		B139A5131956334E00F33B19 /* Example-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Example-iOS-Prefix.pch"; path = "Example-iOS/Example-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		B13DFF2219E773D100B26152 /* ALiOSDemo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo2ViewController.h; path = "Example-iOS/Demos/ALiOSDemo2ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B13DFF2319E773D100B26152 /* ALiOSDemo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo2ViewController.m; path = "Example-iOS/Demos/ALiOSDemo2ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B13DFF2419E773D100B26152 /* ALiOSDemo3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo3ViewController.h; path = "Example-iOS/Demos/ALiOSDemo3ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B13DFF2519E773D100B26152 /* ALiOSDemo3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo3ViewController.m; path = "Example-iOS/Demos/ALiOSDemo3ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF6719E9F0D700D56FEA /* ALiOSDemo4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo4ViewController.h; path = "Example-iOS/Demos/ALiOSDemo4ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF6819E9F0D700D56FEA /* ALiOSDemo4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo4ViewController.m; path = "Example-iOS/Demos/ALiOSDemo4ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF6A19E9F6A800D56FEA /* ALiOSDemo5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo5ViewController.h; path = "Example-iOS/Demos/ALiOSDemo5ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF6B19E9F6A800D56FEA /* ALiOSDemo5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo5ViewController.m; path = "Example-iOS/Demos/ALiOSDemo5ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF6D19E9FB2300D56FEA /* ALiOSDemo6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo6ViewController.h; path = "Example-iOS/Demos/ALiOSDemo6ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF6E19E9FB2300D56FEA /* ALiOSDemo6ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo6ViewController.m; path = "Example-iOS/Demos/ALiOSDemo6ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF7019EB2BAB00D56FEA /* ALiOSDemo7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo7ViewController.h; path = "Example-iOS/Demos/ALiOSDemo7ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF7119EB2BAB00D56FEA /* ALiOSDemo7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo7ViewController.m; path = "Example-iOS/Demos/ALiOSDemo7ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF7319EB343000D56FEA /* ALiOSDemo8ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo8ViewController.h; path = "Example-iOS/Demos/ALiOSDemo8ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF7419EB343000D56FEA /* ALiOSDemo8ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo8ViewController.m; path = "Example-iOS/Demos/ALiOSDemo8ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B162DF7619EB3A4500D56FEA /* ALiOSDemo9ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo9ViewController.h; path = "Example-iOS/Demos/ALiOSDemo9ViewController.h"; sourceTree = SOURCE_ROOT; };
+		B162DF7719EB3A4500D56FEA /* ALiOSDemo9ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo9ViewController.m; path = "Example-iOS/Demos/ALiOSDemo9ViewController.m"; sourceTree = SOURCE_ROOT; };
 		B17D24C81956648700F2FD4B /* PureLayoutTestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PureLayoutTestBase.h; path = PureLayoutTests/PureLayoutTestBase.h; sourceTree = "<group>"; };
 		B17D24C91956648700F2FD4B /* PureLayoutTestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutTestBase.m; path = PureLayoutTests/PureLayoutTestBase.m; sourceTree = "<group>"; };
 		B17D24CE1957763300F2FD4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -182,6 +209,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1006C6A19E76B8700B92767 /* Demos */ = {
+			isa = PBXGroup;
+			children = (
+				B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */,
+				B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */,
+				B13DFF2219E773D100B26152 /* ALiOSDemo2ViewController.h */,
+				B13DFF2319E773D100B26152 /* ALiOSDemo2ViewController.m */,
+				B13DFF2419E773D100B26152 /* ALiOSDemo3ViewController.h */,
+				B13DFF2519E773D100B26152 /* ALiOSDemo3ViewController.m */,
+				B162DF6719E9F0D700D56FEA /* ALiOSDemo4ViewController.h */,
+				B162DF6819E9F0D700D56FEA /* ALiOSDemo4ViewController.m */,
+				B162DF6A19E9F6A800D56FEA /* ALiOSDemo5ViewController.h */,
+				B162DF6B19E9F6A800D56FEA /* ALiOSDemo5ViewController.m */,
+				B162DF6D19E9FB2300D56FEA /* ALiOSDemo6ViewController.h */,
+				B162DF6E19E9FB2300D56FEA /* ALiOSDemo6ViewController.m */,
+				B162DF7019EB2BAB00D56FEA /* ALiOSDemo7ViewController.h */,
+				B162DF7119EB2BAB00D56FEA /* ALiOSDemo7ViewController.m */,
+				B162DF7319EB343000D56FEA /* ALiOSDemo8ViewController.h */,
+				B162DF7419EB343000D56FEA /* ALiOSDemo8ViewController.m */,
+				B162DF7619EB3A4500D56FEA /* ALiOSDemo9ViewController.h */,
+				B162DF7719EB3A4500D56FEA /* ALiOSDemo9ViewController.m */,
+			);
+			name = Demos;
+			sourceTree = "<group>";
+		};
 		B12C23D217C3FDE4001CF667 = {
 			isa = PBXGroup;
 			children = (
@@ -221,8 +273,9 @@
 			children = (
 				B139A5001956330800F33B19 /* ALiOSAppDelegate.h */,
 				B139A5011956330800F33B19 /* ALiOSAppDelegate.m */,
-				B139A5021956330800F33B19 /* ALiOSViewController.h */,
-				B139A5031956330800F33B19 /* ALiOSViewController.m */,
+				B1006C6719E7691D00B92767 /* ALiOSDemoListController.h */,
+				B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */,
+				B1006C6A19E76B8700B92767 /* Demos */,
 				B125489319C29D2A00DDD7BF /* Images-iOS.xcassets */,
 				B12C23E517C3FDE4001CF667 /* Supporting Files */,
 			);
@@ -500,10 +553,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B139A5051956330800F33B19 /* ALiOSViewController.m in Sources */,
+				B13DFF2619E773D100B26152 /* ALiOSDemo2ViewController.m in Sources */,
+				B162DF6C19E9F6A800D56FEA /* ALiOSDemo5ViewController.m in Sources */,
 				B139A5121956334500F33B19 /* main.m in Sources */,
+				B1006C7019E76D4200B92767 /* ALiOSDemo1ViewController.m in Sources */,
+				B162DF6F19E9FB2300D56FEA /* ALiOSDemo6ViewController.m in Sources */,
+				B162DF7519EB343000D56FEA /* ALiOSDemo8ViewController.m in Sources */,
+				B13DFF2719E773D100B26152 /* ALiOSDemo3ViewController.m in Sources */,
 				B139A5041956330800F33B19 /* ALiOSAppDelegate.m in Sources */,
 				B183799E195659360055842C /* ALView+PureLayout.m in Sources */,
+				B162DF7819EB3A4500D56FEA /* ALiOSDemo9ViewController.m in Sources */,
+				B1006C6919E7691D00B92767 /* ALiOSDemoListController.m in Sources */,
+				B162DF7219EB2BAB00D56FEA /* ALiOSDemo7ViewController.m in Sources */,
+				B162DF6919E9F0D700D56FEA /* ALiOSDemo4ViewController.m in Sources */,
 				B18379A0195659360055842C /* NSArray+PureLayout.m in Sources */,
 				B18379A2195659360055842C /* NSLayoutConstraint+PureLayout.m in Sources */,
 			);

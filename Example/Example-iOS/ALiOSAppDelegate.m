@@ -7,15 +7,16 @@
 //
 
 #import "ALiOSAppDelegate.h"
-#import "ALiOSViewController.h"
+#import "ALiOSDemoListController.h"
 
 @implementation ALiOSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ALiOSViewController *viewController = [[ALiOSViewController alloc] initWithNibName:nil bundle:nil];
-    self.window.rootViewController = viewController;
+    ALiOSDemoListController *demoListController = [[ALiOSDemoListController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:demoListController];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
