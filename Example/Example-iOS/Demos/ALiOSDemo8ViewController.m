@@ -54,13 +54,18 @@
         
         NSArray *views = @[self.redView, self.blueView, self.yellowView, self.greenView];
         
-        [[views autoSetViewsDimension:ALDimensionWidth toSize:60.0] autoIdentifyConstraints:@"Set Width of All Views"];
-        
         [[views autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeVertical withFixedSize:40.0] autoIdentifyConstraints:@"Distribute Views Vertically"];
         
-        [[self.redView autoAlignAxisToSuperviewAxis:ALAxisVertical] autoIdentify:@"Align Red View to Superview Vertical Axis"];
+        /**
+         Note that the -autoIdentify and -autoIdentifyConstraints methods set the identifer, and then return the constraint(s).
+         This lets you chain the identifer call right after creating the constraint(s), and still capture a reference to the constraint(s)!
+         */
         
+        NSArray *constraints = [[views autoSetViewsDimension:ALDimensionWidth toSize:60.0] autoIdentifyConstraints:@"Set Width of All Views"];
+        constraints = nil; // you can do something with the constraints at this point
         
+        NSLayoutConstraint *constraint = [[self.redView autoAlignAxisToSuperviewAxis:ALAxisVertical] autoIdentify:@"Align Red View to Superview Vertical Axis"];
+        constraint = nil; // you can do something with the constraint at this point
         
         /**
          Now, let's add some 'bad' constraints that conflict with one or more of the 'good' constraints above.
