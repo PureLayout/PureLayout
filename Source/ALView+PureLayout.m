@@ -817,14 +817,19 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset
 {
+    return [self autoPinToTopLayoutGuideOfViewController:viewController withInset:inset relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
+{
     if (__PureLayout_MinSysVer_iOS7) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:inset];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:relation toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:inset];
         [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
         return constraint;
     } else {
         // iOS 6 fallback
-        return [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:viewController.view withOffset:inset];
+        return [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:viewController.view withOffset:inset relation:relation];
     }
 }
 
@@ -839,14 +844,26 @@ static NSString *_al_globalConstraintIdentifier = nil;
  */
 - (NSLayoutConstraint *)autoPinToBottomLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset
 {
+    return [self autoPinToBottomLayoutGuideOfViewController:viewController withInset:inset relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinToBottomLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
+{
+    // The bottom inset (and relation, if an inequality) is inverted to become an offset
+    inset = -inset;
+    if (relation == NSLayoutRelationLessThanOrEqual) {
+        relation = NSLayoutRelationGreaterThanOrEqual;
+    } else if (relation == NSLayoutRelationGreaterThanOrEqual) {
+        relation = NSLayoutRelationLessThanOrEqual;
+    }
     if (__PureLayout_MinSysVer_iOS7) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-inset];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:relation toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:inset];
         [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
         return constraint;
     } else {
         // iOS 6 fallback
-        return [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:viewController.view withOffset:-inset];
+        return [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:viewController.view withOffset:inset relation:relation];
     }
 }
 
