@@ -18,7 +18,6 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
 
 **[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
 
-    - autoRemoveConstraintsAffectingView(AndSubviews)
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
 	+ autoSetIdentifier:forConstraints:

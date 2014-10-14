@@ -45,15 +45,29 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
 {
     self.view = [NSView new];
     
-    [self setupViews];
+    [self resetAndSetupViews];
     
     // Start off by resetting and advancing to the first demo
     self.constraintDemo = ExampleConstraintDemoReset;
     [self nextDemo];
 }
 
-- (void)setupViews
+- (void)resetAndSetupViews
 {
+    [_containerView removeFromSuperview];
+    [_blueView removeFromSuperview];
+    [_redView removeFromSuperview];
+    [_yellowView removeFromSuperview];
+    [_greenView removeFromSuperview];
+    [_orangeView removeFromSuperview];
+    
+    _containerView = nil;
+    _blueView = nil;
+    _redView = nil;
+    _yellowView = nil;
+    _greenView = nil;
+    _orangeView = nil;
+    
     [self.view addSubview:self.containerView];
     [self.containerView addSubview:self.blueView];
     [self.containerView addSubview:self.redView];
@@ -189,8 +203,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
         self.constraintDemo = ExampleConstraintDemo1;
     }
     
-    // WARNING: Be sure to read the documentation on the below method - it can cause major performance issues!
-    [self.containerView autoRemoveConstraintsAffectingViewAndSubviews];
+    [self resetAndSetupViews];
     
     [self.containerView autoPinEdgesToSuperviewEdgesWithInsets:NSEdgeInsetsMake(30.0, 10.0, 10.0, 10.0)];
     
