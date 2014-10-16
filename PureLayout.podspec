@@ -1,17 +1,16 @@
 Pod::Spec.new do |s|
   s.name                  = "PureLayout"
-  s.version               = "1.1.0"
+  s.version               = "2.0.0"
   s.homepage              = "https://github.com/smileyborg/PureLayout"
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
   s.author                = { "Tyler Fox" => "tfox@smileyborg.com" }
   s.social_media_url      = 'https://twitter.com/smileyborg'
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.7'
-  s.source                = { :git => "https://github.com/smileyborg/PureLayout.git", 
-                              :tag => "v1.1.0" }
+  s.source                = { :git => "https://github.com/smileyborg/PureLayout.git", :tag => "v2.0.0" }
   s.source_files          = 'Source'
   s.requires_arc          = true
-  s.summary               = "The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful."
+  s.summary               = "The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. AutoLayout made easy. Objective-C and Swift compatible."
 
   s.description  = <<-DESC
   # PureLayout
