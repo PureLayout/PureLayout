@@ -12,9 +12,22 @@ This is just a handy overview of the core API methods. Explore the [header files
 *	*Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.*
 *	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
 
-**`ALAttribute`**
+**Attributes**
 
-Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttributes.png) used throughout the API.
+PureLayout defines view attributes that are used to create auto layout constraints.
+
+There are 5 specific attribute types, which are used throughout most of the API:
+
+* `ALEdge`
+* `ALDimension`
+* `ALAxis`
+* `ALMargin` *available in iOS 8.0 and above only*
+* `ALMarginAxis` *available in iOS 8.0 and above only*
+
+Here is an [illustration of the most common attributes](Images/PureLayout-CommonAttributes.png).
+
+Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
+
 
 **[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
 
