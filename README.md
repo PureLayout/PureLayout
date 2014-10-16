@@ -6,15 +6,15 @@ The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely p
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the AutoLayout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
 ## API Cheat Sheet
-This is just a handy overview of the core API methods. Explore the [header files](Source) for the full API and documentation. A couple of notes:
+This is just a handy overview of the core API methods. Explore the [header files](Source) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
 
-*	*All of the API methods are namespaced with the prefix `auto...`, which also allows for easy autocompletion in Xcode!*
-*	*Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.*
-*	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
+*	All of the API methods are namespaced with the prefix `auto...`, which also allows for easy autocompletion in Xcode!
+*	Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.
+*	Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.
 
-**Attributes**
+### Attributes
 
-PureLayout defines view attributes that are used to create auto layout constraints.
+PureLayout defines view attributes that are used to create auto layout constraints. Here is an [illustration of the most common attributes](Images/PureLayout-CommonAttributes.png).
 
 There are 5 specific attribute types, which are used throughout most of the API:
 
@@ -24,12 +24,9 @@ There are 5 specific attribute types, which are used throughout most of the API:
 * `ALMargin` *available in iOS 8.0 and above only*
 * `ALMarginAxis` *available in iOS 8.0 and above only*
 
-Here is an [illustration of the most common attributes](Images/PureLayout-CommonAttributes.png).
-
 Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
 
-
-**[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
+### [`UIView`/`NSView`](Source/ALView%2BPureLayout.h)
 
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
@@ -50,7 +47,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
     - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 
-**[`NSArray`](Source/NSArray%2BPureLayout.h)**
+### [`NSArray`](Source/NSArray%2BPureLayout.h)
 
 	// Arrays of Constraints
 	- autoInstallConstraints
@@ -65,7 +62,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)(matchedSizes:)alignment:
     - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
 
-**[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
+### [`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)
 
 	- autoInstall
     - autoRemove
