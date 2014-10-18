@@ -30,7 +30,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
-	+ autoSetIdentifier:forConstraints:
+	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview:
     - autoAlignAxisToSuperviewAxis:
@@ -66,7 +66,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 
 	- autoInstall
     - autoRemove
-    - autoIdentify: // iOS 7.0+ only
+    - autoIdentify: // iOS 7.0+, OS X 10.9+ only
 
 ## Setup
 *Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
