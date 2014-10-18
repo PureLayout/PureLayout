@@ -8,7 +8,7 @@
 
 #import "PureLayoutTestBase.h"
 
-#define DEFINE_WEAK_SELF    __weak __typeof(self) weakSelf = self;
+#define DEFINE_WEAK_SELF    __typeof(self) __weak weakSelf = self;
 
 @interface PureLayoutPriorityTestsiOS : PureLayoutTestBase
 
@@ -39,7 +39,7 @@
 }
 
 /**
- A helper method that takes a block containing a call to the UIView+AutoLayout API which adds one constraint,
+ A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
  and calls -[assertConstraint:isAddedWithPriority:] for each of the default priorities.
  */
 - (void)assertConstraintIsAddedWithDefaultPriorities:(NSLayoutConstraint *(^)())block
@@ -50,7 +50,7 @@
 }
 
 /**
- A helper method that takes a block containing one or more calls to the UIView+AutoLayout API which add multiple
+ A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
  constraints, and calls -[assertConstraints:areAddedWithPriority:] for each of the default priorities.
  */
 - (void)assertConstraintsAreAddedWithDefaultPriorities:(NSArray *(^)())block
@@ -61,7 +61,7 @@
 }
 
 /**
- A helper method that takes a block containing a call to the UIView+AutoLayout API which adds one constraint,
+ A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
  and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, this one constraint is
  added with the correct priority specified.
  */
@@ -71,7 +71,7 @@
 }
 
 /**
- A helper method that takes a block containing one or more calls to the UIView+AutoLayout API which add multiple
+ A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
  constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
  constraints are added with the correct priority specified.
  */

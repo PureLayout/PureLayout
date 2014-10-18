@@ -8,7 +8,7 @@
 
 #import "PureLayoutTestBase.h"
 
-#define DEFINE_WEAK_SELF    __weak __typeof(self) weakSelf = self;
+#define DEFINE_WEAK_SELF    __typeof(self) __weak weakSelf = self;
 
 @interface PureLayoutPriorityTests : PureLayoutTestBase
 
@@ -37,7 +37,7 @@
 }
 
 /**
- A helper method that takes a block containing a call to the UIView+AutoLayout API which adds one constraint,
+ A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
  and calls -[assertConstraint:isAddedWithPriority:] for each of the default priorities.
  */
 - (void)assertConstraintIsAddedWithDefaultPriorities:(NSLayoutConstraint *(^)())block
@@ -48,7 +48,7 @@
 }
 
 /**
- A helper method that takes a block containing one or more calls to the UIView+AutoLayout API which add multiple
+ A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
  constraints, and calls -[assertConstraints:areAddedWithPriority:] for each of the default priorities.
  */
 - (void)assertConstraintsAreAddedWithDefaultPriorities:(NSArray *(^)())block
@@ -59,7 +59,7 @@
 }
 
 /**
- A helper method that takes a block containing a call to the UIView+AutoLayout API which adds one constraint,
+ A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
  and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, this one constraint is
  added with the correct priority specified.
  */
@@ -69,7 +69,7 @@
 }
 
 /**
- A helper method that takes a block containing one or more calls to the UIView+AutoLayout API which add multiple
+ A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
  constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
  constraints are added with the correct priority specified.
  */
@@ -266,6 +266,57 @@
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
         return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:899.5 insetSpacing:NO];
+    }];
+}
+
+/**
+ Test that nested priority blocks work correctly.
+ */
+- (void)testNestingPriorityConstraintBlocks
+{
+    DEFINE_WEAK_SELF
+    
+    NSLayoutConstraint *constraint0 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
+    [ALView autoSetPriority:ALLayoutPriorityDefaultLow forConstraints:^{
+        NSLayoutConstraint *constraint1 = [weakSelf.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        XCTAssertEqual(constraint1.priority, ALLayoutPriorityDefaultLow);
+        [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
+            NSLayoutConstraint *constraint2 = [weakSelf.viewB autoAlignAxisToSuperviewAxis:ALAxisVertical];
+            XCTAssertEqual(constraint2.priority, ALLayoutPriorityDefaultHigh);
+        }];
+        NSLayoutConstraint *constraint3 = [weakSelf.viewC autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        XCTAssertEqual(constraint3.priority, ALLayoutPriorityDefaultLow);
+    }];
+    NSLayoutConstraint *constraint4 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    XCTAssertEqual(constraint4.priority, ALLayoutPriorityRequired);
+}
+
+/**
+ Test that constraint priorities are not impacted unless inside of a priority constraints block.
+ */
+- (void)testInstallingConstraintsOutsidePriorityBlock
+{
+    DEFINE_WEAK_SELF
+    
+    __block NSLayoutConstraint *constraint0;
+    [ALView autoCreateConstraintsWithoutInstalling:^{
+        constraint0 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    }];
+    XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
+    constraint0.priority = ALLayoutPriorityDefaultLow;
+    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    
+    // Install the constraint and check that its priority was not affected
+    [constraint0 autoInstall];
+    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    
+    // Remove the constraint, then re-add it but this time inside of a constraints block
+    [constraint0 autoRemove];
+    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
+        [constraint0 autoInstall];
+        XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultHigh);
     }];
 }
 

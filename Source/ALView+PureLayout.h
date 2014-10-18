@@ -63,13 +63,13 @@
 
 #pragma mark Set Identifier For Constraints
 
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 
 /** Sets the identifier for all constraints created using the PureLayout API within the given constraints block.
     NOTE: This method will have no effect (and will NOT set the identifier) on constraints created or added without using the PureLayout API! */
 + (void)autoSetIdentifier:(NSString *)identifer forConstraints:(ALConstraintsBlock)block;
 
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Center & Align in Superview
@@ -80,7 +80,7 @@
 /** Aligns the view to the same axis of its superview. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewAxis:(ALAxis)axis;
 
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 
 /** Centers the view in its superview's margins. Available in iOS 8.0 and later. */
 - (NSArray *)autoCenterInSuperviewMargins;
@@ -88,7 +88,7 @@
 /** Aligns the view to the corresponding margin axis of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewMarginAxis:(ALAxis)axis;
 
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges to Superview
@@ -108,7 +108,7 @@
 /** Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge. */
 - (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
 
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 
 /** Pins the given edge of the view to the corresponding margin of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge;
@@ -122,7 +122,7 @@
 /** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
 - (NSArray *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
 
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges

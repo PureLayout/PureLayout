@@ -35,6 +35,9 @@
 @interface ALView (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
++ (BOOL)al_isExecutingPriorityConstraintsBlock;
++ (ALLayoutPriority)al_currentGlobalConstraintPriority;
++ (NSString *)al_currentGlobalConstraintIdentifier;
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 - (void)al_addConstraint:(NSLayoutConstraint *)constraint;
 - (ALView *)al_commonSuperviewWithView:(ALView *)otherView;
@@ -62,9 +65,9 @@
 
 + (NSLayoutAttribute)al_layoutAttributeForAttribute:(ALAttribute)attribute;
 + (ALLayoutConstraintAxis)al_constraintAxisForAxis:(ALAxis)axis;
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 + (ALMargin)al_marginForEdge:(ALEdge)edge;
 + (ALMarginAxis)al_marginAxisForAxis:(ALAxis)axis;
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 @end

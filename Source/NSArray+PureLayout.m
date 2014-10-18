@@ -64,10 +64,10 @@
     }
 }
 
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 
 /**
- Sets the string as the identifier for the constraints in this array.
+ Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and OS X 10.9 and later.
  The identifer will be printed along with each constraint's description.
  This is helpful to document the constraints' purpose and aid in debugging.
  
@@ -84,7 +84,7 @@
     return self;
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Array of Views
@@ -255,9 +255,9 @@
     switch (axis) {
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
             matchedDimension = ALDimensionWidth;
             firstEdge = ALEdgeLeading;
             lastEdge = ALEdgeTrailing;
@@ -344,9 +344,9 @@
     switch (axis) {
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
             fixedDimension = ALDimensionWidth;
             attribute = NSLayoutAttributeCenterX;
             break;

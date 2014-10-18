@@ -43,7 +43,7 @@
     XCTAssert(ALAttributeHorizontal == ALAxisHorizontal);
     XCTAssert(ALAttributeBaseline == ALAxisBaseline);
     XCTAssert(ALAttributeLastBaseline == ALAxisLastBaseline);
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
     XCTAssert(ALAttributeFirstBaseline == ALAxisFirstBaseline);
     XCTAssert(ALAttributeMarginLeft == ALMarginLeft);
     XCTAssert(ALAttributeMarginRight == ALMarginRight);
@@ -53,7 +53,7 @@
     XCTAssert(ALAttributeMarginTrailing == ALMarginTrailing);
     XCTAssert(ALAttributeMarginAxisVertical == ALMarginAxisVertical);
     XCTAssert(ALAttributeMarginAxisHorizontal == ALMarginAxisHorizontal);
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 }
 
 /**
@@ -73,8 +73,8 @@
     XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALDimensionWidth] == NSLayoutAttributeWidth, @"ALDimensionWidth should correspond to NSLayoutAttributeWidth.");
     XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALDimensionHeight] == NSLayoutAttributeHeight, @"ALDimensionHeight should correspond to NSLayoutAttributeHeight.");
     
-#if __PureLayout_MinBaseSDK_iOS8
-    if (__PureLayout_MinSysVer_iOS8) {
+#if __PureLayout_MinBaseSDK_iOS_8_0
+    if (__PureLayout_MinSysVer_iOS_8_0) {
         XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginLeft] == NSLayoutAttributeLeftMargin, @"ALMarginLeft should correspond to NSLayoutAttributeLeftMargin.");
         XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginRight] == NSLayoutAttributeRightMargin, @"ALMarginRight should correspond to NSLayoutAttributeRightMargin.");
         XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALMarginTop] == NSLayoutAttributeTopMargin, @"ALMarginTop should correspond to NSLayoutAttributeTopMargin.");
@@ -98,19 +98,19 @@
         XCTAssertNoThrow([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline], @"ALAxisLastBaseline should not throw an exception on iOS 6 or 7.");
         XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
     }
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
     
     XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)NSLayoutAttributeNotAnAttribute], @"Passing an invalid ALAttribute should throw an exception.");
 }
 
-#if __PureLayout_MinBaseSDK_iOS8
+#if __PureLayout_MinBaseSDK_iOS_8_0
 
 /**
  Test the internal edge <-> margin translation method.
  */
 - (void)testMarginForEdge
 {
-    if (__PureLayout_MinSysVer_iOS8) {
+    if (__PureLayout_MinSysVer_iOS_8_0) {
         XCTAssert([NSLayoutConstraint al_marginForEdge:ALEdgeLeft] == ALMarginLeft);
         XCTAssert([NSLayoutConstraint al_marginForEdge:ALEdgeRight] == ALMarginRight);
         XCTAssert([NSLayoutConstraint al_marginForEdge:ALEdgeTop] == ALMarginTop);
@@ -132,7 +132,7 @@
  */
 - (void)testMarginAxisforAxis
 {
-    if (__PureLayout_MinSysVer_iOS8) {
+    if (__PureLayout_MinSysVer_iOS_8_0) {
         XCTAssert([NSLayoutConstraint al_marginAxisForAxis:ALAxisVertical] == ALMarginAxisVertical);
         XCTAssert([NSLayoutConstraint al_marginAxisForAxis:ALAxisHorizontal] == ALMarginAxisHorizontal);
     } else {
@@ -143,7 +143,7 @@
     XCTAssertThrows([NSLayoutConstraint al_marginAxisForAxis:ALAxisFirstBaseline]);
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS8 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 /**
  Test the internal NSLayoutConstraintAxis for ALAxis translation method.

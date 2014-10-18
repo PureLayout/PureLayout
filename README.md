@@ -52,7 +52,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 	// Arrays of Constraints
 	- autoInstallConstraints
     - autoRemoveConstraints
-    - autoIdentifyConstraints: // iOS 7.0+ only
+    - autoIdentifyConstraints: // iOS 7.0+, OS X 10.9+ only
 	
 	// Arrays of Views
     - autoAlignViewsToEdge:
