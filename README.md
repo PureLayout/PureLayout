@@ -21,8 +21,8 @@ There are 5 specific attribute types, which are used throughout most of the API:
 * `ALEdge`
 * `ALDimension`
 * `ALAxis`
-* `ALMargin` *available in iOS 8.0 and above only*
-* `ALMarginAxis` *available in iOS 8.0 and above only*
+* `ALMargin` *available in iOS 8.0 and higher only*
+* `ALMarginAxis` *available in iOS 8.0 and higher only*
 
 Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
 
@@ -108,7 +108,7 @@ Check out some [Tips and Tricks](https://github.com/smileyborg/PureLayout/wiki/T
 ## PureLayout vs. the rest
 An overview of the Auto Layout options available, ordered from the lowest- to highest-level of abstraction.
 
-*	Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/doc/uid/TP40010628-CH1-SW18)
+*	Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)
  	*	Pros: Raw power
 	*	Cons: Extremely verbose, tedious to write, difficult to read
 *	Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
@@ -118,11 +118,13 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 	*	Pros: Visual, simple
 	* 	Cons: Difficult for complex layouts, cannot dynamically set constraints at runtime, encourages hardcoded magic numbers, not always WYSIWYG
 *	**PureLayout**
-	*	Pros: Simple, efficient, minimal third party code, consistent with Apple API style, compatible with Objective-C and Swift codebases
+	*	Pros: Simple, efficient, minimal third party code, consistent with Cocoa API style, compatible with Objective-C and Swift codebases
 	*	Cons: Not the most concise expression of layout code
-*	High-level Auto Layout Libraries/DSLs ([Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
 	*	Pros: Very clean, concise, and convenient 
-	*	Cons: Overloaded Objective-C syntax (Swift incompatible), heavier dependency on third party code, difficult to mix with SDK APIs
+	*	Cons: Unique API style is foreign to Cocoa APIs, mixed compatibility with Objective-C & Swift, greater dependency on third party code
+	
+PureLayout takes a balanced approach to Auto Layout that makes it well suited for any project.
 
 ## Problems, Suggestions, Pull Requests?
 Bring 'em on! :)
