@@ -358,8 +358,12 @@
             NSAssert(nil, @"Not a valid ALAxis.");
             return nil;
     }
-    BOOL isRightToLeftLanguage = [NSLocale characterDirectionForLanguage:[[NSBundle mainBundle] preferredLocalizations][0]] == NSLocaleLanguageDirectionRightToLeft;
-    BOOL shouldFlipOrder = isRightToLeftLanguage && (axis != ALAxisVertical); // imitate the effect of leading/trailing when distributing horizontally
+#if TARGET_OS_IPHONE
+    BOOL isRightToLeftLayout = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft;
+#else
+    BOOL isRightToLeftLayout =  [NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
+#endif
+    BOOL shouldFlipOrder = isRightToLeftLayout && (axis != ALAxisVertical); // imitate the effect of leading/trailing when distributing horizontally
     
     NSMutableArray *constraints = [NSMutableArray new];
     NSArray *views = [self al_copyViewsOnly];
