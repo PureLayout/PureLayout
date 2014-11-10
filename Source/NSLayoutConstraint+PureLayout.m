@@ -1,6 +1,6 @@
 //
 //  NSLayoutConstraint+PureLayout.m
-//  v2.0.1
+//  v2.0.2
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2013-2014 Tyler Fox
@@ -43,7 +43,7 @@
  */
 - (void)autoInstall
 {
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
         [ALView al_applyGlobalStateToConstraint:self];
         if (![ALView al_preventAutomaticConstraintInstallation]) {
@@ -51,7 +51,7 @@
         }
         return;
     }
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
     
     NSAssert(self.firstItem || self.secondItem, @"Can't install a constraint with nil firstItem and secondItem.");
     if (self.firstItem) {
@@ -74,12 +74,12 @@
  */
 - (void)autoRemove
 {
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
         self.active = NO;
         return;
     }
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
     
     if (self.secondItem) {
         ALView *commonSuperview = [self.firstItem al_commonSuperviewWithView:self.secondItem];

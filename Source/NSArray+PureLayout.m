@@ -1,6 +1,6 @@
 //
 //  NSArray+PureLayout.m
-//  v2.0.1
+//  v2.0.2
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2012 Richard Turton
@@ -45,6 +45,20 @@
  */
 - (void)autoInstallConstraints
 {
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+    if ([NSLayoutConstraint respondsToSelector:@selector(activateConstraints:)]) {
+        for (id object in self) {
+            if ([object isKindOfClass:[NSLayoutConstraint class]]) {
+                [ALView al_applyGlobalStateToConstraint:object];
+            }
+        }
+        if (![ALView al_preventAutomaticConstraintInstallation]) {
+            [NSLayoutConstraint activateConstraints:self];
+        }
+        return;
+    }
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+    
     for (id object in self) {
         if ([object isKindOfClass:[NSLayoutConstraint class]]) {
             [((NSLayoutConstraint *)object) autoInstall];
@@ -57,6 +71,13 @@
  */
 - (void)autoRemoveConstraints
 {
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+    if ([NSLayoutConstraint respondsToSelector:@selector(deactivateConstraints:)]) {
+        [NSLayoutConstraint deactivateConstraints:self];
+        return;
+    }
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+    
     for (id object in self) {
         if ([object isKindOfClass:[NSLayoutConstraint class]]) {
             [((NSLayoutConstraint *)object) autoRemove];
@@ -359,10 +380,10 @@
             return nil;
     }
 #if TARGET_OS_IPHONE
-    BOOL isRightToLeftLayout = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft;
+    BOOL isRightToLeftLayout = [[UIApplication sharedApplication] userInterfaceLayoutDirection] == UIUserInterfaceLayoutDirectionRightToLeft;
 #else
-    BOOL isRightToLeftLayout =  [NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
-#endif
+    BOOL isRightToLeftLayout = [[NSApplication sharedApplication] userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
+#endif /* TARGET_OS_IPHONE */
     BOOL shouldFlipOrder = isRightToLeftLayout && (axis != ALAxisVertical); // imitate the effect of leading/trailing when distributing horizontally
     
     NSMutableArray *constraints = [NSMutableArray new];

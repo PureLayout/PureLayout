@@ -145,7 +145,7 @@
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeft ofView:weakSelf.viewC withOffset:-95.0];
+        return [weakSelf.viewB autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:weakSelf.viewC withOffset:-95.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
