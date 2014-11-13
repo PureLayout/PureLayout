@@ -26,23 +26,35 @@
 
 - (void)testAutoDistributeViewsAlongAxisWithFixedSpacing
 {
-    CGFloat spacing = 20;
-    CGFloat totalSpacing = (self.viewArray.count + 1) * spacing;
-    CGFloat singleViewWidth = (kContainerViewWidth - totalSpacing) / self.viewArray.count;
-    [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSpacing:spacing];
+    NSArray *constraints = nil;
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSpacing:20];
     [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSpacing:20];
+    [constraints autoRemoveConstraints];
     
-    ALAssertOriginEquals(self.viewA, spacing, 0);
-    ALAssertSizeEquals(self.viewA, singleViewWidth, 0);
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSpacing:-30];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSpacing:-30];
+    [constraints autoRemoveConstraints];
     
-    ALAssertOriginEquals(self.viewB, CGRectGetMaxX(self.viewA.frame) + spacing, 0);
-    ALAssertSizeEquals(self.viewB, singleViewWidth, 0);
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSpacing:0];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSpacing:0];
+    [constraints autoRemoveConstraints];
+}
 
-    ALAssertOriginEquals(self.viewC, CGRectGetMaxX(self.viewB.frame) + spacing, 0);
-    ALAssertSizeEquals(self.viewC, singleViewWidth, 0);
+- (void)assertViews:(NSArray *)views areDistributedHorizontallyWithSpacing:(CGFloat)spacing
+{
+    CGFloat totalSpacing = (views.count + 1) * spacing;
+    CGFloat singleViewWidth = (kContainerViewWidth - totalSpacing) / views.count;
 
-    ALAssertOriginEquals(self.viewD, CGRectGetMaxX(self.viewC.frame) + spacing, 0);
-    ALAssertSizeEquals(self.viewD, singleViewWidth, 0);
+    ALView *previousView = nil;
+    for (ALView *view in views) {
+        ALAssertOriginEquals(view, CGRectGetMaxX(previousView.frame) + spacing, 0);
+        ALAssertWidthEquals(view, singleViewWidth);
+        previousView = view;
+    }
 }
 
 @end
