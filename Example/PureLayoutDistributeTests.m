@@ -95,4 +95,38 @@
     }
 }
 
+- (void)testAutoDistributeViewsHorizontallyWithFixedSize
+{
+    NSArray *constraints = nil;
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:20];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:20];
+    [constraints autoRemoveConstraints];
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:0];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:0];
+    [constraints autoRemoveConstraints];
+
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:1000];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:1000];
+    [constraints autoRemoveConstraints];
+}
+
+- (void)assertViews:(NSArray *)views areDistributedHorizontallyWithSize:(CGFloat)size
+{
+    CGFloat totalSpacing = kContainerViewHeight - views.count * size;
+    CGFloat singleSpace = totalSpacing / (views.count + 1);
+    
+    ALView *previousView = nil;
+    for (ALView *view in views) {
+        ALAssertOriginXEquals(view, CGRectGetMaxX(previousView.frame) + singleSpace);
+        ALAssertWidthEquals(view, size);
+        previousView = view;
+    }
+}
+
 @end
