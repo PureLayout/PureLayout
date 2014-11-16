@@ -52,6 +52,16 @@
     [self evaluateConstraints];
     [self assertViews:self.viewArray areDistributedVerticallyWithSpacing:20];
     [constraints autoRemoveConstraints];
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSpacing:0];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedVerticallyWithSpacing:0];
+    [constraints autoRemoveConstraints];
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSpacing:-35];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedVerticallyWithSpacing:-35];
+    [constraints autoRemoveConstraints];
 }
 
 - (void)assertViews:(NSArray *)views areDistributedHorizontallyWithSpacing:(CGFloat)spacing
