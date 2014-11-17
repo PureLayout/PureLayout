@@ -88,6 +88,9 @@ That's it - now go write some beautifully simple Auto Layout code!
 
 That's it - now go write some beautifully simple Auto Layout code!
 
+### App Extensions
+When using PureLayout in an App Extension, define the preprocessor macro `PURELAYOUT_APP_EXTENSIONS` in the Build Settings of your App Extension's target to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
+
 ### Releases
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
 
