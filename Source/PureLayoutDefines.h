@@ -1,6 +1,6 @@
 //
 //  PureLayoutDefines.h
-//  v2.0.2
+//  v2.0.3
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2014 Tyler Fox
