@@ -70,6 +70,9 @@
 /** Sets the given dimension of all the views in this array to a given size. */
 - (NSArray *)autoSetViewsDimension:(ALDimension)dimension toSize:(CGFloat)size;
 
+/** Sets all of the views in this array to a given size. */
+- (NSArray *)autoSetViewsDimensionsToSize:(CGSize)size;
+
 
 /** Distributes the views in this array equally along the selected axis in their superview. Views will be the same size (variable) in the dimension along the axis and will have spacing (fixed) between them. */
 - (NSArray *)autoDistributeViewsAlongAxis:(ALAxis)axis
