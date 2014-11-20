@@ -6,7 +6,3 @@ matrix:
       xcode_scheme: Example-iOS
     - xcode_sdk: macosx
       xcode_scheme: Example-Mac
-before_install: 
-  - brew update
-  - brew unlink xctool
-  - brew install xctool
