@@ -52,7 +52,9 @@
                 [ALView al_applyGlobalStateToConstraint:object];
             }
         }
-        if (![ALView al_preventAutomaticConstraintInstallation]) {
+        if ([ALView al_preventAutomaticConstraintInstallation]) {
+            [[ALView al_currentArrayOfCreatedConstraints] addObjectsFromArray:self];
+        } else {
             [NSLayoutConstraint activateConstraints:self];
         }
         return;

@@ -50,8 +50,8 @@
 #pragma mark Create Constraints Without Installing
 
 /** Prevents constraints created in the given constraints block from being automatically installed (activated).
-    The created constraints returned from each PureLayout API call must be stored, as they are not retained. */
-+ (void)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
+    The constraints created from calls to the PureLayout API in the block are returned in a single array. */
++ (NSArray *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
 
 
 #pragma mark Set Priority For Constraints

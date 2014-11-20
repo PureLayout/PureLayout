@@ -46,7 +46,9 @@
 #if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
         [ALView al_applyGlobalStateToConstraint:self];
-        if (![ALView al_preventAutomaticConstraintInstallation]) {
+        if ([ALView al_preventAutomaticConstraintInstallation]) {
+            [[ALView al_currentArrayOfCreatedConstraints] addObject:self];
+        } else {
             self.active = YES;
         }
         return;

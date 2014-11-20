@@ -35,6 +35,7 @@
 @interface ALView (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
++ (NSMutableArray *)al_currentArrayOfCreatedConstraints;
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
 + (NSString *)al_currentGlobalConstraintIdentifier;
