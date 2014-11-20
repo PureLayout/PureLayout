@@ -7,9 +7,6 @@
 //
 
 #import "ALiOSDemoListController.h"
-#import "ALiOSDemo1ViewController.h"
-#import "ALiOSDemo2ViewController.h"
-#import "ALiOSDemo3ViewController.h"
 
 @interface ALiOSDemoListController ()
 
