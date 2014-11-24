@@ -64,25 +64,87 @@
     [constraints autoRemoveConstraints];
 }
 
+- (void)testAutoDistributeViewsHorizontallyWithFixedSize
+{
+    NSArray *constraints = nil;
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:20];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithWidth:20];
+    [constraints autoRemoveConstraints];
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:0];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithWidth:0];
+    [constraints autoRemoveConstraints];
+
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:1000];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedHorizontallyWithWidth:1000];
+    [constraints autoRemoveConstraints];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithFixedSize
+{
+    NSArray *constraints = nil;
+    
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSize:20];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedVerticallyWithHeight:20];
+    [constraints autoRemoveConstraints];
+
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSize:0];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedVerticallyWithHeight:0];
+    [constraints autoRemoveConstraints];
+
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSize:500];
+    [self evaluateConstraints];
+    [self assertViews:self.viewArray areDistributedVerticallyWithHeight:500];
+    [constraints autoRemoveConstraints];
+}
+
 - (void)assertViews:(NSArray *)views areDistributedHorizontallyWithSpacing:(CGFloat)spacing
 {
     CGFloat totalSpacing = (views.count + 1) * spacing;
     CGFloat singleViewWidth = (kContainerViewWidth - totalSpacing) / views.count;
+    [self assertViews:views areDistributedHorizontallyWithWidth:singleViewWidth andSpacing:spacing];
+}
 
+- (void)assertViews:(NSArray *)views areDistributedHorizontallyWithWidth:(CGFloat)width
+{
+    CGFloat totalSpacing = kContainerViewWidth - views.count * width;
+    CGFloat singleSpace = totalSpacing / (views.count + 1);
+    [self assertViews:views areDistributedHorizontallyWithWidth:width andSpacing:singleSpace];
+}
+
+- (void)assertViews:(NSArray *)views areDistributedVerticallyWithSpacing:(CGFloat)singleSpace
+{
+    CGFloat totalSpacing = (views.count + 1) * singleSpace;
+    CGFloat singleViewHeight = (kContainerViewHeight - totalSpacing) / views.count;
+    [self assertViews:views areDistributedVerticallyWithHeight:singleViewHeight andSpacing:singleSpace];
+}
+
+- (void)assertViews:(NSArray *)views areDistributedVerticallyWithHeight:(CGFloat)height
+{
+    CGFloat totalSpacing = kContainerViewHeight - views.count * height;
+    CGFloat singleSpace = totalSpacing / (views.count + 1);
+    [self assertViews:views areDistributedVerticallyWithHeight:height andSpacing:singleSpace];
+}
+
+- (void)assertViews:(NSArray *)views areDistributedHorizontallyWithWidth:(CGFloat)width andSpacing:(CGFloat)spacing
+{
     ALView *previousView = nil;
     for (ALView *view in views) {
         ALAssertOriginXEquals(view, CGRectGetMaxX(previousView.frame) + spacing);
-        ALAssertWidthEquals(view, singleViewWidth);
+        ALAssertWidthEquals(view, width);
         previousView = view;
     }
 }
 
-- (void)assertViews:(NSArray *)views areDistributedVerticallyWithSpacing:(CGFloat)spacing
+- (void)assertViews:(NSArray *)views areDistributedVerticallyWithHeight:(CGFloat)height andSpacing:(CGFloat)spacing
 {
-    CGFloat totalSpacing = (views.count + 1) * spacing;
-    CGFloat singleViewHeight = (kContainerViewHeight - totalSpacing) / views.count;
-    
-// Vertical axis is inverted on Mac, reverse array to compensate
+    // Vertical axis is inverted on Mac, reverse array to compensate
 #if !TARGET_OS_IPHONE
     views = [[views reverseObjectEnumerator] allObjects];
 #endif /* TARGET_OS_IPHONE */
@@ -90,41 +152,7 @@
     ALView *previousView = nil;
     for (ALView *view in views) {
         ALAssertOriginYEquals(view, CGRectGetMaxY(previousView.frame) + spacing);
-        ALAssertHeightEquals(view, singleViewHeight);
-        previousView = view;
-    }
-}
-
-- (void)testAutoDistributeViewsHorizontallyWithFixedSize
-{
-    NSArray *constraints = nil;
-    
-    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:20];
-    [self evaluateConstraints];
-    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:20];
-    [constraints autoRemoveConstraints];
-    
-    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:0];
-    [self evaluateConstraints];
-    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:0];
-    [constraints autoRemoveConstraints];
-
-    
-    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:1000];
-    [self evaluateConstraints];
-    [self assertViews:self.viewArray areDistributedHorizontallyWithSize:1000];
-    [constraints autoRemoveConstraints];
-}
-
-- (void)assertViews:(NSArray *)views areDistributedHorizontallyWithSize:(CGFloat)size
-{
-    CGFloat totalSpacing = kContainerViewHeight - views.count * size;
-    CGFloat singleSpace = totalSpacing / (views.count + 1);
-    
-    ALView *previousView = nil;
-    for (ALView *view in views) {
-        ALAssertOriginXEquals(view, CGRectGetMaxX(previousView.frame) + singleSpace);
-        ALAssertWidthEquals(view, size);
+        ALAssertHeightEquals(view, height);
         previousView = view;
     }
 }
