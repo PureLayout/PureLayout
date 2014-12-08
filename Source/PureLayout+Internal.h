@@ -28,6 +28,10 @@
 
 #import "PureLayoutDefines.h"
 
+/** A constant that represents the smallest valid positive value for the multiplier of a constraint,
+    since a value of 0 will cause the second item to be lost in the internal auto layout engine. */
+static const CGFloat kMULTIPLIER_MIN_VALUE = 0.00001; // very small floating point numbers (e.g. CGFLOAT_MIN) can cause problems
+
 
 /**
  A category that exposes the internal (private) helper methods of the ALView+PureLayout category.

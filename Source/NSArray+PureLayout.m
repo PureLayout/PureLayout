@@ -425,6 +425,10 @@
             multiplier = (i * 2.0) / (numberOfViews - 1.0);
             constant = (-multiplier + 1.0) * size / 2.0;
         }
+        // If the multiplier is very close to 0, set it to the minimum value to prevent the second item in the constraint from being lost. Filed as rdar://19168380
+        if (fabs(multiplier) < kMULTIPLIER_MIN_VALUE) {
+            multiplier = kMULTIPLIER_MIN_VALUE;
+        }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:commonSuperview attribute:attribute multiplier:multiplier constant:constant];
         [constraint autoInstall];
         [constraints addObject:constraint];
