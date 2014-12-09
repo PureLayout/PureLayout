@@ -59,6 +59,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
     - autoSetViewsDimension:toSize:
+	- autoSetViewsDimensionsToSize:
     - autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
     - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
 
