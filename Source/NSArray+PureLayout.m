@@ -91,17 +91,17 @@
 
 /**
  Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and OS X 10.9 and later.
- The identifer will be printed along with each constraint's description.
+ The identifier will be printed along with each constraint's description.
  This is helpful to document the constraints' purpose and aid in debugging.
  
  @param identifier A string used to identify the constraints in this array.
  @return This array.
  */
-- (instancetype)autoIdentifyConstraints:(NSString *)identifer
+- (instancetype)autoIdentifyConstraints:(NSString *)identifier
 {
     for (id object in self) {
         if ([object isKindOfClass:[NSLayoutConstraint class]]) {
-            [((NSLayoutConstraint *)object) autoIdentify:identifer];
+            [((NSLayoutConstraint *)object) autoIdentify:identifier];
         }
     }
     return self;

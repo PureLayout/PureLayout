@@ -67,7 +67,7 @@
 
 /** Sets the identifier for all constraints created using the PureLayout API within the given constraints block.
     NOTE: This method will have no effect (and will NOT set the identifier) on constraints created or added without using the PureLayout API! */
-+ (void)autoSetIdentifier:(NSString *)identifer forConstraints:(ALConstraintsBlock)block;
++ (void)autoSetIdentifier:(NSString *)identifier forConstraints:(ALConstraintsBlock)block;
 
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 

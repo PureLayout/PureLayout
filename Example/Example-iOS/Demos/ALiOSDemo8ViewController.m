@@ -57,8 +57,8 @@
         [[views autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeVertical withFixedSize:40.0] autoIdentifyConstraints:@"Distribute Views Vertically"];
         
         /**
-         Note that the -autoIdentify and -autoIdentifyConstraints methods set the identifer, and then return the constraint(s).
-         This lets you chain the identifer call right after creating the constraint(s), and still capture a reference to the constraint(s)!
+         Note that the -autoIdentify and -autoIdentifyConstraints methods set the identifier, and then return the constraint(s).
+         This lets you chain the identifier call right after creating the constraint(s), and still capture a reference to the constraint(s)!
          */
         
         NSArray *constraints = [[views autoSetViewsDimension:ALDimensionWidth toSize:60.0] autoIdentifyConstraints:@"Set Width of All Views"];

@@ -107,16 +107,16 @@
 
 /**
  Sets the string as the identifier for this constraint. Available in iOS 7.0 and OS X 10.9 and later.
- The identifer will be printed along with the constraint's description.
+ The identifier will be printed along with the constraint's description.
  This is helpful to document a constraint's purpose and aid in debugging.
  
  @param identifier A string used to identify this constraint.
  @return This constraint.
  */
-- (instancetype)autoIdentify:(NSString *)identifer
+- (instancetype)autoIdentify:(NSString *)identifier
 {
     if ([self respondsToSelector:@selector(setIdentifier:)]) {
-        self.identifier = identifer;
+        self.identifier = identifier;
     }
     return self;
 }

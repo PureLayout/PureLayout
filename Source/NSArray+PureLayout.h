@@ -51,7 +51,7 @@
 #if __PureLayout_MinBaseSDK_iOS_8_0
 
 /** Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and OS X 10.9 and later. */
-- (instancetype)autoIdentifyConstraints:(NSString *)identifer;
+- (instancetype)autoIdentifyConstraints:(NSString *)identifier;
 
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
