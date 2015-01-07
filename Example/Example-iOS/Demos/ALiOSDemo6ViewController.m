@@ -43,8 +43,8 @@
         [self.blueView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:20.0 relation:NSLayoutRelationGreaterThanOrEqual];
         
         // Add constraints that set the size of the blueView to a ridiculously large size, but set the priority of these constraints
-        // to a lower value than Required -- allowing the Auto Layout solver to let these constraints be broken one or both conflict
-        // with a higher-priority constraint, such as the above 4 edge constraints
+        // to a lower value than Required. This allows the Auto Layout solver to let these constraints be broken if one or both of
+        // them conflict with higher-priority constraint(s), such as the above 4 edge constraints.
         [UIView autoSetPriority:UILayoutPriorityDefaultHigh forConstraints:^{
             [self.blueView autoSetDimensionsToSize:CGSizeMake(10000.0, 10000.0)];
         }];

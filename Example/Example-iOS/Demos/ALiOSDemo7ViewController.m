@@ -75,7 +75,7 @@
     
     // Unlike the code above, this is code that will execute every time this method is called.
     // Updating the `constant` property of a constraint is very efficient and can be done without removing/recreating the constraint.
-    // Any other changes will require your to remove and re-add new constraints. Make sure to remove constraints before you create new ones!
+    // Any other changes will require you to remove and re-add new constraints. Make sure to remove constraints before you create new ones!
     [self.redViewEdgeConstraint autoRemove];
     if (self.isAnimatingToEndState) {
         // Adjust constraints to be in the end state for the animation
