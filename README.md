@@ -138,11 +138,9 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 PureLayout takes a balanced approach to Auto Layout that makes it well suited for any project.
 
 ## Problems, Suggestions, Pull Requests?
-Bring 'em on! :)
+Please open a [new Issue here](https://github.com/smileyborg/PureLayout/issues/new) if you run into an issue, have a feature request, or want to share a comment. Note that general Auto Layout questions should be asked on [Stack Overflow](http://stackoverflow.com).
 
-If you're considering taking on significant changes or additions to the project, it's always a good idea to communicate in advance (open a [new Issue here](https://github.com/smileyborg/PureLayout/issues/new)). This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
-
-I'm especially interested in hearing about any common use cases that this API does not currently address. Feel free to add feature requests (and view current work in progress) on the [Feature Requests](https://github.com/smileyborg/PureLayout/wiki/Feature-Requests) page of the wiki for this project.
+If you're considering taking on significant changes or additions to the project, please communicate in advance by opening a new Issue. This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
 
 ## Meta
 Designed & maintained by Tyler Fox ([@smileyborg](https://twitter.com/smileyborg)). Distributed with the MIT license.
