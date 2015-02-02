@@ -41,8 +41,8 @@
 		B1046B0B1A7F38930017187F /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A891A7F2C700017187F /* NSLayoutConstraint+PureLayout.m */; };
 		B1046B0D1A7F38930017187F /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A871A7F2C700017187F /* NSArray+PureLayout.m */; };
 		B1046B0E1A7F38930017187F /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A891A7F2C700017187F /* NSLayoutConstraint+PureLayout.m */; };
-		B1046B111A7F3A2A0017187F /* PureLayout_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046B101A7F3A2A0017187F /* PureLayout_iOS.h */; };
-		B1046B151A7F3A3D0017187F /* PureLayout_Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046B141A7F3A3D0017187F /* PureLayout_Mac.h */; };
+		B1046B111A7F3A2A0017187F /* PureLayout_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046B101A7F3A2A0017187F /* PureLayout_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1046B151A7F3A3D0017187F /* PureLayout_Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046B141A7F3A3D0017187F /* PureLayout_Mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1089C0C1957767400339027 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1089C0A1957767400339027 /* Localizable.strings */; };
 		B1089C21195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
 		B1089C22195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
