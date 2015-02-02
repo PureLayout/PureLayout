@@ -6,9 +6,9 @@ The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely p
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the AutoLayout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
 ## API Cheat Sheet
-This is just a handy overview of the core API methods. Explore the [header files](Source) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
+This is just a handy overview of the core API methods. Explore the [header files](PureLayout/PureLayout) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
 
-*	All of the API methods are namespaced with the prefix `auto...`, which also allows for easy autocompletion in Xcode!
+*	All of the public API methods are namespaced with the prefix `auto...`, which also makes it easy for Xcode to autocomplete as you type.
 *	Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.
 *	Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.
 
@@ -26,7 +26,7 @@ There are 5 specific attribute types, which are used throughout most of the API:
 
 Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
 
-### [`UIView`/`NSView`](Source/ALView%2BPureLayout.h)
+### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
 
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
@@ -47,7 +47,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
     - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 
-### [`NSArray`](Source/NSArray%2BPureLayout.h)
+### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)
 
 	// Arrays of Constraints
 	- autoInstallConstraints
@@ -63,7 +63,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
     - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
 
-### [`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)
+### [`NSLayoutConstraint`](PureLayout/PureLayout/NSLayoutConstraint%2BPureLayout.h)
 
 	- autoInstall
     - autoRemove
@@ -78,16 +78,26 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     	pod 'PureLayout'
 
 2.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
-3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
+3.	Import the `PureLayout.h` header.
 
-That's it - now go write some beautifully simple Auto Layout code!
+That's it - now go write some beautiful Auto Layout code!
+
+### Using [Carthage](https://github.com/Carthage/Carthage)
+1.  Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+        github "smileyborg/PureLayout"
+
+2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the iOS and/or Mac frameworks into your project.
+3.  Import the framework's umbrella header (iOS: `#import <PureLayout_iOS/PureLayout_iOS.h>`, OS X: `#import <PureLayout_Mac/PureLayout_Mac.h>`) or simply `@import` the framework name if using Modules.
+
+That's it - now go write some beautiful Auto Layout code!
 
 ### Manually from GitHub
-1.	Download the source files in the [Source directory](Source).
+1.	Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
 2.	Add the source files to your Xcode project.
-3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
+3.	Import the `PureLayout.h` header.
 
-That's it - now go write some beautifully simple Auto Layout code!
+That's it - now go write some beautiful Auto Layout code!
 
 ### App Extensions
 When using PureLayout in an App Extension, define the preprocessor macro `PURELAYOUT_APP_EXTENSIONS` in the Build Settings of your App Extension's target to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
@@ -95,12 +105,9 @@ When using PureLayout in an App Extension, define the preprocessor macro `PURELA
 ### Releases
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
 
-#### Upgrading from v1.x to v2.0?
-Upgrading from v1.x of the library to v2.0 should be a very simple and easy process. Please review the [migration guide](https://github.com/smileyborg/PureLayout/wiki/Migrating-from-PureLayout-v1.x-to-v2.0) for more information.
-
 ## Usage
 ### Example Project
-Check out the [example project](Example) included in the repository (requires Xcode 6 or higher). It contains iOS and OS X demos of the API being used in various scenarios.
+Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios.
 
 On iOS, you can use different device simulators and rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
 
