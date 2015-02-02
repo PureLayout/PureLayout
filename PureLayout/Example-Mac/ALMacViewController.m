@@ -7,7 +7,7 @@
 //
 
 #import "ALMacViewController.h"
-@import PureLayout_Mac;
+#import "PureLayout.h"
 
 typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
     ExampleConstraintDemoReset = 0,

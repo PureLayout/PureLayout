@@ -103,34 +103,6 @@
 			remoteGlobalIDString = B1046AD71A7F32790017187F;
 			remoteInfo = "PureLayout-Mac";
 		};
-		B1089C0E1957822000339027 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
-			remoteInfo = "Example-Mac";
-		};
-		B1089C101957822000339027 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
-			remoteInfo = "Example-Mac";
-		};
-		B1EC856B195662790099293C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B12C23DA17C3FDE4001CF667;
-			remoteInfo = "Example-iOS";
-		};
-		B1EC8587195662B40099293C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
-			remoteInfo = "Example-Mac";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -669,7 +641,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B1EC856C195662790099293C /* PBXTargetDependency */,
 			);
 			name = "PureLayoutTests-iOS";
 			productName = "PureLayoutTests-iOS";
@@ -687,9 +658,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B1EC8588195662B40099293C /* PBXTargetDependency */,
-				B1089C0F1957822000339027 /* PBXTargetDependency */,
-				B1089C111957822000339027 /* PBXTargetDependency */,
 			);
 			name = "PureLayoutTests-Mac";
 			productName = "PureLayoutTests-Mac";
@@ -900,26 +868,6 @@
 			isa = PBXTargetDependency;
 			target = B1046AD71A7F32790017187F /* PureLayout_Mac */;
 			targetProxy = B1046AED1A7F32790017187F /* PBXContainerItemProxy */;
-		};
-		B1089C0F1957822000339027 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
-			targetProxy = B1089C0E1957822000339027 /* PBXContainerItemProxy */;
-		};
-		B1089C111957822000339027 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
-			targetProxy = B1089C101957822000339027 /* PBXContainerItemProxy */;
-		};
-		B1EC856C195662790099293C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B12C23DA17C3FDE4001CF667 /* Example-iOS */;
-			targetProxy = B1EC856B195662790099293C /* PBXContainerItemProxy */;
-		};
-		B1EC8588195662B40099293C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
-			targetProxy = B1EC8587195662B40099293C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
