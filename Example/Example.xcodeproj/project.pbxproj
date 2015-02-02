@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B1006C6919E7691D00B92767 /* ALiOSDemoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */; };
 		B1006C7019E76D4200B92767 /* ALiOSDemo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */; };
+		B1046A811A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */; };
+		B1046A821A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */; };
 		B1089C0C1957767400339027 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1089C0A1957767400339027 /* Localizable.strings */; };
 		B1089C21195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
 		B1089C22195787C900339027 /* PureLayoutCenteringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */; };
@@ -61,8 +63,6 @@
 		B1EC8567195662790099293C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1EC8565195662790099293C /* InfoPlist.strings */; };
 		B1EC857D195662B40099293C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC855E195662790099293C /* XCTest.framework */; };
 		B1EC8583195662B40099293C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1EC8581195662B40099293C /* InfoPlist.strings */; };
-		F1CD3BF41A135325005FEB74 /* PureLayoutDistributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CD3BF21A128831005FEB74 /* PureLayoutDistributeTests.m */; };
-		F1CD3BF51A135326005FEB74 /* PureLayoutDistributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CD3BF21A128831005FEB74 /* PureLayoutDistributeTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +101,7 @@
 		B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemoListController.m; path = "Example-iOS/ALiOSDemoListController.m"; sourceTree = SOURCE_ROOT; };
 		B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo1ViewController.h; path = "Example-iOS/Demos/ALiOSDemo1ViewController.h"; sourceTree = SOURCE_ROOT; };
 		B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo1ViewController.m; path = "Example-iOS/Demos/ALiOSDemo1ViewController.m"; sourceTree = SOURCE_ROOT; };
+		B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutDistributeTests.m; path = PureLayoutTests/PureLayoutDistributeTests.m; sourceTree = "<group>"; };
 		B1089C0B1957767400339027 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "Example-iOS/ar.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C0D1957767D00339027 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Example-iOS/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutCenteringTests.m; path = PureLayoutTests/PureLayoutCenteringTests.m; sourceTree = "<group>"; };
@@ -173,7 +174,6 @@
 		B1EC8580195662B40099293C /* PureLayoutTests-Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PureLayoutTests-Mac-Info.plist"; sourceTree = "<group>"; };
 		B1EC8582195662B40099293C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1EC8586195662B40099293C /* PureLayoutTests-Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PureLayoutTests-Mac-Prefix.pch"; sourceTree = "<group>"; };
-		F1CD3BF21A128831005FEB74 /* PureLayoutDistributeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureLayoutDistributeTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,8 +354,8 @@
 				B1089C1B195787C900339027 /* PureLayoutInstallationTests.m */,
 				B1089C1C195787C900339027 /* PureLayoutInstantiationTests.m */,
 				B1089C1D195787C900339027 /* PureLayoutInternalTests.m */,
+				B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */,
 				B1089C1E195787C900339027 /* PureLayoutPinEdgesTests.m */,
-				F1CD3BF21A128831005FEB74 /* PureLayoutDistributeTests.m */,
 				B1089C1F195787C900339027 /* PureLayoutPriorityTests.m */,
 				B1089C20195787C900339027 /* PureLayoutRemovalTests.m */,
 				B1EC8562195662790099293C /* PureLayoutTests-iOS */,
@@ -602,7 +602,7 @@
 				B1089C29195787C900339027 /* PureLayoutPinEdgesTests.m in Sources */,
 				B1089C23195787C900339027 /* PureLayoutInstallationTests.m in Sources */,
 				B1089C27195787C900339027 /* PureLayoutInternalTests.m in Sources */,
-				F1CD3BF41A135325005FEB74 /* PureLayoutDistributeTests.m in Sources */,
+				B1046A811A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */,
 				B17D24CA1956648700F2FD4B /* PureLayoutTestBase.m in Sources */,
 				B1089C21195787C900339027 /* PureLayoutCenteringTests.m in Sources */,
 				B1089C25195787C900339027 /* PureLayoutInstantiationTests.m in Sources */,
@@ -622,7 +622,7 @@
 				B1089C22195787C900339027 /* PureLayoutCenteringTests.m in Sources */,
 				B1089C26195787C900339027 /* PureLayoutInstantiationTests.m in Sources */,
 				B1089C2E195787C900339027 /* PureLayoutRemovalTests.m in Sources */,
-				F1CD3BF51A135326005FEB74 /* PureLayoutDistributeTests.m in Sources */,
+				B1046A821A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */,
 				B1089C2C195787C900339027 /* PureLayoutPriorityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
