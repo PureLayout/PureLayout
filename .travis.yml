@@ -4,6 +4,6 @@ xcode_project: PureLayout/PureLayout.xcodeproj
 matrix:
   include:
     - xcode_sdk: iphonesimulator
-      xcode_scheme: Example-iOS
+      xcode_scheme: PureLayout_iOS
     - xcode_sdk: macosx
-      xcode_scheme: Example-Mac
+      xcode_scheme: PureLayout_Mac
