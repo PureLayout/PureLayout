@@ -7,7 +7,7 @@
 //
 
 #import "ALiOSDemo7ViewController.h"
-#import "PureLayout.h"
+@import PureLayout_iOS;
 
 @interface ALiOSDemo7ViewController ()
 
