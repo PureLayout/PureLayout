@@ -103,6 +103,20 @@
 			remoteGlobalIDString = B1046AD71A7F32790017187F;
 			remoteInfo = "PureLayout-Mac";
 		};
+		B1046B191A7F4A640017187F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B12C23DA17C3FDE4001CF667;
+			remoteInfo = "Example-iOS";
+		};
+		B1046B1B1A7F4A680017187F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
+			remoteInfo = "Example-Mac";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -641,6 +655,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B1046B1A1A7F4A640017187F /* PBXTargetDependency */,
 			);
 			name = "PureLayoutTests-iOS";
 			productName = "PureLayoutTests-iOS";
@@ -658,6 +673,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B1046B1C1A7F4A680017187F /* PBXTargetDependency */,
 			);
 			name = "PureLayoutTests-Mac";
 			productName = "PureLayoutTests-Mac";
@@ -868,6 +884,16 @@
 			isa = PBXTargetDependency;
 			target = B1046AD71A7F32790017187F /* PureLayout_Mac */;
 			targetProxy = B1046AED1A7F32790017187F /* PBXContainerItemProxy */;
+		};
+		B1046B1A1A7F4A640017187F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B12C23DA17C3FDE4001CF667 /* Example-iOS */;
+			targetProxy = B1046B191A7F4A640017187F /* PBXContainerItemProxy */;
+		};
+		B1046B1C1A7F4A680017187F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
+			targetProxy = B1046B1B1A7F4A680017187F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1224,7 +1250,6 @@
 		B1EC856E195662790099293C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1247,7 +1272,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-iOS/PureLayoutTests-iOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1255,7 +1280,6 @@
 		B1EC856F195662790099293C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1275,7 +1299,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-iOS/PureLayoutTests-iOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -1283,7 +1307,6 @@
 		B1EC858A195662B40099293C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1308,7 +1331,7 @@
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-Mac/PureLayoutTests-Mac-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1316,7 +1339,6 @@
 		B1EC858B195662B40099293C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1339,7 +1361,7 @@
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-Mac/PureLayoutTests-Mac-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
