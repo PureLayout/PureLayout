@@ -1,9 +1,9 @@
 //
 //  NSLayoutConstraint+PureLayout.m
-//  v2.0.4
+//  v2.0.5
 //  https://github.com/smileyborg/PureLayout
 //
-//  Copyright (c) 2013-2014 Tyler Fox
+//  Copyright (c) 2013-2015 Tyler Fox
 //
 //  This code is distributed under the terms and conditions of the MIT license.
 //
