@@ -1,5 +1,6 @@
+sudo: false
 language: objective-c
-xcode_project: Example/Example.xcodeproj
+xcode_project: PureLayout/PureLayout.xcodeproj
 matrix:
   include:
     - xcode_sdk: iphonesimulator
