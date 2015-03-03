@@ -1078,8 +1078,22 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
             NSAssert(axis == ALAxisVertical, @"Cannot align views that are distributed horizontally with ALAttributeTrailing.");
             constraint = [self autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:otherView];
             break;
+            
+        // All of the below attributes are invalid as alignment options. Listing them explicitly (even though they just fall through to the default case) to avoid an incomplete switch statement warning from the compiler.
+        case ALAttributeWidth:
+        case ALAttributeHeight:
+#if __PureLayout_MinBaseSDK_iOS_8_0
+        case ALAttributeMarginLeft:
+        case ALAttributeMarginRight:
+        case ALAttributeMarginTop:
+        case ALAttributeMarginBottom:
+        case ALAttributeMarginLeading:
+        case ALAttributeMarginTrailing:
+        case ALAttributeMarginAxisVertical:
+        case ALAttributeMarginAxisHorizontal:
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
         default:
-            NSAssert(nil, @"Unsupported alignment option.");
+            NSAssert(nil, @"Unsupported attribute for alignment.");
             break;
     }
     return constraint;
