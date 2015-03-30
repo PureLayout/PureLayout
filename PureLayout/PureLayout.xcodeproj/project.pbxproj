@@ -29,12 +29,12 @@
 		B1046AFE1A7F37070017187F /* ALView+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A841A7F2C700017187F /* ALView+PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046AFF1A7F37100017187F /* NSArray+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A861A7F2C700017187F /* NSArray+PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B001A7F37100017187F /* NSLayoutConstraint+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A881A7F2C700017187F /* NSLayoutConstraint+PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1046B011A7F37100017187F /* PureLayout+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8A1A7F2C700017187F /* PureLayout+Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B1046B011A7F37100017187F /* PureLayout+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8A1A7F2C700017187F /* PureLayout+Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B021A7F37100017187F /* PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8B1A7F2C700017187F /* PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B031A7F37100017187F /* PureLayoutDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8C1A7F2C700017187F /* PureLayoutDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B041A7F37110017187F /* NSArray+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A861A7F2C700017187F /* NSArray+PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B051A7F37110017187F /* NSLayoutConstraint+PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A881A7F2C700017187F /* NSLayoutConstraint+PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1046B061A7F37110017187F /* PureLayout+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8A1A7F2C700017187F /* PureLayout+Internal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B1046B061A7F37110017187F /* PureLayout+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8A1A7F2C700017187F /* PureLayout+Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B071A7F37110017187F /* PureLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8B1A7F2C700017187F /* PureLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B081A7F37110017187F /* PureLayoutDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = B1046A8C1A7F2C700017187F /* PureLayoutDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1046B0A1A7F38930017187F /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A871A7F2C700017187F /* NSArray+PureLayout.m */; };
