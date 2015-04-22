@@ -133,7 +133,7 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 *	**PureLayout**
 	*	Pros: Simple, efficient, minimal third party code, consistent with Cocoa API style, compatible with Objective-C and Swift codebases
 	*	Cons: Not the most concise expression of layout code
-*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [Masonry](https://github.com/SnapKit/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
 	*	Pros: Very clean, concise, and convenient 
 	*	Cons: Unique API style is foreign to Cocoa APIs, mixed compatibility with Objective-C & Swift, greater dependency on third party code
 	
