@@ -12,17 +12,13 @@
 
 
 #if TARGET_OS_IPHONE
-
-    #define VALUES(iOS, OSX)        (iOS)  // a macro that takes a value for each platform, and substitutes the value for the current platform
-    #define ALLabel                 UILabel
-    #define ALImageView             UIImageView
-
+#   define VALUES(iOS, OSX)        (iOS)  // a macro that takes a value for each platform, and substitutes the value for the current platform
+#   define ALLabel                 UILabel
+#   define ALImageView             UIImageView
 #else
-
-    #define VALUES(iOS, OSX)        (OSX)  // a macro that takes a value for each platform, and substitutes the value for the current platform
-    #define ALLabel                 NSTextView
-    #define ALImageView             NSImageView
-
+#   define VALUES(iOS, OSX)        (OSX)  // a macro that takes a value for each platform, and substitutes the value for the current platform
+#   define ALLabel                 NSTextView
+#   define ALImageView             NSImageView
 #endif /* TARGET_OS_IPHONE */
 
 
