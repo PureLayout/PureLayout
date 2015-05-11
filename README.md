@@ -41,7 +41,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 	- autoPinEdgeToSuperviewMargin: // iOS 8.0+ only
 	- autoPinEdgesToSuperviewMargins(ExcludingEdge:) // iOS 8.0+ only
     - autoPinEdge:toEdge:ofView:(withOffset:)
-    - autoAlignAxis:toSameAxisOfView:(withOffset:)
+    - autoAlignAxis:toSameAxisOfView:(withOffset:|withMultiplier:)
     - autoMatchDimension:toDimension:ofView:(withOffset:|withMultiplier:)
     - autoSetDimension(s)ToSize:
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)

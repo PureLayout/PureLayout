@@ -145,6 +145,9 @@
 /** Aligns an axis of the view to the same axis of another view with an offset. */
 - (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withOffset:(CGFloat)offset;
 
+/** Aligns an axis of the view to the same axis of another view with a multiplier. */
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
+
 
 #pragma mark Match Dimensions
 

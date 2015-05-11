@@ -563,6 +563,19 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:otherView withOffset:offset];
 }
 
+/**
+ Aligns an axis of the view to the same axis of another view with a multiplier.
+ 
+ @param axis The axis of this view and the other view to align.
+ @param otherView The other view to align to. Must be in the same view hierarchy as this view.
+ @param multiplier The multiplier between the axis of this view and the axis of the other view.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier
+{
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:otherView withMultiplier:multiplier];
+}
+
 
 #pragma mark Match Dimensions
 
