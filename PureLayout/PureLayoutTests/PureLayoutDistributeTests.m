@@ -8,6 +8,8 @@
 
 #import "PureLayoutTestBase.h"
 
+#pragma mark - Multiple View Distribution Tests
+
 @interface PureLayoutDistributeTests : PureLayoutTestBase
 
 @end
@@ -155,6 +157,61 @@
         ALAssertHeightEquals(view, height);
         previousView = view;
     }
+}
+
+@end
+
+
+
+#pragma mark - Single View Distribution Tests
+
+@interface PureLayoutSingleViewDistributeTests : PureLayoutDistributeTests
+
+@property ALView *singleView;
+
+@end
+
+@implementation PureLayoutSingleViewDistributeTests
+
+// Set up a modified view hierarchy for this test (without calling super).
+- (void)setupViewHierarchy
+{
+    self.singleView = [ALView newAutoLayoutView];
+    
+    [self.containerView addSubview:self.singleView];
+}
+
+// Override the testViewHierarchy method to test our modified view hierarchy.
+- (void)testViewHierarchy
+{
+    XCTAssertNotNil(self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.singleView.superview == self.containerView, @"View hierarchy is not setup as expected.");
+}
+
+// Override the viewArray accessor to always just return an array of the one view used for this test.
+- (NSArray *)viewArray
+{
+    return @[self.singleView];
+}
+
+- (void)testAutoDistributeViewsHorizontallyWithFixedSpacing
+{
+    [super testAutoDistributeViewsHorizontallyWithFixedSpacing];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithFixedSpacing
+{
+    [super testAutoDistributeViewsVerticallyWithFixedSpacing];
+}
+
+- (void)testAutoDistributeViewsHorizontallyWithFixedSize
+{
+    [super testAutoDistributeViewsHorizontallyWithFixedSize];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithFixedSize
+{
+    [super testAutoDistributeViewsVerticallyWithFixedSize];
 }
 
 @end

@@ -20,6 +20,21 @@
     [super setUp];
     
     self.containerView = [[ALView alloc] initWithFrame:CGRectMake(0.0, 0.0, kContainerViewWidth, kContainerViewHeight)];
+    
+    [self setupViewHierarchy];
+}
+
+- (void)tearDown
+{
+    
+    [super tearDown];
+}
+
+/**
+ Sets up the default view hierarchy for tests. Test subclasses may override this method to customize the view hierarchy set up.
+ */
+- (void)setupViewHierarchy
+{
     self.viewA = [ALView newAutoLayoutView];
     self.viewA_A = [ALView newAutoLayoutView];
     self.viewA_A_A = [ALView newAutoLayoutView];
@@ -43,10 +58,22 @@
     [self.containerView addSubview:self.viewD];
 }
 
-- (void)tearDown
+/**
+ Test the default view hierarchy to make sure it is correctly established.
+ */
+- (void)testViewHierarchy
 {
-    
-    [super tearDown];
+    XCTAssertNotNil(self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA.superview == self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA_A.superview == self.viewA, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA_A_A.superview == self.viewA_A, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA_A_B.superview == self.viewA_A, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA_B.superview == self.viewA, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewA_B_A.superview == self.viewA_B, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewB.superview == self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewB_A.superview == self.viewB, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewC.superview == self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.viewD.superview == self.containerView, @"View hierarchy is not setup as expected.");
 }
 
 /**
@@ -72,24 +99,6 @@
     [view setNeedsLayout:YES];
     [view layoutSubtreeIfNeeded];
 #endif /* TARGET_OS_IPHONE */
-}
-
-/**
- Test the view hierarchy to make sure it is correctly established.
- */
-- (void)testViewHierarchy
-{
-    XCTAssertNotNil(self.containerView, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA.superview == self.containerView, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA_A.superview == self.viewA, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA_A_A.superview == self.viewA_A, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA_A_B.superview == self.viewA_A, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA_B.superview == self.viewA, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewA_B_A.superview == self.viewA_B, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewB.superview == self.containerView, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewB_A.superview == self.viewB, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewC.superview == self.containerView, @"View hierarchy is not setup as expected.");
-    XCTAssert(self.viewD.superview == self.containerView, @"View hierarchy is not setup as expected.");
 }
 
 @end

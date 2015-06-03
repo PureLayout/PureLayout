@@ -62,6 +62,11 @@ static const CGFloat kContainerViewHeight = 1000.0;
 @property (nonatomic, strong) ALView *  viewC;
 @property (nonatomic, strong) ALView *  viewD;
 
+/** Sets up the default view hierarchy for tests. Test subclasses may override this method to customize the view hierarchy set up. */
+- (void)setupViewHierarchy;
+/** Test subclasses should override this method with updated tests if the -[setupViewHierarchy] method is overridden. */
+- (void)testViewHierarchy;
+
 /** Forces the container view to immediately do a layout pass, which will evaluate the constraints and set the frames for the container view and subviews. */
 - (void)evaluateConstraints;
 
