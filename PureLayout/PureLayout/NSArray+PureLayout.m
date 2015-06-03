@@ -287,7 +287,7 @@
                              insetSpacing:(BOOL)shouldSpaceInsets
                              matchedSizes:(BOOL)shouldMatchSizes
 {
-    NSAssert([self al_containsMinimumNumberOfViews:2], @"This array must contain at least 2 views to distribute.");
+    NSAssert([self al_containsMinimumNumberOfViews:1], @"This array must contain at least 1 view to distribute.");
     ALDimension matchedDimension;
     ALEdge firstEdge, lastEdge;
     switch (axis) {
@@ -376,7 +376,7 @@
                             withFixedSize:(CGFloat)size
                              insetSpacing:(BOOL)shouldSpaceInsets
 {
-    NSAssert([self al_containsMinimumNumberOfViews:2], @"This array must contain at least 2 views to distribute.");
+    NSAssert([self al_containsMinimumNumberOfViews:1], @"This array must contain at least 1 view to distribute.");
     ALDimension fixedDimension;
     NSLayoutAttribute attribute;
     switch (axis) {
@@ -458,7 +458,7 @@
             if (previousView) {
                 commonSuperview = [view al_commonSuperviewWithView:commonSuperview];
             } else {
-                commonSuperview = view;
+                commonSuperview = view.superview;
             }
             previousView = view;
         }
