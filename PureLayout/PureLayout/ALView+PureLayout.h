@@ -226,31 +226,4 @@
 
 #endif /* TARGET_OS_IPHONE */
 
-
-#pragma mark Deprecated Methods
-
-/** DEPRECATED as of PureLayout v2.0.0. Retain a reference to and remove specific constraints instead, or recreate the view(s) entirely to remove all constraints.
-    Removes all explicit constraints that affect the view.
-    WARNING: Apple's constraint solver is not optimized for large-scale constraint removal; you may encounter major performance issues after using this method.
-    NOTE: This method preserves implicit constraints, such as intrinsic content size constraints, which you usually do not want to remove. */
-- (void)autoRemoveConstraintsAffectingView __attribute__((deprecated));
-
-/** DEPRECATED as of PureLayout v2.0.0. Retain a reference to and remove specific constraints instead, or recreate the view(s) entirely to remove all constraints.
-    Removes all constraints that affect the view, optionally including implicit constraints.
-    WARNING: Apple's constraint solver is not optimized for large-scale constraint removal; you may encounter major performance issues after using this method.
-    NOTE: Implicit constraints are auto-generated lower priority constraints, and you usually do not want to remove these. */
-- (void)autoRemoveConstraintsAffectingViewIncludingImplicitConstraints:(BOOL)shouldRemoveImplicitConstraints __attribute__((deprecated));
-
-/** DEPRECATED as of PureLayout v2.0.0. Retain a reference to and remove specific constraints instead, or recreate the view(s) entirely to remove all constraints.
-    Recursively removes all explicit constraints that affect the view and its subviews.
-    WARNING: Apple's constraint solver is not optimized for large-scale constraint removal; you may encounter major performance issues after using this method.
-    NOTE: This method preserves implicit constraints, such as intrinsic content size constraints, which you usually do not want to remove. */
-- (void)autoRemoveConstraintsAffectingViewAndSubviews __attribute__((deprecated));
-
-/** DEPRECATED as of PureLayout v2.0.0. Retain a reference to and remove specific constraints instead, or recreate the view(s) entirely to remove all constraints.
-    Recursively removes all constraints from the view and its subviews, optionally including implicit constraints.
-    WARNING: Apple's constraint solver is not optimized for large-scale constraint removal; you may encounter major performance issues after using this method.
-    NOTE: Implicit constraints are auto-generated lower priority constraints, and you usually do not want to remove these. */
-- (void)autoRemoveConstraintsAffectingViewAndSubviewsIncludingImplicitConstraints:(BOOL)shouldRemoveImplicitConstraints __attribute__((deprecated));
-
 @end
