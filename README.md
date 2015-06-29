@@ -87,10 +87,10 @@ That's it - now go write some beautiful Auto Layout code!
 
         github "smileyborg/PureLayout"
 
-2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the iOS and/or Mac frameworks into your project.
-3.  Import the PureLayout framework/module (with the appropriate name for the platform you're using it on).
-    *  Using Modules: `@import PureLayout_iOS` or `@import PureLayout_Mac`
-    *  Without Modules: `#import <PureLayout_iOS/PureLayout_iOS.h>` or `#import <PureLayout_Mac/PureLayout_Mac.h>`
+2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
+3.  Import the PureLayout framework/module.
+    *  Using Modules: `@import PureLayout`
+    *  Without Modules: `#import <PureLayout/PureLayout.h>`
 
 That's it - now go write some beautiful Auto Layout code!
 

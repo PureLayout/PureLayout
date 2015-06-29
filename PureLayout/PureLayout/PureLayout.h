@@ -28,6 +28,14 @@
 #ifndef PureLayout_h
 #define PureLayout_h
 
+#import <Foundation/Foundation.h>
+
+//! Project version number for PureLayout.
+FOUNDATION_EXPORT double PureLayoutVersionNumber;
+
+//! Project version string for PureLayout.
+FOUNDATION_EXPORT const unsigned char PureLayoutVersionString[];
+
 #import "ALView+PureLayout.h"
 #import "NSArray+PureLayout.h"
 #import "NSLayoutConstraint+PureLayout.h"
