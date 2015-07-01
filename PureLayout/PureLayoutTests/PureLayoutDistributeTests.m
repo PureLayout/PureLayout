@@ -158,3 +158,49 @@
 }
 
 @end
+
+@interface PureLayoutSingleViewDistributeTests : PureLayoutDistributeTests
+@property ALView *singleView;
+@end
+
+@implementation PureLayoutSingleViewDistributeTests
+
+- (void)setUp
+{
+    [super setUp];
+    ALView *child = [ALView newAutoLayoutView];
+    [self.containerView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.containerView addSubview:child];
+    self.singleView = child;
+}
+
+- (NSArray *)viewArray {
+    return @[self.singleView];
+}
+
+- (void)testAutoDistributeViewsHorizontallyWithFixedSpacing
+{
+    [super testAutoDistributeViewsHorizontallyWithFixedSpacing];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithFixedSpacing
+{
+    [super testAutoDistributeViewsVerticallyWithFixedSpacing];
+}
+
+- (void)testAutoDistributeViewsHorizontallyWithFixedSize
+{
+    [super testAutoDistributeViewsHorizontallyWithFixedSize];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithFixedSize
+{
+    [super testAutoDistributeViewsVerticallyWithFixedSize];
+}
+
+- (void)testViewHierarchy {
+    XCTAssertNotNil(self.containerView, @"View hierarchy is not setup as expected.");
+    XCTAssert(self.singleView.superview == self.containerView, @"View hierarchy is not setup as expected.");
+}
+
+@end
