@@ -54,7 +54,9 @@
  */
 - (instancetype)initForAutoLayout
 {
-    self = [self init];
+    if (!self.layer) {
+        self = [self init];
+    }
     if (self) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
