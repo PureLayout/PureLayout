@@ -61,6 +61,15 @@
     return self;
 }
 
+/**
+Convert a initialized view into constraints.
+*/
+- (instancetype)configureForAutoLayout
+{
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    return self;
+}
+
 
 #pragma mark Create Constraints Without Installing
 
