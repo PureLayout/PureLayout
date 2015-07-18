@@ -68,4 +68,28 @@
     XCTAssert(view.translatesAutoresizingMaskIntoConstraints == NO, @"The view returned from [[ALImageView alloc] initForAutoLayout] should not translate its autoresizing mask into constraints.");
 }
 
+/**
+ Test the -[configureForAutoLayout] method.
+ */
+- (void)testConfigureForAutoLayout
+{
+    ALView *view = [[ALView alloc] init];
+    XCTAssert(view.translatesAutoresizingMaskIntoConstraints, @"By default, initialized views should translate their autoresizing mask into constraints.");
+    ALView *returnedView = [view configureForAutoLayout];
+    XCTAssert(view == returnedView, @"Calling -[view configureForAutoLayout] should return an identical reference to the same view.");
+    XCTAssert(returnedView.translatesAutoresizingMaskIntoConstraints == NO, @"The view returned from [view configureForAutoLayout] should not translate its autoresizing mask into constraints.");
+    
+    view = [[ALLabel alloc] init];
+    XCTAssert(view.translatesAutoresizingMaskIntoConstraints, @"By default, initialized views should translate their autoresizing mask into constraints.");
+    returnedView = [view configureForAutoLayout];
+    XCTAssert(view == returnedView, @"Calling -[view configureForAutoLayout] should return an identical reference to the same view.");
+    XCTAssert(returnedView.translatesAutoresizingMaskIntoConstraints == NO, @"The view returned from [view configureForAutoLayout] should not translate its autoresizing mask into constraints.");
+    
+    view = [[ALImageView alloc] init];
+    XCTAssert(view.translatesAutoresizingMaskIntoConstraints, @"By default, initialized views should translate their autoresizing mask into constraints.");
+    returnedView = [view configureForAutoLayout];
+    XCTAssert(view == returnedView, @"Calling -[view configureForAutoLayout] should return an identical reference to the same view.");
+    XCTAssert(returnedView.translatesAutoresizingMaskIntoConstraints == NO, @"The view returned from [view configureForAutoLayout] should not translate its autoresizing mask into constraints.");
+}
+
 @end

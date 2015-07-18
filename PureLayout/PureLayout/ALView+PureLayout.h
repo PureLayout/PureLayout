@@ -45,6 +45,9 @@
 /** Initializes and returns a new view that does not convert the autoresizing mask into constraints. */
 - (instancetype)initForAutoLayout;
 
+/** Configures an existing view to not convert the autoresizing mask into constraints and returns the view. */
+- (instancetype)configureForAutoLayout;
+
 
 #pragma mark Create Constraints Without Installing
 

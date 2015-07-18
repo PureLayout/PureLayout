@@ -61,6 +61,15 @@
     return self;
 }
 
+/**
+ Configures an existing view to not convert the autoresizing mask into constraints and returns the view.
+ */
+- (instancetype)configureForAutoLayout
+{
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    return self;
+}
+
 
 #pragma mark Create Constraints Without Installing
 
