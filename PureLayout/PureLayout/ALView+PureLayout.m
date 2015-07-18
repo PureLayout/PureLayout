@@ -54,12 +54,19 @@
  */
 - (instancetype)initForAutoLayout
 {
-    if (!self.layer) {
-        self = [self init];
-    }
+    self = [self init];
     if (self) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
+    return self;
+}
+
+/**
+Convert a initialized view into constraints.
+*/
+- (instancetype)configureForAutoLayout
+{
+    self.translatesAutoresizingMaskIntoConstraints = NO;
     return self;
 }
 
