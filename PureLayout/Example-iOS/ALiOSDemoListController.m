@@ -67,10 +67,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *viewControllerClassName = [NSString stringWithFormat:@"ALiOSDemo%@ViewController", @(indexPath.row + 1)];
-    Class viewControllerKlass = NSClassFromString(viewControllerClassName);
-    NSAssert(viewControllerKlass, @"Class should not be nil!");
-    NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @"Class should be a view controller!");
-    UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];
+    Class viewControllerClass = NSClassFromString(viewControllerClassName);
+    NSAssert(viewControllerClass, @"Class should not be nil!");
+    NSAssert([viewControllerClass isSubclassOfClass:[UIViewController class]], @"Class should be a view controller!");
+    UIViewController *demoViewController = [[viewControllerClass alloc] initWithNibName:nil bundle:nil];
     if (demoViewController) {
         demoViewController.title = [self textForDemoAtIndexPath:indexPath];
         [self.navigationController pushViewController:demoViewController animated:YES];
