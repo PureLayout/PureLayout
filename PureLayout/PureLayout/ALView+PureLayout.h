@@ -48,6 +48,10 @@
 /** Configures an existing view to not convert the autoresizing mask into constraints and returns the view. */
 - (instancetype)configureForAutoLayout;
 
+#pragma mark Removing Constraints
+
+/** Removes all constraints from the view */
+- (void)removeAllConstraints;
 
 #pragma mark Create Constraints Without Installing
 

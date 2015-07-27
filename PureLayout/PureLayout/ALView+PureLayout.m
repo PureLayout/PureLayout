@@ -70,6 +70,15 @@
     return self;
 }
 
+#pragma mark Removing Constraints
+
+/** 
+ Removes all constraints from the view 
+ */
+- (void) removeAllConstraints
+    {
+    [self removeConstraints: self.constraints];
+    }
 
 #pragma mark Create Constraints Without Installing
 
