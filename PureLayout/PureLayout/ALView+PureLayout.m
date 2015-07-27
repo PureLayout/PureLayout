@@ -75,7 +75,7 @@
 /** 
  Removes all constraints from the view 
  */
-- (void) removeAllConstraints
+- (void)removeAllConstraints
 {
     [self removeConstraints: self.constraints];
 }
