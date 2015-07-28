@@ -27,6 +27,9 @@
 
 #import "PureLayoutDefines.h"
 
+
+__PL_ASSUME_NONNULL_BEGIN
+
 /** A constant that represents the smallest valid positive value for the multiplier of a constraint,
     since a value of 0 will cause the second item to be lost in the internal auto layout engine. */
 static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small floating point numbers (e.g. CGFLOAT_MIN) can cause problems
@@ -38,7 +41,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 @interface ALView (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
-+ (NSMutableArray *)al_currentArrayOfCreatedConstraints;
++ (__PL_GENERICS(NSMutableArray, NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
 + (NSString *)al_currentGlobalConstraintIdentifier;
@@ -57,7 +60,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 
 - (ALView *)al_commonSuperviewOfViews;
 - (BOOL)al_containsMinimumNumberOfViews:(NSUInteger)minimumNumberOfViews;
-- (NSArray *)al_copyViewsOnly;
+- (__PL_GENERICS(NSArray, ALView *) *)al_copyViewsOnly;
 
 @end
 
@@ -75,3 +78,5 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
 @end
+
+__PL_ASSUME_NONNULL_END

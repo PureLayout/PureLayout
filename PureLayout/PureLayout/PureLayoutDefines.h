@@ -39,6 +39,25 @@
 #define __PureLayout_MinSysVer_iOS_8_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
 #define __PureLayout_MinSysVer_OSX_10_9                   (!TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_8_4)
 
+// Define some preprocessor macros that allow nullability annotations to be adopted in a backwards-compatible manner
+#if __has_feature(nullability)
+#   define __PL_ASSUME_NONNULL_BEGIN        NS_ASSUME_NONNULL_BEGIN
+#   define __PL_ASSUME_NONNULL_END          NS_ASSUME_NONNULL_END
+#else
+#   define __PL_ASSUME_NONNULL_BEGIN
+#   define __PL_ASSUME_NONNULL_END
+#endif
+
+// Define some preprocessor macros that allow generics to be adopted in a backwards-compatible manner
+#if __has_feature(objc_generics)
+#   define __PL_GENERICS(class, ...)        class<__VA_ARGS__>
+#else
+#   define __PL_GENERICS(class, ...)        class
+#endif
+
+// A return value of type (NSArray<NSLayoutConstraint *> *) is so common in PureLayout that it gets a dedicated preprocessor macro for better readability
+#define __NSArray_of_NSLayoutConstraint     __PL_GENERICS(NSArray, NSLayoutConstraint *)
+
 // Define generic AL-prefixed macros for the types/constants/etc that have slight naming variations across iOS and OS X, which allows the same code to be platform-independent
 #if TARGET_OS_IPHONE
 #   import <UIKit/UIKit.h>

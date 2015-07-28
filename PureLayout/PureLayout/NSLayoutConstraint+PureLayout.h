@@ -28,6 +28,8 @@
 #import "PureLayoutDefines.h"
 
 
+__PL_ASSUME_NONNULL_BEGIN
+
 #pragma mark - NSLayoutConstraint+PureLayout
 
 /**
@@ -55,3 +57,5 @@
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
 
 @end
+
+__PL_ASSUME_NONNULL_END
