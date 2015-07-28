@@ -104,6 +104,9 @@
 /** Pins the given edge of the view to the same edge of its superview with an inset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
+/** Pins the edges of the view to the edges of its superview. */
+- (NSArray *)autoPinEdgesToSuperviewEdges;
+
 /** Pins the edges of the view to the edges of its superview with the given edge insets. */
 - (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets;
 

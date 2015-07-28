@@ -377,6 +377,16 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
 }
 
 /**
+ Pins the edges of the view to the edges of its superview.
+ 
+ @return An array of constraints added.
+ */
+- (NSArray *)autoPinEdgesToSuperviewEdges
+{
+    return [self autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
+}
+
+/**
  Pins the edges of the view to the edges of its superview with the given edge insets.
  The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
  
