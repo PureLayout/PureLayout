@@ -30,7 +30,9 @@
 - (BOOL)isConstraintActive:(NSLayoutConstraint *)constraint
 {
 #if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
-    return constraint.isActive;
+    if ([constraint respondsToSelector:@selector(isActive)]) {
+        return constraint.isActive;
+    }
 #endif
     
     // Same as the `isActive` property, but backwards-compatible with iOS and OS X versions before that property was introduced.
