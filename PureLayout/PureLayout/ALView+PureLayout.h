@@ -51,10 +51,15 @@ __PL_ASSUME_NONNULL_BEGIN
 - (instancetype)configureForAutoLayout;
 
 
-#pragma mark Create Constraints Without Installing
+#pragma mark Batch Constraint Creation
 
-/** Prevents constraints created in the given constraints block from being automatically installed (activated).
-    The constraints created from calls to the PureLayout API in the block are returned in a single array. */
+/** Creates all of the constraints in the block, then installs (activates) them all at once.
+    All constraints created from calls to the PureLayout API in the block are returned in a single array.
+    This may be more efficient than installing (activating) each constraint one-by-one. */
++ (__NSArray_of_NSLayoutConstraint *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block;
+
+/** Creates all of the constraints in the block but prevents them from being automatically installed (activated).
+    All constraints created from calls to the PureLayout API in the block are returned in a single array. */
 + (__NSArray_of_NSLayoutConstraint *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
 
 

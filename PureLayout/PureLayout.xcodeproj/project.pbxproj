@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7371DC31B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */; };
+		A7371DC41B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */; };
 		B1006C6919E7691D00B92767 /* ALiOSDemoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */; };
 		B1006C7019E76D4200B92767 /* ALiOSDemo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */; };
 		B1046A811A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */; };
@@ -143,6 +145,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutBatchTests.m; path = PureLayoutTests/PureLayoutBatchTests.m; sourceTree = "<group>"; };
 		B1006C6719E7691D00B92767 /* ALiOSDemoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemoListController.h; path = "Example-iOS/ALiOSDemoListController.h"; sourceTree = SOURCE_ROOT; };
 		B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemoListController.m; path = "Example-iOS/ALiOSDemoListController.m"; sourceTree = SOURCE_ROOT; };
 		B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo1ViewController.h; path = "Example-iOS/Demos/ALiOSDemo1ViewController.h"; sourceTree = SOURCE_ROOT; };
@@ -479,6 +482,7 @@
 			children = (
 				B17D24C81956648700F2FD4B /* PureLayoutTestBase.h */,
 				B17D24C91956648700F2FD4B /* PureLayoutTestBase.m */,
+				A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */,
 				B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */,
 				B1089C1B195787C900339027 /* PureLayoutInstallationTests.m */,
 				B1089C1C195787C900339027 /* PureLayoutInstantiationTests.m */,
@@ -843,6 +847,7 @@
 				B1089C25195787C900339027 /* PureLayoutInstantiationTests.m in Sources */,
 				B1089C2D195787C900339027 /* PureLayoutRemovalTests.m in Sources */,
 				B1089C2B195787C900339027 /* PureLayoutPriorityTests.m in Sources */,
+				A7371DC31B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7371DC41B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */,
 				B1089C2A195787C900339027 /* PureLayoutPinEdgesTests.m in Sources */,
 				B1089C24195787C900339027 /* PureLayoutInstallationTests.m in Sources */,
 				B1089C28195787C900339027 /* PureLayoutInternalTests.m in Sources */,

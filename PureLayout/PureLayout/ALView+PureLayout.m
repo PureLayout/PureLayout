@@ -85,6 +85,14 @@
 static NSMutableArray *_al_arraysOfCreatedConstraints = nil;
 
 /**
+ A global variable that is set to YES when installing a batch of constraints collected from a call to +[autoCreateAndInstallConstraints].
+ When this flag is YES, constraints are installed immediately without checking for or adding to the +[al_currentArrayOfCreatedConstraints].
+ This is necessary to properly handle nested calls to +[autoCreateAndInstallConstraints], where calls whose block contains other call(s)
+ should not return constraints from within the blocks of nested call(s).
+ */
+static BOOL _al_isInstallingCreatedConstraints = NO;
+
+/**
  Accessor for the global state that stores arrays of constraints created without being installed.
  */
 + (NSMutableArray *)al_arraysOfCreatedConstraints
@@ -108,12 +116,35 @@ static NSMutableArray *_al_arraysOfCreatedConstraints = nil;
  */
 + (BOOL)al_preventAutomaticConstraintInstallation
 {
-    return [[self al_arraysOfCreatedConstraints] count] > 0;
+    return (_al_isInstallingCreatedConstraints == NO) && ([[self al_arraysOfCreatedConstraints] count] > 0);
 }
 
-/** 
- Prevents constraints created in the given constraints block from being automatically installed (activated).
- The constraints created from calls to the PureLayout API in the block are returned in a single array.
+/**
+ Creates all of the constraints in the block, then installs (activates) them all at once.
+ All constraints created from calls to the PureLayout API in the block are returned in a single array.
+ This may be more efficient than installing (activating) each constraint one-by-one.
+ 
+ Note: calls to this method may be nested. The constraints returned from a call will NOT include constraints
+ created in nested calls; constraints are only returned from the inner-most call they are created within.
+ 
+ @param block A block of method calls to the PureLayout API that create constraints.
+ @return An array of the constraints that were created from calls to the PureLayout API inside the block.
+ */
++ (NSArray *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
+{
+    NSArray *createdConstraints = [self autoCreateConstraintsWithoutInstalling:block];
+    _al_isInstallingCreatedConstraints = YES;
+    [createdConstraints autoInstallConstraints];
+    _al_isInstallingCreatedConstraints = NO;
+    return createdConstraints;
+}
+
+/**
+ Creates all of the constraints in the block but prevents them from being automatically installed (activated).
+ All constraints created from calls to the PureLayout API in the block are returned in a single array.
+ 
+ Note: calls to this method may be nested. The constraints returned from a call will NOT include constraints
+ created in nested calls; constraints are only returned from the inner-most call they are created within.
  
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
