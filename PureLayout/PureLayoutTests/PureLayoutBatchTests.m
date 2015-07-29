@@ -26,20 +26,47 @@
     [super tearDown];
 }
 
+/** Returns YES if the constraint is active. */
+- (BOOL)isConstraintActive:(NSLayoutConstraint *)constraint
+{
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+    return constraint.isActive;
+#endif
+    
+    // Same as the `isActive` property, but backwards-compatible with iOS and OS X versions before that property was introduced.
+    if (constraint.secondItem) {
+        ALView *commonSuperview = [constraint.firstItem al_commonSuperviewWithView:constraint.secondItem];
+        while (commonSuperview) {
+            if ([commonSuperview.constraints containsObject:constraint]) {
+                return YES;
+            }
+            commonSuperview = commonSuperview.superview;
+        }
+    }
+    else {
+        if ([((ALView *)constraint.firstItem).constraints containsObject:constraint]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+/** Returns YES if all the constraints in the array are active. */
 - (BOOL)allConstraintsAreActivated:(NSArray *)constraints
 {
     BOOL allConstraintsActivated = YES;
     for (NSLayoutConstraint *constraint in constraints) {
-        allConstraintsActivated &= constraint.isActive;
+        allConstraintsActivated &= [self isConstraintActive:constraint];
     }
     return allConstraintsActivated;
 }
 
+/** Returns YES if none of the constraints in the array are active. */
 - (BOOL)noConstraintsAreActivated:(NSArray *)constraints
 {
     BOOL anyConstraintActivated = NO;
     for (NSLayoutConstraint *constraint in constraints) {
-        anyConstraintActivated |= constraint.isActive;
+        anyConstraintActivated |= [self isConstraintActive:constraint];
     }
     return !anyConstraintActivated;
 }
