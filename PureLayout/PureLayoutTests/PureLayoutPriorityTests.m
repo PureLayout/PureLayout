@@ -8,8 +8,6 @@
 
 #import "PureLayoutTestBase.h"
 
-#define DEFINE_WEAK_SELF    __typeof(self) __weak weakSelf = self;
-
 @interface PureLayoutPriorityTests : PureLayoutTestBase
 
 @end
@@ -90,22 +88,20 @@
  */
 - (void)testPriorityForCentering
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewA autoCenterInSuperview];
+        return [self.viewA autoCenterInSuperview];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+        return [self.viewB autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewC autoAlignAxisToSuperviewAxis:ALAxisBaseline];
+        return [self.viewC autoAlignAxisToSuperviewAxis:ALAxisBaseline];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewC autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        return [self.viewC autoAlignAxisToSuperviewAxis:ALAxisVertical];
     }];
 }
 
@@ -114,22 +110,20 @@
  */
 - (void)testPriorityForPinningEdgesToSuperview
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15.0];
+        return [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0 relation:NSLayoutRelationGreaterThanOrEqual];
+        return [self.viewB autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0 relation:NSLayoutRelationGreaterThanOrEqual];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewC autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
+        return [self.viewC autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewD autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsMake(5.5, -50.0, 42.6, 860.9) excludingEdge:ALEdgeTrailing];
+        return [self.viewD autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsMake(5.5, -50.0, 42.6, 860.9) excludingEdge:ALEdgeTrailing];
     }];
 }
 
@@ -138,18 +132,16 @@
  */
 - (void)testPriorityForPinningEdges
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:weakSelf.viewB];
+        return [self.viewA autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.viewB];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:weakSelf.viewC withOffset:-95.0];
+        return [self.viewB autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:self.viewC withOffset:-95.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewC autoPinEdge:ALEdgeRight toEdge:ALEdgeBottom ofView:weakSelf.viewD withOffset:555.0];
+        return [self.viewC autoPinEdge:ALEdgeRight toEdge:ALEdgeBottom ofView:self.viewD withOffset:555.0];
     }];
 }
 
@@ -158,18 +150,16 @@
  */
 - (void)testPriorityForAligningAxes
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoAlignAxis:ALAxisHorizontal toSameAxisOfView:weakSelf.viewB];
+        return [self.viewA autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.viewB];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewC autoAlignAxis:ALAxisVertical toSameAxisOfView:weakSelf.viewD];
+        return [self.viewC autoAlignAxis:ALAxisVertical toSameAxisOfView:self.viewD];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoAlignAxis:ALAxisBaseline toSameAxisOfView:weakSelf.viewA withOffset:-60.0];
+        return [self.viewB autoAlignAxis:ALAxisBaseline toSameAxisOfView:self.viewA withOffset:-60.0];
     }];
 }
 
@@ -178,18 +168,16 @@
  */
 - (void)testPriorityForMatchingDimensions
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewA autoSetDimensionsToSize:CGSizeMake(90, 180)];
+        return [self.viewA autoSetDimensionsToSize:CGSizeMake(90, 180)];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoSetDimension:ALDimensionHeight toSize:0.0];
+        return [self.viewB autoSetDimension:ALDimensionHeight toSize:0.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewC autoSetDimension:ALDimensionWidth toSize:5.0 relation:NSLayoutRelationLessThanOrEqual];
+        return [self.viewC autoSetDimension:ALDimensionWidth toSize:5.0 relation:NSLayoutRelationLessThanOrEqual];
     }];
 }
 
@@ -198,26 +186,24 @@
  */
 - (void)testPriorityForConstrainingAnyAttribute
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALAttributeVertical toAttribute:ALAttributeBottom ofView:weakSelf.viewB];
+        return [self.viewA autoConstrainAttribute:ALAttributeVertical toAttribute:ALAttributeBottom ofView:self.viewB];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALAttributeRight toAttribute:ALAttributeHorizontal ofView:weakSelf.viewC withOffset:50.0];
+        return [self.viewA autoConstrainAttribute:ALAttributeRight toAttribute:ALAttributeHorizontal ofView:self.viewC withOffset:50.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewA autoConstrainAttribute:ALAttributeWidth toAttribute:ALAttributeHeight ofView:weakSelf.viewD withOffset:-100.0 relation:NSLayoutRelationLessThanOrEqual];
+        return [self.viewA autoConstrainAttribute:ALAttributeWidth toAttribute:ALAttributeHeight ofView:self.viewD withOffset:-100.0 relation:NSLayoutRelationLessThanOrEqual];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewD autoConstrainAttribute:ALAttributeBaseline toAttribute:ALAttributeTrailing ofView:weakSelf.viewA withMultiplier:-6.0];
+        return [self.viewD autoConstrainAttribute:ALAttributeBaseline toAttribute:ALAttributeTrailing ofView:self.viewA withMultiplier:-6.0];
     }];
     
     [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-        return [weakSelf.viewB autoConstrainAttribute:ALAttributeTop toAttribute:ALAttributeLeading ofView:weakSelf.viewA withMultiplier:0.45 relation:NSLayoutRelationGreaterThanOrEqual];
+        return [self.viewB autoConstrainAttribute:ALAttributeTop toAttribute:ALAttributeLeading ofView:self.viewA withMultiplier:0.45 relation:NSLayoutRelationGreaterThanOrEqual];
     }];
 }
 
@@ -226,22 +212,20 @@
  */
 - (void)testPriorityForConstrainingMultipleViews
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoAlignViewsToEdge:ALEdgeBottom];
+        return [self.viewArray autoAlignViewsToEdge:ALEdgeBottom];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoAlignViewsToAxis:ALAxisVertical];
+        return [self.viewArray autoAlignViewsToAxis:ALAxisVertical];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoMatchViewsDimension:ALDimensionWidth];
+        return [self.viewArray autoMatchViewsDimension:ALDimensionWidth];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoSetViewsDimension:ALDimensionHeight toSize:10.0];
+        return [self.viewArray autoSetViewsDimension:ALDimensionHeight toSize:10.0];
     }];
 }
 
@@ -250,22 +234,20 @@
  */
 - (void)testPriorityForDistributingMultipleViews
 {
-    DEFINE_WEAK_SELF
-    
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeBottom withFixedSize:25.0];
+        return [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeBottom withFixedSize:25.0];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withFixedSize:5.0 insetSpacing:NO];
+        return [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withFixedSize:5.0 insetSpacing:NO];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeading withFixedSpacing:0.0];
+        return [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeading withFixedSpacing:0.0];
     }];
     
     [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
-        return [weakSelf.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:899.5 insetSpacing:NO];
+        return [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:899.5 insetSpacing:NO];
     }];
 }
 
@@ -274,21 +256,19 @@
  */
 - (void)testNestingPriorityConstraintBlocks
 {
-    DEFINE_WEAK_SELF
-    
-    NSLayoutConstraint *constraint0 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    NSLayoutConstraint *constraint0 = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
     XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
     [ALView autoSetPriority:ALLayoutPriorityDefaultLow forConstraints:^{
-        NSLayoutConstraint *constraint1 = [weakSelf.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        NSLayoutConstraint *constraint1 = [self.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
         XCTAssertEqual(constraint1.priority, ALLayoutPriorityDefaultLow);
         [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
-            NSLayoutConstraint *constraint2 = [weakSelf.viewB autoAlignAxisToSuperviewAxis:ALAxisVertical];
+            NSLayoutConstraint *constraint2 = [self.viewB autoAlignAxisToSuperviewAxis:ALAxisVertical];
             XCTAssertEqual(constraint2.priority, ALLayoutPriorityDefaultHigh);
         }];
-        NSLayoutConstraint *constraint3 = [weakSelf.viewC autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        NSLayoutConstraint *constraint3 = [self.viewC autoAlignAxisToSuperviewAxis:ALAxisVertical];
         XCTAssertEqual(constraint3.priority, ALLayoutPriorityDefaultLow);
     }];
-    NSLayoutConstraint *constraint4 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    NSLayoutConstraint *constraint4 = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     XCTAssertEqual(constraint4.priority, ALLayoutPriorityRequired);
 }
 
@@ -297,11 +277,9 @@
  */
 - (void)testInstallingConstraintsOutsidePriorityBlock
 {
-    DEFINE_WEAK_SELF
-    
     __block NSLayoutConstraint *constraint0;
     [ALView autoCreateConstraintsWithoutInstalling:^{
-        constraint0 = [weakSelf.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        constraint0 = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
     }];
     XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
     constraint0.priority = ALLayoutPriorityDefaultLow;
