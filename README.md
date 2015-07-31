@@ -92,7 +92,7 @@ That's it - now go write some beautiful Auto Layout code!
 2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
 3.  Import the PureLayout framework/module.
 	* Swift: `import PureLayout`
-	* Objective-C using Modules: `@import PureLayout`
+	* Objective-C using Modules: `@import PureLayout;`
     * Objective-C without Modules: `#import <PureLayout/PureLayout.h>`
 
 That's it - now go write some beautiful Auto Layout code!
