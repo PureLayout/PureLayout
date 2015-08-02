@@ -5,6 +5,54 @@ The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely p
 
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the AutoLayout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
+### Table of Contents
+ 1. [Setup](#setup)
+ 1. [API Cheat Sheet](#api-cheat-sheet)
+ 1. [Usage](#usage)
+ 1. [PureLayout vs. the rest](#purelayout-vs-the-rest)
+ 1. [Problems, Suggestions, Pull Requests?](#problems-suggestions-pull-requests)
+
+## Setup
+*Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
+
+### Using [CocoaPods](http://cocoapods.org)
+1.	Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
+
+    	pod 'PureLayout'
+
+1.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
+1.	Import the `PureLayout.h` umbrella header.
+	* Swift: `import PureLayout`
+	* Objective-C: `#import <PureLayout/PureLayout.h>`
+
+That's it - now go write some beautiful Auto Layout code!
+
+### Using [Carthage](https://github.com/Carthage/Carthage)
+1.  Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+        github "smileyborg/PureLayout"
+
+1.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
+1.  Import the PureLayout framework/module.
+	* Swift: `import PureLayout`
+	* Objective-C using Modules: `@import PureLayout;`
+    * Objective-C without Modules: `#import <PureLayout/PureLayout.h>`
+
+That's it - now go write some beautiful Auto Layout code!
+
+### Manually from GitHub
+1.	Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
+1.	Add the source files to your Xcode project.
+1.	Import the `PureLayout.h` header. (To use PureLayout in Swift, import `PureLayout.h` in your bridging header.)
+
+That's it - now go write some beautiful Auto Layout code!
+
+### App Extensions
+To use PureLayout in an App Extension, you need to do a bit of extra configuration to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
+
+### Releases
+Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
+
 ## API Cheat Sheet
 This is just a handy overview of the core API methods. Explore the [header files](PureLayout/PureLayout) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
 
@@ -65,47 +113,6 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 	- autoInstall
     - autoRemove
     - autoIdentify: // iOS 7.0+, OS X 10.9+ only
-
-## Setup
-*Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
-
-### Using [CocoaPods](http://cocoapods.org)
-1.	Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
-
-    	pod 'PureLayout'
-
-2.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
-3.	Import the `PureLayout.h` umbrella header.
-	* Swift: `import PureLayout`
-	* Objective-C: `#import <PureLayout/PureLayout.h>`
-
-That's it - now go write some beautiful Auto Layout code!
-
-### Using [Carthage](https://github.com/Carthage/Carthage)
-1.  Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-
-        github "smileyborg/PureLayout"
-
-2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
-3.  Import the PureLayout framework/module.
-	* Swift: `import PureLayout`
-	* Objective-C using Modules: `@import PureLayout;`
-    * Objective-C without Modules: `#import <PureLayout/PureLayout.h>`
-
-That's it - now go write some beautiful Auto Layout code!
-
-### Manually from GitHub
-1.	Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
-2.	Add the source files to your Xcode project.
-3.	Import the `PureLayout.h` header. (To use PureLayout in Swift, import `PureLayout.h` in your bridging header.)
-
-That's it - now go write some beautiful Auto Layout code!
-
-### App Extensions
-To use PureLayout in an App Extension, you need to do a bit of extra configuration to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
-
-### Releases
-Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
 
 ## Usage
 ### Example Project
