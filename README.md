@@ -14,10 +14,11 @@ Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully ca
 
 ## Setup
 ### Compatibility
-PureLayout is highly compatible -- the current latest version supports all releases of iOS and OS X since the introduction of Auto Layout on each platform with a single codebase!
+The current release of PureLayout supports all versions of iOS and OS X since the introduction of Auto Layout on each platform, in both Swift and Objective-C, with a single codebase!
 
 * Xcode
-  * Fully Compatible With: **Xcode 7.0, Swift (any version), Objective-C**
+  * Language Support: **Swift** *(any version)*, **Objective-C**
+  * Fully Compatible With: **Xcode 7.0**
   * Minimum Supported Version: **Xcode 5.0**
 * iOS
   * Fully Compatible With: **iOS 9.0**
