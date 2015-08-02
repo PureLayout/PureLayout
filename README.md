@@ -119,23 +119,26 @@ On OS X, while running the app, press any key to cycle through the demos. You ca
 Check out some [Tips and Tricks](https://github.com/smileyborg/PureLayout/wiki/Tips-and-Tricks) to keep in mind when using the API.
 
 ## PureLayout vs. the rest
-An overview of the Auto Layout options available, ordered from the lowest- to highest-level of abstraction.
+There are quite a few different ways to implement Auto Layout. Here is a quick overview of the available options:
 
-*	Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)
- 	*	Pros: Raw power
-	*	Cons: Extremely verbose, tedious to write, difficult to read
-*	Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
-	*	Pros: Concise, convenient
-	*	Cons: Doesn't support some use cases, incomplete compile-time checks, must learn syntax, hard to debug
-*	Apple Interface Builder
-	*	Pros: Visual, simple
-	* 	Cons: Difficult for complex layouts, cannot dynamically set constraints at runtime, encourages hardcoded magic numbers, not always WYSIWYG
-*	**PureLayout**
-	*	Pros: Simple, efficient, minimal third party code, consistent with Cocoa API style, compatible with Objective-C and Swift codebases
-	*	Cons: Not the most concise expression of layout code
-*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
-	*	Pros: Very clean, concise, and convenient 
-	*	Cons: Unique API style is foreign to Cocoa APIs, mixed compatibility with Objective-C & Swift, greater dependency on third party code
+* Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)
+  * Pros: Raw power
+  * Cons: Extremely verbose; tedious to write; difficult to read
+* Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
+  * Pros: Concise; convenient
+  * Cons: Doesn't support some use cases; lacks compile-time checking and safety; must learn syntax; hard to debug
+* Apple Interface Builder
+  * Pros: Visual; interactive; provides compile-time layout checking
+  * Cons: Difficult for complex layouts; cannot dynamically set constraints at runtime; encourages hardcoded magic numbers; not always WYSIWYG
+* Apple [NSLayoutAnchor SDK API](https://developer.apple.com/library/prerelease/ios/documentation/AppKit/Reference/NSLayoutAnchor_ClassReference/index.html)
+  * Pros: Clean, readable, and type-safe API for creating individual constraints
+  * Cons: Only available in iOS 9.0 and OS X 10.11 and higher; requires manually activating each constraint; no API for creating multiple constraints at once
+* **PureLayout**
+  * Pros: Compatible with Objective-C and Swift codebases; consistent with Cocoa API style; cross-platform API and implementation shared across iOS and OS X; fully backwards-compatible to iOS 6 & OS X 10.7; easy to use; type-safe; efficient
+  * Cons: Not the most concise expression of layout code
+* High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+  * Pros: Very clean, concise, and convenient 
+  * Cons: Unique API style is foreign to Apple's APIs; mixed compatibility with Objective-C & Swift; greater dependency on third party code
 	
 PureLayout takes a balanced approach to Auto Layout that makes it well suited for any project.
 
