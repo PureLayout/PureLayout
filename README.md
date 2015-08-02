@@ -13,7 +13,18 @@ Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully ca
  1. [Problems, Suggestions, Pull Requests?](#problems-suggestions-pull-requests)
 
 ## Setup
-*Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
+### Compatibility
+PureLayout is highly compatible -- the current latest version supports all releases of iOS and OS X since the introduction of Auto Layout on each platform with a single codebase!
+
+* Xcode
+  * Fully Compatible With: **Xcode 7.0, Swift (any version), Objective-C**
+  * Minimum Supported Version: **Xcode 5.0**
+* iOS
+  * Fully Compatible With: **iOS 9.0**
+  * Minimum Deployment Target: **iOS 6.0**
+* OS X
+  * Fully Compatible With: **OS X 10.11**
+  * Minimum Deployment Target: **OS X 10.7**
 
 ### Using [CocoaPods](http://cocoapods.org)
 1.	Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
