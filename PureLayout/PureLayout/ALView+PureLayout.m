@@ -173,12 +173,12 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static __PL_GENERICS(NSMutableArray, NSNumber *) *_al_globalConstraintPriorities = nil;
+static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
 
 /**
  Accessor for the global stack of layout priorities.
  */
-+ (__PL_GENERICS(NSMutableArray, NSNumber *) *)al_globalConstraintPriorities
++ (__NSMutableArray_of(NSNumber *) *)al_globalConstraintPriorities
 {
     if (!_al_globalConstraintPriorities) {
         _al_globalConstraintPriorities = [NSMutableArray new];
@@ -193,7 +193,7 @@ static __PL_GENERICS(NSMutableArray, NSNumber *) *_al_globalConstraintPriorities
  */
 + (ALLayoutPriority)al_currentGlobalConstraintPriority
 {
-    __PL_GENERICS(NSMutableArray, NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
+    __NSMutableArray_of(NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
     if ([globalConstraintPriorities count] == 0) {
         return ALLayoutPriorityRequired;
     }
@@ -241,12 +241,12 @@ static __PL_GENERICS(NSMutableArray, NSNumber *) *_al_globalConstraintPriorities
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static __PL_GENERICS(NSMutableArray, NSString *) *_al_globalConstraintIdentifiers = nil;
+static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
 
 /**
  Accessor for the global state of constraint identifiers.
  */
-+ (__PL_GENERICS(NSMutableArray, NSString *) *)al_globalConstraintIdentifiers
++ (__NSMutableArray_of(NSString *) *)al_globalConstraintIdentifiers
 {
     if (!_al_globalConstraintIdentifiers) {
         _al_globalConstraintIdentifiers = [NSMutableArray new];
@@ -261,7 +261,7 @@ static __PL_GENERICS(NSMutableArray, NSString *) *_al_globalConstraintIdentifier
  */
 + (NSString *)al_currentGlobalConstraintIdentifier
 {
-    __PL_GENERICS(NSMutableArray, NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
+    __NSMutableArray_of(NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
     if ([globalConstraintIdentifiers count] == 0) {
         return nil;
     }
