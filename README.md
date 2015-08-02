@@ -28,18 +28,15 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 
 ### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
 
+	+ autoCreateAndInstallConstraints:
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
 	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
-    - autoCenterInSuperview:
-    - autoAlignAxisToSuperviewAxis:
-	- autoCenterInSuperviewMargins: // iOS 8.0+ only
-	- autoAlignAxisToSuperviewMarginAxis: // iOS 8.0+ only
-    - autoPinEdgeToSuperviewEdge:(withInset:)
-    - autoPinEdgesToSuperviewEdges(WithInsets:)(excludingEdge:)
-	- autoPinEdgeToSuperviewMargin: // iOS 8.0+ only
-	- autoPinEdgesToSuperviewMargins(ExcludingEdge:) // iOS 8.0+ only
+    - autoCenterInSuperview(Margins): // Margins variant iOS 8.0+ only
+    - autoAlignAxisToSuperview(Margin)Axis: // Margin variant iOS 8.0+ only
+    - autoPinEdgeToSuperview(Edge:|Margin:)(withInset:) // Margin variant iOS 8.0+ only
+    - autoPinEdgesToSuperview(Edges|Margins)(WithInsets:)(excludingEdge:) // Margins variant iOS 8.0+ only
     - autoPinEdge:toEdge:ofView:(withOffset:)
     - autoAlignAxis:toSameAxisOfView:(withOffset:|withMultiplier:)
     - autoMatchDimension:toDimension:ofView:(withOffset:|withMultiplier:)
