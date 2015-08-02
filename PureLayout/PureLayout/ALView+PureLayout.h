@@ -56,11 +56,11 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Creates all of the constraints in the block, then installs (activates) them all at once.
     All constraints created from calls to the PureLayout API in the block are returned in a single array.
     This may be more efficient than installing (activating) each constraint one-by-one. */
-+ (__NSArray_of_NSLayoutConstraint *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block;
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block;
 
 /** Creates all of the constraints in the block but prevents them from being automatically installed (activated).
     All constraints created from calls to the PureLayout API in the block are returned in a single array. */
-+ (__NSArray_of_NSLayoutConstraint *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block;
 
 
 #pragma mark Set Priority For Constraints
@@ -84,7 +84,7 @@ __PL_ASSUME_NONNULL_BEGIN
 #pragma mark Center & Align in Superview
 
 /** Centers the view in its superview. */
-- (__NSArray_of_NSLayoutConstraint *)autoCenterInSuperview;
+- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview;
 
 /** Aligns the view to the same axis of its superview. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewAxis:(ALAxis)axis;
@@ -92,7 +92,7 @@ __PL_ASSUME_NONNULL_BEGIN
 #if __PureLayout_MinBaseSDK_iOS_8_0
 
 /** Centers the view in its superview's margins. Available in iOS 8.0 and later. */
-- (__NSArray_of_NSLayoutConstraint *)autoCenterInSuperviewMargins;
+- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins;
 
 /** Aligns the view to the corresponding margin axis of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewMarginAxis:(ALAxis)axis;
@@ -112,13 +112,13 @@ __PL_ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the edges of its superview. */
-- (__NSArray_of_NSLayoutConstraint *)autoPinEdgesToSuperviewEdges;
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges;
 
 /** Pins the edges of the view to the edges of its superview with the given edge insets. */
-- (__NSArray_of_NSLayoutConstraint *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets;
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets;
 
 /** Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge. */
-- (__NSArray_of_NSLayoutConstraint *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
 
 #if __PureLayout_MinBaseSDK_iOS_8_0
 
@@ -129,10 +129,10 @@ __PL_ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the margins of its superview. Available in iOS 8.0 and later. */
-- (__NSArray_of_NSLayoutConstraint *)autoPinEdgesToSuperviewMargins;
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins;
 
 /** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
-- (__NSArray_of_NSLayoutConstraint *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
 
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
 
@@ -182,7 +182,7 @@ __PL_ASSUME_NONNULL_BEGIN
 #pragma mark Set Dimensions
 
 /** Sets the view to a specific size. */
-- (__NSArray_of_NSLayoutConstraint *)autoSetDimensionsToSize:(CGSize)size;
+- (__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size;
 
 /** Sets the given dimension of the view to a specific size. */
 - (NSLayoutConstraint *)autoSetDimension:(ALDimension)dimension toSize:(CGFloat)size;

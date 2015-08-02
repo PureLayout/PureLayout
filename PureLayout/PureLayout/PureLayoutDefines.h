@@ -55,8 +55,8 @@
 #   define __PL_GENERICS(class, ...)        class
 #endif
 
-// A return value of type (NSArray<NSLayoutConstraint *> *) is so common in PureLayout that it gets a dedicated preprocessor macro for better readability
-#define __NSArray_of_NSLayoutConstraint     __PL_GENERICS(NSArray, NSLayoutConstraint *)
+// Using generics with NSArray is so common in PureLayout that it gets a dedicated preprocessor macro for better readability.
+#define __NSArray_of(type)                  __PL_GENERICS(NSArray, type)
 
 // Define generic AL-prefixed macros for the types/constants/etc that have slight naming variations across iOS and OS X, which allows the same code to be platform-independent
 #if TARGET_OS_IPHONE

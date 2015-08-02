@@ -28,6 +28,9 @@
 #import "PureLayoutDefines.h"
 
 
+// Using generics with NSMutableArray is so common in the internal implementation of PureLayout that it gets a dedicated preprocessor macro for better readability.
+#define __NSMutableArray_of(type)                   __PL_GENERICS(NSMutableArray, type)
+
 __PL_ASSUME_NONNULL_BEGIN
 
 /** A constant that represents the smallest valid positive value for the multiplier of a constraint,
@@ -41,7 +44,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 @interface ALView (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
-+ (__PL_GENERICS(NSMutableArray, NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
++ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
 + (NSString *)al_currentGlobalConstraintIdentifier;
@@ -60,7 +63,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 
 - (ALView *)al_commonSuperviewOfViews;
 - (BOOL)al_containsMinimumNumberOfViews:(NSUInteger)minimumNumberOfViews;
-- (__PL_GENERICS(NSArray, ALView *) *)al_copyViewsOnly;
+- (__NSArray_of(ALView *) *)al_copyViewsOnly;
 
 @end
 

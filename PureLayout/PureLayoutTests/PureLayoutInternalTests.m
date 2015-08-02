@@ -202,7 +202,7 @@
  */
 - (void)testCommonSuperviewOfViews
 {
-    NSArray *viewArray;
+    __NSArray_of(ALView *) *viewArray;
     
     viewArray = @[self.viewA, self.viewB, self.viewC];
     XCTAssert([viewArray al_commonSuperviewOfViews] == self.containerView, @"The common superview of viewArray should be containerView.");
@@ -263,7 +263,7 @@
 - (void)testCopyViewsOnly
 {
     NSArray *startingArray = @[[NSObject new], [ALLabel new], [ALImageView new], [NSString new], [ALView new], [NSDecimalNumber new], [NSLayoutConstraint new]];
-    NSArray *viewsOnlyArray = [startingArray al_copyViewsOnly];
+    __NSArray_of(ALView *) *viewsOnlyArray = [startingArray al_copyViewsOnly];
     XCTAssert([viewsOnlyArray count] == 3, @"Only 3 objects should remain in the new array.");
     
     startingArray = @[[ALView newAutoLayoutView]];

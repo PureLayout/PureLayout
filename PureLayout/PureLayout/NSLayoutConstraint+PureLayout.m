@@ -233,7 +233,7 @@
             break;
         default:
             NSAssert(nil, @"Not a valid ALAxis.");
-            constraintAxis = ALLayoutConstraintAxisHorizontal; // default to a random value to satisfy the compiler
+            constraintAxis = ALLayoutConstraintAxisHorizontal; // default to an arbitrary value to satisfy the compiler
             break;
     }
     return constraintAxis;
@@ -272,7 +272,7 @@
             break;
         default:
             NSAssert(nil, @"Not a valid ALEdge.");
-            margin = ALMarginLeft; // default to a random value to satisfy the compiler
+            margin = ALMarginLeft; // default to an arbitrary value to satisfy the compiler
             break;
     }
     return margin;
@@ -298,11 +298,11 @@
         case ALAxisBaseline:
         case ALAxisFirstBaseline:
             NSAssert(nil, @"The baseline axis attributes do not have corresponding margin axis attributes.");
-            marginAxis = ALMarginAxisVertical; // default to a random value to satisfy the compiler
+            marginAxis = ALMarginAxisVertical; // default to an arbitrary value to satisfy the compiler
             break;
         default:
             NSAssert(nil, @"Not a valid ALAxis.");
-            marginAxis = ALMarginAxisVertical; // default to a random value to satisfy the compiler
+            marginAxis = ALMarginAxisVertical; // default to an arbitrary value to satisfy the compiler
             break;
     }
     return marginAxis;

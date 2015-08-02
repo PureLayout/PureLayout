@@ -8,8 +8,6 @@
 
 #import "PureLayoutTestBase.h"
 
-#define DEFINE_WEAK_SELF    __typeof(self) __weak weakSelf = self;
-
 @interface PureLayoutPriorityTestsiOS : PureLayoutTestBase
 
 @property (nonatomic, strong) UIWindow *window;
@@ -33,7 +31,7 @@
 /**
  Returns an array of the default priorities to test.
  */
-- (NSArray *)defaultPriorities
+- (__NSArray_of(NSNumber *) *)defaultPriorities
 {
     return @[@(ALLayoutPriorityFittingSizeLevel), @(ALLayoutPriorityDefaultHigh), @(ALLayoutPriorityRequired), @(ALLayoutPriorityDefaultLow)];
 }
@@ -53,7 +51,7 @@
  A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
  constraints, and calls -[assertConstraints:areAddedWithPriority:] for each of the default priorities.
  */
-- (void)assertConstraintsAreAddedWithDefaultPriorities:(NSArray *(^)())block
+- (void)assertConstraintsAreAddedWithDefaultPriorities:(__NSArray_of(NSLayoutConstraint *) *(^)())block
 {
     for (NSNumber *layoutPriority in [self defaultPriorities]) {
         [self assertConstraints:block areAddedWithPriority:[layoutPriority floatValue]];
@@ -67,7 +65,7 @@
  */
 - (void)assertConstraint:(NSLayoutConstraint *(^)())block isAddedWithPriority:(ALLayoutPriority)priority
 {
-    [self assertConstraints:^NSArray *{ return @[block()]; } areAddedWithPriority:priority];
+    [self assertConstraints:^__NSArray_of(NSLayoutConstraint *) *{ return @[block()]; } areAddedWithPriority:priority];
 }
 
 /**
@@ -75,9 +73,9 @@
  constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
  constraints are added with the correct priority specified.
  */
-- (void)assertConstraints:(NSArray *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
+- (void)assertConstraints:(__NSArray_of(NSLayoutConstraint *) *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
 {
-    __block NSArray *constraints;
+    __block __NSArray_of(NSLayoutConstraint *) *constraints;
     [ALView autoSetPriority:priority forConstraints:^{
         constraints = block();
     }];
@@ -121,8 +119,6 @@
  */
 - (void)testPriorityForPinningToLayoutGuides
 {
-    DEFINE_WEAK_SELF
-    
     UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = viewController;
@@ -132,15 +128,15 @@
     // get into a state where the view hierarchy is prepared to accept constraints to the layout guides
     dispatch_async(dispatch_get_main_queue(), ^{
         [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
+            return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
         }];
         
         [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [weakSelf.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
+            return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
         }];
         
         [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [weakSelf.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
+            return [self.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
         }];
     });
 }

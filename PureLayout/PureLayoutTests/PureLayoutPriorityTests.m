@@ -29,7 +29,7 @@
 /**
  Returns an array of the default priorities to test.
  */
-- (NSArray *)defaultPriorities
+- (__NSArray_of(NSNumber *) *)defaultPriorities
 {
     return @[@(ALLayoutPriorityFittingSizeLevel), @(ALLayoutPriorityDefaultHigh), @(ALLayoutPriorityRequired), @(ALLayoutPriorityDefaultLow)];
 }
@@ -63,7 +63,7 @@
  */
 - (void)assertConstraint:(NSLayoutConstraint *(^)())block isAddedWithPriority:(ALLayoutPriority)priority
 {
-    [self assertConstraints:^NSArray *{ return @[block()]; } areAddedWithPriority:priority];
+    [self assertConstraints:^__NSArray_of(NSLayoutConstraint *) *{ return @[block()]; } areAddedWithPriority:priority];
 }
 
 /**
@@ -71,9 +71,9 @@
  constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
  constraints are added with the correct priority specified.
  */
-- (void)assertConstraints:(NSArray *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
+- (void)assertConstraints:(__NSArray_of(NSLayoutConstraint *) *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
 {
-    __block NSArray *constraints;
+    __block __NSArray_of(NSLayoutConstraint *) *constraints;
     [ALView autoSetPriority:priority forConstraints:^{
         constraints = block();
     }];
@@ -88,7 +88,7 @@
  */
 - (void)testPriorityForCentering
 {
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewA autoCenterInSuperview];
     }];
     
@@ -118,11 +118,11 @@
         return [self.viewB autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0.0 relation:NSLayoutRelationGreaterThanOrEqual];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewC autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewD autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsMake(5.5, -50.0, 42.6, 860.9) excludingEdge:ALEdgeTrailing];
     }];
 }
@@ -168,7 +168,7 @@
  */
 - (void)testPriorityForMatchingDimensions
 {
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewA autoSetDimensionsToSize:CGSizeMake(90, 180)];
     }];
     
@@ -212,19 +212,19 @@
  */
 - (void)testPriorityForConstrainingMultipleViews
 {
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoAlignViewsToEdge:ALEdgeBottom];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoAlignViewsToAxis:ALAxisVertical];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoMatchViewsDimension:ALDimensionWidth];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoSetViewsDimension:ALDimensionHeight toSize:10.0];
     }];
 }
@@ -234,19 +234,19 @@
  */
 - (void)testPriorityForDistributingMultipleViews
 {
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeBottom withFixedSize:25.0];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withFixedSize:5.0 insetSpacing:NO];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeading withFixedSpacing:0.0];
     }];
     
-    [self assertConstraintsAreAddedWithDefaultPriorities:^NSArray *{
+    [self assertConstraintsAreAddedWithDefaultPriorities:^__NSArray_of(NSLayoutConstraint *) *{
         return [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:899.5 insetSpacing:NO];
     }];
 }
@@ -277,24 +277,24 @@
  */
 - (void)testInstallingConstraintsOutsidePriorityBlock
 {
-    __block NSLayoutConstraint *constraint0;
+    __block NSLayoutConstraint *constraint;
     [ALView autoCreateConstraintsWithoutInstalling:^{
-        constraint0 = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        constraint = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
     }];
-    XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
-    constraint0.priority = ALLayoutPriorityDefaultLow;
-    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    XCTAssertEqual(constraint.priority, ALLayoutPriorityRequired);
+    constraint.priority = ALLayoutPriorityDefaultLow;
+    XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultLow);
     
     // Install the constraint and check that its priority was not affected
-    [constraint0 autoInstall];
-    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    [constraint autoInstall];
+    XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultLow);
     
     // Remove the constraint, then re-add it but this time inside of a constraints block
-    [constraint0 autoRemove];
-    XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultLow);
+    [constraint autoRemove];
+    XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultLow);
     [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
-        [constraint0 autoInstall];
-        XCTAssertEqual(constraint0.priority, ALLayoutPriorityDefaultHigh);
+        [constraint autoInstall];
+        XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultHigh);
     }];
 }
 

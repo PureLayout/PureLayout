@@ -82,7 +82,7 @@
  
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static NSMutableArray *_al_arraysOfCreatedConstraints = nil;
+static __NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *_al_arraysOfCreatedConstraints = nil;
 
 /**
  A global variable that is set to YES when installing a batch of constraints collected from a call to +[autoCreateAndInstallConstraints].
@@ -95,7 +95,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
 /**
  Accessor for the global state that stores arrays of constraints created without being installed.
  */
-+ (NSMutableArray *)al_arraysOfCreatedConstraints
++ (__NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *)al_arraysOfCreatedConstraints
 {
     if (!_al_arraysOfCreatedConstraints) {
         _al_arraysOfCreatedConstraints = [NSMutableArray new];
@@ -106,7 +106,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
 /**
  Accessor for the current mutable array of constraints created without being immediately installed.
  */
-+ (NSMutableArray *)al_currentArrayOfCreatedConstraints
++ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints
 {
     return [[self al_arraysOfCreatedConstraints] lastObject];
 }
@@ -130,7 +130,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (NSArray *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
 {
     NSArray *createdConstraints = [self autoCreateConstraintsWithoutInstalling:block];
     _al_isInstallingCreatedConstraints = YES;
@@ -149,7 +149,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (NSArray *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     NSArray *createdConstraints = nil;
@@ -173,12 +173,12 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static NSMutableArray *_al_globalConstraintPriorities = nil;
+static __PL_GENERICS(NSMutableArray, NSNumber *) *_al_globalConstraintPriorities = nil;
 
 /**
  Accessor for the global stack of layout priorities.
  */
-+ (NSMutableArray *)al_globalConstraintPriorities
++ (__PL_GENERICS(NSMutableArray, NSNumber *) *)al_globalConstraintPriorities
 {
     if (!_al_globalConstraintPriorities) {
         _al_globalConstraintPriorities = [NSMutableArray new];
@@ -193,7 +193,7 @@ static NSMutableArray *_al_globalConstraintPriorities = nil;
  */
 + (ALLayoutPriority)al_currentGlobalConstraintPriority
 {
-    NSMutableArray *globalConstraintPriorities = [self al_globalConstraintPriorities];
+    __PL_GENERICS(NSMutableArray, NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
     if ([globalConstraintPriorities count] == 0) {
         return ALLayoutPriorityRequired;
     }
@@ -241,12 +241,12 @@ static NSMutableArray *_al_globalConstraintPriorities = nil;
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static NSMutableArray *_al_globalConstraintIdentifiers = nil;
+static __PL_GENERICS(NSMutableArray, NSString *) *_al_globalConstraintIdentifiers = nil;
 
 /**
  Accessor for the global state of constraint identifiers.
  */
-+ (NSMutableArray *)al_globalConstraintIdentifiers
++ (__PL_GENERICS(NSMutableArray, NSString *) *)al_globalConstraintIdentifiers
 {
     if (!_al_globalConstraintIdentifiers) {
         _al_globalConstraintIdentifiers = [NSMutableArray new];
@@ -261,7 +261,7 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  */
 + (NSString *)al_currentGlobalConstraintIdentifier
 {
-    NSMutableArray *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
+    __PL_GENERICS(NSMutableArray, NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
     if ([globalConstraintIdentifiers count] == 0) {
         return nil;
     }
@@ -302,9 +302,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  
  @return An array of constraints added.
  */
-- (NSArray *)autoCenterInSuperview
+- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewAxis:ALAxisHorizontal]];
     [constraints addObject:[self autoAlignAxisToSuperviewAxis:ALAxisVertical]];
     return constraints;
@@ -331,9 +331,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  
  @return An array of constraints added.
  */
-- (NSArray *)autoCenterInSuperviewMargins
+- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewMarginAxis:ALAxisHorizontal]];
     [constraints addObject:[self autoAlignAxisToSuperviewMarginAxis:ALAxisVertical]];
     return constraints;
@@ -412,7 +412,7 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  
  @return An array of constraints added.
  */
-- (NSArray *)autoPinEdgesToSuperviewEdges
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges
 {
     return [self autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
 }
@@ -424,9 +424,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  @param insets The insets for this view's edges from its superview's edges.
  @return An array of constraints added.
  */
-- (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
@@ -443,9 +443,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
-- (NSArray *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     }
@@ -503,9 +503,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  
  @return An array of constraints added.
  */
-- (NSArray *)autoPinEdgesToSuperviewMargins
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
@@ -519,9 +519,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
-- (NSArray *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     }
@@ -708,9 +708,9 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
  @param size The size to set this view's dimensions to.
  @return An array of constraints added.
  */
-- (NSArray *)autoSetDimensionsToSize:(CGSize)size
+- (__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size
 {
-    NSMutableArray *constraints = [NSMutableArray new];
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoSetDimension:ALDimensionWidth toSize:size.width]];
     [constraints addObject:[self autoSetDimension:ALDimensionHeight toSize:size.height]];
     return constraints;
