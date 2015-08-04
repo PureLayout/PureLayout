@@ -28,34 +28,39 @@ The current release of PureLayout supports all versions of iOS and OS X since th
   * Minimum Deployment Target: **OS X 10.7**
 
 ### Using [CocoaPods](http://cocoapods.org)
-1.	Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
+1. Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 
     	pod 'PureLayout'
 
-1.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
-1.	Import the `PureLayout.h` umbrella header.
-	* Swift: `import PureLayout`
-	* Objective-C: `#import <PureLayout/PureLayout.h>`
+1. Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
+1. Import the `PureLayout.h` umbrella header.
+  * With `use_frameworks!` in your Podfile
+    * Swift: `import PureLayout`
+    * Objective-C: `#import <PureLayout/PureLayout.h>` (or with Modules enabled: `@import PureLayout;`)
+  * Without `use_frameworks!` in your Podfile
+    * Swift: Add `#import "PureLayout.h"` to your bridging header.
+    * Objective-C: `#import "PureLayout.h"`
 
 That's it - now go write some beautiful Auto Layout code!
 
 ### Using [Carthage](https://github.com/Carthage/Carthage)
-1.  Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+1. Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
         github "smileyborg/PureLayout"
 
-1.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
-1.  Import the PureLayout framework/module.
-	* Swift: `import PureLayout`
-	* Objective-C using Modules: `@import PureLayout;`
-    * Objective-C without Modules: `#import <PureLayout/PureLayout.h>`
+1. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
+1. Import the PureLayout framework/module.
+  * Swift: `import PureLayout`
+  * Objective-C: `#import <PureLayout/PureLayout.h>` (or with Modules enabled: `@import PureLayout;`)
 
 That's it - now go write some beautiful Auto Layout code!
 
 ### Manually from GitHub
-1.	Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
-1.	Add the source files to your Xcode project.
-1.	Import the `PureLayout.h` header. (To use PureLayout in Swift, import `PureLayout.h` in your bridging header.)
+1. Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
+1. Add the source files to your Xcode project.
+1. Import the `PureLayout.h` header.
+  * Swift: Add `#import "PureLayout.h"` to your bridging header.
+  * Objective-C: `#import "PureLayout.h"`
 
 That's it - now go write some beautiful Auto Layout code!
 
@@ -68,9 +73,9 @@ Releases are tagged in the git commit history using [semantic versioning](http:/
 ## API Cheat Sheet
 This is just a handy overview of the core API methods. Explore the [header files](PureLayout/PureLayout) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
 
-*	All of the public API methods are namespaced with the prefix `auto...`, which also makes it easy for Xcode to autocomplete as you type.
-*	Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.
-*	Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.
+* All of the public API methods are namespaced with the prefix `auto...`, which also makes it easy for Xcode to autocomplete as you type.
+* Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.
+* Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.
 
 ### Attributes
 
