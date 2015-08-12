@@ -191,7 +191,6 @@
 		B139A50E1956333500F33B19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Example-iOS/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		B139A5101956333C00F33B19 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "Example-iOS/ar.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		B139A5111956334500F33B19 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Example-iOS/main.m"; sourceTree = SOURCE_ROOT; };
-		B139A5131956334E00F33B19 /* Example-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Example-iOS-Prefix.pch"; path = "Example-iOS/Example-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		B13DFF2219E773D100B26152 /* ALiOSDemo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo2ViewController.h; path = "Example-iOS/Demos/ALiOSDemo2ViewController.h"; sourceTree = SOURCE_ROOT; };
 		B13DFF2319E773D100B26152 /* ALiOSDemo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo2ViewController.m; path = "Example-iOS/Demos/ALiOSDemo2ViewController.m"; sourceTree = SOURCE_ROOT; };
 		B13DFF2419E773D100B26152 /* ALiOSDemo3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo3ViewController.h; path = "Example-iOS/Demos/ALiOSDemo3ViewController.h"; sourceTree = SOURCE_ROOT; };
@@ -221,7 +220,6 @@
 		B1A290E219562FDA00D4765E /* ALMacAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALMacAppDelegate.m; sourceTree = "<group>"; };
 		B1A290E419562FDA00D4765E /* Images-Mac.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Mac.xcassets"; sourceTree = "<group>"; };
 		B1A290E719562FDA00D4765E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		B1A291041956326300D4765E /* Example-Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Mac-Prefix.pch"; sourceTree = "<group>"; };
 		B1B9C68A1A1E6FC200E50B6A /* ALiOSDemo10ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo10ViewController.h; path = "Example-iOS/Demos/ALiOSDemo10ViewController.h"; sourceTree = SOURCE_ROOT; };
 		B1B9C68B1A1E6FC200E50B6A /* ALiOSDemo10ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo10ViewController.m; path = "Example-iOS/Demos/ALiOSDemo10ViewController.m"; sourceTree = SOURCE_ROOT; };
 		B1EC855D195662790099293C /* PureLayoutTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PureLayoutTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,7 +426,6 @@
 				B139A50B1956332D00F33B19 /* Example-iOS-Info.plist */,
 				B139A50D1956333500F33B19 /* InfoPlist.strings */,
 				B139A5111956334500F33B19 /* main.m */,
-				B139A5131956334E00F33B19 /* Example-iOS-Prefix.pch */,
 				B1089C0A1957767400339027 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -453,7 +450,6 @@
 			children = (
 				B1A290DE19562FDA00D4765E /* Example-Mac-Info.plist */,
 				B1A290DF19562FDA00D4765E /* main.m */,
-				B1A291041956326300D4765E /* Example-Mac-Prefix.pch */,
 				B17D24CD1957763300F2FD4B /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -1145,8 +1141,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Example-iOS/Example-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Example-iOS/Example-iOS-Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1162,8 +1156,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Example-iOS/Example-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Example-iOS/Example-iOS-Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1186,7 +1178,6 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Example-Mac/Example-Mac-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1219,7 +1210,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Example-Mac/Example-Mac-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

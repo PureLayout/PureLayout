@@ -6,6 +6,8 @@
 //  https://github.com/smileyborg/PureLayout
 //
 
+#import <UIKit/UIKit.h>
+
 @interface ALiOSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
