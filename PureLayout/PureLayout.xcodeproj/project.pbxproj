@@ -146,6 +146,8 @@
 
 /* Begin PBXFileReference section */
 		A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutBatchTests.m; path = PureLayoutTests/PureLayoutBatchTests.m; sourceTree = "<group>"; };
+		A7DB5C821B7AD612000ED37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7DB5C841B7AD612000ED37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1006C6719E7691D00B92767 /* ALiOSDemoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemoListController.h; path = "Example-iOS/ALiOSDemoListController.h"; sourceTree = SOURCE_ROOT; };
 		B1006C6819E7691D00B92767 /* ALiOSDemoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemoListController.m; path = "Example-iOS/ALiOSDemoListController.m"; sourceTree = SOURCE_ROOT; };
 		B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo1ViewController.h; path = "Example-iOS/Demos/ALiOSDemo1ViewController.h"; sourceTree = SOURCE_ROOT; };
@@ -169,8 +171,6 @@
 		B1046AAA1A7F2D720017187F /* PureLayoutTests-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PureLayoutTests-iOS-Prefix.pch"; path = "PureLayoutTests/PureLayoutTests-iOS/PureLayoutTests-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		B1046AB01A7F32380017187F /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1046AD81A7F32790017187F /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1046B121A7F3A330017187F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "PureLayout Frameworks/PureLayout_iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
-		B1046B161A7F3A440017187F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "PureLayout Frameworks/PureLayout_Mac/Info.plist"; sourceTree = SOURCE_ROOT; };
 		B1089C0B1957767400339027 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "Example-iOS/ar.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C0D1957767D00339027 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Example-iOS/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutCenteringTests.m; path = PureLayoutTests/PureLayoutCenteringTests.m; sourceTree = "<group>"; };
@@ -284,6 +284,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7DB5C801B7AD612000ED37F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A7DB5C811B7AD612000ED37F /* PureLayout_iOS */,
+				A7DB5C831B7AD612000ED37F /* PureLayout_Mac */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7DB5C811B7AD612000ED37F /* PureLayout_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A7DB5C821B7AD612000ED37F /* Info.plist */,
+			);
+			path = PureLayout_iOS;
+			sourceTree = "<group>";
+		};
+		A7DB5C831B7AD612000ED37F /* PureLayout_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				A7DB5C841B7AD612000ED37F /* Info.plist */,
+			);
+			path = PureLayout_Mac;
+			sourceTree = "<group>";
+		};
 		B1006C6A19E76B8700B92767 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,40 +354,6 @@
 			path = "PureLayoutTests/PureLayoutTests-iOS/en.lproj";
 			sourceTree = SOURCE_ROOT;
 		};
-		B1046AB11A7F32380017187F /* PureLayout_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				B1046AB21A7F32380017187F /* Supporting Files */,
-			);
-			name = PureLayout_iOS;
-			path = "PureLayout-iOS";
-			sourceTree = "<group>";
-		};
-		B1046AB21A7F32380017187F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1046B121A7F3A330017187F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B1046AD91A7F32790017187F /* PureLayout_Mac */ = {
-			isa = PBXGroup;
-			children = (
-				B1046ADA1A7F32790017187F /* Supporting Files */,
-			);
-			name = PureLayout_Mac;
-			path = "PureLayout-Mac";
-			sourceTree = "<group>";
-		};
-		B1046ADA1A7F32790017187F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B1046B161A7F3A440017187F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B1046AFC1A7F33110017187F /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,23 +370,14 @@
 			name = PureLayout;
 			sourceTree = "<group>";
 		};
-		B1046B0F1A7F3A0F0017187F /* PureLayout Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B1046AB11A7F32380017187F /* PureLayout_iOS */,
-				B1046AD91A7F32790017187F /* PureLayout_Mac */,
-			);
-			name = "PureLayout Frameworks";
-			sourceTree = "<group>";
-		};
 		B12C23D217C3FDE4001CF667 = {
 			isa = PBXGroup;
 			children = (
 				B1046AFC1A7F33110017187F /* PureLayout */,
-				B1046B0F1A7F3A0F0017187F /* PureLayout Frameworks */,
 				B1EC853F1956620F0099293C /* PureLayoutTests */,
 				B12C23E417C3FDE4001CF667 /* Example-iOS */,
 				B1A290DC19562FDA00D4765E /* Example-Mac */,
+				A7DB5C801B7AD612000ED37F /* Supporting Files */,
 				B12C23DD17C3FDE4001CF667 /* Frameworks */,
 				B12C23DC17C3FDE4001CF667 /* Products */,
 			);
@@ -973,7 +955,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "PureLayout Frameworks/PureLayout_iOS/Info.plist";
+				INFOPLIST_FILE = "Supporting Files/PureLayout_iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1006,7 +988,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "PureLayout Frameworks/PureLayout_iOS/Info.plist";
+				INFOPLIST_FILE = "Supporting Files/PureLayout_iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1045,7 +1027,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "PureLayout Frameworks/PureLayout_Mac/Info.plist";
+				INFOPLIST_FILE = "Supporting Files/PureLayout_Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1082,7 +1064,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "PureLayout Frameworks/PureLayout_Mac/Info.plist";
+				INFOPLIST_FILE = "Supporting Files/PureLayout_Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
