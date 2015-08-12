@@ -8,19 +8,48 @@
 
 #import "ALiOSDemoListController.h"
 
+NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUsedDemoType";
+
 @interface ALiOSDemoListController ()
 
 @property (nonatomic, readonly) NSArray *demoTitles;
 
+// Whether to load the Swift (YES) or Objective-C (NO) versions of the demos.
+@property (nonatomic, assign) BOOL useSwiftDemos;
+
 @end
 
 @implementation ALiOSDemoListController
+
+// Recalls and returns the last value of the `useSwiftDemos` flag.
++ (BOOL)recallPreviousUseSwiftDemosValue
+{
+    id storedDemoType = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUsedDemoTypeUserDefaultsKey];
+    if (storedDemoType) {
+        NSAssert([storedDemoType isKindOfClass:[NSNumber class]], @"The stored demo type object should be of type NSNumber!");
+        return [storedDemoType boolValue];
+    }
+    
+    // Use the Swift demos by default, if there is no persisted value.
+    return YES;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.title = @"PureLayout iOS Demos";
+    
+    self.useSwiftDemos = [[self class] recallPreviousUseSwiftDemosValue];
+}
+
+- (void)setUseSwiftDemos:(BOOL)useSwiftDemos
+{
+    _useSwiftDemos = useSwiftDemos;
+    
+    // When changing between the Swift and Objective-C demos, persist the last used language type so that the demo app always opens back up to it.
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.useSwiftDemos) forKey:kLastUsedDemoTypeUserDefaultsKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSArray *)demoTitles
@@ -39,40 +68,83 @@
              ];
 }
 
-- (NSString *)textForDemoAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)textForDemoAtIndex:(NSUInteger)index
 {
-    NSString *text = self.demoTitles[indexPath.row];
-    text = [NSString stringWithFormat:@"%@. %@", @(indexPath.row + 1), text];
+    NSString *text = self.demoTitles[index];
+    text = [NSString stringWithFormat:@"%@. %@", @(index + 1), text];
     return text;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.demoTitles.count;
+    if (section == 0) {
+        return 1;
+    } else {
+        return self.demoTitles.count;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return nil;
+    } else {
+        NSString *language = self.useSwiftDemos ? @"Swift" : @"Objective-C";
+        return [NSString stringWithFormat:@"%@ Demos", language];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil]; // not bothering to reuse cells here
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [self textForDemoAtIndexPath:indexPath];
+    NSString *text;
+    if (indexPath.section == 0) {
+        // The very first section is the option to switch between Objective-C and Swift demo files.
+        cell.textLabel.textColor = [UIColor blueColor];
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+        NSString *language = self.useSwiftDemos ? @"Objective-C" : @"Swift";
+        text = [NSString stringWithFormat:@"Switch to %@ demo files", language];
+    } else {
+        // All other rows take you to the actual demos.
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        text = [self textForDemoAtIndex:indexPath.row];
+    }
+    cell.textLabel.text = text;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *viewControllerClassName = [NSString stringWithFormat:@"ALiOSDemo%@ViewController", @(indexPath.row + 1)];
+    if (indexPath.section == 0) {
+        // The very first section is the option to switch between Objective-C and Swift demo files.
+        self.useSwiftDemos = !self.useSwiftDemos;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationRight];
+    } else {
+        // All other rows take you to the actual demos.
+        [self displayDemoAtIndex:indexPath.row];
+    }
+}
+
+- (void)displayDemoAtIndex:(NSUInteger)index
+{
+    NSString *viewControllerClassName;
+    if (self.useSwiftDemos) {
+        viewControllerClassName = [NSString stringWithFormat:@"ALiOSDemo%@ViewController", @(index + 1)];
+    } else {
+        viewControllerClassName = [NSString stringWithFormat:@"Example_iOS.iOSDemo%@ViewController", @(index + 1)];
+    }
     Class viewControllerKlass = NSClassFromString(viewControllerClassName);
     NSAssert(viewControllerKlass, @"Class should not be nil!");
     NSAssert([viewControllerKlass isSubclassOfClass:[UIViewController class]], @"Class should be a view controller!");
     UIViewController *demoViewController = [[viewControllerKlass alloc] initWithNibName:nil bundle:nil];
     if (demoViewController) {
-        demoViewController.title = [self textForDemoAtIndexPath:indexPath];
+        demoViewController.title = [self textForDemoAtIndex:index];
         [self.navigationController pushViewController:demoViewController animated:YES];
     }
 }

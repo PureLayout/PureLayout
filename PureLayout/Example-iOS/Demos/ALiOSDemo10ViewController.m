@@ -48,23 +48,25 @@
     if (!self.didSetupConstraints) {
         NSArray *views = @[self.redView, self.blueView, self.yellowView, self.greenView];
         
-        // Create the constraints that define the horizontal layout, but don't install any of them - just store them for now
-        self.horizontalLayoutConstraints = [UIView autoCreateConstraintsWithoutInstalling:^{
+        // Start out in the horizontal layout
+        self.isShowingHorizontalLayout = YES;
+        
+        // Create and install the constraints that define the horizontal layout, because this is the one we're starting in.
+        // Note that we use autoCreateAndInstallConstraints() here in order to easily collect all the constraints into a single array.
+        self.horizontalLayoutConstraints = [UIView autoCreateAndInstallConstraints:^{
             [views autoSetViewsDimension:ALDimensionHeight toSize:40.0];
             [views autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:10.0 insetSpacing:YES matchedSizes:YES];
             [self.redView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
         }];
         
-        // Create the constraints that define the vertical layout, but don't install any of them - just store them for now
+        // Create the constraints that define the vertical layout, but don't install any of them - just store them for now.
+        // Note that we use autoCreateConstraintsWithoutInstalling() here in order to both prevent the constraints from being installed automatically,
+        // and to easily collect all the constraints into a single array.
         self.verticalLayoutConstraints = [UIView autoCreateConstraintsWithoutInstalling:^{
             [views autoSetViewsDimension:ALDimensionWidth toSize:60.0];
             [views autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeVertical withFixedSpacing:70.0 insetSpacing:YES matchedSizes:YES];
             [self.redView autoAlignAxisToSuperviewAxis:ALAxisVertical];
         }];
-        
-        // Start out in the horizontal layout
-        self.isShowingHorizontalLayout = YES;
-        [self.horizontalLayoutConstraints autoInstallConstraints];
         
         [self.toggleConstraintsButton autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10.0];
         [self.toggleConstraintsButton autoAlignAxisToSuperviewAxis:ALAxisVertical];

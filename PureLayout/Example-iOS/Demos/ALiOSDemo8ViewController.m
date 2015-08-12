@@ -69,7 +69,7 @@
         
         /**
          Now, let's add some 'bad' constraints that conflict with one or more of the 'good' constraints above.
-         Start by uncommenting one of the below constraints, and running the demo. A a constraint exception will be logged
+         Start by uncommenting one of the below constraints, and running the demo. A constraint exception will be logged
          to the console, because one or more views was over-constrained, and therefore one or more constraints had to be broken.
          But because we have provided human-readable identifiers, notice how easy it is to figure out which constraints are
          conflicting, and which constraint shouldn't be there!

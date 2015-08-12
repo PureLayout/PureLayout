@@ -64,9 +64,8 @@
         [self.redLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kSmallPadding];
         [self.redLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kLargePadding];
         
-        [self.greenView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.redLabel withOffset:kLargePadding];
-        
         // The greenView is positioned below the blueLabel, with its leading edge to the redLabel, and trailing edge to its superview
+        [self.greenView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.redLabel withOffset:kLargePadding];
         [self.greenView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueLabel withOffset:kSmallPadding];
         [self.greenView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kSmallPadding];
         
