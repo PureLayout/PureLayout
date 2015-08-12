@@ -132,10 +132,10 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoIdentify: // iOS 7.0+, OS X 10.9+ only
 
 ## Usage
-### Example Project
+### Examples
 Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios.
 
-On iOS, you can use different device simulators and rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
+Each demo in the iOS example app has a Swift and Objective-C version. **You must use Xcode 7.0 or higher (Swift 2.0) and choose the `Example-iOS-Xcode7` scheme to compile and run the Swift demos.** When you run the example app, you can easily switch between using the Swift and Objective-C versions of the demos. To see the constraints in action while running the iOS demos, try using different device simulators, rotating the device to different orientations, as well as toggling the taller in-call status bar in the iOS Simulator.
 
 On OS X, while running the app, press any key to cycle through the demos. You can resize the window to see the constraints in action.
 

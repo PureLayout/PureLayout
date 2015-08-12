@@ -24,6 +24,10 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
 // Recalls and returns the last value of the `useSwiftDemos` flag.
 + (BOOL)recallPreviousUseSwiftDemosValue
 {
+#if !USING_XCODE7_SCHEME
+    return NO;
+#endif
+    
     id storedDemoType = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUsedDemoTypeUserDefaultsKey];
     if (storedDemoType) {
         NSAssert([storedDemoType isKindOfClass:[NSNumber class]], @"The stored demo type object should be of type NSNumber!");
@@ -105,10 +109,15 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
     NSString *text;
     if (indexPath.section == 0) {
         // The very first section is the option to switch between Objective-C and Swift demo files.
+#if USING_XCODE7_SCHEME
         cell.textLabel.textColor = [UIColor blueColor];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
         NSString *language = self.useSwiftDemos ? @"Objective-C" : @"Swift";
         text = [NSString stringWithFormat:@"Switch to %@ demo files", language];
+#else
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+        text = @"Use Example-iOS-Xcode7 scheme to run Swift demos.";
+#endif
     } else {
         // All other rows take you to the actual demos.
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -122,9 +131,13 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
 {
     if (indexPath.section == 0) {
         // The very first section is the option to switch between Objective-C and Swift demo files.
+#if USING_XCODE7_SCHEME
         self.useSwiftDemos = !self.useSwiftDemos;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationRight];
+#else
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+#endif
     } else {
         // All other rows take you to the actual demos.
         [self displayDemoAtIndex:indexPath.row];
