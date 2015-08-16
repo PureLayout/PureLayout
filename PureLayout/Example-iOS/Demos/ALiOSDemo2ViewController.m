@@ -2,7 +2,7 @@
 //  ALiOSDemo2ViewController.m
 //  PureLayout Example-iOS
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 

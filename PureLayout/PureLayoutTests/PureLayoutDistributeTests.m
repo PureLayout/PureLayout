@@ -3,6 +3,7 @@
 //  PureLayout Tests
 //
 //  Copyright (c) 2014 Vytis Šibonis
+//  Copyright (c) 2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
