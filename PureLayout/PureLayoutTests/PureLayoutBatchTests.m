@@ -79,7 +79,7 @@
 - (void)testCreateAndInstallConstraints
 {
     __NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
-    __NSArray_of(NSLayoutConstraint *) *returnedConstraints = [ALView autoCreateAndInstallConstraints:^{
+    __NSArray_of(NSLayoutConstraint *) *returnedConstraints = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
         [createdConstraints addObjectsFromArray:[self.viewA autoPinEdgesToSuperviewEdges]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.viewA_A.superview]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisVertical toSameAxisOfView:self.viewA_A.superview withOffset:10.0]];
@@ -104,14 +104,14 @@
     __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_1_1 = nil;
     __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_2 = nil;
     
-    __NSArray_of(NSLayoutConstraint *) *returnedConstraints1 = [ALView autoCreateAndInstallConstraints:^{
+    __NSArray_of(NSLayoutConstraint *) *returnedConstraints1 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
         [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeTop];
         
-        returnedConstraints1_1 = [ALView autoCreateAndInstallConstraints:^{
+        returnedConstraints1_1 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
             [self.viewB autoSetDimension:ALDimensionWidth toSize:100.0];
             [self.viewC autoSetDimension:ALDimensionHeight toSize:100.0];
             
-            returnedConstraints1_1_1 = [ALView autoCreateAndInstallConstraints:^{
+            returnedConstraints1_1_1 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
                 [self.viewD autoConstrainAttribute:ALAttributeHeight toAttribute:ALAttributeWidth ofView:self.viewC withMultiplier:2.0];
             }];
             XCTAssertEqual(returnedConstraints1_1_1.count, 1);
@@ -125,7 +125,7 @@
 
         [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         
-        returnedConstraints1_2 = [ALView autoCreateAndInstallConstraints:^{
+        returnedConstraints1_2 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
             [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeBottom];
             [self.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
         }];
@@ -150,7 +150,7 @@
 - (void)testCreateConstraintsWithoutInstalling
 {
     __NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
-    __NSArray_of(NSLayoutConstraint *) *returnedConstraints = [ALView autoCreateConstraintsWithoutInstalling:^{
+    __NSArray_of(NSLayoutConstraint *) *returnedConstraints = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
         [createdConstraints addObjectsFromArray:[self.viewA autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsMake(10.0, 10.0, 10.0, 10.0) excludingEdge:ALEdgeBottom]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisVertical toSameAxisOfView:self.viewA_A.superview]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisBaseline toSameAxisOfView:self.viewA_A.superview withOffset:-10.0]];
@@ -175,14 +175,14 @@
     __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_1_1 = nil;
     __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_2 = nil;
     
-    __NSArray_of(NSLayoutConstraint *) *returnedConstraints1 = [ALView autoCreateConstraintsWithoutInstalling:^{
+    __NSArray_of(NSLayoutConstraint *) *returnedConstraints1 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
         [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeTop];
         
-        returnedConstraints1_1 = [ALView autoCreateConstraintsWithoutInstalling:^{
+        returnedConstraints1_1 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
             [self.viewB autoSetDimension:ALDimensionWidth toSize:100.0];
             [self.viewC autoSetDimension:ALDimensionHeight toSize:100.0];
             
-            returnedConstraints1_1_1 = [ALView autoCreateConstraintsWithoutInstalling:^{
+            returnedConstraints1_1_1 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
                 [self.viewD autoConstrainAttribute:ALAttributeHeight toAttribute:ALAttributeWidth ofView:self.viewC withMultiplier:2.0];
             }];
             XCTAssertEqual(returnedConstraints1_1_1.count, 1);
@@ -196,7 +196,7 @@
         
         [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         
-        returnedConstraints1_2 = [ALView autoCreateConstraintsWithoutInstalling:^{
+        returnedConstraints1_2 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
             [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeBottom];
             [self.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
         }];

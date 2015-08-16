@@ -69,7 +69,7 @@ class iOSDemo10ViewController: UIViewController {
             
             // Create and install the constraints that define the horizontal layout, because this is the one we're starting in.
             // Note that we use autoCreateAndInstallConstraints() here in order to easily collect all the constraints into a single array.
-            horizontalLayoutConstraints = UIView.autoCreateAndInstallConstraints {
+            horizontalLayoutConstraints = NSLayoutConstraint.autoCreateAndInstallConstraints {
                 views.autoSetViewsDimension(.Height, toSize: 40.0)
                 views.autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 10.0, insetSpacing: true, matchedSizes: true)
                 self.redView.autoAlignAxisToSuperviewAxis(.Horizontal)
@@ -78,7 +78,7 @@ class iOSDemo10ViewController: UIViewController {
             // Create the constraints that define the vertical layout, but don't install any of them - just store them for now.
             // Note that we use autoCreateConstraintsWithoutInstalling() here in order to both prevent the constraints from being installed automatically,
             // and to easily collect all the constraints into a single array.
-            verticalLayoutConstraints = UIView.autoCreateConstraintsWithoutInstalling {
+            verticalLayoutConstraints = NSLayoutConstraint.autoCreateConstraintsWithoutInstalling {
                 views.autoSetViewsDimension(.Width, toSize: 60.0)
                 views.autoDistributeViewsAlongAxis(.Vertical, alignedTo: .Vertical, withFixedSpacing: 70.0, insetSpacing: true, matchedSizes: true)
                 self.redView.autoAlignAxisToSuperviewAxis(.Vertical)

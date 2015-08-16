@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A7371DC31B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */; };
 		A7371DC41B68792800DB94B6 /* PureLayoutBatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */; };
+		A7D0FF361B8146370025AF37 /* PureLayoutIdentifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D0FF351B8146370025AF37 /* PureLayoutIdentifierTests.m */; };
+		A7D0FF371B8146370025AF37 /* PureLayoutIdentifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D0FF351B8146370025AF37 /* PureLayoutIdentifierTests.m */; };
 		A7D496591B7B084800A74818 /* ALiOSDemo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DFF2319E773D100B26152 /* ALiOSDemo2ViewController.m */; };
 		A7D4965A1B7B084800A74818 /* iOSDemo8ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB5C951B7AEC83000ED37F /* iOSDemo8ViewController.swift */; };
 		A7D4965B1B7B084800A74818 /* ALiOSDemo5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162DF6B19E9F6A800D56FEA /* ALiOSDemo5ViewController.m */; };
@@ -195,6 +197,7 @@
 
 /* Begin PBXFileReference section */
 		A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutBatchTests.m; path = PureLayoutTests/PureLayoutBatchTests.m; sourceTree = "<group>"; };
+		A7D0FF351B8146370025AF37 /* PureLayoutIdentifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutIdentifierTests.m; path = PureLayoutTests/PureLayoutIdentifierTests.m; sourceTree = "<group>"; };
 		A7D4964F1B7AF1D100A74818 /* iOSDemo9ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSDemo9ViewController.swift; path = "Example-iOS/Demos/iOSDemo9ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A7D496511B7AF44D00A74818 /* iOSDemo10ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSDemo10ViewController.swift; path = "Example-iOS/Demos/iOSDemo10ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A7D4967E1B7B084800A74818 /* Example-iOS-Xcode7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS-Xcode7.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -564,6 +567,7 @@
 				B17D24C91956648700F2FD4B /* PureLayoutTestBase.m */,
 				A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */,
 				B1089C1A195787C900339027 /* PureLayoutCenteringTests.m */,
+				A7D0FF351B8146370025AF37 /* PureLayoutIdentifierTests.m */,
 				B1089C1B195787C900339027 /* PureLayoutInstallationTests.m */,
 				B1089C1C195787C900339027 /* PureLayoutInstantiationTests.m */,
 				B1089C1D195787C900339027 /* PureLayoutInternalTests.m */,
@@ -978,6 +982,7 @@
 			files = (
 				B1089C29195787C900339027 /* PureLayoutPinEdgesTests.m in Sources */,
 				B1089C23195787C900339027 /* PureLayoutInstallationTests.m in Sources */,
+				A7D0FF361B8146370025AF37 /* PureLayoutIdentifierTests.m in Sources */,
 				B1046B0B1A7F38930017187F /* NSLayoutConstraint+PureLayout.m in Sources */,
 				B1089C27195787C900339027 /* PureLayoutInternalTests.m in Sources */,
 				B1046A811A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */,
@@ -1004,6 +1009,7 @@
 				B1089C22195787C900339027 /* PureLayoutCenteringTests.m in Sources */,
 				B1046B0D1A7F38930017187F /* NSArray+PureLayout.m in Sources */,
 				B1089C26195787C900339027 /* PureLayoutInstantiationTests.m in Sources */,
+				A7D0FF371B8146370025AF37 /* PureLayoutIdentifierTests.m in Sources */,
 				B1089C2E195787C900339027 /* PureLayoutRemovalTests.m in Sources */,
 				B1046A821A7F29F80017187F /* PureLayoutDistributeTests.m in Sources */,
 				B1089C2C195787C900339027 /* PureLayoutPriorityTests.m in Sources */,

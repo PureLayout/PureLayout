@@ -164,7 +164,7 @@ typedef NS_ENUM(NSInteger, ExampleConstraintDemo) {
             [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:10.0];
             // The orange view will be allowed to change its size if it conflicts with a required constraint
             NSLayoutPriority priority = (view == self.orangeView) ? NSLayoutPriorityDefaultHigh + 1 : NSLayoutPriorityRequired;
-            [NSView autoSetPriority:priority forConstraints:^{
+            [NSLayoutConstraint autoSetPriority:priority forConstraints:^{
                 [view autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:previousView withMultiplier:1.5];
                 [view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:previousView withMultiplier:2.0];
             }];

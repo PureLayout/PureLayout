@@ -43,7 +43,7 @@ class iOSDemo6ViewController: UIViewController {
             // Add constraints that set the size of the blueView to a ridiculously large size, but set the priority of these constraints
             // to a lower value than Required. This allows the Auto Layout solver to let these constraints be broken if one or both of
             // them conflict with higher-priority constraint(s), such as the above 4 edge constraints.
-            UIView.autoSetPriority(UILayoutPriorityDefaultHigh) {
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh) {
                 blueView.autoSetDimensionsToSize(CGSize(width: 10000.0, height: 10000.0))
             }
             

@@ -2,7 +2,7 @@
 //  PureLayoutPriorityTests.m
 //  PureLayout Tests
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
@@ -58,7 +58,7 @@
 
 /**
  A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
- and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, this one constraint is
+ and verifies that when the +[NSLayoutConstraint autoSetPriority:forConstraints:] method is used, this one constraint is
  added with the correct priority specified.
  */
 - (void)assertConstraint:(NSLayoutConstraint *(^)())block isAddedWithPriority:(ALLayoutPriority)priority
@@ -68,13 +68,13 @@
 
 /**
  A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
- constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
- constraints are added with the correct priority specified.
+ constraints, and verifies that when the +[NSLayoutConstraint autoSetPriority:forConstraints:] method is used,
+ these constraints are added with the correct priority specified.
  */
 - (void)assertConstraints:(__NSArray_of(NSLayoutConstraint *) *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
 {
     __block __NSArray_of(NSLayoutConstraint *) *constraints;
-    [ALView autoSetPriority:priority forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:priority forConstraints:^{
         constraints = block();
     }];
     XCTAssert([constraints count] > 0, @"The array of constraints should not be empty.");
@@ -258,10 +258,10 @@
 {
     NSLayoutConstraint *constraint0 = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
     XCTAssertEqual(constraint0.priority, ALLayoutPriorityRequired);
-    [ALView autoSetPriority:ALLayoutPriorityDefaultLow forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityDefaultLow forConstraints:^{
         NSLayoutConstraint *constraint1 = [self.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
         XCTAssertEqual(constraint1.priority, ALLayoutPriorityDefaultLow);
-        [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
+        [NSLayoutConstraint autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
             NSLayoutConstraint *constraint2 = [self.viewB autoAlignAxisToSuperviewAxis:ALAxisVertical];
             XCTAssertEqual(constraint2.priority, ALLayoutPriorityDefaultHigh);
         }];
@@ -278,7 +278,7 @@
 - (void)testInstallingConstraintsOutsidePriorityBlock
 {
     __block NSLayoutConstraint *constraint;
-    [ALView autoCreateConstraintsWithoutInstalling:^{
+    [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
         constraint = [self.viewD autoAlignAxisToSuperviewAxis:ALAxisVertical];
     }];
     XCTAssertEqual(constraint.priority, ALLayoutPriorityRequired);
@@ -292,7 +292,7 @@
     // Remove the constraint, then re-add it but this time inside of a constraints block
     [constraint autoRemove];
     XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultLow);
-    [ALView autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityDefaultHigh forConstraints:^{
         [constraint autoInstall];
         XCTAssertEqual(constraint.priority, ALLayoutPriorityDefaultHigh);
     }];

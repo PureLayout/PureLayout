@@ -60,7 +60,7 @@
 
 /**
  A helper method that takes a block containing a call to the PureLayout API which adds one constraint,
- and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, this one constraint is
+ and verifies that when the +[NSLayoutConstraint autoSetPriority:forConstraints:] method is used, this one constraint is
  added with the correct priority specified.
  */
 - (void)assertConstraint:(NSLayoutConstraint *(^)())block isAddedWithPriority:(ALLayoutPriority)priority
@@ -70,13 +70,13 @@
 
 /**
  A helper method that takes a block containing one or more calls to the PureLayout API which add multiple
- constraints, and verifies that when the +[UIView autoSetPriority:forConstraints:] method is used, these 
- constraints are added with the correct priority specified.
+ constraints, and verifies that when the +[NSLayoutConstraint autoSetPriority:forConstraints:] method is used,
+ these constraints are added with the correct priority specified.
  */
 - (void)assertConstraints:(__NSArray_of(NSLayoutConstraint *) *(^)())block areAddedWithPriority:(ALLayoutPriority)priority
 {
     __block __NSArray_of(NSLayoutConstraint *) *constraints;
-    [ALView autoSetPriority:priority forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:priority forConstraints:^{
         constraints = block();
     }];
     XCTAssert([constraints count] > 0, @"The array of constraints should not be empty.");
@@ -93,25 +93,25 @@
     ALLabel *labelA = [ALLabel newAutoLayoutView]; // use ALLabel since it will have all 4 implicit constraints generated
     labelA.text = @"Some text.";
     
-    [ALView autoSetPriority:ALLayoutPriorityRequired forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityRequired forConstraints:^{
         [labelA autoSetContentCompressionResistancePriorityForAxis:ALAxisHorizontal];
     }];
-    XCTAssert([labelA contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisHorizontal] == ALLayoutPriorityRequired, @"The constraint priority should be equal to the one specified for the constraints block.");
+    XCTAssert([labelA contentCompressionResistancePriorityForAxis:ALLayoutConstraintAxisHorizontal] == ALLayoutPriorityRequired, @"The constraint priority should be equal to the one specified for the constraints block.");
     
-    [ALView autoSetPriority:ALLayoutPriorityFittingSizeLevel + 1 forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityFittingSizeLevel + 1 forConstraints:^{
         [labelA autoSetContentCompressionResistancePriorityForAxis:ALAxisVertical];
     }];
-    XCTAssert([labelA contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisVertical] == ALLayoutPriorityFittingSizeLevel + 1, @"The constraint priority should be equal to the one specified for the constraints block.");
+    XCTAssert([labelA contentCompressionResistancePriorityForAxis:ALLayoutConstraintAxisVertical] == ALLayoutPriorityFittingSizeLevel + 1, @"The constraint priority should be equal to the one specified for the constraints block.");
     
-    [ALView autoSetPriority:ALLayoutPriorityRequired forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityRequired forConstraints:^{
         [labelA autoSetContentHuggingPriorityForAxis:ALAxisHorizontal];
     }];
     XCTAssert([labelA contentHuggingPriorityForAxis:ALLayoutConstraintAxisHorizontal] == ALLayoutPriorityRequired, @"The constraint priority should be equal to the one specified for the constraints block.");
     
-    [ALView autoSetPriority:ALLayoutPriorityDefaultHigh - 1 forConstraints:^{
+    [NSLayoutConstraint autoSetPriority:ALLayoutPriorityDefaultHigh - 1 forConstraints:^{
         [labelA autoSetContentHuggingPriorityForAxis:ALAxisVertical];
     }];
-    XCTAssert([labelA contentHuggingPriorityForAxis:UILayoutConstraintAxisVertical] == ALLayoutPriorityDefaultHigh - 1, @"The constraint priority should be equal to the one specified for the constraints block.");
+    XCTAssert([labelA contentHuggingPriorityForAxis:ALLayoutConstraintAxisVertical] == ALLayoutPriorityDefaultHigh - 1, @"The constraint priority should be equal to the one specified for the constraints block.");
 }
 
 /**

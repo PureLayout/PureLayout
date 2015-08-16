@@ -62,7 +62,7 @@ class iOSDemo8ViewController: UIViewController {
             it will raise an exception, and you will see these identifiers show up next to the constraint in the console.
             */
             
-            UIView.autoSetIdentifier("Pin Container View Edges") {
+            NSLayoutConstraint.autoSetIdentifier("Pin Container View Edges") {
                 self.containerView.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
                 self.containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0.0, left: 10.0, bottom: 10.0, right: 10.0), excludingEdge: .Top)
             }
@@ -88,7 +88,7 @@ class iOSDemo8ViewController: UIViewController {
             But because we have provided human-readable identifiers, notice how easy it is to figure out which constraints are
             conflicting, and which constraint shouldn't be there!
             */
-            UIView.autoSetIdentifier("Bad Constraints That Break Things") {
+            NSLayoutConstraint.autoSetIdentifier("Bad Constraints That Break Things") {
 //                self.redView.autoAlignAxis(.Vertical, toSameAxisOfView: self.view, withOffset: 5.0) // uncomment me and watch things blow up!
                 
 //                self.redView.autoPinEdgeToSuperviewEdge(.Left) // uncomment me and watch things blow up!
