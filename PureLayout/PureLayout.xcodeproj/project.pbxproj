@@ -201,7 +201,6 @@
 		A7D4964F1B7AF1D100A74818 /* iOSDemo9ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSDemo9ViewController.swift; path = "Example-iOS/Demos/iOSDemo9ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A7D496511B7AF44D00A74818 /* iOSDemo10ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSDemo10ViewController.swift; path = "Example-iOS/Demos/iOSDemo10ViewController.swift"; sourceTree = SOURCE_ROOT; };
 		A7D4967E1B7B084800A74818 /* Example-iOS-Xcode7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS-Xcode7.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7D4967F1B7B084800A74818 /* Example-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Example-iOS copy-Info.plist"; path = "/Users/smileyborg/Developer/GitHub Personal/PureLayout/PureLayout/Example-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		A7DB5C821B7AD612000ED37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7DB5C841B7AD612000ED37F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7DB5C861B7AD92B000ED37F /* iOSDemo1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSDemo1ViewController.swift; path = "Example-iOS/Demos/iOSDemo1ViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -480,7 +479,6 @@
 				A7DB5C801B7AD612000ED37F /* Supporting Files */,
 				B12C23DD17C3FDE4001CF667 /* Frameworks */,
 				B12C23DC17C3FDE4001CF667 /* Products */,
-				A7D4967F1B7B084800A74818 /* Example-iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
