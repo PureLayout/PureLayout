@@ -43,12 +43,6 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
  */
 @interface ALView (PureLayoutInternal)
 
-+ (BOOL)al_preventAutomaticConstraintInstallation;
-+ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
-+ (BOOL)al_isExecutingPriorityConstraintsBlock;
-+ (ALLayoutPriority)al_currentGlobalConstraintPriority;
-+ (NSString *)al_currentGlobalConstraintIdentifier;
-+ (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 - (void)al_addConstraint:(NSLayoutConstraint *)constraint;
 - (ALView *)al_commonSuperviewWithView:(ALView *)otherView;
 - (NSLayoutConstraint *)al_alignAttribute:(ALAttribute)attribute toView:(ALView *)otherView forAxis:(ALAxis)axis;
@@ -73,6 +67,14 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
  */
 @interface NSLayoutConstraint (PureLayoutInternal)
 
++ (BOOL)al_preventAutomaticConstraintInstallation;
++ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
++ (BOOL)al_isExecutingPriorityConstraintsBlock;
++ (ALLayoutPriority)al_currentGlobalConstraintPriority;
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
++ (NSString *)al_currentGlobalConstraintIdentifier;
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
++ (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 + (NSLayoutAttribute)al_layoutAttributeForAttribute:(ALAttribute)attribute;
 + (ALLayoutConstraintAxis)al_constraintAxisForAxis:(ALAxis)axis;
 #if __PureLayout_MinBaseSDK_iOS_8_0

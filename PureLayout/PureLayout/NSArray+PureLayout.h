@@ -31,7 +31,7 @@
 
 __PL_ASSUME_NONNULL_BEGIN
 
-#pragma mark - NSArray+PureLayout
+#pragma mark NSArray+PureLayout
 
 /**
  A category on NSArray that provides a simple yet powerful interface to:
@@ -49,12 +49,12 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Deactivates the constraints in this array. */
 - (void)autoRemoveConstraints;
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
 
 /** Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and OS X 10.9 and later. */
 - (instancetype)autoIdentifyConstraints:(NSString *)identifier;
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
 
 
 #pragma mark Array of Views

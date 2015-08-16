@@ -48,11 +48,11 @@
     if ([NSLayoutConstraint respondsToSelector:@selector(activateConstraints:)]) {
         for (id object in self) {
             if ([object isKindOfClass:[NSLayoutConstraint class]]) {
-                [ALView al_applyGlobalStateToConstraint:object];
+                [NSLayoutConstraint al_applyGlobalStateToConstraint:object];
             }
         }
-        if ([ALView al_preventAutomaticConstraintInstallation]) {
-            [[ALView al_currentArrayOfCreatedConstraints] addObjectsFromArray:self];
+        if ([NSLayoutConstraint al_preventAutomaticConstraintInstallation]) {
+            [[NSLayoutConstraint al_currentArrayOfCreatedConstraints] addObjectsFromArray:self];
         } else {
             [NSLayoutConstraint activateConstraints:self];
         }
@@ -86,7 +86,7 @@
     }
 }
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
 
 /**
  Sets the string as the identifier for the constraints in this array. Available in iOS 7.0 and OS X 10.9 and later.
@@ -106,7 +106,7 @@
     return self;
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
 
 
 #pragma mark Array of Views

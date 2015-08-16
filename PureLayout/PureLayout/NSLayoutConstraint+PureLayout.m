@@ -27,6 +27,7 @@
 
 #import "NSLayoutConstraint+PureLayout.h"
 #import "ALView+PureLayout.h"
+#import "NSArray+PureLayout.h"
 #import "PureLayout+Internal.h"
 
 
@@ -34,8 +35,250 @@
 
 @implementation NSLayoutConstraint (PureLayout)
 
+#pragma mark Batch Constraint Creation
 
-#pragma mark Installing & Removing Constraints
+/**
+ A global variable that stores a stack of arrays of constraints created without being immediately installed.
+ When executing a constraints block passed into the +[autoCreateConstraintsWithoutInstalling:] method, a new
+ mutable array is pushed onto this stack, and all constraints created with PureLayout in the block are added
+ to this array. When the block finishes executing, the array is popped off this stack. Automatic constraint
+ installation is prevented if this stack contains at least 1 array.
+ 
+ NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
+ */
+static __NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *_al_arraysOfCreatedConstraints = nil;
+
+/**
+ A global variable that is set to YES when installing a batch of constraints collected from a call to +[autoCreateAndInstallConstraints].
+ When this flag is YES, constraints are installed immediately without checking for or adding to the +[al_currentArrayOfCreatedConstraints].
+ This is necessary to properly handle nested calls to +[autoCreateAndInstallConstraints], where calls whose block contains other call(s)
+ should not return constraints from within the blocks of nested call(s).
+ */
+static BOOL _al_isInstallingCreatedConstraints = NO;
+
+/**
+ Accessor for the global state that stores arrays of constraints created without being installed.
+ */
++ (__NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *)al_arraysOfCreatedConstraints
+{
+    NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
+    if (!_al_arraysOfCreatedConstraints) {
+        _al_arraysOfCreatedConstraints = [NSMutableArray new];
+    }
+    return _al_arraysOfCreatedConstraints;
+}
+
+/**
+ Accessor for the current mutable array of constraints created without being immediately installed.
+ */
++ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints
+{
+    return [[self al_arraysOfCreatedConstraints] lastObject];
+}
+
+/**
+ Accessor for the global state that determines whether automatic constraint installation should be prevented.
+ */
++ (BOOL)al_preventAutomaticConstraintInstallation
+{
+    return (_al_isInstallingCreatedConstraints == NO) && ([[self al_arraysOfCreatedConstraints] count] > 0);
+}
+
+/**
+ Creates all of the constraints in the block, then installs (activates) them all at once.
+ All constraints created from calls to the PureLayout API in the block are returned in a single array.
+ This may be more efficient than installing (activating) each constraint one-by-one.
+ 
+ Note: calls to this method may be nested. The constraints returned from a call will NOT include constraints
+ created in nested calls; constraints are only returned from the inner-most call they are created within.
+ 
+ @param block A block of method calls to the PureLayout API that create constraints.
+ @return An array of the constraints that were created from calls to the PureLayout API inside the block.
+ */
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
+{
+    NSArray *createdConstraints = [self autoCreateConstraintsWithoutInstalling:block];
+    _al_isInstallingCreatedConstraints = YES;
+    [createdConstraints autoInstallConstraints];
+    _al_isInstallingCreatedConstraints = NO;
+    return createdConstraints;
+}
+
+/**
+ Creates all of the constraints in the block but prevents them from being automatically installed (activated).
+ All constraints created from calls to the PureLayout API in the block are returned in a single array.
+ 
+ Note: calls to this method may be nested. The constraints returned from a call will NOT include constraints
+ created in nested calls; constraints are only returned from the inner-most call they are created within.
+ 
+ @param block A block of method calls to the PureLayout API that create constraints.
+ @return An array of the constraints that were created from calls to the PureLayout API inside the block.
+ */
++ (__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
+{
+    NSAssert(block, @"The constraints block cannot be nil.");
+    NSArray *createdConstraints = nil;
+    if (block) {
+        [[self al_arraysOfCreatedConstraints] addObject:[NSMutableArray new]];
+        block();
+        createdConstraints = [self al_currentArrayOfCreatedConstraints];
+        [[self al_arraysOfCreatedConstraints] removeLastObject];
+    }
+    return createdConstraints;
+}
+
+
+#pragma mark Set Priority For Constraints
+
+/**
+ A global variable that stores a stack of layout priorities to set on constraints.
+ When executing a constraints block passed into the +[autoSetPriority:forConstraints:] method, the priority for
+ that call is pushed onto this stack, and when the block finishes executing, that priority is popped off this
+ stack. If this stack contains at least 1 priority, the priority at the top of the stack will be set for all
+ constraints created by this library (even if automatic constraint installation is being prevented).
+ NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
+ */
+static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
+
+/**
+ Accessor for the global stack of layout priorities.
+ */
++ (__NSMutableArray_of(NSNumber *) *)al_globalConstraintPriorities
+{
+    NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
+    if (!_al_globalConstraintPriorities) {
+        _al_globalConstraintPriorities = [NSMutableArray new];
+    }
+    return _al_globalConstraintPriorities;
+}
+
+/**
+ Returns the current layout priority to use for constraints.
+ When executing a constraints block passed into +[autoSetPriority:forConstraints:], this will return
+ the priority for the current block. Otherwise, the default Required priority is returned.
+ */
++ (ALLayoutPriority)al_currentGlobalConstraintPriority
+{
+    __NSMutableArray_of(NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
+    if ([globalConstraintPriorities count] == 0) {
+        return ALLayoutPriorityRequired;
+    }
+    return [[globalConstraintPriorities lastObject] floatValue];
+}
+
+/**
+ Accessor for the global state that determines if we're currently in the scope of a priority constraints block.
+ */
++ (BOOL)al_isExecutingPriorityConstraintsBlock
+{
+    return [[self al_globalConstraintPriorities] count] > 0;
+}
+
+/**
+ Sets the constraint priority to the given value for all constraints created using the PureLayout
+ API within the given constraints block.
+ 
+ NOTE: This method will have no effect (and will NOT set the priority) on constraints created or added
+ without using the PureLayout API!
+ 
+ @param priority The layout priority to be set on all constraints created in the constraints block.
+ @param block A block of method calls to the PureLayout API that create and install constraints.
+ */
++ (void)autoSetPriority:(ALLayoutPriority)priority forConstraints:(ALConstraintsBlock)block
+{
+    NSAssert(block, @"The constraints block cannot be nil.");
+    if (block) {
+        [[self al_globalConstraintPriorities] addObject:@(priority)];
+        block();
+        [[self al_globalConstraintPriorities] removeLastObject];
+    }
+}
+
+
+#pragma mark Identify Constraints
+
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+
+/**
+ A global variable that stores a stack of identifier strings to set on constraints.
+ When executing a constraints block passed into the +[autoSetIdentifier:forConstraints:] method, the identifier for
+ that call is pushed onto this stack, and when the block finishes executing, that identifier is popped off this
+ stack. If this stack contains at least 1 identifier, the identifier at the top of the stack will be set for all
+ constraints created by this library (even if automatic constraint installation is being prevented).
+ NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
+ */
+static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
+
+/**
+ Accessor for the global state of constraint identifiers.
+ */
++ (__NSMutableArray_of(NSString *) *)al_globalConstraintIdentifiers
+{
+    NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
+    if (!_al_globalConstraintIdentifiers) {
+        _al_globalConstraintIdentifiers = [NSMutableArray new];
+    }
+    return _al_globalConstraintIdentifiers;
+}
+
+/**
+ Returns the current identifier string to use for constraints.
+ When executing a constraints block passed into +[autoSetIdentifier:forConstraints:], this will return
+ the identifier for the current block. Otherwise, nil is returned.
+ */
++ (NSString *)al_currentGlobalConstraintIdentifier
+{
+    __NSMutableArray_of(NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
+    if ([globalConstraintIdentifiers count] == 0) {
+        return nil;
+    }
+    return [globalConstraintIdentifiers lastObject];
+}
+
+/**
+ Sets the identifier for all constraints created using the PureLayout API within the given constraints block.
+ 
+ NOTE: This method will have no effect (and will NOT set the identifier) on constraints created or added
+ without using the PureLayout API!
+ 
+ @param identifier A string used to identify all constraints created in the constraints block.
+ @param block A block of method calls to the PureLayout API that create and install constraints.
+ */
++ (void)autoSetIdentifier:(NSString *)identifier forConstraints:(ALConstraintsBlock)block
+{
+    NSAssert(block, @"The constraints block cannot be nil.");
+    NSAssert(identifier, @"The identifier string cannot be nil.");
+    if (block) {
+        if (identifier) {
+            [[self al_globalConstraintIdentifiers] addObject:identifier];
+        }
+        block();
+        if (identifier) {
+            [[self al_globalConstraintIdentifiers] removeLastObject];
+        }
+    }
+}
+
+/**
+ Sets the string as the identifier for this constraint. Available in iOS 7.0 and OS X 10.9 and later.
+ The identifier will be printed along with the constraint's description.
+ This is helpful to document a constraint's purpose and aid in debugging.
+ 
+ @param identifier A string used to identify this constraint.
+ @return This constraint.
+ */
+- (instancetype)autoIdentify:(NSString *)identifier
+{
+    if ([self respondsToSelector:@selector(setIdentifier:)]) {
+        self.identifier = identifier;
+    }
+    return self;
+}
+
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+
+
+#pragma mark Install & Remove Constraints
 
 /**
  Activates the constraint.
@@ -44,9 +287,9 @@
 {
 #if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
-        [ALView al_applyGlobalStateToConstraint:self];
-        if ([ALView al_preventAutomaticConstraintInstallation]) {
-            [[ALView al_currentArrayOfCreatedConstraints] addObject:self];
+        [NSLayoutConstraint al_applyGlobalStateToConstraint:self];
+        if ([NSLayoutConstraint al_preventAutomaticConstraintInstallation]) {
+            [[NSLayoutConstraint al_currentArrayOfCreatedConstraints] addObject:self];
         } else {
             self.active = YES;
         }
@@ -100,30 +343,26 @@
 }
 
 
-#pragma mark Identify Constraints
-
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#pragma mark Internal Methods
 
 /**
- Sets the string as the identifier for this constraint. Available in iOS 7.0 and OS X 10.9 and later.
- The identifier will be printed along with the constraint's description.
- This is helpful to document a constraint's purpose and aid in debugging.
+ Applies the global constraint priority and identifier to the given constraint.
+ This should be done before installing all constraints.
  
- @param identifier A string used to identify this constraint.
- @return This constraint.
+ @param constraint The constraint to set the global priority and identifier on.
  */
-- (instancetype)autoIdentify:(NSString *)identifier
++ (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint
 {
-    if ([self respondsToSelector:@selector(setIdentifier:)]) {
-        self.identifier = identifier;
+    if ([NSLayoutConstraint al_isExecutingPriorityConstraintsBlock]) {
+        constraint.priority = [NSLayoutConstraint al_currentGlobalConstraintPriority];
     }
-    return self;
-}
-
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+    NSString *globalConstraintIdentifier = [NSLayoutConstraint al_currentGlobalConstraintIdentifier];
+    if (globalConstraintIdentifier) {
+        [constraint autoIdentify:globalConstraintIdentifier];
+    }
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
-
-
-#pragma mark Internal Methods
+}
 
 /**
  Returns the corresponding NSLayoutAttribute for the given ALAttribute.
