@@ -34,7 +34,7 @@ The current release of PureLayout supports all versions of iOS and OS X since th
 
   ```ruby
   pod 'PureLayout'
-  ```ruby
+  ```
 
 1. Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
 1. Import the `PureLayout.h` umbrella header.
