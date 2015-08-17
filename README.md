@@ -9,6 +9,8 @@ Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully ca
  1. [Setup](#setup)
  1. [API Cheat Sheet](#api-cheat-sheet)
  1. [Usage](#usage)
+   * [Sample Code](#sample-code-swift)
+   * [Example Apps](#example-apps)
  1. [PureLayout vs. the rest](#purelayout-vs-the-rest)
  1. [Problems, Suggestions, Pull Requests?](#problems-suggestions-pull-requests)
 
@@ -160,7 +162,7 @@ textContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 20.0, l
 PureLayout always returns the constraints it creates so you have full control:
 
 ```swift
-let constraint = floatingStatusView.autoPinToTopLayoutGuideOfViewController(self, withInset: 20.0)
+let constraint = skinnyView.autoMatchDimension(.Height, toDimension: .Width, ofView: tallView)
 ```
 
 PureLayout supports all Auto Layout features including inequalities, priorities, layout margins, identifiers, and much more. It's a comprehensive, developer-friendly way to use Auto Layout.
