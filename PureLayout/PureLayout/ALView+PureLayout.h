@@ -164,11 +164,11 @@ __PL_ASSUME_NONNULL_BEGIN
 #pragma mark Set Content Compression Resistance & Hugging
 
 /** Sets the priority of content compression resistance for an axis.
-    NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:] */
+    NOTE: This method must be called from within the block passed into the method +[NSLayoutConstraint autoSetPriority:forConstraints:] */
 - (void)autoSetContentCompressionResistancePriorityForAxis:(ALAxis)axis;
 
 /** Sets the priority of content hugging for an axis.
-    NOTE: This method must be called from within the block passed into the method +[UIView autoSetPriority:forConstraints:] */
+    NOTE: This method must be called from within the block passed into the method +[NSLayoutConstraint autoSetPriority:forConstraints:] */
 - (void)autoSetContentHuggingPriorityForAxis:(ALAxis)axis;
 
 
