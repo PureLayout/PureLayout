@@ -132,8 +132,43 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoRemove
 
 ## Usage
-### Examples
-Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios.
+### Sample Code (Swift)
+PureLayout dramatically simplifies writing Auto Layout code. Let's take a quick look at some examples, using PureLayout from Swift.
+
+Here's a constraint between two views created (and automatically activated) using PureLayout:
+
+```swift
+view1.autoPinEdge(.Top, toEdge: .Bottom, ofView: view2)
+```
+
+Without PureLayout, here's the equivalent code you'd have to write using Apple's Foundation API directly:
+
+```swift
+NSLayoutConstraint(item: view1, attribute: .Top, relatedBy: .Equal, toItem: view2, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+```
+
+Many APIs of PureLayout create multiple constraints for you under the hood, letting you write highly readable layout code:
+
+```swift
+// 2 constraints created & activated in one line!
+logoImageView.autoCenterInSuperview()
+
+// 4 constraints created & activated in one line!
+textContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 20.0, left: 5.0, bottom: 10.0, right: 5.0))
+```
+
+PureLayout always returns the constraints it creates so you have full control:
+
+```swift
+let constraint = floatingStatusView.autoPinToTopLayoutGuideOfViewController(self, withInset: 20.0)
+```
+
+PureLayout supports all Auto Layout features including inequalities, priorities, layout margins, identifiers, and much more. It's a comprehensive, developer-friendly way to use Auto Layout.
+
+Check out the example apps below for many more demos of PureLayout in use.
+
+### Example Apps
+Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios. The demos in the iOS example app make a great introductory tutorial to PureLayout -- run each demo, review the code used to implement it, then practice by making some changes of your own to the demo code.
 
 Each demo in the iOS example app has a Swift and Objective-C version. **To compile & run the Swift demos, you must use Xcode 7.0 or higher (Swift 2.0) and choose the `Example-iOS-Xcode7` scheme.** When you run the example app, you can easily switch between using the Swift and Objective-C versions of the demos. To see the constraints in action while running the iOS demos, try using different device simulators, rotating the device to different orientations, as well as toggling the taller in-call status bar in the iOS Simulator.
 
