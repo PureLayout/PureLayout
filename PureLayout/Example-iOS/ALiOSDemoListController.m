@@ -21,6 +21,8 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
 
 @implementation ALiOSDemoListController
 
+@synthesize useSwiftDemos = _useSwiftDemos;
+
 // Recalls and returns the last value of the `useSwiftDemos` flag.
 + (BOOL)recallPreviousUseSwiftDemosValue
 {
@@ -36,6 +38,15 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
     
     // Use the Swift demos by default, if there is no persisted value.
     return YES;
+}
+
+- (BOOL)useSwiftDemos
+{
+#if !USING_XCODE7_SCHEME
+    return NO;
+#endif
+    
+    return _useSwiftDemos;
 }
 
 - (void)viewDidLoad
@@ -148,9 +159,9 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
 {
     NSString *viewControllerClassName;
     if (self.useSwiftDemos) {
-        viewControllerClassName = [NSString stringWithFormat:@"ALiOSDemo%@ViewController", @(index + 1)];
+        viewControllerClassName = [NSString stringWithFormat:@"iOSDemo%@ViewController", @(index + 1)];
     } else {
-        viewControllerClassName = [NSString stringWithFormat:@"Example_iOS.iOSDemo%@ViewController", @(index + 1)];
+        viewControllerClassName = [NSString stringWithFormat:@"ALiOSDemo%@ViewController", @(index + 1)];
     }
     Class viewControllerKlass = NSClassFromString(viewControllerClassName);
     NSAssert(viewControllerKlass, @"Class should not be nil!");

@@ -9,6 +9,7 @@
 import UIKit
 import PureLayout
 
+@objc(iOSDemo5ViewController)
 class iOSDemo5ViewController: UIViewController {
     
     let blueView: UIView = {

@@ -9,6 +9,7 @@
 import UIKit
 import PureLayout
 
+@objc(iOSDemo8ViewController)
 class iOSDemo8ViewController: UIViewController {
     
     let containerView: UIView = {

@@ -9,6 +9,7 @@
 import UIKit
 import PureLayout
 
+@objc(iOSDemo4ViewController)
 class iOSDemo4ViewController: UIViewController {
     
     let blueLabel: UILabel = {
