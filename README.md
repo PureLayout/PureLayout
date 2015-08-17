@@ -93,10 +93,6 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 
 ### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
 
-	+ autoCreateAndInstallConstraints:
-	+ autoCreateConstraintsWithoutInstalling:
-    + autoSetPriority:forConstraints:
-	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview(Margins): // Margins variant iOS 8.0+ only
     - autoAlignAxisToSuperview(Margin)Axis: // Margin variant iOS 8.0+ only
@@ -127,15 +123,19 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 
 ### [`NSLayoutConstraint`](PureLayout/PureLayout/NSLayoutConstraint%2BPureLayout.h)
 
+	+ autoCreateAndInstallConstraints:
+	+ autoCreateConstraintsWithoutInstalling:
+    + autoSetPriority:forConstraints:
+	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
+    - autoIdentify: // iOS 7.0+, OS X 10.9+ only
 	- autoInstall
     - autoRemove
-    - autoIdentify: // iOS 7.0+, OS X 10.9+ only
 
 ## Usage
 ### Examples
 Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios.
 
-Each demo in the iOS example app has a Swift and Objective-C version. **You must use Xcode 7.0 or higher (Swift 2.0) and choose the `Example-iOS-Xcode7` scheme to compile and run the Swift demos.** When you run the example app, you can easily switch between using the Swift and Objective-C versions of the demos. To see the constraints in action while running the iOS demos, try using different device simulators, rotating the device to different orientations, as well as toggling the taller in-call status bar in the iOS Simulator.
+Each demo in the iOS example app has a Swift and Objective-C version. **To compile & run the Swift demos, you must use Xcode 7.0 or higher (Swift 2.0) and choose the `Example-iOS-Xcode7` scheme.** When you run the example app, you can easily switch between using the Swift and Objective-C versions of the demos. To see the constraints in action while running the iOS demos, try using different device simulators, rotating the device to different orientations, as well as toggling the taller in-call status bar in the iOS Simulator.
 
 On OS X, while running the app, press any key to cycle through the demos. You can resize the window to see the constraints in action.
 
