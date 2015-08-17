@@ -32,7 +32,9 @@ The current release of PureLayout supports all versions of iOS and OS X since th
 ### Using [CocoaPods](http://cocoapods.org)
 1. Add the pod `PureLayout` to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html).
 
-    	pod 'PureLayout'
+  ```ruby
+  pod 'PureLayout'
+  ```ruby
 
 1. Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
 1. Import the `PureLayout.h` umbrella header.
@@ -48,7 +50,9 @@ That's it - now go write some beautiful Auto Layout code!
 ### Using [Carthage](https://github.com/Carthage/Carthage)
 1. Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
-        github "smileyborg/PureLayout"
+  ```ogdl
+  github "smileyborg/PureLayout"
+  ```
 
 1. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
 1. Import the PureLayout framework/module.
@@ -94,44 +98,47 @@ There are 5 specific attribute types, which are used throughout most of the API:
 Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
 
 ### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
-
-    - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
-    - autoCenterInSuperview(Margins): // Margins variant iOS 8.0+ only
-    - autoAlignAxisToSuperview(Margin)Axis: // Margin variant iOS 8.0+ only
-    - autoPinEdgeToSuperview(Edge:|Margin:)(withInset:) // Margin variant iOS 8.0+ only
-    - autoPinEdgesToSuperview(Edges|Margins)(WithInsets:)(excludingEdge:) // Margins variant iOS 8.0+ only
-    - autoPinEdge:toEdge:ofView:(withOffset:)
-    - autoAlignAxis:toSameAxisOfView:(withOffset:|withMultiplier:)
-    - autoMatchDimension:toDimension:ofView:(withOffset:|withMultiplier:)
-    - autoSetDimension(s)ToSize:
-    - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
-    - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
+```
+- autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
+- autoCenterInSuperview(Margins): // Margins variant iOS 8.0+ only
+- autoAlignAxisToSuperview(Margin)Axis: // Margin variant iOS 8.0+ only
+- autoPinEdgeToSuperview(Edge:|Margin:)(withInset:) // Margin variant iOS 8.0+ only
+- autoPinEdgesToSuperview(Edges|Margins)(WithInsets:)(excludingEdge:) // Margins variant iOS 8.0+ only
+- autoPinEdge:toEdge:ofView:(withOffset:)
+- autoAlignAxis:toSameAxisOfView:(withOffset:|withMultiplier:)
+- autoMatchDimension:toDimension:ofView:(withOffset:|withMultiplier:)
+- autoSetDimension(s)ToSize:
+- autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
+- autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
+```
 
 ### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)
+```
+// Arrays of Constraints
+- autoInstallConstraints
+- autoRemoveConstraints
+- autoIdentifyConstraints: // iOS 7.0+, OS X 10.9+ only
 
-	// Arrays of Constraints
-	- autoInstallConstraints
-    - autoRemoveConstraints
-    - autoIdentifyConstraints: // iOS 7.0+, OS X 10.9+ only
-	
-	// Arrays of Views
-    - autoAlignViewsToEdge:
-    - autoAlignViewsToAxis:
-    - autoMatchViewsDimension:
-    - autoSetViewsDimension:toSize:
-	- autoSetViewsDimensionsToSize:
-    - autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
-    - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
+// Arrays of Views
+- autoAlignViewsToEdge:
+- autoAlignViewsToAxis:
+- autoMatchViewsDimension:
+- autoSetViewsDimension:toSize:
+- autoSetViewsDimensionsToSize:
+- autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
+- autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
+```
 
 ### [`NSLayoutConstraint`](PureLayout/PureLayout/NSLayoutConstraint%2BPureLayout.h)
-
-	+ autoCreateAndInstallConstraints:
-	+ autoCreateConstraintsWithoutInstalling:
-    + autoSetPriority:forConstraints:
-	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
-    - autoIdentify: // iOS 7.0+, OS X 10.9+ only
-	- autoInstall
-    - autoRemove
+```
++ autoCreateAndInstallConstraints:
++ autoCreateConstraintsWithoutInstalling:
++ autoSetPriority:forConstraints:
++ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
+- autoIdentify: // iOS 7.0+, OS X 10.9+ only
+- autoInstall
+- autoRemove
+```
 
 ## Usage
 ### Sample Code (Swift)
