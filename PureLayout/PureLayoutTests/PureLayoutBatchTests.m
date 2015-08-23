@@ -74,7 +74,7 @@
 }
 
 /**
- Test the +[autoCreateAndInstallConstraints:] method on UIView/NSView.
+ Test the +[NSLayoutConstraint autoCreateAndInstallConstraints:] method.
  */
 - (void)testCreateAndInstallConstraints
 {
@@ -93,7 +93,7 @@
 }
 
 /**
- Test nested calls to the +[autoCreateAndInstallConstraints:] method on UIView/NSView.
+ Test nested calls to the +[NSLayoutConstraint autoCreateAndInstallConstraints:] method.
     - Constraints should be returned ONLY by the call that provided the immediate enclosing block.
         - Calls whose block contains other call(s) should not return constraints from within the blocks of nested call(s).
     - Constraints should be active when they are returned.
@@ -145,7 +145,7 @@
 }
 
 /**
- Test the +[autoCreateConstraintsWithoutInstalling:] method on UIView/NSView.
+ Test the +[NSLayoutConstraint autoCreateConstraintsWithoutInstalling:] method.
  */
 - (void)testCreateConstraintsWithoutInstalling
 {
@@ -164,7 +164,7 @@
 }
 
 /**
- Test nested calls to the +[autoCreateConstraintsWithoutInstalling:] method on UIView/NSView.
+ Test nested calls to the +[NSLayoutConstraint autoCreateConstraintsWithoutInstalling:] method.
     - Constraints should be returned ONLY by the call that provided the immediate enclosing block.
         - Calls whose block contains other call(s) should not return constraints from within the blocks of nested call(s).
     - Constraints should never be active.
@@ -213,6 +213,55 @@
     XCTAssert([self noConstraintsAreActivated:returnedConstraints1_1_1]);
     XCTAssertEqual(returnedConstraints1_2.count, 2);
     XCTAssert([self noConstraintsAreActivated:returnedConstraints1_2]);
+}
+
+/**
+ Test nested calls to both +[NSLayoutConstraint autoCreateAndInstallConstraints:] and +[NSLayoutConstraint autoCreateConstraintsWithoutInstalling:] methods.
+ */
+- (void)testBothBatchCreateMethodsNested
+{
+    __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_1 = nil;
+    __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_1_1 = nil;
+    __block __NSArray_of(NSLayoutConstraint *) *returnedConstraints1_2 = nil;
+    
+    __NSArray_of(NSLayoutConstraint *) *returnedConstraints1 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
+        [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeTop];
+        
+        returnedConstraints1_1 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
+            [self.viewB autoSetDimension:ALDimensionWidth toSize:100.0];
+            [self.viewC autoSetDimension:ALDimensionHeight toSize:100.0];
+            
+            returnedConstraints1_1_1 = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
+                [self.viewD autoConstrainAttribute:ALAttributeHeight toAttribute:ALAttributeWidth ofView:self.viewC withMultiplier:2.0];
+            }];
+            XCTAssertEqual(returnedConstraints1_1_1.count, 1);
+            XCTAssert([self noConstraintsAreActivated:returnedConstraints1_1_1]);
+            
+            [self.viewB autoSetDimension:ALDimensionHeight toSize:100.0];
+            [self.viewC autoSetDimension:ALDimensionWidth toSize:100.0];
+        }];
+        XCTAssertEqual(returnedConstraints1_1.count, 4);
+        XCTAssert([self allConstraintsAreActivated:returnedConstraints1_1]);
+        
+        [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+        
+        returnedConstraints1_2 = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
+            [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+            [self.viewA autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        }];
+        XCTAssertEqual(returnedConstraints1_2.count, 2);
+        XCTAssert([self allConstraintsAreActivated:returnedConstraints1_2]);
+        
+        [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+    }];
+    XCTAssertEqual(returnedConstraints1.count, 3);
+    XCTAssert([self noConstraintsAreActivated:returnedConstraints1]);
+    XCTAssertEqual(returnedConstraints1_1.count, 4);
+    XCTAssert([self allConstraintsAreActivated:returnedConstraints1_1]);
+    XCTAssertEqual(returnedConstraints1_1_1.count, 1);
+    XCTAssert([self noConstraintsAreActivated:returnedConstraints1_1_1]);
+    XCTAssertEqual(returnedConstraints1_2.count, 2);
+    XCTAssert([self allConstraintsAreActivated:returnedConstraints1_2]);
 }
 
 @end
