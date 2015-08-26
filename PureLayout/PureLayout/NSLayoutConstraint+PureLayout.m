@@ -406,11 +406,17 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
         case ALAxisBaseline: // same value as ALAxisLastBaseline
             layoutAttribute = NSLayoutAttributeBaseline;
             break;
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAxisFirstBaseline:
+#if TARGET_IPHONE
             NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAxisFirstBaseline is only supported on iOS 8.0 or higher.");
+#else
+            NSAssert(__PureLayout_MinSysVer_OSX_10_11, @"ALAxisFirstBaseline is only supported on OSX 10.11 or higher.");
+#endif
             layoutAttribute = NSLayoutAttributeFirstBaseline;
             break;
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
+#if __PureLayout_MinBaseSDK_iOS_8_0
         case ALMarginLeft:
             NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeftMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeLeftMargin;
@@ -465,9 +471,9 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
             break;
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
             constraintAxis = ALLayoutConstraintAxisHorizontal;
             break;
         default:
