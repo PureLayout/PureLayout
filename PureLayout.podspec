@@ -1,13 +1,12 @@
 Pod::Spec.new do |s|
   s.name                  = 'PureLayout'
   s.version               = '3.0.0'
-  s.homepage              = 'https://github.com/smileyborg/PureLayout'
+  s.homepage              = 'https://github.com/PureLayout/PureLayout'
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
-  s.author                = { 'Tyler Fox' => 'tfox@smileyborg.com' }
-  s.social_media_url      = 'https://twitter.com/smileyborg'
+  s.author                = 'Tyler Fox'
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.7'
-  s.source                = { :git => 'https://github.com/smileyborg/PureLayout.git', :tag => 'v3.0.0' }
+  s.source                = { :git => 'https://github.com/PureLayout/PureLayout.git', :tag => 'v3.0.0' }
   s.source_files          = 'PureLayout/PureLayout'
   s.requires_arc          = true
   s.summary               = 'The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. Objective-C and Swift compatible.'

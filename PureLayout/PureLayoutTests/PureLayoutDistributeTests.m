@@ -4,7 +4,7 @@
 //
 //  Copyright (c) 2014 Vytis Šibonis
 //  Copyright (c) 2015 Tyler Fox
-//  https://github.com/smileyborg/PureLayout
+//  https://github.com/PureLayout/PureLayout
 //
 
 #import "PureLayoutTestBase.h"

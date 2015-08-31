@@ -1,6 +1,6 @@
 //
 //  NSLayoutConstraint+PureLayout.m
-//  https://github.com/smileyborg/PureLayout
+//  https://github.com/PureLayout/PureLayout
 //
 //  Copyright (c) 2013-2015 Tyler Fox
 //

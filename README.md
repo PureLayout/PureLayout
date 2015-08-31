@@ -1,5 +1,5 @@
-# [![PureLayout](https://github.com/smileyborg/PureLayout/blob/master/Images/PureLayout.png?raw=true)](#)
-[![Build Status](http://img.shields.io/travis/smileyborg/PureLayout.svg?style=flat)](https://travis-ci.org/smileyborg/PureLayout) [![Test Coverage](http://img.shields.io/coveralls/smileyborg/PureLayout.svg?style=flat)](https://coveralls.io/r/smileyborg/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
+# [![PureLayout](https://github.com/PureLayout/PureLayout/blob/master/Images/PureLayout.png?raw=true)](#)
+[![Build Status](http://img.shields.io/travis/PureLayout/PureLayout.svg?style=flat)](https://travis-ci.org/PureLayout/PureLayout) [![Test Coverage](http://img.shields.io/coveralls/PureLayout/PureLayout.svg?style=flat)](https://coveralls.io/r/PureLayout/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
 
 The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. PureLayout extends `UIView`/`NSView`, `NSArray`, and `NSLayoutConstraint` with a comprehensive Auto Layout API that is modeled after Apple's own frameworks. PureLayout is a cross-platform Objective-C library that works (and looks!) great in Swift. It is fully backwards-compatible with all versions of iOS and OS X that support Auto Layout.
 
@@ -48,10 +48,10 @@ The current release of PureLayout supports all versions of iOS and OS X since th
 That's it - now go write some beautiful Auto Layout code!
 
 ### Using [Carthage](https://github.com/Carthage/Carthage)
-1. Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+1. Add the `PureLayout/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
   ```ogdl
-  github "smileyborg/PureLayout"
+  github "PureLayout/PureLayout"
   ```
 
 1. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
@@ -71,10 +71,10 @@ That's it - now go write some beautiful Auto Layout code!
 That's it - now go write some beautiful Auto Layout code!
 
 ### App Extensions
-To use PureLayout in an App Extension, you need to do a bit of extra configuration to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
+To use PureLayout in an App Extension, you need to do a bit of extra configuration to prevent usage of unavailable APIs. [Click here](https://github.com/PureLayout/PureLayout/wiki/App-Extensions) for more info.
 
 ### Releases
-Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
+Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/PureLayout/PureLayout/releases) for each version.
 
 ## API Cheat Sheet
 This is just a handy overview of the core API methods. Explore the [header files](PureLayout/PureLayout) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
@@ -184,7 +184,7 @@ Each demo in the iOS example app has a Swift and Objective-C version. **To compi
 On OS X, while running the app, press any key to cycle through the demos. You can resize the window to see the constraints in action.
 
 ### Tips and Tricks
-Check out some [Tips and Tricks](https://github.com/smileyborg/PureLayout/wiki/Tips-and-Tricks) to keep in mind when using the API.
+Check out some [Tips and Tricks](https://github.com/PureLayout/PureLayout/wiki/Tips-and-Tricks) to keep in mind when using the API.
 
 ## PureLayout vs. the rest
 There are quite a few different ways to implement Auto Layout. Here is a quick overview of the available options:
@@ -211,9 +211,9 @@ There are quite a few different ways to implement Auto Layout. Here is a quick o
 PureLayout takes a balanced approach to Auto Layout that makes it well suited for any project.
 
 ## Problems, Suggestions, Pull Requests?
-Please open a [new Issue here](https://github.com/smileyborg/PureLayout/issues/new) if you run into a problem specific to PureLayout, have a feature request, or want to share a comment. Note that general Auto Layout questions should be asked on [Stack Overflow](http://stackoverflow.com).
+Please open a [new Issue here](https://github.com/PureLayout/PureLayout/issues/new) if you run into a problem specific to PureLayout, have a feature request, or want to share a comment. Note that general Auto Layout questions should be asked on [Stack Overflow](http://stackoverflow.com).
 
 Pull requests are encouraged and greatly appreciated! Please try to maintain consistency with the existing code style. If you're considering taking on significant changes or additions to the project, please communicate in advance by opening a new Issue. This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
 
 ## Meta
-Designed & maintained by Tyler Fox ([@smileyborg](https://twitter.com/smileyborg)). Distributed with the MIT license.
+Originally designed & built by Tyler Fox ([@smileyborg](https://github.com/smileyborg)). Currently maintained by Mickey Reiss (@[mickeyreiss](https://github.com/mickeyreiss)). Distributed with the MIT license.

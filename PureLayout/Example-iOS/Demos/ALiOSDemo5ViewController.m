@@ -3,7 +3,7 @@
 //  PureLayout Example-iOS
 //
 //  Copyright (c) 2014-2015 Tyler Fox
-//  https://github.com/smileyborg/PureLayout
+//  https://github.com/PureLayout/PureLayout
 //
 
 #import "ALiOSDemo5ViewController.h"
