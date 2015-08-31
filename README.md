@@ -216,4 +216,4 @@ Please open a [new Issue here](https://github.com/PureLayout/PureLayout/issues/n
 Pull requests are encouraged and greatly appreciated! Please try to maintain consistency with the existing code style. If you're considering taking on significant changes or additions to the project, please communicate in advance by opening a new Issue. This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
 
 ## Meta
-Originally designed & built by Tyler Fox ([@smileyborg](https://github.com/smileyborg)). Currently maintained by Mickey Reiss (@[mickeyreiss](https://github.com/mickeyreiss)). Distributed with the MIT license.
+Originally designed & built by Tyler Fox ([@smileyborg](https://github.com/smileyborg)). Currently maintained by Mickey Reiss ([@mickeyreiss](https://github.com/mickeyreiss)). Distributed with the MIT license.
