@@ -33,7 +33,12 @@
 // Define some preprocessor macros to check for a minimum Base SDK. These are used to prevent compile-time errors in older versions of Xcode.
 #define __PureLayout_MinBaseSDK_iOS_8_0                   (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1)
 #define __PureLayout_MinBaseSDK_OSX_10_10                 (!TARGET_OS_IPHONE && __MAC_OS_X_VERSION_MAX_ALLOWED > __MAC_10_9)
+
+#ifdef __MAC_10_11
 #define __PureLayout_MinBaseSDK_OSX_10_11                 (!TARGET_OS_IPHONE && __MAC_OS_X_VERSION_MAX_ALLOWED >= __MAC_10_11)
+#else
+#define __PureLayout_MinBaseSDK_OSX_10_11                 0
+#endif /* __MAC_10_11 */
 
 // Define some preprocessor macros to check for a minimum System Version. These are used to prevent runtime crashes on older versions of iOS/OS X.
 #define __PureLayout_MinSysVer_iOS_7_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)

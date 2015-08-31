@@ -408,11 +408,11 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
             break;
 #if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAxisFirstBaseline:
-#if TARGET_IPHONE
+#if TARGET_OS_IPHONE
             NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAxisFirstBaseline is only supported on iOS 8.0 or higher.");
 #else
             NSAssert(__PureLayout_MinSysVer_OSX_10_11, @"ALAxisFirstBaseline is only supported on OSX 10.11 or higher.");
-#endif
+#endif /* TARGET_OS_IPHONE */
             layoutAttribute = NSLayoutAttributeFirstBaseline;
             break;
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
