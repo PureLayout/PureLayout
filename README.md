@@ -100,7 +100,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 ### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
 ```
 - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
-- autoCenterInSuperview(Margins): // Margins variant iOS 8.0+ only
+- autoCenterInSuperview(Margins) // Margins variant iOS 8.0+ only
 - autoAlignAxisToSuperview(Margin)Axis: // Margin variant iOS 8.0+ only
 - autoPinEdgeToSuperview(Edge:|Margin:)(withInset:) // Margin variant iOS 8.0+ only
 - autoPinEdgesToSuperview(Edges|Margins)(WithInsets:)(excludingEdge:) // Margins variant iOS 8.0+ only
