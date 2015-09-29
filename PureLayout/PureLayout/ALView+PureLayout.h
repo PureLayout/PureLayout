@@ -50,6 +50,8 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Configures an existing view to not convert the autoresizing mask into constraints and returns the view. */
 - (instancetype)configureForAutoLayout;
 
+/* Adds the subview and also configures the view to not convert the autoresizing mask into constraints */
+- (void)addSubviewWithAutoLayout:(UIView *)subview;
 
 #pragma mark Center & Align in Superview
 
@@ -118,6 +120,20 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Pins an edge of the view to a given edge of another view with an offset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
+/** Pin a space between self and the other view [self]-space-[otherView], either on the horizontal or vertical axis. */
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis;
+
+/** Pin a space between self and the other view [self]-space-[otherView], either on the horizontal or vertical axis with the space as a maximum or minimum.  */
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation;
+
+/** Pin trailing to leading with a space H:[self]-space-[otherView] */
+- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space toView:(ALView *)otherView;
+
+/** Pin bottom to top with a space V:[self]-space-[otherView] */
+- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space toView:(ALView *)otherView;
+
+/** Pin all 4 edges to another view, so that they will have the same frame. */
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinAllEdgesToView:(ALView *)otherView;
 
 #pragma mark Align Axes
 
@@ -130,6 +146,7 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Aligns an axis of the view to the same axis of another view with a multiplier. */
 - (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
 
+- (__NSArray_of(NSLayoutConstraint *) *)autoAlignBothAxisToView:(ALView *)otherView;
 
 #pragma mark Match Dimensions
 

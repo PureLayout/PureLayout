@@ -71,6 +71,13 @@
 }
 
 
+- (void)addSubviewWithAutoLayout:(UIView *)subview
+{
+    subview.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:subview];
+}
+
+
 #pragma mark Center in Superview
 
 /**
@@ -360,6 +367,49 @@
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
 
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation
+{
+    NSLayoutAttribute leadingAttribute;
+    NSLayoutAttribute trailingAttribute;
+    if (axis == ALAxisVertical) {
+        leadingAttribute = NSLayoutAttributeTop;
+        trailingAttribute = NSLayoutAttributeBottom;
+    } else {
+        leadingAttribute = NSLayoutAttributeLeading;
+        trailingAttribute = NSLayoutAttributeTrailing;
+    }
+    // These need to be formulated differently, with the otherView first, for the constant to be positive
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:otherView attribute:leadingAttribute relatedBy:relation toItem:self attribute:trailingAttribute multiplier:1.0 constant:space];
+    [constraint autoInstall];
+    return constraint;
+}
+
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis
+{
+    return [self autoPinSpace:space toView:otherView onAxis:axis relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space toView:(ALView *)otherView
+{
+    return [self autoPinSpace:space toView:otherView onAxis:ALAxisHorizontal relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space toView:(ALView *)otherView
+{
+    return [self autoPinSpace:space toView:otherView onAxis:ALAxisVertical relation:NSLayoutRelationEqual];
+}
+
+- (__NSArray_of(NSLayoutConstraint *) *)autoPinAllEdgesToView:(ALView *)otherView
+{
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    [constraints addObject:[self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:otherView]];
+    [constraints addObject:[self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:otherView]];
+    [constraints addObject:[self autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:otherView]];
+    [constraints addObject:[self autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:otherView]];
+    return constraints;
+}
+
 
 #pragma mark Align Axes
 
@@ -401,6 +451,13 @@
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:otherView withMultiplier:multiplier];
 }
 
+- (__NSArray_of(NSLayoutConstraint *) *)autoAlignBothAxisToView:(ALView *)otherView
+{
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    [constraints addObject:[self autoAlignAxis:ALAxisHorizontal toSameAxisOfView:otherView]];
+    [constraints addObject:[self autoAlignAxis:ALAxisVertical toSameAxisOfView:otherView]];
+    return constraints;
+}
 
 #pragma mark Match Dimensions
 
