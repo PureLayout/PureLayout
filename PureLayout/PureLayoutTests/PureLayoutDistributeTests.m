@@ -67,6 +67,78 @@
     [constraints autoRemoveConstraints];
 }
 
+- (void)testAutoDistributeViewsHorizontallyWithProvidedSpacings
+{
+    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    __NSMutableArray_of(NSNumber *) * spacings = [NSMutableArray arrayWithCapacity:self.viewArray.count + 1];
+    float spacingSum = 0.0;
+    for(int i=0; i < self.viewArray.count + 1; i++){
+        float spacing = (i+3.0) * 2.0;
+        spacingSum += spacing;
+        [spacings addObject:[NSNumber numberWithFloat:spacing]];
+    }
+    constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withSpacings:spacings matchedSizes:YES];
+    [self evaluateConstraints];
+    
+    CGFloat containerWidth = self.containerView.frame.size.width;
+    float expectedWidth = (containerWidth - spacingSum) / ((float) self.viewArray.count);
+
+    CGFloat previousEdge = 0.0;
+    int i = 0;
+    for(ALView * view in self.viewArray){
+        CGFloat x = view.frame.origin.x;
+        CGFloat spacing = x - previousEdge;
+        previousEdge = x + view.frame.size.width;
+        float plannedSpacing = spacings[i].floatValue;
+        XCTAssert(ROUNDED_EQUALS(plannedSpacing, spacing));
+        //check if all views have almost the same width
+        ALAssertWidthEquals(view, expectedWidth);
+        i++;
+    }
+    XCTAssert(ROUNDED_EQUALS(previousEdge + spacings.lastObject.floatValue, containerWidth));
+    
+    [constraints autoRemoveConstraints];
+}
+
+- (void)testAutoDistributeViewsVerticallyWithProvidedSpacings
+{
+    __NSArray_of(ALView *) * views = self.viewArray;
+    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    __NSMutableArray_of(NSNumber *) * spacingsMutable = [NSMutableArray arrayWithCapacity:views.count + 1];
+    float spacingSum = 0.0;
+    for(int i=0; i < views.count + 1; i++){
+        float spacing = (i+4.0) * 3.0;
+        spacingSum += spacing;
+        [spacingsMutable addObject:[NSNumber numberWithFloat:spacing]];
+    }
+    __NSArray_of(NSNumber *) * spacings = spacingsMutable;
+    
+    constraints = [views autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withSpacings:spacings matchedSizes:YES];
+    [self evaluateConstraints];
+    
+#if !TARGET_OS_IPHONE
+    views = [[views reverseObjectEnumerator] allObjects];
+    spacings = [[spacings reverseObjectEnumerator] allObjects];
+#endif
+    
+    CGFloat containerHeight = self.containerView.frame.size.height;
+    CGFloat previousEdge =  0.0;
+    float expectedHeight = (containerHeight - spacingSum) / ((float) self.viewArray.count);
+    int i = 0;
+    for(ALView * view in views){
+        CGFloat y = view.frame.origin.y;
+        CGFloat spacing = y - previousEdge;
+        previousEdge = y + view.frame.size.height; 
+        float plannedSpacing = spacings[i].floatValue;
+        XCTAssert(ROUNDED_EQUALS(plannedSpacing, spacing));
+        ALAssertHeightEquals(view, expectedHeight);
+        i++;
+    }
+    XCTAssert(ROUNDED_EQUALS(previousEdge + spacings.lastObject.floatValue, containerHeight));
+    
+    [constraints autoRemoveConstraints];
+}
+
 - (void)testAutoDistributeViewsHorizontallyWithFixedSize
 {
     __NSArray_of(NSLayoutConstraint *) *constraints = nil;

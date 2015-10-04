@@ -286,7 +286,88 @@
                                                         insetSpacing:(BOOL)shouldSpaceInsets
                                                         matchedSizes:(BOOL)shouldMatchSizes
 {
+
+    CGFloat edgeSpacing = shouldSpaceInsets ? spacing : 0.0;
+    return [self autoDistributeViewsAlongAxis:axis alignedTo:alignment withFixedSpacing:spacing insetFixedSpacing:edgeSpacing matchedSized:shouldMatchSizes];
+}
+
+/** Distributes the views in this array equally along the selected axis in their superview.
+ Views will have spacing (fixed) between them, with optional insets equal to insetSpacing from the first and last views to their superview, and optionally constrained to the same size in the dimension along the axis.
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacing The fixed amount of spacing between each view.
+ @param insetSpacing The fixed amount of spacing between edge views and superview.
+ @return An array of constraints added.
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                    withFixedSpacing:(CGFloat)spacing
+                                                   insetFixedSpacing:(CGFloat)insetSpacing
+{
+    return [self autoDistributeViewsAlongAxis:axis alignedTo:alignment withFixedSpacing:spacing insetFixedSpacing:insetSpacing matchedSized:YES];
+}
+
+/** Distributes the views in this array equally along the selected axis in their superview.
+ Views will have spacing (fixed) between them, with optional insets equal to insetSpacing from the first and last views to their superview, and optionally constrained to the same size in the dimension along the axis. 
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacing The fixed amount of spacing between each view.
+ @param insetSpacing The fixed amount of spacing between edge views and superview.
+ @param shouldMatchSizes Whether all views will be constrained to be the same size in the dimension along the axis.
+                         NOTE: All views must specify an intrinsic content size if passing NO, otherwise the layout will be ambiguous!
+ @return An array of constraints added.
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                    withFixedSpacing:(CGFloat)spacing
+                                                   insetFixedSpacing:(CGFloat)insetSpacing                                                      matchedSized:(BOOL)shouldMatchSizes
+{
+    NSUInteger numberOfViews = [self al_numberOfViews];
+    __NSMutableArray_of(NSNumber *) * spacings = [NSMutableArray arrayWithCapacity:numberOfViews+1];
+    [spacings addObject:[NSNumber numberWithFloat:insetSpacing]];
+    
+    for(int i=0; i<numberOfViews-1; i++){
+        [spacings addObject:[NSNumber numberWithFloat:spacing]];
+    }
+    
+    [spacings addObject:[NSNumber numberWithFloat:insetSpacing]];
+    
+    return [self autoDistributeViewsAlongAxis:axis alignedTo:alignment withSpacings:spacings matchedSizes:shouldMatchSizes];
+}
+
+
+/* Distributes the views in this array with provided spacings along the selected axis in their superview.
+Views will have spacings as supplied, starting with the inset from the first view to the superview and proceeding to the right until the last view and the superview. The views will be constrained to the same size(variable) in the dimension along the axis. 
+ 
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacings The spacings between the views, and first and last view and superview.
+ @return An array of constraints added.
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                        withSpacings:(__NSArray_of(NSNumber *) *)spacings
+{
+    return [self autoDistributeViewsAlongAxis:axis alignedTo:alignment withSpacings:spacings matchedSizes:YES];
+}
+/** Distributes the views in this array with provided spacings along the selected axis in their superview.
+ Views will have spacings as supplied, starting with the inset from the first view to the superview and proceeding to the right until the last view and the superview. The views will be optionally constrained to the same size(variable) in the dimension along the axis.
+ 
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacings The spacings between the views, and first and last view and superview.
+ @param shouldMatchSizes Whether all views will be constrained to be the same size in the dimension along the axis.
+ NOTE: All views must specify an intrinsic content size if passing NO, otherwise the layout will be ambiguous!
+ @return An array of constraints added.
+
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                        withSpacings:(__NSArray_of(NSNumber *) *)spacings
+                                                        matchedSizes:(BOOL)shouldMatchSizes
+{
     NSAssert([self al_containsMinimumNumberOfViews:1], @"This array must contain at least 1 view to distribute.");
+    NSAssert([self al_numberOfViews] + 1 == spacings.count, @"The number of spacings must be equal to number of views + 1.");
     ALDimension matchedDimension;
     ALEdge firstEdge, lastEdge;
     switch (axis) {
@@ -308,17 +389,19 @@
             NSAssert(nil, @"Not a valid ALAxis.");
             return nil;
     }
-    CGFloat leadingSpacing = shouldSpaceInsets ? spacing : 0.0;
-    CGFloat trailingSpacing = shouldSpaceInsets ? spacing : 0.0;
+    CGFloat leadingSpacing = (CGFloat) spacings.firstObject.floatValue;
+    CGFloat trailingSpacing = (CGFloat) spacings.lastObject.floatValue;
     
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     ALView *previousView = nil;
+    NSUInteger index = 0;
     for (id object in self) {
         if ([object isKindOfClass:[ALView class]]) {
             ALView *view = (ALView *)object;
             view.translatesAutoresizingMaskIntoConstraints = NO;
             if (previousView) {
                 // Second, Third, ... View
+                CGFloat spacing = (CGFloat) spacings[index].floatValue;
                 [constraints addObject:[view autoPinEdge:firstEdge toEdge:lastEdge ofView:previousView withOffset:spacing]];
                 if (shouldMatchSizes) {
                     [constraints addObject:[view autoMatchDimension:matchedDimension toDimension:matchedDimension ofView:previousView]];
@@ -330,6 +413,7 @@
                 [constraints addObject:[view autoPinEdgeToSuperviewEdge:firstEdge withInset:leadingSpacing]];
             }
             previousView = view;
+            index++;
         }
     }
     if (previousView) {
@@ -466,6 +550,21 @@
     return commonSuperview;
 }
 
+/** 
+ Counts the number of views.
+ 
+ @return number of views in this array.
+ */
+- (NSUInteger) al_numberOfViews{
+    NSUInteger numberOfViews = 0;
+    for (id object in self) {
+        if ([object isKindOfClass:[ALView class]]) {
+            numberOfViews++;
+        }
+    }
+    return numberOfViews;
+}
+
 /**
  Determines whether this array contains a minimum number of views.
  
@@ -474,15 +573,7 @@
  */
 - (BOOL)al_containsMinimumNumberOfViews:(NSUInteger)minimumNumberOfViews
 {
-    NSUInteger numberOfViews = 0;
-    for (id object in self) {
-        if ([object isKindOfClass:[ALView class]]) {
-            numberOfViews++;
-            if (numberOfViews >= minimumNumberOfViews) {
-                return YES;
-            }
-        }
-    }
+    NSUInteger numberOfViews = [self al_numberOfViews];
     return numberOfViews >= minimumNumberOfViews;
 }
 

@@ -96,6 +96,34 @@ __PL_ASSUME_NONNULL_BEGIN
                                                      insetSpacing:(BOOL)shouldSpaceInsets
                                                      matchedSizes:(BOOL)shouldMatchSizes;
 
+/** Distributes the views in this array equally along the selected axis in their superview.
+ Views will have spacing (fixed) between them, with optional insets equal to insetSpacing from the first and last views to their superview. */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                        withFixedSpacing:(CGFloat)spacing
+                                                   insetFixedSpacing:(CGFloat)insetSpacing;
+
+/** Distributes the views in this array equally along the selected axis in their superview.
+ Views will have spacing (fixed) between them, with optional insets equal to insetSpacing from the first and last views to their superview, and optionally constrained to the same size in the dimension along the axis. */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                    withFixedSpacing:(CGFloat)spacing
+                                                   insetFixedSpacing:(CGFloat)insetSpacing                                                      matchedSized:(BOOL)shouldMatchSizes;
+
+
+/** Distributes the views in this array with provided spacings along the selected axis in their superview.
+ Views will have spacings as supplied, starting with the inset from the first view to the superview and proceeding to the right until the last view and the superview. The views will be constrained to the same size(variable) in the dimension along the axis. */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                        withSpacings:(__NSArray_of(NSNumber *) *)spacings;
+
+/** Distributes the views in this array with provided spacings along the selected axis in their superview.
+ Views will have spacings as supplied, starting with the inset from the first view to the superview and proceeding to the right until the last view and the superview. The views will be optionally constrained to the same size(variable) in the dimension along the axis. */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                        withSpacings:(__NSArray_of(NSNumber *) *)spacings
+                                                        matchedSizes:(BOOL)shouldMatchSizes;
+
 
 /** Distributes the views in this array equally along the selected axis in their superview.
     Views will be the same size (fixed) in the dimension along the axis and will have spacing (variable) between them. */
