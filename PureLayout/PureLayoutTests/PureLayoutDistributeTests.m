@@ -89,13 +89,13 @@
         CGFloat x = view.frame.origin.x;
         CGFloat spacing = x - previousEdge;
         previousEdge = x + view.frame.size.width;
-        float plannedSpacing = spacings[i].floatValue;
+        float plannedSpacing = [spacings[i] floatValue];
         XCTAssert(ROUNDED_EQUALS(plannedSpacing, spacing));
         //check if all views have almost the same width
         ALAssertWidthEquals(view, expectedWidth);
         i++;
     }
-    XCTAssert(ROUNDED_EQUALS(previousEdge + spacings.lastObject.floatValue, containerWidth));
+    XCTAssert(ROUNDED_EQUALS(previousEdge + [[spacings lastObject] floatValue], containerWidth));
     
     [constraints autoRemoveConstraints];
 }
@@ -129,12 +129,12 @@
         CGFloat y = view.frame.origin.y;
         CGFloat spacing = y - previousEdge;
         previousEdge = y + view.frame.size.height; 
-        float plannedSpacing = spacings[i].floatValue;
+        float plannedSpacing = [spacings[i] floatValue];
         XCTAssert(ROUNDED_EQUALS(plannedSpacing, spacing));
         ALAssertHeightEquals(view, expectedHeight);
         i++;
     }
-    XCTAssert(ROUNDED_EQUALS(previousEdge + spacings.lastObject.floatValue, containerHeight));
+    XCTAssert(ROUNDED_EQUALS(previousEdge + [[spacings lastObject] floatValue], containerHeight));
     
     [constraints autoRemoveConstraints];
 }

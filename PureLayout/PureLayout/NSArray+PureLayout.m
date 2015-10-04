@@ -389,8 +389,8 @@ Views will have spacings as supplied, starting with the inset from the first vie
             NSAssert(nil, @"Not a valid ALAxis.");
             return nil;
     }
-    CGFloat leadingSpacing = (CGFloat) spacings.firstObject.floatValue;
-    CGFloat trailingSpacing = (CGFloat) spacings.lastObject.floatValue;
+    CGFloat leadingSpacing = (CGFloat) [[spacings firstObject] floatValue];
+    CGFloat trailingSpacing = (CGFloat) [[spacings lastObject] floatValue];
     
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     ALView *previousView = nil;
@@ -401,7 +401,7 @@ Views will have spacings as supplied, starting with the inset from the first vie
             view.translatesAutoresizingMaskIntoConstraints = NO;
             if (previousView) {
                 // Second, Third, ... View
-                CGFloat spacing = (CGFloat) spacings[index].floatValue;
+                CGFloat spacing = (CGFloat) [spacings[index] floatValue];
                 [constraints addObject:[view autoPinEdge:firstEdge toEdge:lastEdge ofView:previousView withOffset:spacing]];
                 if (shouldMatchSizes) {
                     [constraints addObject:[view autoMatchDimension:matchedDimension toDimension:matchedDimension ofView:previousView]];
