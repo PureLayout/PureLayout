@@ -121,16 +121,16 @@ __PL_ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
 /** Pin a space between self and the other view [self]-space-[otherView], either on the horizontal or vertical axis. */
-- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis;
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis;
 
 /** Pin a space between self and the other view [self]-space-[otherView], either on the horizontal or vertical axis with the space as a maximum or minimum.  */
-- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation;
 
 /** Pin trailing to leading with a space H:[self]-space-[otherView] */
-- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space toView:(ALView *)otherView;
+- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space followedByView:(ALView *)otherView;
 
 /** Pin bottom to top with a space V:[self]-space-[otherView] */
-- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space toView:(ALView *)otherView;
+- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space followedByView:(ALView *)otherView;
 
 /** Pin all 4 edges to another view, so that they will have the same frame. */
 - (__NSArray_of(NSLayoutConstraint *) *)autoPinAllEdgesToView:(ALView *)otherView;

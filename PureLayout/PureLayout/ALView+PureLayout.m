@@ -367,7 +367,7 @@
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
 
-- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation
 {
     NSLayoutAttribute leadingAttribute;
     NSLayoutAttribute trailingAttribute;
@@ -385,19 +385,19 @@
     return constraint;
 }
 
-- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space toView:(ALView *)otherView onAxis:(ALAxis)axis
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis
 {
-    return [self autoPinSpace:space toView:otherView onAxis:axis relation:NSLayoutRelationEqual];
+    return [self autoPinSpace:space followedByView:otherView onAxis:axis relation:NSLayoutRelationEqual];
 }
 
-- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space toView:(ALView *)otherView
+- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space followedByView:(ALView *)otherView
 {
-    return [self autoPinSpace:space toView:otherView onAxis:ALAxisHorizontal relation:NSLayoutRelationEqual];
+    return [self autoPinSpace:space followedByView:otherView onAxis:ALAxisHorizontal relation:NSLayoutRelationEqual];
 }
 
-- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space toView:(ALView *)otherView
+- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space followedByView:(ALView *)otherView
 {
-    return [self autoPinSpace:space toView:otherView onAxis:ALAxisVertical relation:NSLayoutRelationEqual];
+    return [self autoPinSpace:space followedByView:otherView onAxis:ALAxisVertical relation:NSLayoutRelationEqual];
 }
 
 - (__NSArray_of(NSLayoutConstraint *) *)autoPinAllEdgesToView:(ALView *)otherView
