@@ -45,7 +45,7 @@ class iOSDemo6ViewController: UIViewController {
             // to a lower value than Required. This allows the Auto Layout solver to let these constraints be broken if one or both of
             // them conflict with higher-priority constraint(s), such as the above 4 edge constraints.
             NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh) {
-                blueView.autoSetDimensionsToSize(CGSize(width: 10000.0, height: 10000.0))
+                self.blueView.autoSetDimensionsToSize(CGSize(width: 10000.0, height: 10000.0))
             }
             
             didSetupConstraints = true
