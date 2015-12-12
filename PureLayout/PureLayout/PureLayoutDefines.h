@@ -41,8 +41,8 @@
 
 // Define some preprocessor macros that allow nullability annotations to be adopted in a backwards-compatible manner.
 #if __has_feature(nullability)
-#   define PL__ASSUME_NONNULL_BEGIN        NS_ASSUME_NONNULL_BEGIN
-#   define PL__ASSUME_NONNULL_END          NS_ASSUME_NONNULL_END
+#   define PL__ASSUME_NONNULL_BEGIN         NS_ASSUME_NONNULL_BEGIN
+#   define PL__ASSUME_NONNULL_END           NS_ASSUME_NONNULL_END
 #else
 #   define PL__ASSUME_NONNULL_BEGIN
 #   define PL__ASSUME_NONNULL_END
@@ -50,13 +50,13 @@
 
 // Define some preprocessor macros that allow generics to be adopted in a backwards-compatible manner.
 #if __has_feature(objc_generics)
-#   define PL__GENERICS(class, ...)        class<__VA_ARGS__>
+#   define PL__GENERICS(class, ...)         class<__VA_ARGS__>
 #else
-#   define PL__GENERICS(class, ...)        class
+#   define PL__GENERICS(class, ...)         class
 #endif
 
 // Using generics with NSArray is so common in PureLayout that it gets a dedicated preprocessor macro for better readability.
-#define PL__NSArray_of(type)                  PL__GENERICS(NSArray, type)
+#define PL__NSArray_of(type)                PL__GENERICS(NSArray, type)
 
 // Define generic AL-prefixed macros for the types/constants/etc that have slight naming variations across iOS and OS X, which allows the same code to be platform-independent.
 #if TARGET_OS_IPHONE
