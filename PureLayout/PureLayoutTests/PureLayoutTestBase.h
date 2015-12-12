@@ -47,7 +47,7 @@ static const CGFloat kContainerViewHeight = 1000.0;
 @interface PureLayoutTestBase : XCTestCase
 
 // An array of viewA, viewB, viewC, and viewD
-@property (nonatomic, readonly) __NSArray_of(ALView *) *viewArray;
+@property (nonatomic, readonly) PL__NSArray_of(ALView *) *viewArray;
 
 // The indendentation below represents how the view hierarchy is set up
 @property (nonatomic, strong) ALView *containerView;

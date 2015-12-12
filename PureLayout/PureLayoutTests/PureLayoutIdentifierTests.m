@@ -40,7 +40,7 @@
 /** Test the -[autoIdentifyConstraints:] method on NSArray. */
 - (void)testIdentifyConstraints
 {
-    __NSArray_of(NSLayoutConstraint *) *constraints = [[self.viewC autoCenterInSuperview] autoIdentifyConstraints:@"IdentifyConstraints1"];
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = [[self.viewC autoCenterInSuperview] autoIdentifyConstraints:@"IdentifyConstraints1"];
     for (NSLayoutConstraint *constraint in constraints) {
         XCTAssertEqualObjects(constraint.identifier, @"IdentifyConstraints1");
     }
@@ -56,8 +56,8 @@
 - (void)testIdentifyConstraintsCreatedWithoutInstalling
 {
     __block NSLayoutConstraint *c1, *c2, *c3;
-    __block __NSArray_of(NSLayoutConstraint *) *c4s;
-    __NSArray_of(NSLayoutConstraint *) *constraints = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
+    __block PL__NSArray_of(NSLayoutConstraint *) *c4s;
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
         c1 = [self.viewA autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.viewB];
         c2 = [[self.viewC autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.viewD] autoIdentify:@"Identifier1"];
         [NSLayoutConstraint autoSetIdentifier:@"Identifier2" forConstraints:^{
@@ -90,7 +90,7 @@
 - (void)testSetIdentifierForConstraints
 {
     __block NSLayoutConstraint *c1;
-    __block __NSArray_of(NSLayoutConstraint *) *c2s;
+    __block PL__NSArray_of(NSLayoutConstraint *) *c2s;
     [NSLayoutConstraint autoSetIdentifier:@"Identifier1" forConstraints:^{
         c1 = [self.viewA_A_A autoSetDimension:ALDimensionHeight toSize:50.0];
         c2s = [@[self.viewA, self.viewB, self.viewC] autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeVertical withFixedSpacing:15.0];

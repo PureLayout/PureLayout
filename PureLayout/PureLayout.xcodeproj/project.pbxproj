@@ -1321,6 +1321,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = "-Wreserved-id-macro";
 			};
 			name = Debug;
 		};
@@ -1348,6 +1349,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "-Wreserved-id-macro";
 			};
 			name = Release;
 		};

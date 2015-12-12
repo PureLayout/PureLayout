@@ -38,7 +38,7 @@
 - (void)updateViewConstraints
 {
     if (!self.didSetupConstraints) {
-        NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"This demo requires iOS 8.0 or higher to run.");
+        NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"This demo requires iOS 8.0 or higher to run.");
         
         // Before layout margins were introduced, this is a typical way of giving a subview some padding from its superview's edges
         [self.blueView autoPinToTopLayoutGuideOfViewController:self withInset:10.0];

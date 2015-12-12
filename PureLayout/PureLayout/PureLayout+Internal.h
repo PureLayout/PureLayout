@@ -29,9 +29,9 @@
 
 
 // Using generics with NSMutableArray is so common in the internal implementation of PureLayout that it gets a dedicated preprocessor macro for better readability.
-#define __NSMutableArray_of(type)                   __PL_GENERICS(NSMutableArray, type)
+#define __NSMutableArray_of(type)                   PL__GENERICS(NSMutableArray, type)
 
-__PL_ASSUME_NONNULL_BEGIN
+PL__ASSUME_NONNULL_BEGIN
 
 /** A constant that represents the smallest valid positive value for the multiplier of a constraint,
     since a value of 0 will cause the second item to be lost in the internal auto layout engine. */
@@ -57,7 +57,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 
 - (ALView *)al_commonSuperviewOfViews;
 - (BOOL)al_containsMinimumNumberOfViews:(NSUInteger)minimumNumberOfViews;
-- (__NSArray_of(ALView *) *)al_copyViewsOnly;
+- (PL__NSArray_of(ALView *) *)al_copyViewsOnly;
 
 @end
 
@@ -71,17 +71,17 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 + (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
 + (NSString *)al_currentGlobalConstraintIdentifier;
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 + (NSLayoutAttribute)al_layoutAttributeForAttribute:(ALAttribute)attribute;
 + (ALLayoutConstraintAxis)al_constraintAxisForAxis:(ALAxis)axis;
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
 + (ALMargin)al_marginForEdge:(ALEdge)edge;
 + (ALMarginAxis)al_marginAxisForAxis:(ALAxis)axis;
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 @end
 
-__PL_ASSUME_NONNULL_END
+PL__ASSUME_NONNULL_END

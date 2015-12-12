@@ -95,7 +95,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
++ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
 {
     NSArray *createdConstraints = [self autoCreateConstraintsWithoutInstalling:block];
     _al_isInstallingCreatedConstraints = YES;
@@ -114,7 +114,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
++ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     NSArray *createdConstraints = nil;
@@ -197,7 +197,7 @@ static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
 
 #pragma mark Identify Constraints
 
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
 
 /**
  A global variable that stores a stack of identifier strings to set on constraints.
@@ -275,7 +275,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
     return self;
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
 
 
 #pragma mark Install & Remove Constraints
@@ -285,7 +285,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  */
 - (void)autoInstall
 {
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
         [NSLayoutConstraint al_applyGlobalStateToConstraint:self];
         if ([NSLayoutConstraint al_preventAutomaticConstraintInstallation]) {
@@ -295,7 +295,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
         }
         return;
     }
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
     
     NSAssert(self.firstItem || self.secondItem, @"Can't install a constraint with nil firstItem and secondItem.");
     if (self.firstItem) {
@@ -318,12 +318,12 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  */
 - (void)autoRemove
 {
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
     if ([self respondsToSelector:@selector(setActive:)]) {
         self.active = NO;
         return;
     }
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
     
     if (self.secondItem) {
         ALView *commonSuperview = [self.firstItem al_commonSuperviewWithView:self.secondItem];
@@ -356,12 +356,12 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
     if ([NSLayoutConstraint al_isExecutingPriorityConstraintsBlock]) {
         constraint.priority = [NSLayoutConstraint al_currentGlobalConstraintPriority];
     }
-#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10
+#if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
     NSString *globalConstraintIdentifier = [NSLayoutConstraint al_currentGlobalConstraintIdentifier];
     if (globalConstraintIdentifier) {
         [constraint autoIdentify:globalConstraintIdentifier];
     }
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_10 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
 }
 
 /**
@@ -406,44 +406,44 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
         case ALAxisBaseline: // same value as ALAxisLastBaseline
             layoutAttribute = NSLayoutAttributeBaseline;
             break;
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
         case ALAxisFirstBaseline:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAxisFirstBaseline is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisFirstBaseline is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeFirstBaseline;
             break;
         case ALMarginLeft:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeftMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeftMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeLeftMargin;
             break;
         case ALMarginRight:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeRightMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeRightMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeRightMargin;
             break;
         case ALMarginTop:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTopMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTopMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeTopMargin;
             break;
         case ALMarginBottom:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeBottomMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeBottomMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeBottomMargin;
             break;
         case ALMarginLeading:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeadingMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeadingMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeLeadingMargin;
             break;
         case ALMarginTrailing:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTrailingMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTrailingMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeTrailingMargin;
             break;
         case ALMarginAxisVertical:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAxisVerticalMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisVerticalMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeCenterXWithinMargins;
             break;
         case ALMarginAxisHorizontal:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAxisHorizontalMargin is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisHorizontalMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeCenterYWithinMargins;
             break;
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
         default:
             NSAssert(nil, @"Not a valid ALAttribute.");
             break;
@@ -465,9 +465,9 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
             break;
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
             constraintAxis = ALLayoutConstraintAxisHorizontal;
             break;
         default:
@@ -478,7 +478,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
     return constraintAxis;
 }
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /**
  Returns the corresponding margin for the given edge.
@@ -488,7 +488,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  */
 + (ALMargin)al_marginForEdge:(ALEdge)edge
 {
-    NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"Margin attributes are only supported on iOS 8.0 or higher.");
+    NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"Margin attributes are only supported on iOS 8.0 or higher.");
     ALMargin margin;
     switch (edge) {
         case ALEdgeLeft:
@@ -525,7 +525,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  */
 + (ALMarginAxis)al_marginAxisForAxis:(ALAxis)axis
 {
-    NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"Margin attributes are only supported on iOS 8.0 or higher.");
+    NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"Margin attributes are only supported on iOS 8.0 or higher.");
     ALMarginAxis marginAxis;
     switch (axis) {
         case ALAxisVertical:
@@ -547,6 +547,6 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
     return marginAxis;
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 @end
