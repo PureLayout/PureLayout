@@ -234,9 +234,7 @@
 		164C8B551C0D354E0007A6B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		164C8B571C0D354F0007A6B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		164C8B591C0D354F0007A6B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		164C8B711C0D36480007A6B1 /* PureLayout_Mac copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PureLayout_Mac copy-Info.plist"; path = "/Users/mickeyreiss/personal_code/PureLayout/PureLayout/PureLayout_Mac copy-Info.plist"; sourceTree = "<absolute>"; };
 		164C8B831C0D36500007A6B1 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		164C8B841C0D36500007A6B1 /* PureLayout_iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PureLayout_iOS copy-Info.plist"; path = "/Users/mickeyreiss/personal_code/PureLayout/PureLayout/PureLayout_iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		164C8B921C0D380E0007A6B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7371DC21B68792800DB94B6 /* PureLayoutBatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutBatchTests.m; path = PureLayoutTests/PureLayoutBatchTests.m; sourceTree = "<group>"; };
 		A7D0FF351B8146370025AF37 /* PureLayoutIdentifierTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutIdentifierTests.m; path = PureLayoutTests/PureLayoutIdentifierTests.m; sourceTree = "<group>"; };
@@ -558,8 +556,6 @@
 				A7DB5C801B7AD612000ED37F /* Supporting Files */,
 				B12C23DD17C3FDE4001CF667 /* Frameworks */,
 				B12C23DC17C3FDE4001CF667 /* Products */,
-				164C8B711C0D36480007A6B1 /* PureLayout_Mac copy-Info.plist */,
-				164C8B841C0D36500007A6B1 /* PureLayout_iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
