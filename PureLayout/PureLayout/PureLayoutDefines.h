@@ -59,7 +59,7 @@
 #define __NSArray_of(type)                  __PL_GENERICS(NSArray, type)
 
 // Define generic AL-prefixed macros for the types/constants/etc that have slight naming variations across iOS and OS X, which allows the same code to be platform-independent.
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 #   import <UIKit/UIKit.h>
 #   define ALView                                      UIView
 #   define ALEdgeInsets                                UIEdgeInsets
