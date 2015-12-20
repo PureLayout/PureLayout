@@ -34,10 +34,18 @@
 #define __PureLayout_MinBaseSDK_iOS_8_0                   (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1)
 #define __PureLayout_MinBaseSDK_OSX_10_10                 (!TARGET_OS_IPHONE && __MAC_OS_X_VERSION_MAX_ALLOWED > __MAC_10_9)
 
+#ifdef __MAC_10_11
+#define __PureLayout_MinBaseSDK_OSX_10_11                 (!TARGET_OS_IPHONE && __MAC_OS_X_VERSION_MAX_ALLOWED >= __MAC_10_11)
+#else
+#define __PureLayout_MinBaseSDK_OSX_10_11                 0
+#endif /* __MAC_10_11 */
+
 // Define some preprocessor macros to check for a minimum System Version. These are used to prevent runtime crashes on older versions of iOS/OS X.
 #define __PureLayout_MinSysVer_iOS_7_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 #define __PureLayout_MinSysVer_iOS_8_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
 #define __PureLayout_MinSysVer_OSX_10_9                   (!TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_8_4)
+#define __PureLayout_MinSysVer_OSX_10_10                   (!TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_9_2)
+#define __PureLayout_MinSysVer_OSX_10_11                   (__PureLayout_MinSysVer_OSX_10_10 && ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 11, 0}]))
 
 // Define some preprocessor macros that allow nullability annotations to be adopted in a backwards-compatible manner.
 #if __has_feature(nullability)
@@ -135,10 +143,10 @@ typedef NS_ENUM(NSInteger, ALAxis) {
     ALAxisBaseline = NSLayoutAttributeBaseline,
     /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) */
     ALAxisLastBaseline = ALAxisBaseline,
-    #if __PureLayout_MinBaseSDK_iOS_8_0
+    #if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
     /** A horizontal line at the baseline of the first line of text in a view. (For views that do not draw text, will be equivalent to ALEdgeTop.) Available in iOS 8.0 and later. */
     ALAxisFirstBaseline = NSLayoutAttributeFirstBaseline
-    #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+    #endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
 };
 
 #if __PureLayout_MinBaseSDK_iOS_8_0
@@ -196,9 +204,11 @@ typedef NS_ENUM(NSInteger, ALAttribute) {
     ALAttributeBaseline = ALAxisBaseline,
     /** A horizontal line at the baseline of the last line of text in the view. (For views that do not draw text, will be equivalent to ALEdgeBottom.) */
     ALAttributeLastBaseline = ALAxisLastBaseline,
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
     /** A horizontal line at the baseline of the first line of text in a view. (For views that do not draw text, will be equivalent to ALEdgeTop.) Available in iOS 8.0 and later. */
     ALAttributeFirstBaseline = ALAxisFirstBaseline,
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
+#if __PureLayout_MinBaseSDK_iOS_8_0
     /** The left margin of the view, based on the view's layoutMargins left inset. */
     ALAttributeMarginLeft = ALMarginLeft,
     /** The right margin of the view, based on the view's layoutMargins right inset. */

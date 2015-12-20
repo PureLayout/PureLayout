@@ -793,13 +793,17 @@
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeBaseline.");
             constraint = [self autoAlignAxis:ALAxisBaseline toSameAxisOfView:otherView];
             break;
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAttributeFirstBaseline:
+#if TARGET_OS_IPHONE
             NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAttributeFirstBaseline is only supported on iOS 8.0 or higher.");
+#else
+            NSAssert(__PureLayout_MinSysVer_OSX_10_11, @"ALAttributeFirstBaseline is only supported on OSX 10.11 or higher.");
+#endif /* TARGET_OS_IPHONE */
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeFirstBaseline.");
             constraint = [self autoAlignAxis:ALAxisFirstBaseline toSameAxisOfView:otherView];
             break;
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
         case ALAttributeTop:
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeTop.");
             constraint = [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:otherView];

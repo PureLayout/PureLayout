@@ -292,9 +292,9 @@
     switch (axis) {
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
             matchedDimension = ALDimensionWidth;
             firstEdge = ALEdgeLeading;
             lastEdge = ALEdgeTrailing;
@@ -381,9 +381,9 @@
     switch (axis) {
         case ALAxisHorizontal:
         case ALAxisBaseline: // same value as ALAxisLastBaseline
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
         case ALAxisFirstBaseline:
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
             fixedDimension = ALDimensionWidth;
             attribute = NSLayoutAttributeCenterX;
             break;

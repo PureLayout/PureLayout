@@ -43,8 +43,10 @@
     XCTAssert(ALAttributeHorizontal == ALAxisHorizontal);
     XCTAssert(ALAttributeBaseline == ALAxisBaseline);
     XCTAssert(ALAttributeLastBaseline == ALAxisLastBaseline);
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11
     XCTAssert(ALAttributeFirstBaseline == ALAxisFirstBaseline);
+#endif /* __PureLayout_MinBaseSDK_iOS_8_0 || __PureLayout_MinBaseSDK_OSX_10_11 */
+#if __PureLayout_MinBaseSDK_iOS_8_0
     XCTAssert(ALAttributeMarginLeft == ALMarginLeft);
     XCTAssert(ALAttributeMarginRight == ALMarginRight);
     XCTAssert(ALAttributeMarginTop == ALMarginTop);
@@ -99,6 +101,17 @@
         XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
     }
 #endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+    
+#if __PureLayout_MinBaseSDK_OSX_10_11
+    if (__PureLayout_MinSysVer_OSX_10_11) {
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisFirstBaseline] == NSLayoutAttributeFirstBaseline, @"ALAxisFirstBaseline should correspond to NSLayoutAttributeFirstBaseline.");
+    } else {
+        XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisFirstBaseline], @"ALAxisFirstBaseline should throw an exception on OSX 10.10 or earlier.");
+        XCTAssertNoThrow([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline], @"ALAxisLastBaseline should not throw an exception on iOS 6 or 7.");
+        XCTAssert([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)ALAxisLastBaseline] == NSLayoutAttributeLastBaseline, @"ALAxisLastBaseline should correspond to NSLayoutAttributeLastBaseline.");
+    }
+#endif /* __PureLayout_MinBaseSDK_OSX_10_11 */
     
     XCTAssertThrows([NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)NSLayoutAttributeNotAnAttribute], @"Passing an invalid ALAttribute should throw an exception.");
 }
