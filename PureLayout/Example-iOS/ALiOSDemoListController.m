@@ -79,7 +79,8 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
              @"Animating Constraints", // Demo 7
              @"Constraint Identifiers (iOS 7.0+)", // Demo 8
              @"Layout Margins (iOS 8.0+)", // Demo 9
-             @"Constraints Without Installing" // Demo 10
+             @"Constraints Without Installing", // Demo 10
+             @"Basic UIScrollView" // Demo 11
              ];
 }
 
