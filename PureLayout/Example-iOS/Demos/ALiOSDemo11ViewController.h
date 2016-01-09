@@ -1,8 +1,8 @@
 //
-//  ALiOSDemo10ViewController.h
+//  ALiOSDemo11ViewController.h
 //  PureLayout Example-iOS
 //
-//  Copyright (c) 2014-2015 Tyler Fox
+//  Copyright (c) 2014-2015 Spiros Gerokostas
 //  https://github.com/PureLayout/PureLayout
 //
 
