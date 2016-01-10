@@ -71,7 +71,7 @@
 }
 
 
-- (void)addSubviewWithAutoLayout:(UIView *)subview
+- (void)addSubviewWithAutoLayout:(ALView *)subview
 {
     subview.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:subview];

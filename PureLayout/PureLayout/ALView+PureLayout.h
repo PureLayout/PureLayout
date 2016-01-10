@@ -51,7 +51,7 @@ __PL_ASSUME_NONNULL_BEGIN
 - (instancetype)configureForAutoLayout;
 
 /* Adds the subview and also configures the view to not convert the autoresizing mask into constraints */
-- (void)addSubviewWithAutoLayout:(UIView *)subview;
+- (void)addSubviewWithAutoLayout:(ALView *)subview;
 
 #pragma mark Center & Align in Superview
 
