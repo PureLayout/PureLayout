@@ -132,9 +132,6 @@ __PL_ASSUME_NONNULL_BEGIN
 /** Pin bottom to top with a space V:[self]-space-[otherView] */
 - (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space followedByView:(ALView *)otherView;
 
-/** Pin all 4 edges to another view, so that they will have the same frame. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinAllEdgesToView:(ALView *)otherView;
-
 #pragma mark Align Axes
 
 /** Aligns an axis of the view to the same axis of another view. */
@@ -145,8 +142,6 @@ __PL_ASSUME_NONNULL_BEGIN
 
 /** Aligns an axis of the view to the same axis of another view with a multiplier. */
 - (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSameAxisOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
-
-- (__NSArray_of(NSLayoutConstraint *) *)autoAlignBothAxisToView:(ALView *)otherView;
 
 #pragma mark Match Dimensions
 
