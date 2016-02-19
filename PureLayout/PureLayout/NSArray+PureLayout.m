@@ -284,7 +284,60 @@
                                                            alignedTo:(ALAttribute)alignment
                                                     withFixedSpacing:(CGFloat)spacing
                                                         insetSpacing:(BOOL)shouldSpaceInsets
+                                                        matchedSizes:(BOOL)shouldMatchSizes {
+    return [self autoDistributeViewsAlongAxis:axis
+                                    alignedTo:alignment
+                             withFixedSpacing:spacing
+                                 insetSpacing:shouldSpaceInsets
+                                 matchedSizes:shouldMatchSizes
+                          pinEdgesToSuperview:YES];
+}
+
+/**
+ Distributes the views in this array equally along the selected axis in their superview.
+ Views will have fixed spacing between them, and can optionally be constrained to the same size in the dimension along the axis.
+ The first and last views can optionally be inset from their superview by the same amount of spacing as between views.
+
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacing The fixed amount of spacing between each view.
+ @param shouldPinEdges Specifies whether the first and last view should be pinned to their superview.
+                        NOTE: All views will be aligned by the view who's position is constrained if passing NO, otherwise the layout will be ambiguous!
+ @return An array of constraints added.
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                    withFixedSpacing:(CGFloat)spacing
+                                                 pinEdgesToSuperview:(BOOL)shouldPinEdges {
+    return [self autoDistributeViewsAlongAxis:axis
+                                    alignedTo:alignment
+                             withFixedSpacing:spacing
+                                 insetSpacing:0
+                                 matchedSizes:NO
+                          pinEdgesToSuperview:shouldPinEdges];
+}
+
+/**
+ Distributes the views in this array equally along the selected axis in their superview.
+ Views will have fixed spacing between them, and can optionally be constrained to the same size in the dimension along the axis.
+ The first and last views can optionally be inset from their superview by the same amount of spacing as between views.
+
+ @param axis The axis along which to distribute the views.
+ @param alignment The attribute to use to align all the views to one another.
+ @param spacing The fixed amount of spacing between each view.
+ @param shouldSpaceInsets Whether the first and last views should be equally inset from their superview.
+ @param shouldMatchSizes Whether all views will be constrained to be the same size in the dimension along the axis.
+                         NOTE: All views must specify an intrinsic content size if passing NO, otherwise the layout will be ambiguous!
+ @param shouldPinEdges Specifies whether the first and last view should be pinned to their superview.
+                        NOTE: All views will be aligned by the view who's position is constrained if passing NO, otherwise the layout will be ambiguous!
+ @return An array of constraints added.
+ */
+- (__NSArray_of(NSLayoutConstraint *) *)autoDistributeViewsAlongAxis:(ALAxis)axis
+                                                           alignedTo:(ALAttribute)alignment
+                                                    withFixedSpacing:(CGFloat)spacing
+                                                        insetSpacing:(BOOL)shouldSpaceInsets
                                                         matchedSizes:(BOOL)shouldMatchSizes
+                                                 pinEdgesToSuperview:(BOOL)shouldPinEdges
 {
     NSAssert([self al_containsMinimumNumberOfViews:1], @"This array must contain at least 1 view to distribute.");
     ALDimension matchedDimension;
@@ -310,7 +363,7 @@
     }
     CGFloat leadingSpacing = shouldSpaceInsets ? spacing : 0.0;
     CGFloat trailingSpacing = shouldSpaceInsets ? spacing : 0.0;
-    
+
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     ALView *previousView = nil;
     for (id object in self) {
@@ -325,14 +378,14 @@
                 }
                 [constraints addObject:[view al_alignAttribute:alignment toView:previousView forAxis:axis]];
             }
-            else {
+            else if(shouldPinEdges) {
                 // First view
                 [constraints addObject:[view autoPinEdgeToSuperviewEdge:firstEdge withInset:leadingSpacing]];
             }
             previousView = view;
         }
     }
-    if (previousView) {
+    if (previousView && shouldPinEdges) {
         // Last View
         [constraints addObject:[previousView autoPinEdgeToSuperviewEdge:lastEdge withInset:trailingSpacing]];
     }
