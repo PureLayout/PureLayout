@@ -29,7 +29,7 @@
 
 - (void)testAutoDistributeViewsHorizontallyWithFixedSpacing
 {
-    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = nil;
     
     constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSpacing:20];
     [self evaluateConstraints];
@@ -49,7 +49,7 @@
 
 - (void)testAutoDistributeViewsVerticallyWithFixedSpacing
 {
-    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = nil;
     
     constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeRight withFixedSpacing:20];
     [self evaluateConstraints];
@@ -69,7 +69,7 @@
 
 - (void)testAutoDistributeViewsHorizontallyWithFixedSize
 {
-    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = nil;
     
     constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeTop withFixedSize:20];
     [self evaluateConstraints];
@@ -89,7 +89,7 @@
 
 - (void)testAutoDistributeViewsVerticallyWithFixedSize
 {
-    __NSArray_of(NSLayoutConstraint *) *constraints = nil;
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = nil;
     
     constraints = [self.viewArray autoDistributeViewsAlongAxis:ALAxisVertical alignedTo:ALAttributeLeft withFixedSize:20];
     [self evaluateConstraints];
@@ -107,35 +107,35 @@
     [constraints autoRemoveConstraints];
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedHorizontallyWithSpacing:(CGFloat)spacing
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedHorizontallyWithSpacing:(CGFloat)spacing
 {
     CGFloat totalSpacing = (views.count + 1) * spacing;
     CGFloat singleViewWidth = (kContainerViewWidth - totalSpacing) / views.count;
     [self assertViews:views areDistributedHorizontallyWithWidth:singleViewWidth andSpacing:spacing];
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedHorizontallyWithWidth:(CGFloat)width
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedHorizontallyWithWidth:(CGFloat)width
 {
     CGFloat totalSpacing = kContainerViewWidth - views.count * width;
     CGFloat singleSpace = totalSpacing / (views.count + 1);
     [self assertViews:views areDistributedHorizontallyWithWidth:width andSpacing:singleSpace];
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedVerticallyWithSpacing:(CGFloat)singleSpace
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedVerticallyWithSpacing:(CGFloat)singleSpace
 {
     CGFloat totalSpacing = (views.count + 1) * singleSpace;
     CGFloat singleViewHeight = (kContainerViewHeight - totalSpacing) / views.count;
     [self assertViews:views areDistributedVerticallyWithHeight:singleViewHeight andSpacing:singleSpace];
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedVerticallyWithHeight:(CGFloat)height
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedVerticallyWithHeight:(CGFloat)height
 {
     CGFloat totalSpacing = kContainerViewHeight - views.count * height;
     CGFloat singleSpace = totalSpacing / (views.count + 1);
     [self assertViews:views areDistributedVerticallyWithHeight:height andSpacing:singleSpace];
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedHorizontallyWithWidth:(CGFloat)width andSpacing:(CGFloat)spacing
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedHorizontallyWithWidth:(CGFloat)width andSpacing:(CGFloat)spacing
 {
     ALView *previousView = nil;
     for (ALView *view in views) {
@@ -145,7 +145,7 @@
     }
 }
 
-- (void)assertViews:(__NSArray_of(ALView *) *)views areDistributedVerticallyWithHeight:(CGFloat)height andSpacing:(CGFloat)spacing
+- (void)assertViews:(PL__NSArray_of(ALView *) *)views areDistributedVerticallyWithHeight:(CGFloat)height andSpacing:(CGFloat)spacing
 {
     // Y-axis is inverted on Mac, reverse view array to compensate
 #if !TARGET_OS_IPHONE
@@ -190,7 +190,7 @@
 }
 
 // Override the viewArray accessor to always just return an array of the one view used for this test.
-- (__NSArray_of(ALView *) *)viewArray
+- (PL__NSArray_of(ALView *) *)viewArray
 {
     return @[self.singleView];
 }

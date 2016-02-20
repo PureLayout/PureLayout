@@ -10,7 +10,7 @@
 
 @implementation PureLayoutTestBase
 
-- (__NSArray_of(ALView *) *)viewArray
+- (PL__NSArray_of(ALView *) *)viewArray
 {
     return @[self.viewA, self.viewB, self.viewC, self.viewD];
 }

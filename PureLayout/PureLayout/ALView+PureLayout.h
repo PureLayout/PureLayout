@@ -29,7 +29,7 @@
 #import "PureLayoutDefines.h"
 
 
-__PL_ASSUME_NONNULL_BEGIN
+PL__ASSUME_NONNULL_BEGIN
 
 #pragma mark ALView+PureLayout
 
@@ -54,20 +54,20 @@ __PL_ASSUME_NONNULL_BEGIN
 #pragma mark Center & Align in Superview
 
 /** Centers the view in its superview. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview;
 
 /** Aligns the view to the same axis of its superview. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewAxis:(ALAxis)axis;
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /** Centers the view in its superview's margins. Available in iOS 8.0 and later. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins;
 
 /** Aligns the view to the corresponding margin axis of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewMarginAxis:(ALAxis)axis;
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges to Superview
@@ -82,15 +82,15 @@ __PL_ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewEdge:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the edges of its superview. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges;
 
 /** Pins the edges of the view to the edges of its superview with the given edge insets. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets;
 
 /** Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /** Pins the given edge of the view to the corresponding margin of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge;
@@ -99,12 +99,12 @@ __PL_ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the margins of its superview. Available in iOS 8.0 and later. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins;
 
 /** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges
@@ -152,7 +152,7 @@ __PL_ASSUME_NONNULL_BEGIN
 #pragma mark Set Dimensions
 
 /** Sets the view to a specific size. */
-- (__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size;
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size;
 
 /** Sets the given dimension of the view to a specific size. */
 - (NSLayoutConstraint *)autoSetDimension:(ALDimension)dimension toSize:(CGFloat)size;
@@ -210,4 +210,4 @@ __PL_ASSUME_NONNULL_BEGIN
 
 @end
 
-__PL_ASSUME_NONNULL_END
+PL__ASSUME_NONNULL_END
