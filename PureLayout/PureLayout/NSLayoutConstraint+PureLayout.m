@@ -95,7 +95,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(ALConstraintsBlock)block
++ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateAndInstallConstraints:(__attribute__((noescape)) ALConstraintsBlock)block
 {
     NSArray *createdConstraints = [self autoCreateConstraintsWithoutInstalling:block];
     _al_isInstallingCreatedConstraints = YES;
@@ -114,7 +114,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  @param block A block of method calls to the PureLayout API that create constraints.
  @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
++ (PL__NSArray_of(NSLayoutConstraint *) *)autoCreateConstraintsWithoutInstalling:(__attribute__((noescape)) ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     NSArray *createdConstraints = nil;
@@ -184,7 +184,7 @@ static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
  @param priority The layout priority to be set on all constraints created in the constraints block.
  @param block A block of method calls to the PureLayout API that create and install constraints.
  */
-+ (void)autoSetPriority:(ALLayoutPriority)priority forConstraints:(ALConstraintsBlock)block
++ (void)autoSetPriority:(ALLayoutPriority)priority forConstraints:(__attribute__((noescape)) ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     if (block) {
@@ -244,7 +244,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  @param identifier A string used to identify all constraints created in the constraints block.
  @param block A block of method calls to the PureLayout API that create and install constraints.
  */
-+ (void)autoSetIdentifier:(NSString *)identifier forConstraints:(ALConstraintsBlock)block
++ (void)autoSetIdentifier:(NSString *)identifier forConstraints:(__attribute__((noescape)) ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     NSAssert(identifier, @"The identifier string cannot be nil.");
