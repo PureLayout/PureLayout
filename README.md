@@ -192,7 +192,7 @@ There are quite a few different ways to implement Auto Layout. Here is a quick o
 * Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)
   * Pros: Raw power
   * Cons: Extremely verbose; tedious to write; difficult to read
-* Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
+* Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html)
   * Pros: Concise; convenient
   * Cons: Doesn't support some use cases; lacks compile-time checking and safety; must learn syntax; hard to debug
 * Apple Interface Builder
