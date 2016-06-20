@@ -52,4 +52,13 @@
     ALAssertFrameEquals(self.viewB, 500.0, VALUES(0.0, -52.0), kContainerViewWidth - 500.0, kContainerViewHeight + 52.0);
 }
 
+- (void)testAutoPinEdgesToSuperViewEdgesExcludingEdge
+{
+    [self.viewA autoPinEdgesToSuperviewEdgesExcludingEdge:ALEdgeBottom];
+    [self.viewA autoSetDimension:ALDimensionHeight toSize:10];
+    [self evaluateConstraints];
+    ALAssertMaxYEquals(self.viewA, 10);
+    ALAssertOriginEquals(self.viewA, 0, 0);
+}
+
 @end

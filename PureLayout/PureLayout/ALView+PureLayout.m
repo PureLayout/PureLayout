@@ -211,6 +211,17 @@
 }
 
 /**
+ Pins 3 of the 4 edges of the view to the edges of its superview excluding one edge.
+
+ @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
+ @return An array of constraints added.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesExcludingEdge:(ALEdge)edge
+{
+    return [self autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero excludingEdge:edge];
+}
+
+/**
  Pins 3 of the 4 edges of the view to the edges of its superview with the given edge insets, excluding one edge.
  The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
  
