@@ -101,8 +101,11 @@ PL__ASSUME_NONNULL_BEGIN
 /** Pins the edges of the view to the margins of its superview. Available in iOS 8.0 and later. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins;
 
-/** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
+/** Pins 3 of the 4 edges of the view to the margins of its superview excluding one margin. Available in iOS 8.0 and later. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;
+
+/** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesExcludingEdge:(ALEdge)edge;
 
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 

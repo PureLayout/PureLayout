@@ -292,7 +292,7 @@
 /**
  Pins 3 of the 4 edges of the view to the margins of its superview, excluding one edge.
  
- @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
+ @param edge The margin of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
@@ -309,6 +309,30 @@
     }
     if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing]];
+    }
+    return constraints;
+}
+
+/**
+ Pins 3 of the 4 edges of the view to the edges of its superview, excluding one edge.
+
+ @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
+ @return An array of constraints added.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesExcludingEdge:(ALEdge)edge
+{
+    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    if (edge != ALEdgeTop) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop]];
+    }
+    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading]];
+    }
+    if (edge != ALEdgeBottom) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom]];
+    }
+    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing]];
     }
     return constraints;
 }
