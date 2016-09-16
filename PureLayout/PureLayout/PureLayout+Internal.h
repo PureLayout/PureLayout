@@ -72,7 +72,7 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
 #if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
-+ (NSString *)al_currentGlobalConstraintIdentifier;
++ (nullable NSString *)al_currentGlobalConstraintIdentifier;
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 + (NSLayoutAttribute)al_layoutAttributeForAttribute:(ALAttribute)attribute;
