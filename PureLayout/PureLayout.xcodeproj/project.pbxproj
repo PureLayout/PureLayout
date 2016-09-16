@@ -924,9 +924,11 @@
 				TargetAttributes = {
 					164C8B4D1C0D354E0007A6B1 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					164C8B721C0D36500007A6B1 = {
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					A7D496551B7B084800A74818 = {
@@ -1329,6 +1331,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1360,6 +1363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.Example-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1398,6 +1402,7 @@
 				PRODUCT_NAME = PureLayout;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1435,6 +1440,7 @@
 				PRODUCT_NAME = PureLayout;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";

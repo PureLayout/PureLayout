@@ -14,15 +14,15 @@ class TVViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let views = [UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor()]
+        let views = [UIColor.red, UIColor.green, UIColor.blue]
             .map(TVButton.init)
 
         views.forEach(self.view.addSubview)
 
-        (views as NSArray).autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 50)
+        (views as NSArray).autoDistributeViews(along: .horizontal, alignedTo: .horizontal, withFixedSpacing: 50)
         views.forEach { view in
-            view.autoAlignAxisToSuperviewAxis(.Horizontal)
-            view.autoSetDimension(.Height, toSize: 300)
+            view.autoAlignAxis(toSuperviewAxis: .horizontal)
+            view.autoSetDimension(.height, toSize: 300)
         }
     }
 }
@@ -34,7 +34,7 @@ class TVAppDelegate: UIResponder, UIApplicationDelegate {
 
 class TVButton : UIControl {
     required init(color: UIColor) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = color
     }
