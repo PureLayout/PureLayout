@@ -13,28 +13,28 @@ import PureLayout
 class iOSDemo8ViewController: UIViewController {
     
     let containerView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .lightGrayColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .lightGray
         return view
         }()
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let yellowView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .yellowColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .yellow
         return view
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
 
@@ -64,22 +64,22 @@ class iOSDemo8ViewController: UIViewController {
             */
             
             NSLayoutConstraint.autoSetIdentifier("Pin Container View Edges") {
-                self.containerView.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
-                self.containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0.0, left: 10.0, bottom: 10.0, right: 10.0), excludingEdge: .Top)
+                self.containerView.autoPin(toTopLayoutGuideOf: self, withInset: 10.0)
+                self.containerView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0.0, left: 10.0, bottom: 10.0, right: 10.0), excludingEdge: .top)
             }
 
             let views: NSArray = [redView, blueView, yellowView, greenView]
             
-            (views.autoDistributeViewsAlongAxis(.Vertical, alignedTo: .Vertical, withFixedSize: 40.0) as NSArray).autoIdentifyConstraints("Distribute Views Vertically")
+            (views.autoDistributeViews(along: .vertical, alignedTo: .vertical, withFixedSize: 40.0) as NSArray).autoIdentifyConstraints("Distribute Views Vertically")
 
             /**
             Note that the -autoIdentify and -autoIdentifyConstraints methods set the identifier, and then return the constraint(s).
             This lets you chain the identifier call right after creating the constraint(s), and still capture a reference to the constraint(s)!
             */
             
-            let constraints = (views.autoSetViewsDimension(.Width, toSize: 60.0) as NSArray).autoIdentifyConstraints("Set Width of All Views")
+            let constraints = (views.autoSetViewsDimension(.width, toSize: 60.0) as NSArray).autoIdentifyConstraints("Set Width of All Views")
             print("Just added \(constraints.count) constraints!") // you can do something with the constraints at this point
-            let constraint = redView.autoAlignAxisToSuperviewAxis(.Vertical).autoIdentify("Align Red View to Superview Vertical Axis")
+            let constraint = redView.autoAlignAxis(toSuperviewAxis: .vertical).autoIdentify("Align Red View to Superview Vertical Axis")
             print("Just added one constraint with the identifier: \(constraint.identifier)") // you can do something with the constraint at this point
             
             /**

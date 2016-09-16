@@ -12,15 +12,15 @@ import PureLayout
 @objc(iOSDemo11ViewController)
 class iOSDemo11ViewController: UIViewController {
     
-    let scrollView  = UIScrollView.newAutoLayoutView()
-    let contentView = UIView.newAutoLayoutView()
+    let scrollView  = UIScrollView.newAutoLayout()
+    let contentView = UIView.newAutoLayout()
     
     let blueLabel: UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.backgroundColor = .blueColor()
+        let label = UILabel.newAutoLayout()
+        label.backgroundColor = .blue
         label.numberOfLines = 0
-        label.lineBreakMode = .ByClipping
-        label.textColor = .whiteColor()
+        label.lineBreakMode = .byClipping
+        label.textColor = .white
         label.text = NSLocalizedString("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", comment: "")
         return label
     }()
@@ -42,15 +42,15 @@ class iOSDemo11ViewController: UIViewController {
         
         if (!didSetupConstraints) {
             
-            scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            scrollView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
             
-            contentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-            contentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
+            contentView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero)
+            contentView.autoMatch(.width, to: .width, of: view)
             
-            blueLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 20)
-            blueLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 20)
-            blueLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 20)
-            blueLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 20)
+            blueLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 20)
+            blueLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
+            blueLabel.autoPinEdge(toSuperviewEdge: .trailing, withInset: 20)
+            blueLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
             
             didSetupConstraints = true
         }

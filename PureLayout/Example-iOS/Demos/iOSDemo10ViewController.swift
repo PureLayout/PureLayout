@@ -13,30 +13,30 @@ import PureLayout
 class iOSDemo10ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let yellowView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .yellowColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .yellow
         return view
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
     let toggleConstraintsButton: UIButton = {
-        let button = UIButton.newAutoLayoutView()
-        button.setTitle("Toggle Constraints", forState: .Normal)
-        button.setTitleColor(.whiteColor(), forState: .Normal)
-        button.setTitleColor(.grayColor(), forState: .Highlighted)
+        let button = UIButton.newAutoLayout()
+        button.setTitle("Toggle Constraints", for: UIControlState())
+        button.setTitleColor(.white, for: UIControlState())
+        button.setTitleColor(.gray, for: .highlighted)
         return button
         }()
     
@@ -59,7 +59,7 @@ class iOSDemo10ViewController: UIViewController {
         view.addSubview(greenView)
         
         view.addSubview(toggleConstraintsButton)
-        toggleConstraintsButton.addTarget(self, action: "toggleConstraints:", forControlEvents: .TouchUpInside)
+        toggleConstraintsButton.addTarget(self, action: #selector(iOSDemo10ViewController.toggleConstraints(_:)), for: .touchUpInside)
         
         view.setNeedsUpdateConstraints() // bootstrap Auto Layout
     }
@@ -71,22 +71,22 @@ class iOSDemo10ViewController: UIViewController {
             // Create and install the constraints that define the horizontal layout, because this is the one we're starting in.
             // Note that we use autoCreateAndInstallConstraints() here in order to easily collect all the constraints into a single array.
             horizontalLayoutConstraints = NSLayoutConstraint.autoCreateAndInstallConstraints {
-                views.autoSetViewsDimension(.Height, toSize: 40.0)
-                views.autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 10.0, insetSpacing: true, matchedSizes: true)
-                self.redView.autoAlignAxisToSuperviewAxis(.Horizontal)
-            }
+                views.autoSetViewsDimension(.height, toSize: 40.0)
+                views.autoDistributeViews(along: .horizontal, alignedTo: .horizontal, withFixedSpacing: 10.0, insetSpacing: true, matchedSizes: true)
+                self.redView.autoAlignAxis(toSuperviewAxis: .horizontal)
+            } as NSArray?
             
             // Create the constraints that define the vertical layout, but don't install any of them - just store them for now.
             // Note that we use autoCreateConstraintsWithoutInstalling() here in order to both prevent the constraints from being installed automatically,
             // and to easily collect all the constraints into a single array.
             verticalLayoutConstraints = NSLayoutConstraint.autoCreateConstraintsWithoutInstalling {
-                views.autoSetViewsDimension(.Width, toSize: 60.0)
-                views.autoDistributeViewsAlongAxis(.Vertical, alignedTo: .Vertical, withFixedSpacing: 70.0, insetSpacing: true, matchedSizes: true)
-                self.redView.autoAlignAxisToSuperviewAxis(.Vertical)
-            }
+                views.autoSetViewsDimension(.width, toSize: 60.0)
+                views.autoDistributeViews(along: .vertical, alignedTo: .vertical, withFixedSpacing: 70.0, insetSpacing: true, matchedSizes: true)
+                self.redView.autoAlignAxis(toSuperviewAxis: .vertical)
+            } as NSArray?
             
-            toggleConstraintsButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
-            toggleConstraintsButton.autoAlignAxisToSuperviewAxis(.Vertical)
+            toggleConstraintsButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 10.0)
+            toggleConstraintsButton.autoAlignAxis(toSuperviewAxis: .vertical)
             
             didSetupConstraints = true
         }
@@ -97,7 +97,7 @@ class iOSDemo10ViewController: UIViewController {
     /**
     Callback when the "Toggle Constraints" button is tapped.
     */
-    func toggleConstraints(sender: UIButton) {
+    func toggleConstraints(_ sender: UIButton) {
         isHorizontalLayoutActive = !isHorizontalLayoutActive
         
         if (isHorizontalLayoutActive) {

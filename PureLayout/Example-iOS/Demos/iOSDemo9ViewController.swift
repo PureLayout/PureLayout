@@ -13,23 +13,23 @@ import PureLayout
 class iOSDemo9ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let yellowView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .yellowColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .yellow
         return view
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
 
@@ -50,8 +50,8 @@ class iOSDemo9ViewController: UIViewController {
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             // Before layout margins were introduced, this is a typical way of giving a subview some padding from its superview's edges
-            blueView.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
-            blueView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 10.0, bottom: 10.0, right: 10.0), excludingEdge: .Top)
+            blueView.autoPin(toTopLayoutGuideOf: self, withInset: 10.0)
+            blueView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 10.0, bottom: 10.0, right: 10.0), excludingEdge: .top)
             
             // Set the layoutMargins of the blueView, which will have an effect on subviews of the blueView that attach to
             // the blueView's margin attributes -- in this case, the redView
@@ -61,19 +61,19 @@ class iOSDemo9ViewController: UIViewController {
             // Let the redView inherit the values we just set for the blueView's layoutMargins by setting the below property to YES.
             // Then, pin the yellowView's edges to the redView's margins, giving the yellowView the same insets from its superview as the redView.
             redView.preservesSuperviewLayoutMargins = true
-            yellowView.autoPinEdgeToSuperviewMargin(.Left)
-            yellowView.autoPinEdgeToSuperviewMargin(.Right)
+            yellowView.autoPinEdge(toSuperviewMargin: .left)
+            yellowView.autoPinEdge(toSuperviewMargin: .right)
             
             // By aligning the yellowView to its superview's horiztonal margin axis, the yellowView will be positioned with its horizontal axis
             // in the middle of the redView's top and bottom margins (causing it to be slightly closer to the top of the redView, since the
             // redView has a much larger bottom margin than top margin).
-            yellowView.autoAlignAxisToSuperviewMarginAxis(.Horizontal)
-            yellowView.autoMatchDimension(.Height, toDimension: .Height, ofView: redView, withMultiplier: 0.5)
+            yellowView.autoAlignAxis(toSuperviewMarginAxis: .horizontal)
+            yellowView.autoMatch(.height, to: .height, of: redView, withMultiplier: 0.5)
             
             // Since yellowView.preservesSuperviewLayoutMargins is NO by default, it will not preserve (inherit) its superview's margins,
             // and instead will just have the default margins of: {8.0, 8.0, 8.0, 8.0} which will apply to its subviews (greenView)
-            greenView.autoPinEdgesToSuperviewMarginsExcludingEdge(.Bottom)
-            greenView.autoSetDimension(.Height, toSize: 50.0)
+            greenView.autoPinEdges(toSuperviewMarginsExcludingEdge: .bottom)
+            greenView.autoSetDimension(.height, toSize: 50.0)
             
             didSetupConstraints = true
         }

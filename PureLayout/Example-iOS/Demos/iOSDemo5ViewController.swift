@@ -13,21 +13,21 @@ import PureLayout
 class iOSDemo5ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
-        view.layer.borderColor = UIColor.lightGrayColor().CGColor
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
+        view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 0.5
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let purpleLabel: UILabel = {
-        let label = UILabel.newAutoLayoutView()
+        let label = UILabel.newAutoLayout()
         label.backgroundColor = UIColor(red: 1.0, green: 0, blue: 1.0, alpha: 0.3) // semi-transparent purple
-        label.textColor = .whiteColor()
+        label.textColor = .white
         label.text = "The quick brown fox jumps over the lazy dog"
         return label
         }()
@@ -48,18 +48,18 @@ class iOSDemo5ViewController: UIViewController {
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             blueView.autoCenterInSuperview()
-            blueView.autoSetDimensionsToSize(CGSize(width: 150.0, height: 150.0))
+            blueView.autoSetDimensions(to: CGSize(width: 150.0, height: 150.0))
             
             // Use a cross-attribute constraint to constrain an ALAxis (Horizontal) to an ALEdge (Bottom)
-            redView.autoConstrainAttribute(.Horizontal, toAttribute: .Bottom, ofView: blueView)
+            redView.autoConstrainAttribute(.horizontal, to: .bottom, of: blueView)
             
-            redView.autoAlignAxis(.Vertical, toSameAxisOfView: blueView)
-            redView.autoSetDimensionsToSize(CGSize(width: 50.0, height: 50.0))
+            redView.autoAlignAxis(.vertical, toSameAxisOf: blueView)
+            redView.autoSetDimensions(to: CGSize(width: 50.0, height: 50.0))
             
             // Use another cross-attribute constraint to place the purpleLabel's baseline on the blueView's top edge
-            purpleLabel.autoConstrainAttribute(.Baseline, toAttribute: .Top, ofView: blueView)
+            purpleLabel.autoConstrainAttribute(.baseline, to: .top, of: blueView)
             
-            purpleLabel.autoAlignAxis(.Vertical, toSameAxisOfView: blueView)
+            purpleLabel.autoAlignAxis(.vertical, toSameAxisOf: blueView)
             
             didSetupConstraints = true
         }
