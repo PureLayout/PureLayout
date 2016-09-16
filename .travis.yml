@@ -11,6 +11,7 @@ matrix:
       xcode_scheme: PureLayout_Mac
 
 before_install:
+  - rvm install 2.3.1
   - gem install slather --no-ri --no-rdoc
 
 after_success: slather
