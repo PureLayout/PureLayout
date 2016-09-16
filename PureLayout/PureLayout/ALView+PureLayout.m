@@ -80,7 +80,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewAxis:ALAxisHorizontal]];
     [constraints addObject:[self autoAlignAxisToSuperviewAxis:ALAxisVertical]];
     return constraints;
@@ -109,7 +109,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewMarginAxis:ALAxisHorizontal]];
     [constraints addObject:[self autoAlignAxisToSuperviewMarginAxis:ALAxisVertical]];
     return constraints;
@@ -202,7 +202,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
@@ -221,7 +221,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     }
@@ -281,7 +281,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
@@ -297,7 +297,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     }
@@ -486,7 +486,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoSetDimension:ALDimensionWidth toSize:size.width]];
     [constraints addObject:[self autoSetDimension:ALDimensionHeight toSize:size.height]];
     return constraints;
