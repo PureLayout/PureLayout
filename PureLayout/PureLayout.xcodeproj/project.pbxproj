@@ -929,14 +929,19 @@
 					};
 					B1046AAF1A7F32380017187F = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 					};
 					B1046AD71A7F32790017187F = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					B12C23DA17C3FDE4001CF667 = {
+						LastSwiftMigration = 0800;
 					};
 					B1A290DA19562FDA00D4765E = {
 						CreatedOnToolsVersion = 6.0;
 					};
 					B1EC855C195662790099293C = {
+						LastSwiftMigration = 0800;
 						TestTargetID = B12C23DA17C3FDE4001CF667;
 					};
 					B1EC857B195662B40099293C = {
@@ -1497,6 +1502,7 @@
 				PRODUCT_NAME = PureLayout;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1530,6 +1536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PureLayout;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1688,6 +1695,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Example-iOS/Example-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1705,6 +1713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Example-iOS/Example-iOS-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1791,6 +1800,7 @@
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-iOS/PureLayoutTests-iOS-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1818,6 +1828,7 @@
 				INFOPLIST_FILE = "PureLayoutTests/PureLayoutTests-iOS/PureLayoutTests-iOS-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-iOS.app/Example-iOS";
 				WRAPPER_EXTENSION = xctest;
 			};
