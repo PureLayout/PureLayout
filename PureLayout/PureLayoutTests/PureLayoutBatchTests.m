@@ -78,7 +78,7 @@
  */
 - (void)testCreateAndInstallConstraints
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
     PL__NSArray_of(NSLayoutConstraint *) *returnedConstraints = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
         [createdConstraints addObjectsFromArray:[self.viewA autoPinEdgesToSuperviewEdges]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.viewA_A.superview]];
@@ -149,7 +149,7 @@
  */
 - (void)testCreateConstraintsWithoutInstalling
 {
-    __NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
+    PL__NSMutableArray_of(NSLayoutConstraint *) *createdConstraints = [NSMutableArray array];
     PL__NSArray_of(NSLayoutConstraint *) *returnedConstraints = [NSLayoutConstraint autoCreateConstraintsWithoutInstalling:^{
         [createdConstraints addObjectsFromArray:[self.viewA autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsMake(10.0, 10.0, 10.0, 10.0) excludingEdge:ALEdgeBottom]];
         [createdConstraints addObject:[self.viewA_A autoAlignAxis:ALAxisVertical toSameAxisOfView:self.viewA_A.superview]];

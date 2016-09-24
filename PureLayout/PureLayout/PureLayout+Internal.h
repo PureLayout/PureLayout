@@ -29,7 +29,7 @@
 
 
 // Using generics with NSMutableArray is so common in the internal implementation of PureLayout that it gets a dedicated preprocessor macro for better readability.
-#define __NSMutableArray_of(type)                   PL__GENERICS(NSMutableArray, type)
+#define PL__NSMutableArray_of(type)                   PL__GENERICS(NSMutableArray, type)
 
 PL__ASSUME_NONNULL_BEGIN
 
@@ -68,11 +68,11 @@ static const CGFloat kMULTIPLIER_MIN_VALUE = (CGFloat)0.00001; // very small flo
 @interface NSLayoutConstraint (PureLayoutInternal)
 
 + (BOOL)al_preventAutomaticConstraintInstallation;
-+ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
++ (PL__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints;
 + (BOOL)al_isExecutingPriorityConstraintsBlock;
 + (ALLayoutPriority)al_currentGlobalConstraintPriority;
 #if PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10
-+ (NSString *)al_currentGlobalConstraintIdentifier;
++ (nullable NSString *)al_currentGlobalConstraintIdentifier;
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 || PL__PureLayout_MinBaseSDK_OSX_10_10 */
 + (void)al_applyGlobalStateToConstraint:(NSLayoutConstraint *)constraint;
 + (NSLayoutAttribute)al_layoutAttributeForAttribute:(ALAttribute)attribute;

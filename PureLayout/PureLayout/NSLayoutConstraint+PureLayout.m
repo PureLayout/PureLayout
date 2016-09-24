@@ -46,7 +46,7 @@
  
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static __NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *_al_arraysOfCreatedConstraints = nil;
+static PL__NSMutableArray_of(PL__NSMutableArray_of(NSLayoutConstraint *) *) *_al_arraysOfCreatedConstraints = nil;
 
 /**
  A global variable that is set to YES when installing a batch of constraints collected from a call to +[autoCreateAndInstallConstraints].
@@ -59,7 +59,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
 /**
  Accessor for the global state that stores arrays of constraints created without being installed.
  */
-+ (__NSMutableArray_of(__NSMutableArray_of(NSLayoutConstraint *) *) *)al_arraysOfCreatedConstraints
++ (PL__NSMutableArray_of(PL__NSMutableArray_of(NSLayoutConstraint *) *) *)al_arraysOfCreatedConstraints
 {
     NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
     if (!_al_arraysOfCreatedConstraints) {
@@ -71,7 +71,7 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
 /**
  Accessor for the current mutable array of constraints created without being immediately installed.
  */
-+ (__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints
++ (PL__NSMutableArray_of(NSLayoutConstraint *) *)al_currentArrayOfCreatedConstraints
 {
     return [[self al_arraysOfCreatedConstraints] lastObject];
 }
@@ -138,12 +138,12 @@ static BOOL _al_isInstallingCreatedConstraints = NO;
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
+static PL__NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
 
 /**
  Accessor for the global stack of layout priorities.
  */
-+ (__NSMutableArray_of(NSNumber *) *)al_globalConstraintPriorities
++ (PL__NSMutableArray_of(NSNumber *) *)al_globalConstraintPriorities
 {
     NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
     if (!_al_globalConstraintPriorities) {
@@ -159,7 +159,7 @@ static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
  */
 + (ALLayoutPriority)al_currentGlobalConstraintPriority
 {
-    __NSMutableArray_of(NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
+    PL__NSMutableArray_of(NSNumber *) *globalConstraintPriorities = [self al_globalConstraintPriorities];
     if ([globalConstraintPriorities count] == 0) {
         return ALLayoutPriorityRequired;
     }
@@ -207,12 +207,12 @@ static __NSMutableArray_of(NSNumber *) *_al_globalConstraintPriorities = nil;
  constraints created by this library (even if automatic constraint installation is being prevented).
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
+static PL__NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
 
 /**
  Accessor for the global state of constraint identifiers.
  */
-+ (__NSMutableArray_of(NSString *) *)al_globalConstraintIdentifiers
++ (PL__NSMutableArray_of(NSString *) *)al_globalConstraintIdentifiers
 {
     NSAssert([NSThread isMainThread], @"PureLayout is not thread safe, and must be used exclusively from the main thread.");
     if (!_al_globalConstraintIdentifiers) {
@@ -228,7 +228,7 @@ static __NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
  */
 + (NSString *)al_currentGlobalConstraintIdentifier
 {
-    __NSMutableArray_of(NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
+    PL__NSMutableArray_of(NSString *) *globalConstraintIdentifiers = [self al_globalConstraintIdentifiers];
     if ([globalConstraintIdentifiers count] == 0) {
         return nil;
     }
