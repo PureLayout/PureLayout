@@ -13,25 +13,25 @@ import PureLayout
 class iOSDemo4ViewController: UIViewController {
     
     let blueLabel: UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.backgroundColor = .blueColor()
+        let label = UILabel.newAutoLayout()
+        label.backgroundColor = .blue
         label.numberOfLines = 1
-        label.lineBreakMode = .ByClipping
-        label.textColor = .whiteColor()
+        label.lineBreakMode = .byClipping
+        label.textColor = .white
         label.text = NSLocalizedString("Lorem ipsum", comment: "")
         return label
         }()
     let redLabel: UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.backgroundColor = .redColor()
+        let label = UILabel.newAutoLayout()
+        label.backgroundColor = .red
         label.numberOfLines = 0
-        label.textColor = .whiteColor()
+        label.textColor = .white
         label.text = NSLocalizedString("Lorem ipsum", comment: "")
         return label
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
 
@@ -63,28 +63,28 @@ class iOSDemo4ViewController: UIViewController {
         
         if (!didSetupConstraints) {
             // Prevent the blueLabel from compressing smaller than required to fit its single line of text
-            blueLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
+            blueLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
             
             // Position the single-line blueLabel at the top of the screen spanning the width, with some small insets
-            blueLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: smallPadding)
-            blueLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: smallPadding)
-            blueLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: smallPadding)
+            blueLabel.autoPin(toTopLayoutGuideOf: self, withInset: smallPadding)
+            blueLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: smallPadding)
+            blueLabel.autoPinEdge(toSuperviewEdge: .trailing, withInset: smallPadding)
             
             // Make the redLabel 60% of the width of the blueLabel
-            redLabel.autoMatchDimension(.Width, toDimension: .Width, ofView: blueLabel, withMultiplier: 0.6)
+            redLabel.autoMatch(.width, to: .width, of: blueLabel, withMultiplier: 0.6)
             
             // The redLabel is positioned below the blueLabel, with its leading edge to its superview, and trailing edge to the greenView
-            redLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: blueLabel, withOffset: smallPadding)
-            redLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: smallPadding)
-            redLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: largePadding)
+            redLabel.autoPinEdge(.top, to: .bottom, of: blueLabel, withOffset: smallPadding)
+            redLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: smallPadding)
+            redLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: largePadding)
             
             // The greenView is positioned below the blueLabel, with its leading edge to the redLabel, and trailing edge to its superview
-            greenView.autoPinEdge(.Leading, toEdge: .Trailing, ofView: redLabel, withOffset: largePadding)
-            greenView.autoPinEdge(.Top, toEdge: .Bottom, ofView: blueLabel, withOffset: smallPadding)
-            greenView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: smallPadding)
+            greenView.autoPinEdge(.leading, to: .trailing, of: redLabel, withOffset: largePadding)
+            greenView.autoPinEdge(.top, to: .bottom, of: blueLabel, withOffset: smallPadding)
+            greenView.autoPinEdge(toSuperviewEdge: .trailing, withInset: smallPadding)
             
             // Match the greenView's height to its width (keeping a consistent aspect ratio)
-            greenView.autoMatchDimension(.Width, toDimension: .Height, ofView: greenView)
+            greenView.autoMatch(.width, to: .height, of: greenView)
             
             didSetupConstraints = true
         }

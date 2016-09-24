@@ -13,23 +13,23 @@ import PureLayout
 class iOSDemo1ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let yellowView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .yellowColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .yellow
         return view
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
 
@@ -54,27 +54,27 @@ class iOSDemo1ViewController: UIViewController {
         if (!didSetupConstraints) {
             // Blue view is centered on screen, with size {50 pt, 50 pt}
             blueView.autoCenterInSuperview()
-            blueView.autoSetDimensionsToSize(CGSize(width: 50.0, height: 50.0))
+            blueView.autoSetDimensions(to: CGSize(width: 50.0, height: 50.0))
             
             // Red view is positioned at the bottom right corner of the blue view, with the same width, and a height of 40 pt
-            redView.autoPinEdge(.Top, toEdge: .Bottom, ofView: blueView)
-            redView.autoPinEdge(.Left, toEdge: .Right, ofView: blueView)
-            redView.autoMatchDimension(.Width, toDimension: .Width, ofView: blueView)
-            redView.autoSetDimension(.Height, toSize: 40.0)
+            redView.autoPinEdge(.top, to: .bottom, of: blueView)
+            redView.autoPinEdge(.left, to: .right, of: blueView)
+            redView.autoMatch(.width, to: .width, of: blueView)
+            redView.autoSetDimension(.height, toSize: 40.0)
             
             // Yellow view is positioned 10 pt below the red view, extending across the screen with 20 pt insets from the edges,
             // and with a fixed height of 25 pt
-            yellowView.autoPinEdge(.Top, toEdge: .Bottom, ofView: redView, withOffset: 10.0)
-            yellowView.autoSetDimension(.Height, toSize: 25.0)
-            yellowView.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0)
-            yellowView.autoPinEdgeToSuperviewEdge(.Right, withInset: 20.0)
+            yellowView.autoPinEdge(.top, to: .bottom, of: redView, withOffset: 10.0)
+            yellowView.autoSetDimension(.height, toSize: 25.0)
+            yellowView.autoPinEdge(toSuperviewEdge: .left, withInset: 20.0)
+            yellowView.autoPinEdge(toSuperviewEdge: .right, withInset: 20.0)
             
             // Green view is positioned 10 pt below the yellow view, aligned to the vertical axis of its superview,
             // with its height twice the height of the yellow view and its width fixed to 150 pt
-            greenView.autoPinEdge(.Top, toEdge: .Bottom, ofView: yellowView, withOffset: 10.0)
-            greenView.autoAlignAxisToSuperviewAxis(.Vertical)
-            greenView.autoMatchDimension(.Height, toDimension: .Height, ofView: yellowView, withMultiplier: 2.0)
-            greenView.autoSetDimension(.Width, toSize: 150.0)
+            greenView.autoPinEdge(.top, to: .bottom, of: yellowView, withOffset: 10.0)
+            greenView.autoAlignAxis(toSuperviewAxis: .vertical)
+            greenView.autoMatch(.height, to: .height, of: yellowView, withMultiplier: 2.0)
+            greenView.autoSetDimension(.width, toSize: 150.0)
             
             didSetupConstraints = true
         }

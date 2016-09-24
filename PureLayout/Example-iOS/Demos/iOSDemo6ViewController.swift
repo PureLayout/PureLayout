@@ -13,8 +13,8 @@ import PureLayout
 class iOSDemo6ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
 
@@ -33,19 +33,19 @@ class iOSDemo6ViewController: UIViewController {
         if (!didSetupConstraints) {
             // Center the blueView in its superview, and match its width to its height
             blueView.autoCenterInSuperview()
-            blueView.autoMatchDimension(.Width, toDimension: .Height, ofView: blueView)
+            blueView.autoMatch(.width, to: .height, of: blueView)
             
             // Make sure the blueView is always at least 20 pt from any edge
-            blueView.autoPinToTopLayoutGuideOfViewController(self, withInset: 20.0, relation: .GreaterThanOrEqual)
-            blueView.autoPinToBottomLayoutGuideOfViewController(self, withInset: 20.0, relation: .GreaterThanOrEqual)
-            blueView.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0, relation: .GreaterThanOrEqual)
-            blueView.autoPinEdgeToSuperviewEdge(.Right, withInset: 20.0, relation: .GreaterThanOrEqual)
+            blueView.autoPin(toTopLayoutGuideOf: self, withInset: 20.0, relation: .greaterThanOrEqual)
+            blueView.autoPin(toBottomLayoutGuideOf: self, withInset: 20.0, relation: .greaterThanOrEqual)
+            blueView.autoPinEdge(toSuperviewEdge: .left, withInset: 20.0, relation: .greaterThanOrEqual)
+            blueView.autoPinEdge(toSuperviewEdge: .right, withInset: 20.0, relation: .greaterThanOrEqual)
             
             // Add constraints that set the size of the blueView to a ridiculously large size, but set the priority of these constraints
             // to a lower value than Required. This allows the Auto Layout solver to let these constraints be broken if one or both of
             // them conflict with higher-priority constraint(s), such as the above 4 edge constraints.
             NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh) {
-                self.blueView.autoSetDimensionsToSize(CGSize(width: 10000.0, height: 10000.0))
+                self.blueView.autoSetDimensions(to: CGSize(width: 10000.0, height: 10000.0))
             }
             
             didSetupConstraints = true

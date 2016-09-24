@@ -13,23 +13,23 @@ import PureLayout
 class iOSDemo2ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
     let yellowView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .yellowColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .yellow
         return view
         }()
     let greenView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .greenColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .green
         return view
         }()
 
@@ -50,29 +50,29 @@ class iOSDemo2ViewController: UIViewController {
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             // Apply a fixed height of 50 pt to two views at once, and a fixed height of 70 pt to another two views
-            [redView, yellowView].autoSetViewsDimension(.Height, toSize: 50.0)
-            [blueView, greenView].autoSetViewsDimension(.Height, toSize: 70.0)
+            ([redView, yellowView] as NSArray).autoSetViewsDimension(.height, toSize: 50.0)
+            ([blueView, greenView] as NSArray).autoSetViewsDimension(.height, toSize: 70.0)
             
             let views = [redView, blueView, yellowView, greenView]
             
             // Match the widths of all the views
-            (views as NSArray).autoMatchViewsDimension(.Width)
+            (views as NSArray).autoMatchViewsDimension(.width)
             
             // Pin the red view 20 pt from the top layout guide of the view controller
-            redView.autoPinToTopLayoutGuideOfViewController(self, withInset: 20.0)
+            redView.autoPin(toTopLayoutGuideOf: self, withInset: 20.0)
             
             // Loop over the views, attaching the left edge to the previous view's right edge,
             // and the top edge to the previous view's bottom edge
-            views.first?.autoPinEdgeToSuperviewEdge(.Left)
+            views.first?.autoPinEdge(toSuperviewEdge: .left)
             var previousView: UIView?
             for view in views {
                 if let previousView = previousView {
-                    view.autoPinEdge(.Left, toEdge: .Right, ofView: previousView)
-                    view.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView)
+                    view.autoPinEdge(.left, to: .right, of: previousView)
+                    view.autoPinEdge(.top, to: .bottom, of: previousView)
                 }
                 previousView = view
             }
-            views.last?.autoPinEdgeToSuperviewEdge(.Right)
+            views.last?.autoPinEdge(toSuperviewEdge: .right)
             
             didSetupConstraints = true
         }

@@ -13,13 +13,13 @@ import PureLayout
 class iOSDemo7ViewController: UIViewController {
     
     let blueView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .blueColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .blue
         return view
         }()
     let redView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = .redColor()
+        let view = UIView.newAutoLayout()
+        view.backgroundColor = .red
         return view
         }()
 
@@ -42,7 +42,7 @@ class iOSDemo7ViewController: UIViewController {
         view.setNeedsUpdateConstraints() // bootstrap Auto Layout
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         /**
@@ -61,15 +61,15 @@ class iOSDemo7ViewController: UIViewController {
         
         // Remember, this code is just the initial constraint setup which only happens the first time this method is called
         if (!didSetupConstraints) {
-            blueView.autoPinToTopLayoutGuideOfViewController(self, withInset: 20.0)
-            blueView.autoAlignAxisToSuperviewAxis(.Vertical)
+            blueView.autoPin(toTopLayoutGuideOf: self, withInset: 20.0)
+            blueView.autoAlignAxis(toSuperviewAxis: .vertical)
             
-            blueView.autoSetDimension(.Width, toSize: 50.0)
-            blueViewHeightConstraint = blueView.autoSetDimension(.Height, toSize: blueViewInitialHeight)
+            blueView.autoSetDimension(.width, toSize: 50.0)
+            blueViewHeightConstraint = blueView.autoSetDimension(.height, toSize: blueViewInitialHeight)
             
-            redView.autoSetDimension(.Height, toSize: 50.0)
-            redView.autoMatchDimension(.Width, toDimension: .Height, ofView: blueView, withMultiplier: 1.5)
-            redView.autoAlignAxisToSuperviewAxis(.Vertical)
+            redView.autoSetDimension(.height, toSize: 50.0)
+            redView.autoMatch(.width, to: .height, of: blueView, withMultiplier: 1.5)
+            redView.autoAlignAxis(toSuperviewAxis: .vertical)
             
             didSetupConstraints = true
         }
@@ -80,10 +80,10 @@ class iOSDemo7ViewController: UIViewController {
         redViewEdgeConstraint?.autoRemove()
         if isAnimatingToEndState {
             blueViewHeightConstraint?.constant = blueViewEndHeight
-            redViewEdgeConstraint = redView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 150.0)
+            redViewEdgeConstraint = redView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 150.0)
         } else {
             blueViewHeightConstraint?.constant = blueViewInitialHeight
-            redViewEdgeConstraint = redView.autoPinEdge(.Top, toEdge: .Bottom, ofView: blueView, withOffset: 20.0)
+            redViewEdgeConstraint = redView.autoPinEdge(.top, to: .bottom, of: blueView, withOffset: 20.0)
         }
         
         super.updateViewConstraints()
@@ -96,7 +96,7 @@ class iOSDemo7ViewController: UIViewController {
         view.setNeedsUpdateConstraints()
         view.updateConstraintsIfNeeded()
         
-        UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions(),
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions(),
             animations: {
                 self.view.layoutIfNeeded()
             },
@@ -116,7 +116,7 @@ class iOSDemo7ViewController: UIViewController {
         view.setNeedsUpdateConstraints()
         view.updateConstraintsIfNeeded()
         
-        UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions(),
+        UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(),
             animations: {
                 self.view.layoutIfNeeded()
             },
