@@ -145,6 +145,13 @@
 			remoteGlobalIDString = 164C8B721C0D36500007A6B1;
 			remoteInfo = PureLayout_tvOS;
 		};
+		6D207E9A1E2E99EB00CCDD7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
+			remoteInfo = "Example-Mac";
+		};
 		A7D496571B7B084800A74818 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
@@ -172,13 +179,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B12C23DA17C3FDE4001CF667;
 			remoteInfo = "Example-iOS";
-		};
-		B1046B1B1A7F4A680017187F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B12C23D317C3FDE4001CF667 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B1A290DA19562FDA00D4765E;
-			remoteInfo = "Example-Mac";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -905,7 +905,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B1046B1C1A7F4A680017187F /* PBXTargetDependency */,
+				6D207E9B1E2E99EB00CCDD7C /* PBXTargetDependency */,
 			);
 			name = "PureLayoutTests-Mac";
 			productName = "PureLayoutTests-Mac";
@@ -956,6 +956,7 @@
 						TestTargetID = B12C23DA17C3FDE4001CF667;
 					};
 					B1EC857B195662B40099293C = {
+						ProvisioningStyle = Manual;
 						TestTargetID = B1A290DA19562FDA00D4765E;
 					};
 				};
@@ -1217,6 +1218,11 @@
 			target = 164C8B721C0D36500007A6B1 /* PureLayout_tvOS */;
 			targetProxy = 164C8B8E1C0D37C70007A6B1 /* PBXContainerItemProxy */;
 		};
+		6D207E9B1E2E99EB00CCDD7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
+			targetProxy = 6D207E9A1E2E99EB00CCDD7C /* PBXContainerItemProxy */;
+		};
 		A7D496561B7B084800A74818 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B1046AAF1A7F32380017187F /* PureLayout_iOS */;
@@ -1236,11 +1242,6 @@
 			isa = PBXTargetDependency;
 			target = B12C23DA17C3FDE4001CF667 /* Example-iOS */;
 			targetProxy = B1046B191A7F4A640017187F /* PBXContainerItemProxy */;
-		};
-		B1046B1C1A7F4A680017187F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B1A290DA19562FDA00D4765E /* Example-Mac */;
-			targetProxy = B1046B1B1A7F4A680017187F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1603,6 +1604,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PureLayout;
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1639,6 +1642,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PureLayout;
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1664,7 +1669,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1711,7 +1716,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1796,6 +1801,8 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1823,6 +1830,8 @@
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1834,6 +1843,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1867,6 +1877,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1897,7 +1908,9 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1918,7 +1931,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = macosx;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = xctest;
@@ -1932,8 +1945,10 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1951,7 +1966,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PureLayout.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
+				SUPPORTED_PLATFORMS = macosx;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example-Mac.app/Contents/MacOS/Example-Mac";
 				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = xctest;
