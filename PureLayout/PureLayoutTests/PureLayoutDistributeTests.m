@@ -17,16 +17,6 @@
 
 @implementation PureLayoutDistributeTests
 
-- (void)setUp
-{
-    [super setUp];
-}
-
-- (void)tearDown
-{
-    [super tearDown];
-}
-
 - (void)testAutoDistributeViewsHorizontallyWithFixedSpacing
 {
     PL__NSArray_of(NSLayoutConstraint *) *constraints = nil;

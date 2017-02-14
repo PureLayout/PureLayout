@@ -14,18 +14,6 @@
 
 @implementation PureLayoutInstallationTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /**
  Test the -[autoInstall] method on NSLayoutConstraint with two nil items.
  */

@@ -14,18 +14,6 @@
 
 @implementation PureLayoutRemovalTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /**
  Test the +[removeConstraint:] method on UIView.
  Test the case where we're removing a constraint that was added to the closest common superview of the two views it

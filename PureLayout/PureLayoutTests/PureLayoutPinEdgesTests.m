@@ -14,18 +14,6 @@
 
 @implementation PureLayoutPinEdgesTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 - (void)testAutoPinEdgeToSuperviewEdge
 {
     [self.viewA autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10.0];

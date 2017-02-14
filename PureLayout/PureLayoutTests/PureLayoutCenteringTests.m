@@ -14,18 +14,6 @@
 
 @implementation PureLayoutCenteringTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 - (void)testAutoCenterInSuperview
 {
     [self.viewA autoSetDimensionsToSize:CGSizeMake(100.0, 100.0)];
