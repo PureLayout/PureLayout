@@ -14,18 +14,6 @@
 
 @implementation PureLayoutInstantiationTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /**
  Test the +[newAutoLayoutView] method.
  */

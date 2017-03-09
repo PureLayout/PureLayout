@@ -24,12 +24,6 @@
     [self setupViewHierarchy];
 }
 
-- (void)tearDown
-{
-    
-    [super tearDown];
-}
-
 /**
  Sets up the default view hierarchy for tests. Test subclasses may override this method to customize the view hierarchy set up.
  */

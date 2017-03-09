@@ -14,18 +14,6 @@
 
 @implementation PureLayoutIdentifierTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /** Test the -[autoIdentify:] method on NSLayoutConstraint. */
 - (void)testIdentify
 {

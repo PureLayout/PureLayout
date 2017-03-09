@@ -14,18 +14,6 @@
 
 @implementation PureLayoutInternalTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /**
  Test that ALAttributes translate directly to the specific enum types.
  */

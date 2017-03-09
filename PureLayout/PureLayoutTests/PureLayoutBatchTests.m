@@ -14,18 +14,6 @@
 
 @implementation PureLayoutBatchTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /** Returns YES if the constraint is active. */
 - (BOOL)isConstraintActive:(NSLayoutConstraint *)constraint
 {

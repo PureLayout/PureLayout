@@ -14,18 +14,6 @@
 
 @implementation PureLayoutPriorityTests
 
-- (void)setUp
-{
-    [super setUp];
-
-}
-
-- (void)tearDown
-{
-
-    [super tearDown];
-}
-
 /**
  Returns an array of the default priorities to test.
  */
