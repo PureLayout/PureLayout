@@ -40,4 +40,23 @@
     ALAssertFrameEquals(self.viewB, 500.0, VALUES(0.0, -52.0), kContainerViewWidth - 500.0, kContainerViewHeight + 52.0);
 }
 
+-(void)testAutoPinEdgesReturnsConstraintsCounterclockwiseFromTop
+{
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = [self.viewA autoPinEdgesToSuperviewEdges];
+
+    XCTAssertEqual([[constraints objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[constraints objectAtIndex:1] firstAttribute], NSLayoutAttributeLeading);
+    XCTAssertEqual([[constraints objectAtIndex:2] firstAttribute], NSLayoutAttributeBottom);
+    XCTAssertEqual([[constraints objectAtIndex:3] firstAttribute], NSLayoutAttributeTrailing);
+}
+
+-(void)testAutoPinEdgesExcludingEdgeRetainsRelativeConstraintOrdering
+{
+    PL__NSArray_of(NSLayoutConstraint *) *constraints = [self.viewA autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero excludingEdge:ALEdgeLeading];
+
+    XCTAssertEqual([[constraints objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[constraints objectAtIndex:1] firstAttribute], NSLayoutAttributeBottom);
+    XCTAssertEqual([[constraints objectAtIndex:2] firstAttribute], NSLayoutAttributeTrailing);
+}
+
 @end

@@ -186,7 +186,7 @@
 /**
  Pins the edges of the view to the edges of its superview.
  
- @return An array of constraints added.
+ @return An array of constraints added, ordered counterclockwise from top.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges
 {
@@ -198,7 +198,7 @@
  The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
  
  @param insets The insets for this view's edges from its superview's edges.
- @return An array of constraints added.
+ @return An array of constraints added, ordered counterclockwise from top.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
 {
@@ -217,7 +217,7 @@
  @param insets The insets for this view's edges from its superview's edges. The inset corresponding to the excluded edge
                will be ignored.
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
- @return An array of constraints added.
+ @return An array of constraints added, ordered counterclockwise from top.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
 {
@@ -277,7 +277,7 @@
 /**
  Pins the edges of the view to the margins of its superview.
  
- @return An array of constraints added.
+ @return An array of constraints added, ordered counterclockwise from top.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
@@ -293,7 +293,7 @@
  Pins 3 of the 4 edges of the view to the margins of its superview, excluding one edge.
  
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
- @return An array of constraints added.
+ @return An array of constraints added, ordered counterclockwise from top.
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
 {
