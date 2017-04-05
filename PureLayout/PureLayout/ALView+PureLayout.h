@@ -118,6 +118,18 @@ PL__ASSUME_NONNULL_BEGIN
 /** Pins an edge of the view to a given edge of another view with an offset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
 
+/** Pins an edge of the view to the same edge of another view. */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView;
+
+/** Pins an edge of the view to the same edge of another view with an offset. */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView withOffset:(CGFloat)offset;
+
+/** Pins an edge of the view to the same edge of another view with an offset as a maximum or minimum. */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+
+/** Pins the edges of the view to the edges of another view. */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToEdgesOfView:(ALView *)otherView;
+
 
 #pragma mark Align Axes
 
