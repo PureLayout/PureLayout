@@ -148,6 +148,21 @@ PL__ASSUME_NONNULL_BEGIN
 /** Matches a dimension of the view to a multiple of a given dimension of another view as a maximum or minimum. */
 - (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toDimension:(ALDimension)toDimension ofView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
 
+/** Matches a dimension of the view to the same dimension of another view. */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView;
+
+/** Matches a dimension of the view to the same dimension of another view with an offset. */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withOffset:(CGFloat)offset;
+
+/** Matches a dimension of the view to the same dimension of another view with an offset as a maximum or minimum. */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation;
+
+/** Matches a dimension of the view to a multiple of the same dimension of another view. */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier;
+
+/** Matches a dimension of the view to a multiple of the same dimension of another view as a maximum or minimum. */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation;
+
 
 #pragma mark Set Dimensions
 
