@@ -41,9 +41,10 @@
     // only want to create these constraints once. Without this check, the same constraints could be added multiple times,
     // which can hurt performance and cause other issues. See Demo 7 (Animation) for an example of code that runs every time.
     if (!self.didSetupConstraints) {
-        // Blue view is centered on screen, with size {50 pt, 50 pt}
+        // Blue view is a square centered on screen with width 50 pt
         [self.blueView autoCenterInSuperview];
-        [self.blueView autoSetDimensionsToSize:CGSizeMake(50.0, 50.0)];
+        [self.blueView autoSetDimension:ALDimensionWidth toSize:50];
+        [self.blueView autoSetAspectRatioFromSize:CGSizeMake(100, 100)];
         
         // Red view is positioned at the bottom right corner of the blue view, with the same width, and a height of 40 pt
         [self.redView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.blueView];

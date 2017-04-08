@@ -31,6 +31,8 @@
 #import "NSArray+PureLayout.h"
 #import "PureLayout+Internal.h"
 
+#import <math.h>
+#import <float.h>
 
 #pragma mark - ALView+PureLayout
 
@@ -519,6 +521,33 @@
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:size];
     [constraint autoInstall];
     return constraint;
+}
+
+
+#pragma mark Aspect Ratios
+
+/**
+ Sets the aspect ratio (width:height) of the view.
+ 
+ @param aspectRatio The desired aspect ratio for this view.
+ */
+- (NSLayoutConstraint *)autoSetAspectRatio:(CGFloat)aspectRatio {
+    return [self autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self withMultiplier:aspectRatio];
+}
+
+/**
+ Make the aspect ratio of the view proportionate to the given size.
+ 
+ @param size A template size this view should be proportionate to.
+ */
+- (NSLayoutConstraint *)autoSetAspectRatioFromSize:(CGSize)size {
+    CGFloat aspectRatio = 0;
+
+    if(fabs(size.height) >= FLT_EPSILON) {
+        aspectRatio = size.width / size.height;
+    }
+
+    return [self autoSetAspectRatio:aspectRatio];
 }
 
 

@@ -161,6 +161,14 @@ PL__ASSUME_NONNULL_BEGIN
 - (NSLayoutConstraint *)autoSetDimension:(ALDimension)dimension toSize:(CGFloat)size relation:(NSLayoutRelation)relation;
 
 
+#pragma mark Aspect Ratios
+
+/** Sets the aspect ratio (width:height) of the view. */
+- (NSLayoutConstraint *)autoSetAspectRatio:(CGFloat)aspectRatio;
+
+/** Makes the aspect ratio of the view proportionate to the given size. */
+- (NSLayoutConstraint *)autoSetAspectRatioFromSize:(CGSize)size;
+
 #pragma mark Set Content Compression Resistance & Hugging
 
 /** Sets the priority of content compression resistance for an axis.
