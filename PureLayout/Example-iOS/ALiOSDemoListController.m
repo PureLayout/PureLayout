@@ -132,7 +132,7 @@ NSString *const kLastUsedDemoTypeUserDefaultsKey = @"PureLayout-iOS-Demos-LastUs
         // The very first section is the option to switch between Objective-C and Swift demo files.
         self.useSwiftDemos = !self.useSwiftDemos;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationRight];
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:self.useSwiftDemos ? UITableViewRowAnimationLeft : UITableViewRowAnimationRight];
     } else {
         // All other rows take you to the actual demos.
         [self displayDemoAtIndex:indexPath.row];
