@@ -147,13 +147,13 @@ PureLayout dramatically simplifies writing Auto Layout code. Let's take a quick 
 Here's a constraint between two views created (and automatically activated) using PureLayout:
 
 ```swift
-view1.autoPinEdge(.Top, toEdge: .Bottom, ofView: view2)
+view1.autoPinEdge(.top, toEdge: .bottom, ofView: view2)
 ```
 
 Without PureLayout, here's the equivalent code you'd have to write using Apple's Foundation API directly:
 
 ```swift
-NSLayoutConstraint(item: view1, attribute: .Top, relatedBy: .Equal, toItem: view2, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+NSLayoutConstraint(item: view1, attribute: .top, relatedBy: .equal, toItem: view2, attribute: .bottom, multiplier: 1.0, constant: 0.0).active = true
 ```
 
 Many APIs of PureLayout create multiple constraints for you under the hood, letting you write highly readable layout code:
@@ -163,13 +163,13 @@ Many APIs of PureLayout create multiple constraints for you under the hood, lett
 logoImageView.autoCenterInSuperview()
 
 // 4 constraints created & activated in one line!
-textContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 20.0, left: 5.0, bottom: 10.0, right: 5.0))
+textContentView.autoPinEdgesToSuperviewEdges(with insets: UIEdgeInsets(top: 20.0, left: 5.0, bottom: 10.0, right: 5.0))
 ```
 
 PureLayout always returns the constraints it creates so you have full control:
 
 ```swift
-let constraint = skinnyView.autoMatchDimension(.Height, toDimension: .Width, ofView: tallView)
+let constraint = skinnyView.autoMatchDimension(.height, toDimension: .width, ofView: tallView)
 ```
 
 PureLayout supports all Auto Layout features including inequalities, priorities, layout margins, identifiers, and much more. It's a comprehensive, developer-friendly way to use Auto Layout.
