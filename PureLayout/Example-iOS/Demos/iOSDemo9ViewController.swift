@@ -64,7 +64,7 @@ class iOSDemo9ViewController: UIViewController {
             yellowView.autoPinEdge(toSuperviewMargin: .left)
             yellowView.autoPinEdge(toSuperviewMargin: .right)
             
-            // By aligning the yellowView to its superview's horiztonal margin axis, the yellowView will be positioned with its horizontal axis
+            // By aligning the yellowView to its superview's horizontal margin axis, the yellowView will be positioned with its horizontal axis
             // in the middle of the redView's top and bottom margins (causing it to be slightly closer to the top of the redView, since the
             // redView has a much larger bottom margin than top margin).
             yellowView.autoAlignAxis(toSuperviewMarginAxis: .horizontal)
