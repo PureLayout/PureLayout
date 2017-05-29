@@ -50,6 +50,10 @@ PL__ASSUME_NONNULL_BEGIN
 /** Configures an existing view to not convert the autoresizing mask into constraints and returns the view. */
 - (instancetype)configureForAutoLayout;
 
+#pragma mark Removing Constraints
+
+/** Removes all constraints from the view */
+- (void)removeAllConstraints;
 
 #pragma mark Center & Align in Superview
 
