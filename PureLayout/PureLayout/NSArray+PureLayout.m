@@ -328,6 +328,9 @@
             else {
                 // First view
                 [constraints addObject:[view autoPinEdgeToSuperviewEdge:firstEdge withInset:leadingSpacing]];
+
+                ALView *commonSuperview = [self al_commonSuperviewOfViews];
+                [constraints addObject:[view al_alignAttribute:alignment toView:commonSuperview forAxis:axis]];
             }
             previousView = view;
         }
