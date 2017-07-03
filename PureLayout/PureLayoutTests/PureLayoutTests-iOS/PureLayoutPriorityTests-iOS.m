@@ -123,22 +123,22 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
-    
+
+    [viewController.view addSubview:self.containerView];
+
     // Wait until the next run loop to run the actual tests, after the window & view controller have a chance to
     // get into a state where the view hierarchy is prepared to accept constraints to the layout guides
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
-        }];
-        
-        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
-        }];
-        
-        [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
-            return [self.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
-        }];
-    });
+    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+        return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:50.0];
+    }];
+
+    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+        return [self.viewA autoPinToTopLayoutGuideOfViewController:viewController withInset:0.0];
+    }];
+
+    [self assertConstraintIsAddedWithDefaultPriorities:^NSLayoutConstraint *{
+        return [self.viewA autoPinToBottomLayoutGuideOfViewController:viewController withInset:-5.0];
+    }];
 }
 
 @end
