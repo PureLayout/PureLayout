@@ -110,6 +110,8 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 - autoSetDimension(s)ToSize:
 - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
 - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
+- autoPinEdge:ofGuide:withInset: // iOS 11.0+ only
+- autoPinEdgesToSafeAreaLayoutGuide:withInsets: // iOS 11.0+ only
 ```
 
 ### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)
