@@ -132,13 +132,29 @@
 
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
+
 #pragma mark Pin Edges to SafeArea
 
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
+
+/**
+ Pins the given edge of the view to the same edge of its superview anchor.
+
+ @param edge The edge of this view and its superview to pin.
+ @return The constraint added.
+ */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge
 {
     return [self autoPinEdgeToSuperviewSafeArea:edge withInset:0.0];
 }
 
+/**
+ Pins the given edge of the view to the same edge of its superview anchor with an inset.
+
+ @param edge The edge of this view and its superview to pin.
+ @param inset The amount to inset this view's edge from the superview's edge.
+ @return The constraint added.
+ */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset
 {
     self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -152,7 +168,7 @@
     NSLayoutXAxisAnchor *rightAnchor;
     NSLayoutXAxisAnchor *leadingAnchor;
     NSLayoutXAxisAnchor *trailingAnchor;
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, tvOS 11.0, *)) {
         topAnchor = superview.safeAreaLayoutGuide.topAnchor;
         bottomAnchor = superview.safeAreaLayoutGuide.bottomAnchor;
         leftAnchor = superview.safeAreaLayoutGuide.leftAnchor;
@@ -192,20 +208,35 @@
     return constraint;
 }
 
+/**
+ Pins the edges of the view to the edges of its superview anchor.
+
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeArea
 {
     return [self autoPinEdgesToSuperviewSafeAreaWithInsets:ALEdgeInsetsZero];
 }
 
+/**
+ Pins the edges of the view to the edges of its superview anchor with the given edge insets.
+ The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
+
+ @param insets The insets for this view's edges from its superview's edges.
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets
 {
     PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTop withInset:insets.top]];
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeLeading withInset:insets.left]];
-    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeBottom withInset:insets.bottom]];
+    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
     return constraints;
 }
+
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
+
 
 #pragma mark Pin Edges to Superview
 
