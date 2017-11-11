@@ -79,6 +79,9 @@ PL__ASSUME_NONNULL_BEGIN
 /** Pins the given edge of the view to the same edge of its superview anchor with an inset. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset;
 
+/** Pins the given edge of the view to the same edge of its superview anchor with an inset as a maximum or minimum. */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
+
 /** Pins the edges of the view to the edges of its superview anchors. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeArea;
 
