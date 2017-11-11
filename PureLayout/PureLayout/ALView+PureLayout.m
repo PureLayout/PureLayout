@@ -149,6 +149,18 @@
 }
 
 /**
+ Pins the given edge of the view to the same edge of its superview anchor with an inset.
+
+ @param edge The edge of this view and its superview to pin.
+ @param inset The amount to inset this view's edge from the superview's edge.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset
+{
+   return [self autoPinEdgeToSuperviewSafeArea:edge withInset:inset relation:NSLayoutRelationEqual];
+}
+
+/**
  Pins the given edge of the view to the same edge of its superview anchor with an inset as a maximum or minimum.
 
  @param edge The edge of this view and its superview to pin.
@@ -156,7 +168,8 @@
  @param relation Whether the inset should be at least, at most, or exactly equal to the given value.
  @return The constraint added.
  */
-- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation {
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
+{
     self.translatesAutoresizingMaskIntoConstraints = NO;
 
     ALView *superview = self.superview;
@@ -208,7 +221,7 @@
                     constraint = [[self rightAnchor] constraintEqualToAnchor:rightAnchor constant:inset];
                     break;
                 case NSLayoutRelationLessThanOrEqual:
-                    constraint = [[self leftAnchor] constraintGreaterThanOrEqualToAnchor:rightAnchor constant:inset];
+                    constraint = [[self rightAnchor] constraintGreaterThanOrEqualToAnchor:rightAnchor constant:inset];
                     break;
                 case NSLayoutRelationGreaterThanOrEqual:
                     constraint = [[self rightAnchor] constraintLessThanOrEqualToAnchor:rightAnchor constant:inset];
@@ -271,17 +284,6 @@
     constraint.active = YES;
     return constraint;
 }
-/**
- Pins the given edge of the view to the same edge of its superview anchor with an inset.
-
- @param edge The edge of this view and its superview to pin.
- @param inset The amount to inset this view's edge from the superview's edge.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset
-{
-   return [self autoPinEdgeToSuperviewSafeArea:edge withInset:inset relation:NSLayoutRelationEqual];
-}
 
 /**
  Pins the edges of the view to the edges of its superview anchor.
@@ -307,6 +309,34 @@
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeLeading withInset:insets.left]];
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeBottom withInset:insets.bottom]];
     [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
+    return constraints;
+}
+
+/**
+ Pins 3 of the 4 edges of the view to the edges of its superview anchor with the given edge insets, excluding one edge.
+ The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
+
+ @param insets The insets for this view's edges from its superview's edges. The inset corresponding to the excluded edge
+ will be ignored.
+ @param edge The edge of this view to exclude in pinning to its superview anchor; this method will not apply any constraint to it.
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
+{
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+
+    if (edge != ALEdgeTop) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTop withInset:insets.top]];
+    }
+    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeLeading withInset:insets.left]];
+    }
+    if (edge != ALEdgeBottom) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeBottom withInset:insets.bottom]];
+    }
+    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
+    }
     return constraints;
 }
 
