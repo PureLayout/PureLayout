@@ -9,7 +9,7 @@ before_install:
   - gem install slather --no-ri --no-rdoc
 
 script:
-  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2'
+  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.0'
   - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_Mac -destination 'platform=OS X,arch=x86_64'
 
 after_success: slather
