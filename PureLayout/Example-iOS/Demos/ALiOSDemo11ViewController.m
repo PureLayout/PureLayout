@@ -37,8 +37,11 @@
 {
     if (!self.didSetupConstraints) {
 
-        [self.scrollView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-        
+        if (@available(iOS 9.0, tvOS 11.0, *)) {
+            [self.scrollView autoPinEdgesToSuperviewSafeAreaWithInsets:UIEdgeInsetsZero];
+        } else {
+            [self.scrollView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+        }
         [self.contentView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
         [self.contentView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.view];
         
