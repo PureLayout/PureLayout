@@ -308,14 +308,20 @@
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+    if (edge == ALEdgeTrailing) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
+    }
+    if (edge == ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeft]];
     }
     if (edge != ALEdgeBottom) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
     }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+    if (edge == ALEdgeLeading) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing]];
+    }
+    if (edge == ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeRight]];
     }
     return constraints;
 }

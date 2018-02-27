@@ -89,4 +89,34 @@
     XCTAssertEqual([[excludingTrailing objectAtIndex:2] firstAttribute], NSLayoutAttributeBottom);
 }
 
+-(void)testAutoPinMarginsExcludingLeftEdgeDoesNotUseTrailing
+{
+    PL__NSArray_of(NSLayoutConstraint *) *excludingLeft = [self.viewA autoPinEdgesToSuperviewMarginsExcludingEdge:ALEdgeLeft];
+    
+    XCTAssertEqual([[excludingLeft objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[excludingLeft objectAtIndex:1] firstAttribute], NSLayoutAttributeBottom);
+    XCTAssertEqual([[excludingLeft objectAtIndex:2] firstAttribute], NSLayoutAttributeRight);
+    
+    PL__NSArray_of(NSLayoutConstraint *) *excludingLeading = [self.viewA autoPinEdgesToSuperviewMarginsExcludingEdge:ALEdgeLeading];
+    
+    XCTAssertEqual([[excludingLeading objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[excludingLeading objectAtIndex:1] firstAttribute], NSLayoutAttributeBottom);
+    XCTAssertEqual([[excludingLeading objectAtIndex:2] firstAttribute], NSLayoutAttributeTrailing);
+}
+
+-(void)testAutoPinMarginsExcludingRightEdgeDoesNotUseLeading
+{
+    PL__NSArray_of(NSLayoutConstraint *) *excludingRight = [self.viewA autoPinEdgesToSuperviewMarginsExcludingEdge:ALEdgeRight];
+    
+    XCTAssertEqual([[excludingRight objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[excludingRight objectAtIndex:1] firstAttribute], NSLayoutAttributeLeft);
+    XCTAssertEqual([[excludingRight objectAtIndex:2] firstAttribute], NSLayoutAttributeBottom);
+    
+    PL__NSArray_of(NSLayoutConstraint *) *excludingTrailing = [self.viewA autoPinEdgesToSuperviewMarginsExcludingEdge:ALEdgeTrailing];
+    
+    XCTAssertEqual([[excludingTrailing objectAtIndex:0] firstAttribute], NSLayoutAttributeTop);
+    XCTAssertEqual([[excludingTrailing objectAtIndex:1] firstAttribute], NSLayoutAttributeLeading);
+    XCTAssertEqual([[excludingTrailing objectAtIndex:2] firstAttribute], NSLayoutAttributeBottom);
+}
+
 @end
