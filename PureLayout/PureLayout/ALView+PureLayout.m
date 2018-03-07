@@ -225,15 +225,22 @@
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+    if (edge == ALEdgeTrailing) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
+    }
+    if (edge == ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:insets.left]];
     }
     if (edge != ALEdgeBottom) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
     }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+    if (edge == ALEdgeLeading) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
     }
+    if (edge == ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:insets.right]];
+    }
+    
     return constraints;
 }
 
@@ -333,14 +340,20 @@
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+    if (edge == ALEdgeTrailing) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
+    }
+    if (edge == ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeft]];
     }
     if (edge != ALEdgeBottom) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
     }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+    if (edge == ALEdgeLeading) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing]];
+    }
+    if (edge == ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeRight]];
     }
     return constraints;
 }
