@@ -222,25 +222,38 @@
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
 {
     PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
-    if (edge != ALEdgeTop) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+    switch (edge) {
+        case ALEdgeLeft:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:insets.right]];
+            break;
+        case ALEdgeRight:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:insets.left]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
+            break;
+        case ALEdgeTop:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
+            break;
+        case ALEdgeBottom:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
+            break;
+        case ALEdgeLeading:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
+            break;
+        case ALEdgeTrailing:
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
+            [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
+            break;
     }
-    if (edge == ALEdgeTrailing) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
-    }
-    if (edge == ALEdgeRight) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:insets.left]];
-    }
-    if (edge != ALEdgeBottom) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
-    }
-    if (edge == ALEdgeLeading) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
-    }
-    if (edge == ALEdgeLeft) {
-        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:insets.right]];
-    }
-    
     return constraints;
 }
 
