@@ -118,11 +118,17 @@ PL__ASSUME_NONNULL_BEGIN
 /** Pins the given edge of the view to the corresponding margin of its superview. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge;
 
+/** Pins the given edge of a view to the corresponding margin of its superview with an inset.*/
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge withInset:(CGFloat)inset;
+
 /** Pins the given edge of the view to the corresponding margin of its superview as a maximum or minimum. Available in iOS 8.0 and later. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the margins of its superview. Available in iOS 8.0 and later. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins;
+
+/** Pins the edges of the view to the margins of its superview with the given edge insets. Available in iOS 8.0 and later.*/
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsWithInsets:(ALEdgeInsets)insets;
 
 /** Pins 3 of the 4 edges of the view to the margins of its superview excluding one edge. Available in iOS 8.0 and later. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge;

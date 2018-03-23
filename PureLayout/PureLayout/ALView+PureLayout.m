@@ -436,15 +436,22 @@
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
     }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+    if (edge == ALEdgeTrailing) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:insets.left]];
+    }
+    if (edge == ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:insets.left]];
     }
     if (edge != ALEdgeBottom) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:insets.bottom]];
     }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+    if (edge == ALEdgeLeading) {
         [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:insets.right]];
     }
+    if (edge == ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:insets.right]];
+    }
+    
     return constraints;
 }
 
@@ -459,6 +466,26 @@
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge
 {
     return [self autoPinEdgeToSuperviewMargin:edge relation:NSLayoutRelationEqual];
+}
+
+/**
+ Pins the given edge of the view to the corresponding margin of its superview with an inset.
+ 
+ @param edge The edge of this view to pin to the corresponding margin of its superview.
+ @param @param inset The amount to inset this view's edge from the corresponding margin of its superview edge.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge withInset:(CGFloat)inset
+{
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    ALView *superview = self.superview;
+    NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
+    if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
+        // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
+        inset = -inset;
+    }
+    ALMargin margin = [NSLayoutConstraint al_marginForEdge:edge];
+    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)margin ofView:superview withOffset:inset];
 }
 
 /**
@@ -484,7 +511,7 @@
     ALMargin margin = [NSLayoutConstraint al_marginForEdge:edge];
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)margin ofView:superview withOffset:0.0 relation:relation];
 }
-        
+
 /**
  Pins the edges of the view to the margins of its superview.
  
@@ -492,11 +519,23 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
+    return [self autoPinEdgesToSuperviewMarginsWithInsets:(ALEdgeInsetsZero)];
+}
+
+/**
+ Pins the edges of the view to the edges of its corresponding margins of its superview with the given edge insets.
+ The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
+ 
+ @param insets The insets for this view's edges from its corresponding margin of its superview.
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsWithInsets:(ALEdgeInsets)insets
+{
     PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
-    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
-    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
-    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
-    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing]];
+    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop withInset:insets.top]];
+    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading withInset:insets.left]];
+    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom withInset:insets.bottom]];
+    [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing withInset:insets.right]];
     return constraints;
 }
 
@@ -512,14 +551,20 @@
     if (edge != ALEdgeTop) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
     }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+    if (edge == ALEdgeTrailing) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeading]];
+    }
+    if (edge == ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeLeft]];
     }
     if (edge != ALEdgeBottom) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeBottom]];
     }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+    if (edge == ALEdgeLeading) {
         [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTrailing]];
+    }
+    if (edge == ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeRight]];
     }
     return constraints;
 }
