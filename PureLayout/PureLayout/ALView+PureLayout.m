@@ -173,6 +173,7 @@
     self.translatesAutoresizingMaskIntoConstraints = NO;
 
     ALView *superview = self.superview;
+    NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
     NSLayoutConstraint *constraint = nil;
 
     NSLayoutYAxisAnchor *topAnchor;
