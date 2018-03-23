@@ -10,6 +10,7 @@ before_install:
 
 script:
   - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2'
+  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
   - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_Mac -destination 'platform=OS X,arch=x86_64'
 
 after_success: slather
