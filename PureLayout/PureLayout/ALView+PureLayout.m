@@ -191,8 +191,17 @@
         rightAnchor = superview.safeAreaLayoutGuide.rightAnchor;
         leadingAnchor = superview.safeAreaLayoutGuide.leadingAnchor;
         trailingAnchor = superview.safeAreaLayoutGuide.trailingAnchor;
-    } else
-#else // fallback to older SDKs, when using Xcode 8.0, which only has iOS SDK 10.0
+    } else if (@available(iOS 9.0, *)) {
+        topAnchor = superview.topAnchor;
+        bottomAnchor = superview.bottomAnchor;
+        leftAnchor = superview.leftAnchor;
+        rightAnchor = superview.rightAnchor;
+        leadingAnchor = superview.leadingAnchor;
+        trailingAnchor = superview.trailingAnchor;
+    } else { // for targeting iOS 8 or below without anchor system
+        return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
+    }
+#elif PL__PureLayout_MinBaseSDK_iOS_9_0 // fallback to older SDKs, when using Xcode 8.0, which only has iOS SDK 10.0
     if (PL__PureLayout_MinSysVer_iOS_9_0) {
         topAnchor = superview.topAnchor;
         bottomAnchor = superview.bottomAnchor;
@@ -203,6 +212,8 @@
     } else { // for targeting iOS 8 or below without anchor system
         return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
     }
+#else // base sdk 8.0
+    return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
 #endif
     if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
         // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
