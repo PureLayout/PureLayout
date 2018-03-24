@@ -212,8 +212,6 @@
     } else { // for targeting iOS 8 or below without anchor system
         return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
     }
-#else // base sdk 8.0
-    return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
 #endif
     if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
         // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
