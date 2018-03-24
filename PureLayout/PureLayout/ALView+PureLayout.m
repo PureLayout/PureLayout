@@ -135,7 +135,7 @@
 
 #pragma mark Pin Edges to SafeArea
 
-#if PL__PureLayout_MinBaseSDK_iOS_8_0
+#if TARGET_OS_IPHONE
 
 /**
  Pins the given edge of the view to the same edge of its superview anchor.
@@ -161,7 +161,7 @@
 }
 
 /**
- Pins the given edge of the view to the same edge of its superview anchor with an inset as a maximum or minimum.
+ Pins the given edge of the view to the same edge of its superview anchor/edge with an inset as a maximum or minimum.
 
  @param edge The edge of this view and its superview to pin.
  @param inset The amount to inset this view's edge from the superview's edge.
@@ -170,18 +170,20 @@
  */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
 {
+#if PL__PureLayout_MinBaseSDK_iOS_9_0
     self.translatesAutoresizingMaskIntoConstraints = NO;
-
+    
     ALView *superview = self.superview;
     NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
     NSLayoutConstraint *constraint = nil;
-
     NSLayoutYAxisAnchor *topAnchor;
     NSLayoutYAxisAnchor *bottomAnchor;
     NSLayoutXAxisAnchor *leftAnchor;
     NSLayoutXAxisAnchor *rightAnchor;
     NSLayoutXAxisAnchor *leadingAnchor;
     NSLayoutXAxisAnchor *trailingAnchor;
+
+#if PL__PureLayout_MinBaseSDK_iOS_11_0 // only iOS/tvOS SDK 11.0 has @available syntax introduced
     if (@available(iOS 11.0, tvOS 11.0, *)) {
         topAnchor = superview.safeAreaLayoutGuide.topAnchor;
         bottomAnchor = superview.safeAreaLayoutGuide.bottomAnchor;
@@ -189,15 +191,19 @@
         rightAnchor = superview.safeAreaLayoutGuide.rightAnchor;
         leadingAnchor = superview.safeAreaLayoutGuide.leadingAnchor;
         trailingAnchor = superview.safeAreaLayoutGuide.trailingAnchor;
-    } else {
+    } else
+#else // fallback to older SDKs, when using Xcode 8.0, which only has iOS SDK 10.0
+    if (PL__PureLayout_MinSysVer_iOS_9_0) {
         topAnchor = superview.topAnchor;
         bottomAnchor = superview.bottomAnchor;
         leftAnchor = superview.leftAnchor;
         rightAnchor = superview.rightAnchor;
         leadingAnchor = superview.leadingAnchor;
         trailingAnchor = superview.trailingAnchor;
+    } else { // for targeting iOS 8 or below without anchor system
+        return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
     }
-
+#endif
     if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
         // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
         inset = -inset;
@@ -284,6 +290,9 @@
     }
     constraint.active = YES;
     return constraint;
+#else
+    return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
+#endif /* PL__PureLayout_MinBaseSDK_iOS_9_0 */
 }
 
 /**
@@ -341,8 +350,7 @@
     return constraints;
 }
 
-#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
-
+#endif /* TARGET_OS_IPHONE */
 
 #pragma mark Pin Edges to Superview
 
@@ -615,50 +623,6 @@
 {
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
-
-#if PL__PureLayout_MinBaseSDK_iOS_11_0
-#pragma mark safeAreaLayoutGuide
-/**
- Pins an edge of the view to a given edge of safeAreaLayoutGuide.
- 
- @param edge The edge of this view to pin.
- @param toEdge The edge of the safeAreaLayoutGuide to pin to.
- @param ofGuide The layout guide to pin to.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofGuide:(id)layoutGuide
-{
-    return [self autoPinEdge:edge toEdge:toEdge ofGuide:layoutGuide withOffset:0.0];
-}
-
-/**
- Pins an edge of the view to a given edge of another view with an offset.
- 
- @param edge The edge of this view to pin.
- @param toSafeAreaLayoutGuideEdge The edge of the safeAreaLayoutGuide to pin to.
- @param offset The offset between the edge of this view and the edge of the safeAreaLayoutGuide.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofGuide:(id)layoutGuide withOffset:(CGFloat)offset
-{
-    return [self autoPinEdge:edge toEdge:toEdge ofGuide:layoutGuide withOffset:offset relation:NSLayoutRelationEqual];
-}
-
-/**
- Pins an edge of the view to a given edge of safeAreaLayoutGuide with an offset as a maximum or minimum.
- 
- @param edge The edge of this view to pin.
- @param toSafeAreaLayoutGuideEdge The edge of the safeAreaLayoutGuide to pin to.
- @param offset The offset between the edge of this view and the edge of the safeAreaLayoutGuide.
- @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toEdge:(ALEdge)toEdge ofGuide:(id)layoutGuide withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
-{
-    return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofGuide:layoutGuide withOffset:offset relation:relation];
-}
-
-#endif
 
 #pragma mark Align Axes
 
@@ -1017,131 +981,6 @@
         return [self autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:viewController.view withOffset:inset relation:relation];
     }
 }
-#if PL__PureLayout_MinBaseSDK_iOS_11_0
-#pragma mark Pin Edges to safeAreaLayoutGuide
-/** available in iOS 11 or above */
-/** Pins the given edge of the view to the same edge of the safe area layout guide. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide  {
-    return [self autoPinEdge:edge ofGuide:layoutGuide withInset:0.0];
-}
-
-/** Pins the given edge of the view to the same edge of the safe area layout guide with an inset. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide withInset:(CGFloat)inset {
-    return [self autoPinEdge:edge ofGuide:layoutGuide withInset:inset relation:NSLayoutRelationEqual];
-}
-
-/** Pins the given edge of the view to the same edge of the safe area layout guide with an inset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide withInset:(CGFloat)inset relation:(NSLayoutRelation)relation {
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
-        // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
-        inset = -inset;
-        if (relation == NSLayoutRelationLessThanOrEqual) {
-            relation = NSLayoutRelationGreaterThanOrEqual;
-        } else if (relation == NSLayoutRelationGreaterThanOrEqual) {
-            relation = NSLayoutRelationLessThanOrEqual;
-        }
-    }
-    return [self autoPinEdge:edge toEdge:edge ofGuide:layoutGuide withOffset:inset relation:relation];
-}
-
-/** Pins the edges of the view to the edges of the safe area layout guide. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToEdgesOfGuide:(id)layoutGuide {
-    return [self autoPinEdgesToSafeAreaLayoutGuide:(id)layoutGuide withInsets:ALEdgeInsetsZero];
-}
-
-/** Pins the edges of the view to the edges of the safe area layout guide with the given edge insets. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSafeAreaLayoutGuide:(id)layoutGuide withInsets:(ALEdgeInsets)insets {
-    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
-    [constraints addObject:[self autoPinEdge:ALEdgeTop ofGuide:layoutGuide withInset:insets.top]];
-    [constraints addObject:[self autoPinEdge:ALEdgeLeading ofGuide:layoutGuide withInset:insets.left]];
-    [constraints addObject:[self autoPinEdge:ALEdgeBottom ofGuide:layoutGuide withInset:insets.bottom]];
-    [constraints addObject:[self autoPinEdge:ALEdgeTrailing ofGuide:layoutGuide withInset:insets.right]];
-    return constraints;
-}
-
-/** Pins 3 of the 4 edges of the view to the edges of the safe area layout guide with the given edge insets, excluding one edge. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSafeAreaLayoutGuide:(id)layoutGuide withInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge {
-    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
-    if (edge != ALEdgeTop) {
-        [constraints addObject:[self autoPinEdge:ALEdgeTop ofGuide:layoutGuide withInset:insets.top]];
-    }
-    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
-        [constraints addObject:[self autoPinEdge:ALEdgeLeading ofGuide:layoutGuide withInset:insets.left]];
-    }
-    if (edge != ALEdgeBottom) {
-        [constraints addObject:[self autoPinEdge:ALEdgeBottom ofGuide:layoutGuide withInset:insets.bottom]];
-    }
-    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
-        [constraints addObject:[self autoPinEdge:ALEdgeTrailing ofGuide:layoutGuide withInset:insets.right]];
-    }
-    return constraints;
-}
-
-#pragma mark Constrain Any Attributes to Safe Area Layout Guide
-
-/**
- Constrains an attribute of the view to a given attribute of safe area layout guide.
- This method can be used to constrain different types of attributes across two items.
- 
- @param attribute Any attribute of this view to constrain.
- @param toAttribute Any attribute of the safe area layout guide to constrain to.
- @param guide the safe area layout guide
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofGuide:(id)guide
-{
-    if (@available(iOS 11.0, *)) {
-        return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofGuide:guide withOffset:0.0];
-    } else {
-        return nil;
-    }
-}
-
-/**
- Constrains an attribute of the view to a given attribute of safe area layout guide with an offset.
- This method can be used to constrain different types of attributes across two items.
- 
- @param attribute Any attribute of this view to constrain.
- @param toAttribute Any attribute of the safe area layout guide to constrain to.
- @param guide the safe area layout guide
- @param offset The offset between the attribute of the safeAreaLayoutGuide to constrain to.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofGuide:(id)guide withOffset:(CGFloat)offset
-{
-    if (@available(iOS 11.0, *)) {
-        return [self autoConstrainAttribute:attribute toAttribute:toAttribute ofGuide:guide withOffset:offset relation:NSLayoutRelationEqual];
-    } else {
-        return nil;
-    }
-}
-
-/**
- Constrains an attribute of the view to a given attribute of the safe area layout guide with an offset as a maximum or minimum.
- This method can be used to constrain different types of attributes across two items.
- 
- @param attribute Any attribute of this view to constrain.
- @param toAttribute Any attribute of the safe area layout guide to constrain to.
- @param offset The offset between the attribute of this view and the attribute of the safe area layout guide .
- @param guide the safe area layout guide
- @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
- @return The constraint added.
- */
-- (NSLayoutConstraint *)autoConstrainAttribute:(ALAttribute)attribute toAttribute:(ALAttribute)toAttribute ofGuide:(id)guide withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
-{
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutAttribute layoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:attribute];
-    NSLayoutAttribute toLayoutAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:toAttribute];
-    if (@available(iOS 11.0, *)) {
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:layoutAttribute relatedBy:relation toItem:guide attribute:toLayoutAttribute multiplier:1.0 constant:offset];
-        [constraint autoInstall];
-        return constraint;
-    } else {
-        return nil;
-    }
-}
-#endif
 
 #endif /* TARGET_OS_IPHONE */
 

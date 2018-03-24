@@ -69,29 +69,29 @@ PL__ASSUME_NONNULL_BEGIN
 
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
+#if TARGET_OS_IPHONE
 
 #pragma mark Pin Edges to SafeArea
 
-#if PL__PureLayout_MinBaseSDK_iOS_8_0
-/** Pins the given edge of the view to the same edge of its superview anchor. */
+/** Pins the given edge of the view to the same edge of its superview anchor/edge. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge;
 
-/** Pins the given edge of the view to the same edge of its superview anchor with an inset. */
+/** Pins the given edge of the view to the same edge of its superview anchor/edge with an inset. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset;
 
-/** Pins the given edge of the view to the same edge of its superview anchor with an inset as a maximum or minimum. */
+/** Pins the given edge of the view to the same edge of its superview anchor/edge with an inset as a maximum or minimum. */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
-/** Pins the edges of the view to the edges of its superview anchors. */
+/** Pins the edges of the view to the edges of its superview anchors/edge. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeArea;
 
-/** Pins the edges of the view to the edges of its superview anchors with the given edge insets. */
+/** Pins the edges of the view to the edges of its superview anchors/edges with the given edge insets. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets;
 
-/** Pins 3 of the 4 edges of the view to the edges of its superview anchor with the given edge insets, excluding one edge. */
+/** Pins 3 of the 4 edges of the view to the edges of its superview anchor/edge with the given edge insets, excluding one edge. */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
 
-#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* TARGET_OS_IPHONE */
 
 #pragma mark Pin Edges to Superview
 
@@ -234,29 +234,6 @@ PL__ASSUME_NONNULL_BEGIN
 
 /** Pins the bottom edge of the view to the bottom layout guide of the given view controller with an inset as a maximum or minimum. Available on iOS only. */
 - (NSLayoutConstraint *)autoPinToBottomLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
-
-#if PL__PureLayout_MinBaseSDK_iOS_11_0
-#pragma mark Pin Edges to safeAreaLayoutGuide
-/** available in iOS 11 */
-/** Pins the given edge of the view to the same edge of its safe area layout guide. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide;
-
-/** Pins the given edge of the view to the same edge of its safe area layout guide with an inset. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide withInset:(CGFloat)inset;
-
-/** Pins the given edge of the view to the same edge of its safe area layout guide with an inset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge ofGuide:(nonnull id)layoutGuide withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
-
-/** Pins the edges of the view to the edges of its safe area layout guide. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToEdgesOfGuide:(id)layoutGuide;
-
-/** Pins the edges of the view to the edges of its safe area layout guide with the given edge insets. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSafeAreaLayoutGuide:(id)layoutGuide withInsets:(ALEdgeInsets)insets;
-
-/** Pins 3 of the 4 edges of the view to the edges of its safe area layout guide with the given edge insets, excluding one edge. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSafeAreaLayoutGuide:(id)layoutGuide withInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
-
-#endif
 
 #endif /* TARGET_OS_IPHONE */
 
