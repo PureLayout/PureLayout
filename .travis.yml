@@ -5,7 +5,7 @@ rvm:
   - 2.3.1
 xcode_project: PureLayout/PureLayout.xcodeproj
 before_install:
-  - rvm install 2.3.1
+  - rvm install 2.4.1
   - gem install slather --no-ri --no-rdoc
 
 script:
