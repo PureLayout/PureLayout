@@ -432,6 +432,61 @@
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
 
+/**
+ Pins an edge of the view to the same edge of another view.
+
+ @param edge The edge of this view and the other view to pin.
+ @param otherView The other view to pin to. Must be in the same view hierarchy as this view.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView
+{
+	return [self autoPinEdge:edge toSameEdgeOfView:otherView withOffset:0.0];
+}
+
+/**
+ Pins an edge of the view to the same edge of another view with an offset.
+
+ @param edge The edge of this and the other view view to pin.
+ @param otherView The other view to pin to. Must be in the same view hierarchy as this view.
+ @param offset The offset between the edge of this view and the other view.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView withOffset:(CGFloat)offset
+{
+	return [self autoPinEdge:edge toSameEdgeOfView:otherView withOffset:offset relation:NSLayoutRelationEqual];
+}
+
+/**
+ Pins an edge of the view to the same edge of another view with an offset.
+
+ @param edge The edge of this and the other view view to pin.
+ @param otherView The other view to pin to. Must be in the same view hierarchy as this view.
+ @param offset The offset between the edge of this view and the other view.
+ @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdge:(ALEdge)edge toSameEdgeOfView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
+{
+	return [self autoPinEdge:edge toEdge:edge ofView:otherView withOffset:offset relation:relation];
+}
+
+/**
+ Pins the edges of the view to the edges of another view.
+
+ @param otherView The other view to pin to. Must be in the same view hierarchy as this view.
+ @return An array of constraints added.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToEdgesOfView:(ALView *)otherView
+{
+	PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+	[constraints addObject:[self autoPinEdge:ALEdgeTop toSameEdgeOfView:otherView]];
+	[constraints addObject:[self autoPinEdge:ALEdgeLeading toSameEdgeOfView:otherView]];
+	[constraints addObject:[self autoPinEdge:ALEdgeBottom toSameEdgeOfView:otherView]];
+	[constraints addObject:[self autoPinEdge:ALEdgeTrailing toSameEdgeOfView:otherView]];
+	return constraints;
+}
+
 
 #pragma mark Align Axes
 
