@@ -80,7 +80,7 @@ class iOSDemo8ViewController: UIViewController {
             let constraints = (views.autoSetViewsDimension(.width, toSize: 60.0) as NSArray).autoIdentifyConstraints("Set Width of All Views")
             print("Just added \(constraints.count) constraints!") // you can do something with the constraints at this point
             let constraint = redView.autoAlignAxis(toSuperviewAxis: .vertical).autoIdentify("Align Red View to Superview Vertical Axis")
-            print("Just added one constraint with the identifier: \(constraint.identifier)") // you can do something with the constraint at this point
+            print("Just added one constraint with the identifier: \(String(describing: constraint.identifier))") // you can do something with the constraint at this point
             
             /**
             Now, let's add some 'bad' constraints that conflict with one or more of the 'good' constraints above.
