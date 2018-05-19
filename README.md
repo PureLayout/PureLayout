@@ -1,5 +1,5 @@
-# [![PureLayout](https://github.com/PureLayout/PureLayout/blob/master/Images/PureLayout.png?raw=true)](#)
-[![Build Status](http://img.shields.io/travis/PureLayout/PureLayout.svg?style=flat)](https://travis-ci.org/PureLayout/PureLayout) [![Test Coverage](http://img.shields.io/coveralls/PureLayout/PureLayout.svg?style=flat)](https://coveralls.io/r/PureLayout/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/pods/PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/pods/PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
+# [![PureLayout](https://github.com/jjksam/PureLayout/blob/master/Images/PureLayout.png?raw=true)](#)
+[![Build Status](http://img.shields.io/travis/jjksam/PureLayout.svg?style=flat)](https://travis-ci.org/jjksam/PureLayout) [![Test Coverage](http://img.shields.io/coveralls/jjksam/PureLayout.svg?style=flat)](https://coveralls.io/r/jjksam/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/pods/PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/pods/PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
 
 The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. PureLayout extends `UIView`/`NSView`, `NSArray`, and `NSLayoutConstraint` with a comprehensive Auto Layout API that is modeled after Apple's own frameworks. PureLayout is a cross-platform Objective-C library that works (and looks!) great in Swift. It is fully backwards-compatible with all versions of iOS and OS X that support Auto Layout.
 
@@ -111,6 +111,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
 - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 - autoPinEdgeToSuperviewSafeArea: // iOS 11.0+ only
+- autoPinEdgeToSuperviewSafeArea:withInset: // iOS 11.0+ only
 ```
 
 ### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)

@@ -29,14 +29,18 @@
 #define PureLayoutDefines_h
 
 #import <Foundation/Foundation.h>
-
+// check the code in <Foundation/NSObjCRuntime.h> - <Availability.h>
 // Define some preprocessor macros to check for a minimum Base SDK. These are used to prevent compile-time errors in older versions of Xcode.
 #define PL__PureLayout_MinBaseSDK_iOS_8_0                   (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1)
+#define PL__PureLayout_MinBaseSDK_iOS_9_0                  (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_8_4)
+#define PL__PureLayout_MinBaseSDK_iOS_11_0                  (TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_3)
 #define PL__PureLayout_MinBaseSDK_OSX_10_10                 (!TARGET_OS_IPHONE && __MAC_OS_X_VERSION_MAX_ALLOWED > __MAC_10_9)
 
 // Define some preprocessor macros to check for a minimum System Version. These are used to prevent runtime crashes on older versions of iOS/OS X.
 #define PL__PureLayout_MinSysVer_iOS_7_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 #define PL__PureLayout_MinSysVer_iOS_8_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
+#define PL__PureLayout_MinSysVer_iOS_9_0                    (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_8_x_Max)
+#define PL__PureLayout_MinSysVer_iOS_10_0                   (TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max)
 #define PL__PureLayout_MinSysVer_OSX_10_9                   (!TARGET_OS_IPHONE && floor(NSFoundationVersionNumber) > NSFoundationVersionNumber10_8_4)
 
 // Define some preprocessor macros that allow nullability annotations to be adopted in a backwards-compatible manner.
