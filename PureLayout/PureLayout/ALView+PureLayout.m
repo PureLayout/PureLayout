@@ -71,6 +71,13 @@
 }
 
 
+- (void)addSubviewWithAutoLayout:(ALView *)subview
+{
+    subview.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:subview];
+}
+
+
 #pragma mark Center in Superview
 
 /**
@@ -172,13 +179,13 @@
     ALView *superview = self.superview;
     NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
     if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
-        // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
-        inset = -inset;
-        if (relation == NSLayoutRelationLessThanOrEqual) {
-            relation = NSLayoutRelationGreaterThanOrEqual;
-        } else if (relation == NSLayoutRelationGreaterThanOrEqual) {
-            relation = NSLayoutRelationLessThanOrEqual;
-        }
+        // This must be formulated a bit differently, with the superview first, in order to keep the constant
+        // positive.
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        NSLayoutAttribute edgeAttribute = [NSLayoutConstraint al_layoutAttributeForAttribute:(ALAttribute)edge];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:superview attribute:edgeAttribute relatedBy:relation toItem:self attribute:edgeAttribute multiplier:1.0 constant:inset];
+        [constraint autoInstall];
+        return constraint;
     }
     return [self autoPinEdge:edge toEdge:edge ofView:superview withOffset:inset relation:relation];
 }
@@ -432,6 +439,38 @@
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
 
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis relation:(NSLayoutRelation)relation
+{
+    NSLayoutAttribute leadingAttribute;
+    NSLayoutAttribute trailingAttribute;
+    if (axis == ALAxisVertical) {
+        leadingAttribute = NSLayoutAttributeTop;
+        trailingAttribute = NSLayoutAttributeBottom;
+    } else {
+        leadingAttribute = NSLayoutAttributeLeading;
+        trailingAttribute = NSLayoutAttributeTrailing;
+    }
+    // These need to be formulated differently, with the otherView first, for the constant to be positive
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:otherView attribute:leadingAttribute relatedBy:relation toItem:self attribute:trailingAttribute multiplier:1.0 constant:space];
+    [constraint autoInstall];
+    return constraint;
+}
+
+- (NSLayoutConstraint *)autoPinSpace:(CGFloat)space followedByView:(ALView *)otherView onAxis:(ALAxis)axis
+{
+    return [self autoPinSpace:space followedByView:otherView onAxis:axis relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinHorizontalSpace:(CGFloat)space followedByView:(ALView *)otherView
+{
+    return [self autoPinSpace:space followedByView:otherView onAxis:ALAxisHorizontal relation:NSLayoutRelationEqual];
+}
+
+- (NSLayoutConstraint *)autoPinVerticalSpace:(CGFloat)space followedByView:(ALView *)otherView
+{
+    return [self autoPinSpace:space followedByView:otherView onAxis:ALAxisVertical relation:NSLayoutRelationEqual];
+}
 
 #pragma mark Align Axes
 
@@ -472,7 +511,6 @@
 {
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:otherView withMultiplier:multiplier];
 }
-
 
 #pragma mark Match Dimensions
 
