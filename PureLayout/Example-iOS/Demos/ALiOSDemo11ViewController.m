@@ -37,8 +37,7 @@
 {
     if (!self.didSetupConstraints) {
 
-        [self.scrollView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-        
+        [self.scrollView autoPinEdgesToSuperviewSafeAreaWithInsets:UIEdgeInsetsZero];
         [self.contentView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
         [self.contentView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.view];
         

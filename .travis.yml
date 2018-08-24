@@ -1,15 +1,17 @@
 sudo: false
-osx_image: xcode8
+osx_image: xcode9.2
 language: objective-c
 rvm:
   - 2.3.1
 xcode_project: PureLayout/PureLayout.xcodeproj
 before_install:
-  - rvm install 2.3.1
+  - rvm install 2.4.1
   - gem install slather --no-ri --no-rdoc
 
 script:
-  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
+  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2'
+  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
+  - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone 5s,OS=8.1'
   - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_Mac -destination 'platform=OS X,arch=x86_64'
 
 after_success: slather

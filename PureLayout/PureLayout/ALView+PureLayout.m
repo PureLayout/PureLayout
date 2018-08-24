@@ -133,6 +133,234 @@
 #endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 
+#pragma mark Pin Edges to SafeArea
+
+#if TARGET_OS_IPHONE
+
+/**
+ Pins the given edge of the view to the same edge of its superview anchor.
+
+ @param edge The edge of this view and its superview to pin.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge
+{
+    return [self autoPinEdgeToSuperviewSafeArea:edge withInset:0.0];
+}
+
+/**
+ Pins the given edge of the view to the same edge of its superview anchor with an inset.
+
+ @param edge The edge of this view and its superview to pin.
+ @param inset The amount to inset this view's edge from the superview's edge.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset
+{
+   return [self autoPinEdgeToSuperviewSafeArea:edge withInset:inset relation:NSLayoutRelationEqual];
+}
+
+/**
+ Pins the given edge of the view to the same edge of its superview anchor/edge with an inset as a maximum or minimum.
+
+ @param edge The edge of this view and its superview to pin.
+ @param inset The amount to inset this view's edge from the superview's edge.
+ @param relation Whether the inset should be at least, at most, or exactly equal to the given value.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
+{
+#if PL__PureLayout_MinBaseSDK_iOS_9_0
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    ALView *superview = self.superview;
+    NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
+    NSLayoutConstraint *constraint = nil;
+    NSLayoutYAxisAnchor *topAnchor;
+    NSLayoutYAxisAnchor *bottomAnchor;
+    NSLayoutXAxisAnchor *leftAnchor;
+    NSLayoutXAxisAnchor *rightAnchor;
+    NSLayoutXAxisAnchor *leadingAnchor;
+    NSLayoutXAxisAnchor *trailingAnchor;
+
+#if PL__PureLayout_MinBaseSDK_iOS_11_0 // only iOS/tvOS SDK 11.0 has @available syntax introduced
+    if (@available(iOS 11.0, tvOS 11.0, *)) {
+        topAnchor = superview.safeAreaLayoutGuide.topAnchor;
+        bottomAnchor = superview.safeAreaLayoutGuide.bottomAnchor;
+        leftAnchor = superview.safeAreaLayoutGuide.leftAnchor;
+        rightAnchor = superview.safeAreaLayoutGuide.rightAnchor;
+        leadingAnchor = superview.safeAreaLayoutGuide.leadingAnchor;
+        trailingAnchor = superview.safeAreaLayoutGuide.trailingAnchor;
+    } else if (@available(iOS 9.0, *)) {
+        topAnchor = superview.topAnchor;
+        bottomAnchor = superview.bottomAnchor;
+        leftAnchor = superview.leftAnchor;
+        rightAnchor = superview.rightAnchor;
+        leadingAnchor = superview.leadingAnchor;
+        trailingAnchor = superview.trailingAnchor;
+    } else { // for targeting iOS 8 or below without anchor system
+        return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
+    }
+#elif PL__PureLayout_MinBaseSDK_iOS_9_0 // fallback to older SDKs, when using Xcode 8.0, which only has iOS SDK 10.0
+    if (PL__PureLayout_MinSysVer_iOS_9_0) {
+        topAnchor = superview.topAnchor;
+        bottomAnchor = superview.bottomAnchor;
+        leftAnchor = superview.leftAnchor;
+        rightAnchor = superview.rightAnchor;
+        leadingAnchor = superview.leadingAnchor;
+        trailingAnchor = superview.trailingAnchor;
+    } else { // for targeting iOS 8 or below without anchor system
+        return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
+    }
+#endif
+    if (edge == ALEdgeBottom || edge == ALEdgeRight || edge == ALEdgeTrailing) {
+        // The bottom, right, and trailing insets (and relations, if an inequality) are inverted to become offsets
+        inset = -inset;
+    }
+    switch (edge) {
+        case ALEdgeLeft:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self leftAnchor] constraintEqualToAnchor:leftAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self leftAnchor] constraintLessThanOrEqualToAnchor:leftAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self leftAnchor] constraintGreaterThanOrEqualToAnchor:leftAnchor constant:inset];
+                    break;
+            }
+            break;
+        case ALEdgeRight:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self rightAnchor] constraintEqualToAnchor:rightAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self rightAnchor] constraintGreaterThanOrEqualToAnchor:rightAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self rightAnchor] constraintLessThanOrEqualToAnchor:rightAnchor constant:inset];
+                    break;
+            }
+            break;
+        case ALEdgeTop:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self topAnchor] constraintEqualToAnchor:topAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self topAnchor] constraintLessThanOrEqualToAnchor:topAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self topAnchor] constraintGreaterThanOrEqualToAnchor:topAnchor constant:inset];
+                    break;
+            }
+            break;
+        case ALEdgeBottom:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self bottomAnchor] constraintEqualToAnchor:bottomAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self bottomAnchor] constraintGreaterThanOrEqualToAnchor:bottomAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self bottomAnchor] constraintLessThanOrEqualToAnchor:bottomAnchor constant:inset];
+                    break;
+            }
+            break;
+        case ALEdgeLeading:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self leadingAnchor] constraintEqualToAnchor:leadingAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self leadingAnchor] constraintLessThanOrEqualToAnchor:leadingAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self leadingAnchor] constraintGreaterThanOrEqualToAnchor:leadingAnchor constant:inset];
+                    break;
+            }
+            break;
+        case ALEdgeTrailing:
+            switch (relation) {
+                case NSLayoutRelationEqual:
+                    constraint = [[self trailingAnchor] constraintEqualToAnchor:trailingAnchor constant:inset];
+                    break;
+                case NSLayoutRelationLessThanOrEqual:
+                    constraint = [[self trailingAnchor] constraintGreaterThanOrEqualToAnchor:trailingAnchor constant:inset];
+                    break;
+                case NSLayoutRelationGreaterThanOrEqual:
+                    constraint = [[self trailingAnchor] constraintLessThanOrEqualToAnchor:trailingAnchor constant:inset];
+                    break;
+            }
+            break;
+    }
+    constraint.active = YES;
+    return constraint;
+#else
+    return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
+#endif /* PL__PureLayout_MinBaseSDK_iOS_9_0 */
+}
+
+/**
+ Pins the edges of the view to the edges of its superview anchor.
+
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeArea
+{
+    return [self autoPinEdgesToSuperviewSafeAreaWithInsets:ALEdgeInsetsZero];
+}
+
+/**
+ Pins the edges of the view to the edges of its superview anchor with the given edge insets.
+ The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
+
+ @param insets The insets for this view's edges from its superview's edges.
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets
+{
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTop withInset:insets.top]];
+    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeLeading withInset:insets.left]];
+    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeBottom withInset:insets.bottom]];
+    [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
+    return constraints;
+}
+
+/**
+ Pins 3 of the 4 edges of the view to the edges of its superview anchor with the given edge insets, excluding one edge.
+ The insets.left corresponds to a leading edge constraint, and insets.right corresponds to a trailing edge constraint.
+
+ @param insets The insets for this view's edges from its superview's edges. The inset corresponding to the excluded edge
+ will be ignored.
+ @param edge The edge of this view to exclude in pinning to its superview anchor; this method will not apply any constraint to it.
+ @return An array of constraints added, ordered counterclockwise from top.
+ */
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
+{
+    PL__NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
+
+    if (edge != ALEdgeTop) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTop withInset:insets.top]];
+    }
+    if (edge != ALEdgeLeading && edge != ALEdgeLeft) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeLeading withInset:insets.left]];
+    }
+    if (edge != ALEdgeBottom) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeBottom withInset:insets.bottom]];
+    }
+    if (edge != ALEdgeTrailing && edge != ALEdgeRight) {
+        [constraints addObject:[self autoPinEdgeToSuperviewSafeArea:ALEdgeTrailing withInset:insets.right]];
+    }
+    return constraints;
+}
+
+#endif /* TARGET_OS_IPHONE */
+
 #pragma mark Pin Edges to Superview
 
 /**
@@ -431,7 +659,6 @@
 {
     return [self autoConstrainAttribute:(ALAttribute)edge toAttribute:(ALAttribute)toEdge ofView:otherView withOffset:offset relation:relation];
 }
-
 
 #pragma mark Align Axes
 
@@ -792,7 +1019,6 @@
 }
 
 #endif /* TARGET_OS_IPHONE */
-
 
 #pragma mark Internal Methods
 
