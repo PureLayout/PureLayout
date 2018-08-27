@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.7'
   s.tvos.deployment_target = '9.0'
-  s.source                = { :git => 'https://github.com/PureLayout/PureLayout.git', :tag => 'v3.0.2' }
+  s.source                = { :git => 'https://github.com/PureLayout/PureLayout.git', :tag => "v#{s.version}" }
   s.source_files          = 'PureLayout/PureLayout'
   s.requires_arc          = true
   s.summary               = 'The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. Objective-C and Swift compatible.'
