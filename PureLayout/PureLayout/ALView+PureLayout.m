@@ -549,7 +549,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
-    return [self autoPinEdgesToSuperviewMarginsWithInsets:(ALEdgeInsetsZero)];
+    return [self autoPinEdgesToSuperviewMarginsWithInsets:ALEdgeInsetsZero];
 }
 
 /**
