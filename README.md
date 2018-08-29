@@ -146,6 +146,18 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 ### Sample Code (Swift)
 PureLayout dramatically simplifies writing Auto Layout code. Let's take a quick look at some examples, using PureLayout from Swift.
 
+Initialize the view using PureLayout initializer:
+
+```swift
+let view1 = UIView(forAutoLayout: ())
+```
+
+If you need to use a different initializer (e.g. in `UIView` subclass), you can also use `configureForAutoLayout`:
+
+```
+view1.configureForAutoLayout() // alternative to UIView.init(forAutoLayout: ())
+```
+
 Here's a constraint between two views created (and automatically activated) using PureLayout:
 
 ```swift
