@@ -74,22 +74,22 @@ PL__ASSUME_NONNULL_BEGIN
 #pragma mark Pin Edges to SafeArea
 
 /** Pins the given edge of the view to the same edge of its superview anchor/edge. */
-- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge;
+- (NSLayoutConstraint *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgeToSuperviewSafeArea:(ALEdge)edge;
 
 /** Pins the given edge of the view to the same edge of its superview anchor/edge with an inset. */
-- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset;
+- (NSLayoutConstraint *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset;
 
 /** Pins the given edge of the view to the same edge of its superview anchor/edge with an inset as a maximum or minimum. */
-- (NSLayoutConstraint *)autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgeToSuperviewSafeArea:(ALEdge)edge withInset:(CGFloat)inset relation:(NSLayoutRelation)relation;
 
 /** Pins the edges of the view to the edges of its superview anchors/edge. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeArea;
+- (PL__NSArray_of(NSLayoutConstraint *) *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgesToSuperviewSafeArea;
 
 /** Pins the edges of the view to the edges of its superview anchors/edges with the given edge insets. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets;
+- (PL__NSArray_of(NSLayoutConstraint *) *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets;
 
 /** Pins 3 of the 4 edges of the view to the edges of its superview anchor/edge with the given edge insets, excluding one edge. */
-- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
+- (PL__NSArray_of(NSLayoutConstraint *) *)API_AVAILABLE(ios(9.0), tvos(9.0))autoPinEdgesToSuperviewSafeAreaWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge;
 
 #endif /* TARGET_OS_IPHONE */
 
