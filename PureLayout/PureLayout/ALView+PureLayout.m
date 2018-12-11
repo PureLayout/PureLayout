@@ -297,7 +297,7 @@
             }
             break;
     }
-    constraint.active = YES;
+    [constraint autoInstall];
     return constraint;
 #else
     return [self autoPinEdgeToSuperviewEdge:edge withInset:inset relation:relation];
