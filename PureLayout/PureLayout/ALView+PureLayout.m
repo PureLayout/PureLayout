@@ -956,7 +956,7 @@
 #pragma mark Pin to Layout Guides
 
 #if TARGET_OS_IPHONE
-
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_11_0 // Top and bottom layout guides were deprecated in iOS 11
 /**
  Pins the top edge of the view to the top layout guide of the given view controller with an inset.
  For compatibility with iOS 6 (where layout guides do not exist), this method will simply pin the top edge of
@@ -1018,6 +1018,7 @@
     }
 }
 
+#endif /* __IPHONE_OS_VERSION_MIN_REQUIRED */
 #endif /* TARGET_OS_IPHONE */
 
 #pragma mark Internal Methods
