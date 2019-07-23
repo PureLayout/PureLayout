@@ -373,73 +373,73 @@ static PL__NSMutableArray_of(NSString *) *_al_globalConstraintIdentifiers = nil;
 {
     NSLayoutAttribute layoutAttribute = NSLayoutAttributeNotAnAttribute;
     switch (attribute) {
-        case (ALAttribute)ALEdgeLeft:
+        case ALAttributeLeft:
             layoutAttribute = NSLayoutAttributeLeft;
             break;
-        case (ALAttribute)ALEdgeRight:
+        case ALAttributeRight:
             layoutAttribute = NSLayoutAttributeRight;
             break;
-        case (ALAttribute)ALEdgeTop:
+        case ALAttributeTop:
             layoutAttribute = NSLayoutAttributeTop;
             break;
-        case (ALAttribute)ALEdgeBottom:
+        case ALAttributeBottom:
             layoutAttribute = NSLayoutAttributeBottom;
             break;
-        case (ALAttribute)ALEdgeLeading:
+        case ALAttributeLeading:
             layoutAttribute = NSLayoutAttributeLeading;
             break;
-        case (ALAttribute)ALEdgeTrailing:
+        case ALAttributeTrailing:
             layoutAttribute = NSLayoutAttributeTrailing;
             break;
-        case (ALAttribute)ALDimensionWidth:
+        case ALAttributeWidth:
             layoutAttribute = NSLayoutAttributeWidth;
             break;
-        case (ALAttribute)ALDimensionHeight:
+        case ALAttributeHeight:
             layoutAttribute = NSLayoutAttributeHeight;
             break;
-        case (ALAttribute)ALAxisVertical:
+        case ALAttributeVertical:
             layoutAttribute = NSLayoutAttributeCenterX;
             break;
-        case (ALAttribute)ALAxisHorizontal:
+        case ALAttributeHorizontal:
             layoutAttribute = NSLayoutAttributeCenterY;
             break;
-        case (ALAttribute)ALAxisBaseline: // same value as ALAxisLastBaseline
+        case ALAttributeBaseline: // same value as ALAxisLastBaseline
             layoutAttribute = NSLayoutAttributeBaseline;
             break;
 #if PL__PureLayout_MinBaseSDK_iOS_8_0
-        case (ALAttribute)ALAxisFirstBaseline:
+        case ALAttributeFirstBaseline:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisFirstBaseline is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeFirstBaseline;
             break;
-        case (ALAttribute)ALMarginLeft:
+        case ALAttributeMarginLeft:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeftMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeLeftMargin;
             break;
-        case (ALAttribute)ALMarginRight:
+        case ALAttributeMarginRight:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeRightMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeRightMargin;
             break;
-        case (ALAttribute)ALMarginTop:
+        case ALAttributeMarginTop:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTopMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeTopMargin;
             break;
-        case (ALAttribute)ALMarginBottom:
+        case ALAttributeMarginBottom:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeBottomMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeBottomMargin;
             break;
-        case (ALAttribute)ALMarginLeading:
+        case ALAttributeMarginLeading:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeLeadingMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeLeadingMargin;
             break;
-        case (ALAttribute)ALMarginTrailing:
+        case ALAttributeMarginTrailing:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALEdgeTrailingMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeTrailingMargin;
             break;
-        case (ALAttribute)ALMarginAxisVertical:
+        case ALAttributeMarginAxisVertical:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisVerticalMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeCenterXWithinMargins;
             break;
-        case (ALAttribute)ALMarginAxisHorizontal:
+        case ALAttributeMarginAxisHorizontal:
             NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAxisHorizontalMargin is only supported on iOS 8.0 or higher.");
             layoutAttribute = NSLayoutAttributeCenterYWithinMargins;
             break;
