@@ -14,6 +14,6 @@ let package = Package(
         .target(
             name: "PureLayout",
             path: "PureLayout/PureLayout",
-            publicHeadersPath: "PureLayout/PureLayout")
+            publicHeadersPath: ".")
     ]
 )
