@@ -13,6 +13,7 @@ let package = Package(
     targets: [
         .target(
             name: "PureLayout",
-            path: "PureLayout/PureLayout")
+            path: "PureLayout/PureLayout",
+            publicHeadersPath: "PureLayout/PureLayout")
     ]
 )
