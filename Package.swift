@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "PureLayout",
-    platforms: [.iOS(.v8), .macOS(.v10_10), .tvOS(.v9)],
+    platforms: [.iOS(.v9), .macOS(.v10_10), .tvOS(.v9)],
     products: [
         .library(
             name: "PureLayout",
