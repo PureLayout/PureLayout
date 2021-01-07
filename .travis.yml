@@ -6,7 +6,7 @@ rvm:
 xcode_project: PureLayout/PureLayout.xcodeproj
 before_install:
   - rvm install 2.4.1
-  - gem install slather --no-ri --no-rdoc
+  - gem install slather
 
 script:
   - xcodebuild test -project PureLayout/PureLayout.xcodeproj -scheme PureLayout_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2'
