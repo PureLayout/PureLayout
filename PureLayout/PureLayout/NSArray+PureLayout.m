@@ -396,12 +396,14 @@
             return nil;
     }
 #if TARGET_OS_IPHONE
-#   if !defined(PURELAYOUT_APP_EXTENSIONS)
-    BOOL isRightToLeftLayout = [[UIApplication sharedApplication] userInterfaceLayoutDirection] == UIUserInterfaceLayoutDirectionRightToLeft;
-#   else
-    // App Extensions may not access -[UIApplication sharedApplication]; fall back to checking the bundle's preferred localization character direction
-    BOOL isRightToLeftLayout = [NSLocale characterDirectionForLanguage:[[NSBundle mainBundle] preferredLocalizations][0]] == NSLocaleLanguageDirectionRightToLeft;
-#   endif /* !defined(PURELAYOUT_APP_EXTENSIONS) */
+    BOOL isRightToLeftLayout;
+    if ([[[[NSBundle mainBundle] bundlePath] pathExtension] isEqualToString:@"appex"]) {
+        // App Extensions may not access -[UIApplication sharedApplication]; fall back to checking the bundle's preferred localization character direction
+        isRightToLeftLayout = [NSLocale characterDirectionForLanguage:[[NSBundle mainBundle] preferredLocalizations][0]] == NSLocaleLanguageDirectionRightToLeft;
+    } else {
+        // Use dynamic call to sharedApplication to workaround compilation error when building against app extensions 
+        isRightToLeftLayout = [[UIApplication performSelector:@selector(sharedApplication)] userInterfaceLayoutDirection] == UIUserInterfaceLayoutDirectionRightToLeft;
+    }
 #else
     BOOL isRightToLeftLayout = [[NSApplication sharedApplication] userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
 #endif /* TARGET_OS_IPHONE */
