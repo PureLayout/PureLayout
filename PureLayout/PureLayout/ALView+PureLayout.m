@@ -774,6 +774,72 @@
     return [self autoConstrainAttribute:(ALAttribute)dimension toAttribute:(ALAttribute)toDimension ofView:otherView withMultiplier:multiplier relation:relation];
 }
 
+/**
+ Matches a dimension of the view to the same dimension of another view.
+
+ @param dimension The dimension of this view to pin.
+ @param otherView The other view to match to. Must be in the same view hierarchy as this view.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView
+{
+	return [self autoMatchDimension:dimension toDimension:dimension ofView:otherView withOffset:0 relation:NSLayoutRelationEqual];
+}
+
+/**
+ Matches a dimension of the view to the same dimension of another view with an offset.
+
+ @param dimension The dimension of this view to pin.
+ @param otherView The other view to match to. Must be in the same view hierarchy as this view.
+ @param offset The offset between the dimension of this view and the other view.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withOffset:(CGFloat)offset
+{
+	return [self autoMatchDimension:dimension toDimension:dimension ofView:otherView withOffset:offset relation:NSLayoutRelationEqual];
+}
+
+/**
+ Matches a dimension of the view to the same dimension of another view with an offset as a maximum or minimum.
+
+ @param dimension The dimension of this view to pin.
+ @param otherView The other view to match to. Must be in the same view hierarchy as this view.
+ @param offset The offset between the dimension of this view and the other view.
+ @param relation Whether the offset should be at least, at most, or exactly equal to the given value.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withOffset:(CGFloat)offset relation:(NSLayoutRelation)relation
+{
+	return [self autoMatchDimension:dimension toDimension:dimension ofView:otherView withOffset:offset relation:relation];
+}
+
+/**
+ Matches a dimension of the view to a multiple of the same dimension of another view.
+
+ @param dimension The dimension of this view to pin.
+ @param otherView The other view to match to. Must be in the same view hierarchy as this view.
+ @param multiplier The multiple of the other view's dimension that this view's given dimension should be.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier
+{
+	return [self autoMatchDimension:dimension toSameDimensionOfView:otherView withMultiplier:multiplier relation:NSLayoutRelationEqual];
+}
+
+/**
+ Matches a dimension of the view to a multiple of the same dimension of another view as a maximum or minimum.
+
+ @param dimension The dimension of this view to pin.
+ @param otherView The other view to match to. Must be in the same view hierarchy as this view.
+ @param multiplier The multiple of the other view's dimension that this view's given dimension should be.
+ @param relation Whether the multiple should be at least, at most, or exactly equal to the given value.
+ @return The constraint added.
+ */
+- (NSLayoutConstraint *)autoMatchDimension:(ALDimension)dimension toSameDimensionOfView:(ALView *)otherView withMultiplier:(CGFloat)multiplier relation:(NSLayoutRelation)relation
+{
+	return [self autoMatchDimension:dimension toDimension:dimension ofView:otherView withMultiplier:multiplier relation:relation];
+}
+
 
 #pragma mark Set Dimensions
 
