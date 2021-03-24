@@ -59,6 +59,9 @@ PL__ASSUME_NONNULL_BEGIN
 /** Aligns the view to the same axis of its superview. */
 - (NSLayoutConstraint *)autoAlignAxisToSuperviewAxis:(ALAxis)axis;
 
+/** Aligns an axis of the view to the another axis of its superview. */
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSuperviewAxis:(ALAxis)superAxis;
+
 #if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /** Centers the view in its superview's margins. Available in iOS 8.0 and later. */

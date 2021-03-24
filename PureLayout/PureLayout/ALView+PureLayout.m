@@ -100,6 +100,22 @@
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:superview];
 }
 
+/**
+ Aligns an axis of the view to the another axis of its superview.
+ 
+ @param axis The axis of this view.
+ @param superAxis The axis of its superview to align.
+ @return The constraint added.
+ */
+
+- (NSLayoutConstraint *)autoAlignAxis:(ALAxis)axis toSuperviewAxis:(ALAxis)superAxis
+{
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    ALView *superview = self.superview;
+    NSAssert(superview, @"View's superview must not be nil.\nView: %@", self);
+    return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)superAxis ofView:superview];
+}
+
 #if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /**
