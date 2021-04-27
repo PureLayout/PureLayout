@@ -261,15 +261,15 @@
 		B1006C6E19E76D4200B92767 /* ALiOSDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALiOSDemo1ViewController.h; path = "Example-iOS/Demos/ALiOSDemo1ViewController.h"; sourceTree = SOURCE_ROOT; };
 		B1006C6F19E76D4200B92767 /* ALiOSDemo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALiOSDemo1ViewController.m; path = "Example-iOS/Demos/ALiOSDemo1ViewController.m"; sourceTree = SOURCE_ROOT; };
 		B1046A801A7F29F80017187F /* PureLayoutDistributeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PureLayoutDistributeTests.m; path = PureLayoutTests/PureLayoutDistributeTests.m; sourceTree = "<group>"; };
-		B1046A841A7F2C700017187F /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALView+PureLayout.h"; path = "PureLayout/ALView+PureLayout.h"; sourceTree = "<group>"; };
+		B1046A841A7F2C700017187F /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ALView+PureLayout.h"; path = "PureLayout/include/ALView+PureLayout.h"; sourceTree = "<group>"; };
 		B1046A851A7F2C700017187F /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ALView+PureLayout.m"; path = "PureLayout/ALView+PureLayout.m"; sourceTree = "<group>"; };
-		B1046A861A7F2C700017187F /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+PureLayout.h"; path = "PureLayout/NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		B1046A861A7F2C700017187F /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+PureLayout.h"; path = "PureLayout/include/NSArray+PureLayout.h"; sourceTree = "<group>"; };
 		B1046A871A7F2C700017187F /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PureLayout.m"; path = "PureLayout/NSArray+PureLayout.m"; sourceTree = "<group>"; };
-		B1046A881A7F2C700017187F /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+PureLayout.h"; path = "PureLayout/NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		B1046A881A7F2C700017187F /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+PureLayout.h"; path = "PureLayout/include/NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
 		B1046A891A7F2C700017187F /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+PureLayout.m"; path = "PureLayout/NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
 		B1046A8A1A7F2C700017187F /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PureLayout+Internal.h"; path = "PureLayout/PureLayout+Internal.h"; sourceTree = "<group>"; };
-		B1046A8B1A7F2C700017187F /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PureLayout.h; path = PureLayout/PureLayout.h; sourceTree = "<group>"; };
-		B1046A8C1A7F2C700017187F /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PureLayoutDefines.h; path = PureLayout/PureLayoutDefines.h; sourceTree = "<group>"; };
+		B1046A8B1A7F2C700017187F /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PureLayout.h; path = PureLayout/include/PureLayout.h; sourceTree = "<group>"; };
+		B1046A8C1A7F2C700017187F /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PureLayoutDefines.h; path = PureLayout/include/PureLayoutDefines.h; sourceTree = "<group>"; };
 		B1046A9B1A7F2CDA0017187F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		B1046A9D1A7F2CE80017187F /* PureLayoutTests-Mac-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PureLayoutTests-Mac-Info.plist"; path = "PureLayoutTests/PureLayoutTests-Mac/PureLayoutTests-Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B1046AA11A7F2D1B0017187F /* PureLayoutTests-Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PureLayoutTests-Mac-Prefix.pch"; path = "PureLayoutTests/PureLayoutTests-Mac/PureLayoutTests-Mac-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -603,8 +603,7 @@
 				B125489319C29D2A00DDD7BF /* Images-iOS.xcassets */,
 				B12C23E517C3FDE4001CF667 /* Supporting Files */,
 			);
-			name = "Example-iOS";
-			path = Example;
+			path = "Example-iOS";
 			sourceTree = "<group>";
 		};
 		B12C23E517C3FDE4001CF667 /* Supporting Files */ = {
@@ -670,7 +669,8 @@
 				B1046AA21A7F2D520017187F /* PureLayoutPriorityTests-iOS.m */,
 				B1EC8563195662790099293C /* Supporting Files */,
 			);
-			path = "PureLayoutTests-iOS";
+			name = "PureLayoutTests-iOS";
+			path = "PureLayoutTests/PureLayoutTests-iOS";
 			sourceTree = "<group>";
 		};
 		B1EC8563195662790099293C /* Supporting Files */ = {
@@ -688,7 +688,8 @@
 			children = (
 				B1EC857F195662B40099293C /* Supporting Files */,
 			);
-			path = "PureLayoutTests-Mac";
+			name = "PureLayoutTests-Mac";
+			path = "PureLayoutTests/PureLayoutTests-Mac";
 			sourceTree = "<group>";
 		};
 		B1EC857F195662B40099293C /* Supporting Files */ = {
