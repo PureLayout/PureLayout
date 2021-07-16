@@ -2,20 +2,21 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.6)
-    activesupport (5.1.5)
+    activesupport (6.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (~> 0.7)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     atomos (0.1.2)
     claide (1.0.2)
     clamp (0.6.5)
     colored2 (3.1.2)
-    concurrent-ruby (1.0.5)
-    i18n (0.9.5)
+    concurrent-ruby (1.1.6)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.3)
+    minitest (5.14.1)
     nanaimo (0.2.4)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -26,7 +27,7 @@ GEM
       nokogiri (~> 1.8.2)
       xcodeproj (~> 1.4)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     xcodeproj (1.5.7)
       CFPropertyList (>= 2.3.3, < 4.0)
@@ -34,6 +35,7 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.4)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
