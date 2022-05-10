@@ -105,7 +105,7 @@
 #pragma mark PureLayout Attributes
 
 /** Constants that represent edges of a view. */
-typedef NS_ENUM(NSInteger, ALEdge) {
+typedef NS_CLOSED_ENUM(NSInteger, ALEdge) {
     /** The left edge of the view. */
     ALEdgeLeft = NSLayoutAttributeLeft,
     /** The right edge of the view. */
@@ -121,7 +121,7 @@ typedef NS_ENUM(NSInteger, ALEdge) {
 };
 
 /** Constants that represent dimensions of a view. */
-typedef NS_ENUM(NSInteger, ALDimension) {
+typedef NS_CLOSED_ENUM(NSInteger, ALDimension) {
     /** The width of the view. */
     ALDimensionWidth = NSLayoutAttributeWidth,
     /** The height of the view. */
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, ALDimension) {
 };
 
 /** Constants that represent axes of a view. */
-typedef NS_ENUM(NSInteger, ALAxis) {
+typedef NS_CLOSED_ENUM(NSInteger, ALAxis) {
     /** A vertical line equidistant from the view's left and right edges. */
     ALAxisVertical = NSLayoutAttributeCenterX,
     /** A horizontal line equidistant from the view's top and bottom edges. */
@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, ALAxis) {
 #if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /** Constants that represent layout margins of a view. Available in iOS 8.0 and later. */
-typedef NS_ENUM(NSInteger, ALMargin) {
+typedef NS_CLOSED_ENUM(NSInteger, ALMargin) {
     /** The left margin of the view, based on the view's layoutMargins left inset. */
     ALMarginLeft = NSLayoutAttributeLeftMargin,
     /** The right margin of the view, based on the view's layoutMargins right inset. */
@@ -164,7 +164,7 @@ typedef NS_ENUM(NSInteger, ALMargin) {
 };
 
 /** Constants that represent axes of the layout margins of a view. Available in iOS 8.0 and later. */
-typedef NS_ENUM(NSInteger, ALMarginAxis) {
+typedef NS_CLOSED_ENUM(NSInteger, ALMarginAxis) {
     /** A vertical line equidistant from the view's left and right margins. */
     ALMarginAxisVertical = NSLayoutAttributeCenterXWithinMargins,
     /** A horizontal line equidistant from the view's top and bottom margins. */
@@ -175,7 +175,7 @@ typedef NS_ENUM(NSInteger, ALMarginAxis) {
 
 /** An attribute of a view that can be used in auto layout constraints. These constants are identical to the more specific enum types: 
     ALEdge, ALAxis, ALDimension, ALMargin, ALMarginAxis. It is safe to cast a more specific enum type to the ALAttribute type. */
-typedef NS_ENUM(NSInteger, ALAttribute) {
+typedef NS_CLOSED_ENUM(NSInteger, ALAttribute) {
     /** The left edge of the view. */
     ALAttributeLeft = ALEdgeLeft,
     /** The right edge of the view. */
