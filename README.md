@@ -97,7 +97,7 @@ There are 5 specific attribute types, which are used throughout most of the API:
 
 Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
 
-### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
+### [`UIView`/`NSView`](PureLayout/PureLayout/include/ALView%2BPureLayout.h)
 ```
 - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
 - autoCenterInSuperview(Margins) // Margins variant iOS 8.0+ only
@@ -114,7 +114,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 - autoPinEdgeToSuperviewSafeArea:withInset: // iOS 11.0+ only
 ```
 
-### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)
+### [`NSArray`](PureLayout/PureLayout/include/NSArray%2BPureLayout.h)
 ```
 // Arrays of Constraints
 - autoInstallConstraints
@@ -131,7 +131,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
 - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
 ```
 
-### [`NSLayoutConstraint`](PureLayout/PureLayout/NSLayoutConstraint%2BPureLayout.h)
+### [`NSLayoutConstraint`](PureLayout/PureLayout/include/NSLayoutConstraint%2BPureLayout.h)
 ```
 + autoCreateAndInstallConstraints:
 + autoCreateConstraintsWithoutInstalling:
